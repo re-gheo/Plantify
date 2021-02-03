@@ -21,9 +21,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+// SOCIAL LOGIN ---------------------------------------------------------------------------------------------
 Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+// Auth::routes();
+// Routes::get('/admin/home', 'AdminController@index')->name('admin')->middleware('admin');
+// Routes::get('/customer/home', 'CustomerController@index')->name('customer')->middleware('customer');
+// Routes::get('/retailer/home', 'RetailerController@index')->name('retailer')->middleware('retailer');
