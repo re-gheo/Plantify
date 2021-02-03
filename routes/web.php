@@ -1,6 +1,11 @@
 <?php
 
+// use Illuminate\Support\Facades\Request;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use function GuzzleHttp\Promise\all;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +18,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Route to open Login page upon Artisan Serve */
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('retailer/index2');
 });
+
+/*Route from login to register after clicking link below form */
+
+Route::get('/retailer/register', function () {
+    return view('retailer/register');
+});
+
+/*Post request to submit email of already registered account */
+
+Route::post('/retailer/login', function (Request $request) {
+    dd($request->all());
+});
+
+
+
 
 Auth::routes();
 
