@@ -1,0 +1,21 @@
+* {
+    font-family: Poppins, sans-serif;
+}
+
+#search:focus {
+    border: none;
+    box-shadow: none;
+    border: 2px solid #39976b;
+}
+
+.navbar-brand img {
+    width: 8em;
+    height: 3em;
+}
+
+
+
+.nav-link {
+    text-decoration: none;
+    color: #707070;
+}

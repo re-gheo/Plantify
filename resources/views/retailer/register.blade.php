@@ -26,7 +26,7 @@
         
           <form action="" class="form-box px-3">
 
-          <div class="form-row">
+          <div class="form-row ">
             <div class="col">
               <input type="text" id="fname" name="fname" placeholder="First Name" tabindex="10" required>
             </div>

@@ -21,7 +21,7 @@ use function GuzzleHttp\Promise\all;
 /*Route to open Login page upon Artisan Serve */
 
 Route::get('/', function () {
-    return view('retailer/index2');
+    return view('retailer/storefront');
 });
 
 /*Route from login to register after clicking link below form */
