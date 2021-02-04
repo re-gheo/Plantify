@@ -42,11 +42,11 @@ class LoginController extends Controller
                 break;
             case 'customer':
                 $this->redirectTo = ('customer/home');
-                return '/';
+                return '/home';
                 break;
 
             case 'retailer':
-                $this->redirectTo = ('retailer/storefront');
+                $this->redirectTo = ('retailer/home');
                 return $this->redirectTo;
                 break;
             default:
@@ -98,7 +98,7 @@ class LoginController extends Controller
 
         $this->_registerOrLoginGoogleUser($user);
 
-        return view('/retailer/storefront');
+        return view('/home');
     }
 
     protected function _registerOrLoginGoogleUser($data)
