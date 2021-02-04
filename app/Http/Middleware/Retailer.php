@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use Auth;
 class Retailer
 {
     /**
@@ -16,6 +16,11 @@ class Retailer
      */
     public function handle(Request $request, Closure $next)
     {
-        
+        if(Auth::user()->user_role == 'retailer'){
+            return $next($request);
+
+        }else 
+        abort(403, "Cannot access to restricted page");
     }
+    
 }

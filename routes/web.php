@@ -52,7 +52,9 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
-// Auth::routes();
-// Routes::get('/admin/home', 'AdminController@index')->name('admin')->middleware('admin');
-// Routes::get('/customer/home', 'CustomerController@index')->name('customer')->middleware('customer');
-// Routes::get('/retailer/home', 'RetailerController@index')->name('retailer')->middleware('retailer');
+ Auth::routes();
+Route::get('admin/home', 'AdminController@index')->name('admin.home')->middleware('admin');
+Route::get('customer/home', 'CustomerController@index')->name('customer.home')->middleware('customer');
+Route::get('retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');
+
+Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);

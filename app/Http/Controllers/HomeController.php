@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    
+    public function restricted() {
+        dd( "You are admin..!!");
+    }
+    
+    
 }

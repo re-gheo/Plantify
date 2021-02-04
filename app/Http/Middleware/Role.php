@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
-class Customersss
+use Auth;
+class Role
 {
     /**
      * Handle an incoming request.
@@ -16,6 +16,10 @@ class Customersss
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if(Auth::user()->user_role == 'admin'){
+            return $next($request);
+
+        }else 
+        abort(403, "Cannot access to restricted page");
     }
 }
