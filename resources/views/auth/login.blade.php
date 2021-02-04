@@ -66,6 +66,8 @@
 
                         </div>
 <br>
+
+                    <!--Google and Facebook Login -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-3">
                                 <a href="{{url('/login/google')}}" class="btn btn-success btn-block">Login with Google</a>
