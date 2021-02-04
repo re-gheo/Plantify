@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use function GuzzleHttp\Promise\all;
+use function Ramsey\Uuid\v1;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::get('/retailer/register', function () {
     return view('retailer/register');
 });
 
+Route::get('/retailer/login', function () {
+    return view('retailer/index2');
+});
+
 /*Post request to submit email of already registered account */
 
 Route::post('/retailer/login', function (Request $request) {
@@ -52,7 +57,7 @@ Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallba
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
- Auth::routes();
+Auth::routes();
 Route::get('admin/home', 'AdminController@index')->name('admin.home')->middleware('admin');
 Route::get('customer/home', 'CustomerController@index')->name('customer.home')->middleware('customer');
 Route::get('retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');

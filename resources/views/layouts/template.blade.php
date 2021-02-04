@@ -37,12 +37,24 @@
           <i class="fas fa-user-circle pr-1"></i>Profile</a>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/login">Login</a>
-          <a class="dropdown-item" href="/register">Register Account</a>
-          <!-- <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a> -->
+          @if(!Auth::user())
+          <a class="dropdown-item" href="/retailer/login">Login</a>
+          <a class="dropdown-item" href="/retailer/register">Register Account</a>
+          @else
+          <form method="POST" action="{{route('logout')}}">
+            @csrf
+         <button class="dropdown-item">
+            Logout
+         </button>
+        </form>
+          @endif
+       
+         
         </div>
       </li> 
+
+      <li> 
+       </li>
     </ul>
 
  

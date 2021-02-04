@@ -25,7 +25,7 @@
     <!--LOGIN FORM-->
        <h4 class="title text-center mt-4">Login To Plantify</h4>
           
-       <form method="POST" action="/retailer/login" class="form-box px-3 ">
+       <form method="POST" action="{{route('login')}}" class="form-box px-3 ">
         @csrf
           <div class="form-input">
             <span><i class="fa fa-envelope-o"></i></span>
@@ -60,11 +60,11 @@
               Login
             </button>
 
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2">
-              <i class="fab fa-facebook-square"></i>    Login with Facebook
+            <a href="{{url('/login/facebook')}}" class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2">
+              <i class="fab fa-facebook-square"></i> Login with Facebook
             </a>
 
-            <a href="#" class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold">
+            <a href="{{url('/login/google')}}" class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold">
               <i class="fab fa-google"></i> Login with Google
             </a>
           </div>
@@ -83,7 +83,9 @@
           </div>
        </div>
   
-       </form>
+      </form>
+      
+    
         </div>
       </div>
     </div>
