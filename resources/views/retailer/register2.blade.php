@@ -24,21 +24,15 @@
           <h4 class="title text-center mt-4">Register your Plantify account here</h4>
 
         
-          <form action="" class="form-box px-3">
-
-          <div class="form-row ">
-            <div class="col">
-              <input type="text" id="fname" name="fname" placeholder="First Name" tabindex="10" required>
-            </div>
-            <div class="col">
-              <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-            </div>
-         
+          <form action="" class="form-box px-2">
 
           
-          </div>
-        
-       
+            <div class="form-input">
+              <input type="text" id="fname" name="fname" placeholder="First Name" tabindex="10" required>
+            </div>
+            <div class="form-input">
+              <input type="text" id="lname" name="lname" placeholder="Last Name" required>
+            </div>
               <div class="form-input">
                 <input type="text" id="username" name="username" placeholder="Username" required>
               </div>
@@ -86,11 +80,13 @@
           <div class="btn-group-vertical d-flex align-items-center">
             <button type="submit" class="facebook btn btn-block text-uppercase font-weight-bold">Register</button>
 
-          <button  class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2">  <i class="fab fa-facebook-square"></i>  Login with Facebook</button>
+            <a href="{{url('/login/facebook')}}" class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2">
+              <i class="fab fa-facebook-square"></i> Login with Facebook
+            </a>
 
-          <a href="#" class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold">
-            <i class="fab fa-google"></i> Login with Google
-          </a>
+            <a href="{{url('/login/google')}}" class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold">
+              <i class="fab fa-google"></i> Login with Google
+            </a>
           </div>
 
           <div class="text-center mb-2 my-2">

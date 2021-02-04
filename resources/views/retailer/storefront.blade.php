@@ -13,7 +13,8 @@
 .ads{
   width: 100%;
   height: 200px;
-  background-color:blue;
+  background-color: #3bb78f;
+    background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
 }
 
 
@@ -33,7 +34,7 @@
       </div>
       <div  class="col-lg-9">
         @if(Auth::user())
-                    <h2>Welcome! {{Auth::user()->email}}</h2>
+                    <h3>Welcome! {{Auth::user()->first_name }} , {{Auth::user()->last_name }}</h3>
                 @endif
         <div class="ads"> 
         </div>

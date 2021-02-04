@@ -39,7 +39,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           @if(!Auth::user())
           <a class="dropdown-item" href="/retailer/login">Login</a>
-          <a class="dropdown-item" href="/retailer/register">Register Account</a>
+          <a class="dropdown-item" href="/retailer/register2">Register Account</a>
           @else
           <form method="POST" action="{{route('logout')}}">
             @csrf

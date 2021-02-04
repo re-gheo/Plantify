@@ -19,6 +19,11 @@ use function Ramsey\Uuid\v1;
 |
 */
 
+Route::fallback(function () {
+    return view('retailer/notfound');
+});
+
+
 /*Route to open Login page upon Artisan Serve */
 
 Route::get('/', function () {
@@ -27,8 +32,8 @@ Route::get('/', function () {
 
 /*Route from login to register after clicking link below form */
 
-Route::get('/retailer/register', function () {
-    return view('retailer/register');
+Route::get('/retailer/register2', function () {
+    return view('retailer/register2');
 });
 
 Route::get('/retailer/login', function () {

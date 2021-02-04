@@ -50,7 +50,7 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             default:
-                $this->redirectTo = '/storefront';
+                $this->redirectTo = '/home';
                 return $this->redirectTo;
         }
 
@@ -98,7 +98,7 @@ class LoginController extends Controller
 
         $this->_registerOrLoginGoogleUser($user);
 
-        return redirect()->route('home');
+        return view('/retailer/storefront');
     }
 
     protected function _registerOrLoginGoogleUser($data)
