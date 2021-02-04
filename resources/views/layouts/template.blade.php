@@ -8,7 +8,7 @@
 
   <!--CSS Preamble-->
   <link rel="stylesheet" type="text/css" href="/CSS/template-style.css">
-  <link rel="stylesheet" href="{{asset('/css/storefront-style.css')}}">
+ 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -37,8 +37,8 @@
           <i class="fas fa-user-circle pr-1"></i>Profile</a>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Login</a>
-          <a class="dropdown-item" href="#">Register Account</a>
+          <a class="dropdown-item" href="/login">Login</a>
+          <a class="dropdown-item" href="/register">Register Account</a>
           <!-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a> -->
         </div>
