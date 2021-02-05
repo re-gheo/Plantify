@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use Socialite;
 use Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -34,17 +35,17 @@ class LoginController extends Controller
     public function redirectTo()
     {
         //dd(Auth::user()->user_role);
-        switch(Auth::user()->user_role){
+        switch (Auth::user()->user_role) {
             case 'admin':
                 $this->redirectTo = ('admin/home');
                 return $this->redirectTo;
                 break;
             case 'customer':
                 $this->redirectTo = ('customer/home');
-                return $this->redirectTo;
+                return '/home';
                 break;
-            
-            case 'reatiler':
+
+            case 'retailer':
                 $this->redirectTo = ('retailer/home');
                 return $this->redirectTo;
                 break;
@@ -52,9 +53,9 @@ class LoginController extends Controller
                 $this->redirectTo = '/home';
                 return $this->redirectTo;
         }
-         
+
         // return $next($request);
-    } 
+    }
     /**
      * Create a new controller instance.
      *
@@ -66,10 +67,9 @@ class LoginController extends Controller
     }
 
     // facebook
-    public function redirectToFacebook  ()
+    public function redirectToFacebook()
     {
         return Socialite::driver('facebook')->redirect();
-  
     }
 
     public function handleFacebookCallback()
@@ -77,54 +77,54 @@ class LoginController extends Controller
         $user = Socialite::driver('facebook')->user();
         // dd($user);
 
-         $this->_registerOrLoginfacebookUser($user);
-       //Auth::login($user);
-       
+        $this->_registerOrLoginfacebookUser($user);
+        //Auth::login($user);
+
         return redirect()->route('home');
     }
 
 
-//google
+    //google
     public function redirectToGoogle()
     {
-        
-        return Socialite::driver('google')->with(["prompt" => "select_account"])->stateless()->redirect();
 
-       
+        return Socialite::driver('google')->with(["prompt" => "select_account"])->stateless()->redirect();
     }
 
     public function handleGoogleCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
-        
-       
-         $this->_registerOrLoginGoogleUser($user);
-       
-        return redirect()->route('home');
+
+
+        $this->_registerOrLoginGoogleUser($user);
+
+        return view('/home');
     }
 
-    protected function _registerOrLoginGoogleUser($data){
+    protected function _registerOrLoginGoogleUser($data)
+    {
         $user = User::where('email', '=', $data->email)->first();
-        if(!$user){
+        if (!$user) {
             $user = new User();
-            $user->email = $data->email; 
+            $user->email = $data->email;
             $user->name = $data->name;
             $user->first_name = $data->user['given_name'];
             $user->last_name = $data->user['family_name'];
-            $user->provider_id = $data->id; 
+            $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
             $user->user_role = "customer";
             $user->save();
         }
         Auth::login($user);
     }
-    protected function _registerOrLoginfacebookUser($data){
+    protected function _registerOrLoginfacebookUser($data)
+    {
         $user = User::where('email', '=', $data->email)->first();
-        if(!$user){
+        if (!$user) {
             $user = new User();
-            $user->email = $data->email; 
+            $user->email = $data->email;
             $user->name = $data->name;
-            $user->provider_id = $data->id; 
+            $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
             $user->user_role = "customer";
             $user->save();
