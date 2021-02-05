@@ -13,12 +13,13 @@
 
                         <div class="form-group row">
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First name') }}</label>
-
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" autofocus>
 
+                               
                                 @error('first_name')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span  role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
