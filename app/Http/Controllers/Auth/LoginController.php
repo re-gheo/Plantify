@@ -42,7 +42,7 @@ class LoginController extends Controller
                 break;
             case 'customer':
                 $this->redirectTo = ('customer/home');
-                return '/home';
+                return $this->redirectTo;
                 break;
 
             case 'retailer':
@@ -56,6 +56,8 @@ class LoginController extends Controller
 
         // return $next($request);
     }
+
+    
     /**
      * Create a new controller instance.
      *

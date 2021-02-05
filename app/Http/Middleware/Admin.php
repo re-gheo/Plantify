@@ -16,6 +16,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        // if (!Auth::user == NULL){
+        //     dd("null auth");
+        // }
         if(Auth::user()->user_role == 'admin'){
             return $next($request);
 

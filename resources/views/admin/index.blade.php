@@ -15,7 +15,11 @@
                     @endif
 
                     {{ __('You are logged in admin!') }}
+
                 </div>
+                <a href="/admin/account-management"> Check user accounts</a>
+                <br>
+                <a href="/admin/categories"> go to category</a>
             </div>
         </div>
     </div>

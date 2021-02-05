@@ -3,68 +3,69 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Categorie;
 class CategorieController extends Controller
 {
-    public function index(){        
-        $object = ModelName::latest()->get();   
-        return view('articles.index',['articles' => $object]);             
+    public function index(){   
+          
+        $categorie = Categorie::latest()->get();   
+        return view('admin.category.index',['categories' => $categorie]);                 
     }
     public function show($id){     
-        $object = ModelName::findOrFail($id);   
-        return view('articles.show',['article' => $object]);              
+        $categorie = Categorie::findOrFail($id);   
+        return view('categories.show',['categorie' => $categorie]);              
     }
 
     public function create(){       
-       return view('articles.create');                                     
+       return view('categories.create');                                     
     }
     
     public function store(){ 
      
     
-       request()->validate([
-        'title' => 'required',
-        'excerpt' => 'required',
-        'body' => 'required'
-    ]);
+    //    request()->validate([
+    //     'title' => 'required',
+    //     'excerpt' => 'required',
+    //     'body' => 'required'
+    // ]);
 
-       $object = new ModelName();
+       $categorie = new Categorie();
        
-       $object ->title = request('title');
-       $object ->excerpt = request('excerpt');
-       $object ->body = request('body');
+    //    $categorie ->title = request('title');
+    //    $categorie ->excerpt = request('excerpt');
+    //    $categorie ->body = request('body');
        
-       $object ->save();
+       $categorie ->save();
 
-       return redirect ('/articles');
+    //    return redirect ('/categories');
        
 
     }
       
     public function edit($id){ 
         
-        $object = ModelName::find($id);
-        return view('articles.edit', ['article' => $object]);
+        $categorie = Categorie::find($id);
+        return view('categories.edit', ['categorie' => $categorie]);
     }
       
     public function update($id){
-        $object = ModelName::find($id);
-        $object ->title = request('title');
-        $object ->excerpt = request('excerpt');
-        $object ->body = request('body');
+        $categorie = Categorie::find($id);
+        $categorie ->title = request('title');
+        $categorie ->excerpt = request('excerpt');
+        $categorie ->body = request('body');
         
-        $object ->save();
-       return redirect ( route('articles.show', $object->id));
-        //or return redirect('/articles/'. $object->id);
-        //or return redirect('/articles/'. $id);
+        $categorie ->save();
+       return redirect ( route('categories.show', $categorie->id));
+        //or return redirect('/categories/'. $categorie->id);
+        //or return redirect('/categories/'. $id); 
         
     }
       
     public function destroy($id){
        //dd('hello');
 
-       ModelName::find($id)->delete();
+       Categorie::find($id)->delete();
 
-       return redirect ('/articles');
+       return redirect ('/categories');
     }
 }

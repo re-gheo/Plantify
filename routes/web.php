@@ -68,3 +68,14 @@ Route::get('customer/home', 'CustomerController@index')->name('customer.home')->
 Route::get('retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');
 
 Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
+
+
+
+
+Route::get('admin/account-management', 'UserController@index')/*->middleware('admin')*/;
+
+Route::get('admin/categories', 'CategorieController@index')/*->middleware('admin')*/;
+
+
+
+
