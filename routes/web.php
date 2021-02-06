@@ -19,9 +19,6 @@ use function Ramsey\Uuid\v1;
 |
 */
 
-Route::fallback(function () {
-    return view('retailer/notfound');
-});
 
 
 /*Route to open Login page upon Artisan Serve */
@@ -29,25 +26,6 @@ Route::fallback(function () {
 Route::get('/', function () {
     return view('retailer/storefront');
 });
-
-/*Route from login to register after clicking link below form */
-
-Route::get('/retailer/register2', function () {
-    return view('retailer/register2');
-});
-
-Route::get('/retailer/login', function () {
-    return view('retailer/index2');
-});
-
-/*Post request to submit email of already registered account */
-
-Route::post('/retailer/login', function (Request $request) {
-    dd($request->all());
-});
-
-
-
 
 
 
@@ -75,7 +53,3 @@ Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
 Route::get('admin/account-management', 'UserController@index')/*->middleware('admin')*/;
 
 Route::get('admin/categories', 'CategorieController@index')/*->middleware('admin')*/;
-
-
-
-
