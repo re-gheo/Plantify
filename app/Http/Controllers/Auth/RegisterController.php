@@ -30,8 +30,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-   // protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/';
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/setup';
 
     /**
      * Create a new controller instance.
@@ -50,16 +50,16 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {     
+    {
         //dd($data);
         return Validator::make($data, [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'govtid_number' => 'required',
-            'address' => 'required',
-            'birthday' => 'required'
+            // 'govtid_number' => 'required',
+            // 'address' => 'required',
+            // 'birthday' => 'required'
         ]);
     }
 
@@ -71,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -83,7 +83,4 @@ class RegisterController extends Controller
 
         ]);
     }
-
-
-   
 }

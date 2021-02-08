@@ -18,7 +18,7 @@
           <th>scientificname</th>
           {{-- <th>description</th>
           <th>maintenance</th> --}}
-          <th>categoryid</th>
+          <th>category</th>
           <th>Photos</th>
           <th>options</th>
            

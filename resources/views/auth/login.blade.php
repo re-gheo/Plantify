@@ -14,7 +14,7 @@
 
             <div class="container">
                 <div  id="login-hero" class="row px-3">
-                    <div  class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
+                    <div  class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow p-3 mb-5 bg-white rounded">
                         <div class="img-left d-none d-md-flex"></div>   
                         <div class="login-card">
                          
