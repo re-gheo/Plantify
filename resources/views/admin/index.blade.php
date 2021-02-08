@@ -17,9 +17,17 @@
                     {{ __('You are logged in admin!') }}
 
                 </div>
-                <a href="/admin/account-management"> Check user accounts</a>
-                <br>
-                <a href="/admin/categories"> go to category</a>
+
+                <div>
+                    <a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
+                </div>
+                <div>
+                    <a href="/admin/account-management" class="btn btn-dark"> Check user accounts</a>
+                </div>
+                
+               <div>
+                    <a href="/admin/categories" class="btn btn-dark"> go to category</a>
+                </div>
             </div>
         </div>
     </div>

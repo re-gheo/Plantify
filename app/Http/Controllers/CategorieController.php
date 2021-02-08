@@ -11,51 +11,41 @@ class CategorieController extends Controller
         $categorie = Categorie::latest()->get();   
         return view('admin.category.index',['categories' => $categorie]);                 
     }
-    public function show($id){     
-        $categorie = Categorie::findOrFail($id);   
-        return view('categories.show',['categorie' => $categorie]);              
-    }
+    // public function show($id){     
+    //     $categorie = Categorie::findOrFail($id);   
+    //     return view('categories.show',['categorie' => $categorie]);              
+    // }
 
-    public function create(){       
-       return view('categories.create');                                     
-    }
+    // public function create(){       
+    //    return view('categories.create');                                     
+    // }
     
     public function store(){ 
      
     
-    //    request()->validate([
-    //     'title' => 'required',
-    //     'excerpt' => 'required',
-    //     'body' => 'required'
-    // ]);
+       request()->validate([
+        
+         'categories' => 'required',
+    ]);
 
        $categorie = new Categorie();
-       
-    //    $categorie ->title = request('title');
-    //    $categorie ->excerpt = request('excerpt');
-    //    $categorie ->body = request('body');
-       
+       $categorie ->categories = request('categories');
        $categorie ->save();
-
-    //    return redirect ('/categories');
-       
-
-    }
-      
-    public function edit($id){ 
-        
-        $categorie = Categorie::find($id);
-        return view('categories.edit', ['categorie' => $categorie]);
-    }
+       return redirect ('/admin/categories');
+    } 
+    // public function edit($id){ 
+    //     $categorie = Categorie::find($id);
+    //     return view('categories.edit', ['categorie' => $categorie]);
+    // }
       
     public function update($id){
+
+        //$categorie = Categorie::where('product_categoryid',$id )->first();
         $categorie = Categorie::find($id);
-        $categorie ->title = request('title');
-        $categorie ->excerpt = request('excerpt');
-        $categorie ->body = request('body');
-        
+        $categorie ->categories = request('categories');
         $categorie ->save();
-       return redirect ( route('categories.show', $categorie->id));
+        return redirect ( '/admin/categories');
+       //return redirect ( route('/admin/categories', $categorie->id));
         //or return redirect('/categories/'. $categorie->id);
         //or return redirect('/categories/'. $id); 
         
@@ -66,6 +56,6 @@ class CategorieController extends Controller
 
        Categorie::find($id)->delete();
 
-       return redirect ('/categories');
+       return redirect ('/admin/categories');
     }
 }

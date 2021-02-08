@@ -41,4 +41,12 @@ return [
        // 'redirect' => 'http://localhost/plantify/public/login/google/callback',
         'redirect' => 'http://localhost:8000/login/google/callback',
     ],
+
+    'semaphore' => [
+    //     'client_id' => env('GOOGLE_CLIENT_ID'),
+    //     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    //    // 'redirect' => 'http://localhost/plantify/public/login/google/callback',
+    //     'redirect' => 'http://localhost:8000/login/google/callback',
+    ],
+
 ];

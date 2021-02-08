@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 class UserController extends Controller
@@ -81,5 +81,34 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function setup(){
+       
+        return view('auth.setup');  
+    }
+    public function setups($email)
+    {
+          
+
+        request()->validate([
+            'govtid_number' => 'required',
+            'address' => 'required',
+            'birthday' => 'required'
+        ]);
+
+       // $data = DB::table('users')->where('email', '=',$email)->get();
+        $data = User::where('email',$email )->first();
+       
+        $data->govtid_number = request('govtid_number');
+        $data->region = "National Capital Region (NCR)";
+        $data->address = request('address');
+        $data->birthday = request('birthday');    
+
+        
+        $data->save();   
+       
+
+        return redirect ('/');
     }
 }

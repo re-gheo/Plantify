@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class Plant_referencepage extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'product_categoryid';
-    
+    protected $primaryKey = 'plant_referenceid';
+
 }
