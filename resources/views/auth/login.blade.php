@@ -11,7 +11,7 @@
 
 </style>
 
-<link rel="stylesheet" href="/background.css">
+
             <div class="container">
                 <div  id="login-hero" class="row px-3">
                     <div  class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
             
-                                    <div class="aux-container d-flex">
+                                    <div class="d-flex">
                                         <div class="">
                                             <div class="">
                                                 <input class="" type="checkbox" name="remember_token" id="remember_token" {{ old('remember_token') ? 'checked' : '' }}>

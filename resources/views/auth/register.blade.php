@@ -11,11 +11,12 @@
 
 </style>
 
-                <div class="">{{ __('Register') }}</div>
+                {{-- <div class="">{{ __('Register') }}</div> --}}
+                &nbsp;
                 <div class="container">
-                    <div class="row px-3">
+                    <div id="#register-hero"class="row px-3">
                         <div class="col-lg-10 col-xl-7 card flex-row mx-auto px-4">
-                            <div class="card-body">
+                            <div class="register-card">
                                 <form method="POST" class="form-box px-2" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-input ">
@@ -83,7 +84,7 @@
             
                                     <div class="">
                                         <div class="">
-                                            <button type="submit" class="">
+                                            <button type="submit" class="btn btn-block btn-success text-uppercase">
                                                 {{ __('Register') }}
                                             </button>
                                         </div>
@@ -93,7 +94,7 @@
                                             </button>
                                         </div>
                                         <div class="">
-                                            <button type="submit" class="">
+                                            <button type="submit" class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2">
                                                 <a href="{{url('/login/facebook')}}" class="">Login with Facebook</a>
                                             </button>
                                         </div>
