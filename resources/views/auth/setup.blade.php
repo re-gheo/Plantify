@@ -4,73 +4,72 @@
 
     
       
-<h1> Fill up some credentials</h1>
 
-                <div class="card-body">
-                    <form method="POST" action="setup/{{ Auth::user()->email }}">
-                        @csrf
-                        @method('PUT')
 
-                       <div>
-                        
-                            <label for="govtid_number" > A Valid Government Number</label>
-
-                            <div >
-                                <input id="govtid_number" type="text" class=" @error('govtid_number') is-invalid @enderror" name="govtid_number" value="{{ old('govtid_number') }}" required autocomplete="govtid_number" autofocus>
-
-                                @error('govtid_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                </div >
-                       </div>
-                        
-                                <div >
-                        
-                            <label for="address" >Address</label>
-
-                            
-                               <div>
-                                <input id="address" type="text" class=" @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
-
-                                @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+            <div class="container">
+                <div class="row px-2 pt-5">
+                    <div class="col-lg-5 col-xl-4 card flex-column mx-auto mt-5  shadow p-3  border-3 ">
+                        <div class="setup-card mx-auto  ">
+                            <h3 class="text-center">Fill in some credentials</h3>
+                            <form method="POST" action="setup/{{ Auth::user()->email }}">
+                                @csrf
+                                @method('PUT')
+        
+                               <div>                     
+                                    <label for="govtid_number" > A Valid Government Number</label>
+        
+                                    <div class="form-input" >
+                                        <input id="govtid_number" type="text" class=" @error('govtid_number') is-invalid @enderror" name="govtid_number" value="{{ old('govtid_number') }}" required autocomplete="govtid_number" autofocus>
+        
+                                        @error('govtid_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        </div >
                                </div>
-                                </div >
+                                
+                                        <div >
+                                
+                                    <label for="address" >Address</label>
+        
+                                    
+                                       <div class="form-input">
+                                        <input id="address" type="text" class=" @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+        
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                       </div>
+                                        </div >
+                                
+         
+                                <div class="form-input">
+                                    <label for="birthday" >Birthday</label>
+        
+                                    <div >
+                                        <input type="date" id="birthday" name="birthday">
+                                    </div>
+                                </div>
+        
+                                {{-- <input type="hidden" id="email" name="email" value={{ Auth::user->email }}> --}}
+        
+                            
+        
+                                <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
+        
+                                <div class="form-group row mb-0">
+                                 <a href="/">skip for now</a>
+        
+                                </div>                           
+                            </form>
+                        </div>
                         
- 
-                        <div >
-                            <label for="birthday" >Birthday</label>
-
-                            <div >
-                                <input type="date" id="birthday" name="birthday">
-                            </div>
-                        </div>
-
-                        {{-- <input type="hidden" id="email" name="email" value={{ Auth::user->email }}> --}}
-
-                    
-
-                        <button class="button is-link" type="submit">SUBMIT</button>
-
-                        <div class="form-group row mb-0">
-                         <a href="/">skip for now</a>
-
-                        </div>
-
-  
-                    
-
-
-
-                      
-                    </form>
-                </div> 
-            
+                    </div>
+                </div>
+            </div>
         
     
 

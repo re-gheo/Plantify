@@ -43,14 +43,10 @@ CARD
 
 }
 
-#login-container {
-    border: black;
-}
-
 
 
 .login-card,
-.register-card {
+.register-card .setup-card {
     display: flex;
     margin: 2rem 2rem;
     overflow: hidden;
@@ -177,7 +173,7 @@ NAVBAR
 }
 
 .navbar {
-    background: #2EAC71;
+    background: #2ca36c;
 
 
 }
