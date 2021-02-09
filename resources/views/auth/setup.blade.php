@@ -61,7 +61,7 @@
                                 <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
         
                                 <div class="form-group row mb-0">
-                                 <a href="/">skip for now</a>
+                                 <a href="/verify">skip for now</a>
         
                                 </div>                           
                             </form>

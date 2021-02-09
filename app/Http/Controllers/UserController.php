@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+// use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Vonage\Verify\Client;
@@ -169,12 +169,7 @@ class UserController extends Controller
         $data = User::where('email',$email )->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
-        $data->save(); 
-       
-
-        
-    //     $data->save();   
-       
+        $data->save();  
 
         return redirect ('/')->with('success', 'successfully verified the cell phone number');
     } 
