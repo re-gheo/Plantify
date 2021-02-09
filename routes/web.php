@@ -76,3 +76,4 @@ Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController
 //     return 'upluad success';
 // });
 
+Route::resource('articles', 'ArticleController');
