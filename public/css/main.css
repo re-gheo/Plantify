@@ -43,6 +43,10 @@ CARD
 
 }
 
+#login-container {
+    border: black;
+}
+
 
 
 .login-card,
