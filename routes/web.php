@@ -30,10 +30,21 @@ Route::get('/', function () {
 
 
 Auth::routes();
-//basic
+//basic user additiona creds
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/setup', 'userController@setup');
-Route::put('/setup/{email}', 'userController@setups');
+Route::get('/setup', 'UserController@setup');
+Route::put('/setup/{email}', 'UserController@setups');
+Route::get('/verify', 'UserController@verify');
+Route::put('/verify', 'UserController@getcode');
+// OTP
+Route::get('/verify', 'UserController@verify');
+Route::put('/verify', 'UserController@getcode');
+Route::get('/verify/check', 'UserController@entercode');
+Route::put('/verify/check', 'UserController@checkcode');
+Route::put('/verify/cancel', 'UserController@cancelcode');
+
+
+
 
 // SOCIAL LOGIN ---------------------------------------------------------------------------------------------
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');

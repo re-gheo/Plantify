@@ -58,8 +58,7 @@
                         <button class="button is-link" type="submit">SUBMIT</button>
 
                         <div class="form-group row mb-0">
-                         <a href="/">skip for now</a>
-
+                         <a href="/verify">skip for now</a>
                         </div>
 
   

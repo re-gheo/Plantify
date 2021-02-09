@@ -33,6 +33,11 @@
 
       </div>
       <div  class="col-lg-9">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
         @if(Auth::user())
                     <h3>Welcome! {{Auth::user()->first_name }} , {{Auth::user()->last_name }}</h3>
                 @endif
