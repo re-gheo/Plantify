@@ -27,21 +27,20 @@
         </tr>
         @foreach ($articles as $article)
         <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $article->title }}</td>
-            <td>{{ $article->description }}</td>
+            <td>{{ $article->article_id }}</td>
+            <td>{{ $article->article_topic }}</td>
+            <td>{{ $article->article_description }}</td>
             <td>
-                <form action="{{ route('articles.destroy',$article->id) }}" method="POST">
-   
-                    <a class="btn btn-info" href="{{ route('articles.show',$article->id) }}">Show</a>
-    
-                    <a class="btn btn-primary" href="{{ route('articles.edit',$article->id) }}">Edit</a>
-   
+                <form action="{{ route('articles.destroy',$article->article_id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-      
+   
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+
+                <a class="btn btn-info" href="{{ route('articles.show',$article->article_id) }}">Show</a>
+    
+                <a class="btn btn-primary" href="{{ route('articles.edit',$article->article_id) }}">Edit</a>
             </td>
         </tr>
         @endforeach
