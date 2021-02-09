@@ -76,3 +76,8 @@ Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController
 //     return 'upluad success';
 // });
 
+
+Route::get('admin/categories', 'CategorieController@index')/*->middleware('admin')*/;
+
+Route::resource('articles', 'ArticleController');
+
