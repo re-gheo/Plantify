@@ -77,12 +77,19 @@ class LoginController extends Controller
     public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        // dd($user);
-
-        $this->_registerOrLoginfacebookUser($user);
-        //Auth::login($user);
-
-        return redirect()->route('home');
+        
+        if(User::where('email', '=', $user->email)->exists()){
+            
+            request()->session()->put('emailtemp', $user->email);
+            $user = User::where('email', '=', $user->email)->first();
+            Auth::login($user);
+            return redirect('/');
+        }
+        else{
+            
+            $this->_registerFacebookUser($user);
+            return redirect('/setup');
+        }
     }
 
 
@@ -97,13 +104,21 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
 
+        if(User::where('email', '=', $user->email)->exists()){
+            request()->session()->put('emailtemp', $user->email);
+            $user = User::where('email', '=', $user->email)->first();
+            Auth::login($user);
+            return redirect('/');
+        }else{
+            $this->_registerGoogleUser($user);
+            return redirect('/setup');
+        }
+        
 
-        $this->_registerOrLoginGoogleUser($user);
-
-        return view('/home');
+       
     }
 
-    protected function _registerOrLoginGoogleUser($data)
+    protected function _registerGoogleUser($data)
     {
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
@@ -118,8 +133,9 @@ class LoginController extends Controller
             $user->save();
         }
         Auth::login($user);
+        
     }
-    protected function _registerOrLoginfacebookUser($data)
+    protected function _registerFacebookUser($data)
     {
         $user = User::where('email', '=', $data->email)->first();
         if (!$user) {
@@ -132,5 +148,6 @@ class LoginController extends Controller
             $user->save();
         }
         Auth::login($user);
+       
     }
 }

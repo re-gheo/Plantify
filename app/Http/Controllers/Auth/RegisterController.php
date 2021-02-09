@@ -71,7 +71,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        request()->session()->put('emailtemp',$data['email']);
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -79,6 +79,7 @@ class RegisterController extends Controller
             'name' => $data['first_name'] . ' ' . $data['last_name'],
             'email' => $data['email'],
             'user_role' => 'customer',
+            'otp_verified' => 0,
             'password' => Hash::make($data['password']),
 
         ]);
