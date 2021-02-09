@@ -169,13 +169,19 @@ NAVBAR
 .navbar-brand img {
     width: 8em;
     height: 2em;
+    color: white;
 }
 
+.navbar {
+    background: #2EAC71;
+
+
+}
 
 
 .nav-link {
     text-decoration: none;
-    color: #707070;
+    color: white
 }
 
 /* 

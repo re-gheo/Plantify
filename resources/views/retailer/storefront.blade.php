@@ -12,7 +12,7 @@
 
 .ads{
   width: 100%;
-  height: 200px;
+  height: 130px;
   background-color: #3bb78f;
     background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
 }
@@ -38,8 +38,8 @@
                 @endif
         <div class="ads"> 
         </div>
-        <div class="featured d-flex align-items-center justify-content-center">
-          <h5>Recent Listings</h5>
+        <div class="featured d-flex align-items-left justify-content-left pt-4 pb-1">
+          <h3><strong>Listings </strong></h3>
         </div>
         <div class="row">
             <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
