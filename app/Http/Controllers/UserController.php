@@ -156,13 +156,14 @@ class UserController extends Controller
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
         $verification = new Verification($request_id);
-        // try{
+        try{
             $result = $nexmo->verify()->check($verification, request('code'));
-            // }
-        //  catch (Exception $e)
-        //     {
-        //     return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
-        //     }
+            }
+         catch (Exception $e)//sadasdasdadsasa
+         
+            {
+            return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
+            }
        
         $email = request()->session()->get('emailtemp');
         $data = User::where('email',$email )->first();
