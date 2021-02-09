@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-      $articles = Article::latest('published_at')->latest()->paginate(5);
+      $articles = Article::latest()->paginate(5);
 
     return view('articles.index', compact('articles'));
     }
@@ -37,14 +37,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-       Article::create([
-        //'article_topic'=>$request->title,
-        //'article_description'=>$request->description,
-        //'article_datecreated'=>$request->datecreated,
-        //'article_dateupdated'=>$request->dateupdated,
-        //'article_resolved'=>$request->action
-       ]);
-       return redirect()->route('articles.index')->with('success', 'Article has been added');
+      // //  Article::create([
+      // //   'article_topic'=>$request->title,
+      // //   'article_description'=>$request->description
+      //  ]);
+      $article = new Article();
+      $article->article_topic = request('title');
+      $article->article_description = request('description');
+        $article->save();
+      //dd($article); (test)
+       return redirect('/articles')->with('success', 'Article has been added');
+       //->route('articles.index')
     }
 
     /**
