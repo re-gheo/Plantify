@@ -2,15 +2,11 @@
 
 @section('content')
 
-    
-      
-
-
             <div class="container">
                 <div class="row px-2 pt-5">
-                    <div class="col-lg-5 col-xl-4 card flex-column mx-auto mt-5  shadow p-3  border-3 ">
-                        <div class="setup-card mx-auto  ">
-                            <h3 class="text-center">Fill in some credentials</h3>
+                    <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
+                        <div class="card-body mx-auto  ">
+                            <h3 class="card-title text-center pb-3">Fill in some credentials</h3>
                             <form method="POST" action="setup/{{ Auth::user()->email }}">
                                 @csrf
                                 @method('PUT')
@@ -60,9 +56,8 @@
         
                                 <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
         
-                                <div class="form-group row mb-0">
-                                 <a href="/verify">skip for now</a>
-        
+                                <div class="pt-2">
+                                 <a   href="/verify">skip for now</a>
                                 </div>                           
                             </form>
                         </div>
