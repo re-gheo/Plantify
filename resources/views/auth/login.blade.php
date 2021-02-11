@@ -20,9 +20,9 @@
                                         <div class="form-input">
                                             
                                             <input id="email" type="email" class=" @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                        
-                                            @error('email')
-                                                <span class="" role="alert">
+                                            <br>
+                                            @error('email') 
+                                                <span class="error-message pt-2" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -34,9 +34,9 @@
             
                                         <div class="">
                                             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-            
+                                            <br>
                                             @error('password')
-                                                <span class="" role="alert">
+                                                <span class="error-message pt-2" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -79,6 +79,10 @@
 
                                             <a class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2" href="{{url('/login/facebook')}}" class="">  <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                                         </div>
+
+                                        <div class="text-center">
+                                            don't have an account? <a href="/register">Register here</a>
+                                        </div>
                                     </div>
             
             
@@ -89,7 +93,7 @@
                         </div>
                     </div>
                 </div>      
-                {{-- <div class="">{{ __('Login') }}</div> --}}
+               
 
            
  

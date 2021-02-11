@@ -1,29 +1,52 @@
-@extends ('layouts/app')
+@extends ('layouts/admin-template')
 
 @section ('content')
 
+        <div class="row">
+          <div class="col-lg-10 mr-auto ml-auto">
+              <div class="pull-right">
+                <a href="/admin/plantreference/create" class="btn btn-dark"> create a reference</a>
+              </div>
+              
+              <div class="container">
+                <h3 class="text-center">Plant Reference Table</h3>
+              </div>
+                <div class="div class= card-body table-responsive-sm">
+                  @if ($message = Session::get('success'))
+                  <div class="alert alert-success">
+                      <p>{{ $message }}</p>
+                  </div>
+              @endif
+                  <table class="table table-bordered table-striped table-hover">
+                  <thead class="thead-dark">
+                    <tr>
+                    <th>ID</th>
+                    <th>scientificname</th>
+                    {{-- <th>description</th>
+                    <th>maintenance</th> --}}
+                    <th>category</th>
+                    <th>Photos</th>
+                    <th>options</th>
+                     
+                   
+                  </tr>
+                </thead>
+              </table>
+                 </div>
+
+            </div>
+       
+        </div>
 	
 </div>
 <div>
-
-<a href="/admin/plantreference/create" class="btn btn-dark"> create a reference</a>
 
 
 </div class="absolute-center">
 <div >
    
     <table style="width:100%">
-        <tr>
-          <th>ID</th>
-          <th>scientificname</th>
-          {{-- <th>description</th>
-          <th>maintenance</th> --}}
-          <th>category</th>
-          <th>Photos</th>
-          <th>options</th>
-           
-         
-        </tr>
+  
     
     
 @foreach ($references as $reference)

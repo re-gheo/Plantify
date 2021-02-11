@@ -40,11 +40,7 @@
                     </span>
                     @enderror
 
-                        <div class="pt-2">
-                         <a href="/">skip for now</a>
-
-                        </div>
-                      
+                 
                    
                 </div> 
             

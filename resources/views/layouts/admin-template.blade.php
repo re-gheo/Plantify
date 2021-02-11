@@ -14,11 +14,50 @@
 </head>
 <body>
   <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-  ">
-    <a class="navbar-brand " href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
-  <div class="form-inline my-2 my-lg-0
-      <input class="form-control-sm my-2 my-sm-0 pr-2 " type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </div>
+    
+    <a class="navbar-brand ml-3" href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+       <!-- Left Side Of Navbar -->
+
+ 
+     <!-- Right Side Of Navbar -->
+     <ul class="navbar-nav ml-auto mr-5">
+      <!-- Authentication Links -->
+      @guest
+          @if (Route::has('login'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+          @endif
+          
+          @if (Route::has('register'))
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </li>
+          @endif
+      @else
+          <li class="nav-item dropdown">
+           <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+              style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
+          </li>
+      @endguest
+  </ul>
+    
     
   </nav>
 
