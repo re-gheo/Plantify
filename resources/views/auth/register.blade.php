@@ -22,7 +22,7 @@
                                     <div class="form-input ">
                                         <label for="first_name" class="">{{ __('First name') }}</label>
                                         <div class="">
-                                            <input id="first_name" type="text" class=" @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" autofocus>
+                                            <input id="first_name" type="text" pattern="[^()/><\][\\\x22,;|]+" class=" @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" autofocus>
             
                                             @error('first_name')
                                                 <span  role="alert">
@@ -36,7 +36,7 @@
                                         <label for="last_name" class="">{{ __('Last name') }}</label>
             
                                         <div class="">
-                                            <input id="last_name" type="text" class=" @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                            <input id="last_name" type="text" pattern="[^()/><\][\\\x22,;|]+" class=" @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
             
                                             @error('last_name')
                                                 <span class="invalid-feedback" role="alert">

@@ -166,18 +166,27 @@ NAVBAR
     border: 2px solid #39976b;
 }
 
-.navbar-brand img {
-    width: 8em;
+.navbar-brand {
+    width: 4em;
     height: 2em;
     color: white;
 }
 
 .navbar {
-    background: #2ca36c;
-
+    background-color: #39976b;
 
 }
 
+#bars {
+    color: white;
+}
+
+#nav-cta {
+    text-decoration: none;
+    color: white;
+    padding-right: .5rem;
+    font-size: small;
+}
 
 .nav-link {
     text-decoration: none;
