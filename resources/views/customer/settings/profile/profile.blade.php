@@ -86,10 +86,18 @@
 
 </div>
 <div>
-    <a href="/settings/profile/edit">edit and update profile</a>
+    <a href="/settings/profile/edit">Edit Your Profile</a>
 </div>
 <div>
-    <a href="">verify and update cellphone number</a>
+    <a href="/settings/profile/verify">
+        
+       
+        @if(!$profile->cp_number)
+        <p>Register Your Phone Number Via SMS</p>
+        @else
+        <p>Update Phone Number</p>
+        @endif
+    </a>
 </div>
 
 
