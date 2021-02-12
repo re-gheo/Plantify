@@ -69,13 +69,13 @@
     <div>
         <label for="plant_phototwo">2nd photo for this plant</label>
             <div>
-                <input type="file" name="plant_phototwo" id="plant_phototwo">
+                <input type="file" name="plant_phototwo" id="plant_phototwo" accept="image/x-png ,image/jpeg">
             </div>
     </div>
     <div>
         <label for="plant_photothree">3rd photo for this plant</label>
             <div>
-                <input type="file" name="plant_photothree" id="plant_photothree">
+                <input type="file" name="plant_photothree" id="plant_photothree" accept="image/x-png ,image/jpeg">
             </div>
     </div>
     

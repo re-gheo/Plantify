@@ -43,9 +43,13 @@
                 </span>
                 @enderror
                 
-                <form method="POST" action="/verify/cancel">
-                    <button class="button is-link" type="submit">cancel</button>
-                </form>
+                <div>
+                    <form method="POST" action="/verify/cancel">
+                        @csrf
+                        <button class="button is-link" type="submit">cancel</button>
+                    </form>
+                </div>
+                
                 </div> 
             
         

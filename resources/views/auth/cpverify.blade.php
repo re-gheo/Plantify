@@ -39,7 +39,10 @@
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-
+                    <div>
+                        <a   href="/">skip for now</a>
+                    </div>
+                   
                  
                    
                 </div> 

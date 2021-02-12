@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 // use DB;
-use Illuminate\Http\Request;
+use Exception;
 use App\Models\User;
 use Vonage\Verify\Client;
+use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     /**
@@ -128,15 +131,21 @@ class UserController extends Controller
         ]);
 
     $nexmo = app('Nexmo\Client');
+    try{
+        $verification = $nexmo->verify()->start([ 
+            'number' => request('cp_number'),
+            'brand'  => 'Plantify',
+             'code_length'  => '6'
+             ]);
+             $id = $verification->getRequestId();
+            request()->session()->put('nexmoID', $id);
+            request()->session()->put('cptemp', request('cp_number'));
+    } catch (Exception $e)
 
-    $verification = $nexmo->verify()->start([ 
-        'number' => request('cp_number'),
-        'brand'  => 'Plantify',
-         'code_length'  => '6'
-         ]);
-         $id = $verification->getRequestId();
-        request()->session()->put('nexmoID', $id);
-        request()->session()->put('cptemp', request('cp_number'));
+    {
+        return redirect('/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+    }
+   
         return redirect ('/verify/check');
         
     }
@@ -165,7 +174,7 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
             }
        
-        $email = request()->session()->get('emailtemp');
+        $email = Auth::user()->email;
         $data = User::where('email',$email )->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
@@ -182,14 +191,52 @@ class UserController extends Controller
         $request_id = request()->session()->get('nexmoID');
       
         try {
-            $result = $nexmo->verify()->cancel('REQUEST_ID');
+            $result = $nexmo->verify()->cancel($request_id);
         }
         catch(Exception $e) {
-            return redirect('/verify')->withErrors(['mes' => 'Invalid call: either your code has expired or it doesnt exist  ']);
+            return redirect('/verify')->withErrors(['mes' => ' your code has expired or cancelled']);
         }
 
         return redirect ('/verify');
     }
+
+    public function profile()
+    {
+        
+            $profile = User::where('email',Auth::user()->email)->first();
+    
+            
+            return view('customer.settings.profile.profile',['profile' => $profile]); 
+    }
+
+    public function editprofile()
+    {
+            $profile = User::where('email',Auth::user()->email)->first();
+    
+            return view('customer.settings.profile.edit',['profile' => $profile]); 
+    }
+
+    public function updateprofile()
+    {
+
+            $data = User::where('email',Auth::user()->email)->first();
+           
+            $data->first_name = request('first_name');
+            $data->last_name = request('last_name');
+            $data->name = request('first_name'). ' ' . request('last_name');;
+            $data->govtid_number = request('govtid_number');
+            $data->region = "National Capital Region (NCR)";
+            $data->address = request('address');
+            $data->birthday = request('birthday');    
+
+           
+            $data->save();
+
+    
+            return redirect('/settings/profile')->with('success', 'successfully updated profile'); 
+    }
+
+    
 
 
 }

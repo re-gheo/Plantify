@@ -32,6 +32,9 @@
                                     
                                        <div class="form-input">
                                         <input id="address" type="text" class=" @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                        <div>
+                                            <p> We currently only support delivery areas in NCR Phillipines for now.</p>
+                                        </div>
         
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">

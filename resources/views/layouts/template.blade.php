@@ -81,6 +81,18 @@
   </div>
 </nav> 
 
+<div  class="col-lg-9">
+  @if ($message = Session::get('success'))
+  <div class="alert alert-success">
+      <p>{{ $message }}</p>
+  </div>
+  @endif
+
+  @error('err')
+    <span class="alert alert-danger" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+  @enderror
 
 
 
