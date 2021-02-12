@@ -85,14 +85,15 @@ Auth::routes();
 
 //CUSTOMER/ SETTINGS / PROFILE 
     Route::get('/settings/profile', 'UserController@profile');
-    //CUSTOMER/ SETTINGS / PROFILE / SETUP & VERIFY
+    //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
         Route::get('/settings/profile/edit', 'UserController@editprofile');
         Route::put('/settings/profile/update', 'UserController@updateprofile');
-        Route::get('/verify', 'UserController@verify');
-    // Route::put('/verify', 'UserController@getcode');
-    // Route::get('/verify/check', 'UserController@entercode');
-    // Route::put('/verify/check', 'UserController@checkcode');
-    // Route::put('/verify/cancel', 'UserController@cancelcode');
+    //CUSTOMER/ SETTINGS / PROFILE / VERIFY - OTP if user skip OTP
+            Route::get('/settings/profile/verify', 'UserController@pverify');
+            Route::put('/settings/profile/verify', 'UserController@pgetcode');
+            Route::get('/settings/profile/verify/check', 'UserController@pentercode');
+            Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
+            Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
 
 
 
@@ -121,5 +122,7 @@ Auth::routes();
 
 
 Route::get('/test', function(){
+
+    dd('test');
     //dd(User::where('email',Auth::user()->email)->first());
 });

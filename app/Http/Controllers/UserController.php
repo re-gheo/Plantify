@@ -236,6 +236,92 @@ class UserController extends Controller
             return redirect('/settings/profile')->with('success', 'successfully updated profile'); 
     }
 
+// OTP VERSION FOR PROFILE -------------------------------------------------------------------
+// OTP VERSION FOR PROFILE -------------------------------------------------------------------
+// OTP VERSION FOR PROFILE -------------------------------------------------------------------
+
+    protected function pverify(){
+       
+        return view('customer.settings.profile.cpverify');  
+    }
+
+    public function pgetcode()
+    {
+      // dd(request('cp_number'));
+        request()->validate([
+            'cp_number' => 'required',    
+        ]);
+
+    $nexmo = app('Nexmo\Client');
+    try{
+        $verification = $nexmo->verify()->start([ 
+            'number' => request('cp_number'),
+            'brand'  => 'Plantify',
+             'code_length'  => '6'
+             ]);
+             $id = $verification->getRequestId();
+            request()->session()->put('nexmoID', $id);
+            request()->session()->put('cptemp', request('cp_number'));
+    } catch (Exception $e)
+
+    {
+        return redirect('/settings/profile/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+    }
+   
+        return redirect ('/settings/profile/verify/check');
+        
+    }
+
+    protected function pentercode()
+    {
+        return view('customer.settings.profile.cpcheck');  
+    }
+
+
+    public function pcheckcode()
+    {
+        
+        request()->validate([
+            'code' => 'required',    
+        ]);
+        $nexmo = app('Nexmo\Client');
+        $request_id = request()->session()->get('nexmoID');
+        $verification = new Verification($request_id);
+        try{
+            $result = $nexmo->verify()->check($verification, request('code'));
+            }
+         catch (Exception $e)//sadasdasdadsasa
+         
+            {
+            return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
+            }
+       
+        $email = Auth::user()->email;
+        $data = User::where('email',$email )->first();
+        $data->cp_number = request()->session()->get('cptemp');
+        $data->otp_verified = 1;
+        $data->save();  
+
+        return redirect ('/settings/profile')->with('success', 'successfully verified the cell phone number');
+    } 
+    
+    public function pcancelcode()
+    {
+        
+      
+        $nexmo = app('Nexmo\Client');
+        $request_id = request()->session()->get('nexmoID');
+      
+        try {
+            $result = $nexmo->verify()->cancel($request_id);
+        }
+        catch(Exception $e) {
+            return redirect('/settings/profile/verify')->withErrors(['mes' => ' your code has expired or cancelled']);
+        }
+
+        return redirect ('/settings/profile/verify');
+    }
+
     
 
 
