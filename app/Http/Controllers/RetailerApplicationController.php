@@ -12,12 +12,25 @@ class RetailerApplicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function page()
+
+     //Customer
+    public function form()
     {
-        return view('customer.application.application');
+        return view('customer.settings.application.application');
     }
 
-    public function send()
+    
+
+    public function send(Request $request)
+    {
+        dd(request()->retailer_address);
+    }
+
+
+// ADMIN
+
+
+    public function index()
     {
         
     }

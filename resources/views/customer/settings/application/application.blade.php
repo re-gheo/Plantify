@@ -1,14 +1,13 @@
-@extends ('layouts/app')
+@extends ('layouts/template')
 
 @section ('content')
 
-<a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
 
 <div class = "card-body">
 
-  <form action="/admin/plantreference/store" method="POST" enctype="multipart/form-data">
+  <form action="/settings/application/form" method="POST" enctype="multipart/form-data">
     @csrf
-<h2>create a plant reference page</h2>
+<h2>Send an Application to apply as a Retailer</h2>
     <div>
         <label for="retailer_address">Retailers Full address for pickup</label>
         <div>
@@ -25,7 +24,7 @@
     <div>
         <label for="retailer_postalcode">Retailers Postal Code</label>
         <div>
-            <input id="retailer_postalcode" type="text" class=" @error('retailer_postalcode') is-invalid @enderror" name="retailer_postalcode" required autocomplete="retailer_postalcode">
+            <input id="retailer_postalcode" type="text" class=" @error('retailer_postalcode') is-invalid @enderror" name="retailer_postalcode" placeholder="0000" pattern="[0-9]{4}" autocomplete="retailer_postalcode">
 
                 @error('retailer_postalcode')
                     <span class="" role="alert">
@@ -36,7 +35,7 @@
     </div>
 
     <div>
-        <label for="retailer_personincharge">Person Incharge/Owner of this store</label>
+        <label for="retailer_personincharge">Full name of the Person In-charge/Owner of this store </label>
         <div>
             <input id="retailer_personincharge" type="text" class=" @error('retailer_personincharge') is-invalid @enderror" name="retailer_personincharge" required autocomplete="	retailer_personincharge">
 
@@ -53,21 +52,21 @@
    
     
     <div>
-        <label for="retailer_officialidfront">an Official ID card picture of the card [Front Scan]</label>
+        <label for="retailer_officialidfront">An Official ID card picture of the card [Front Scan]</label>
             <div>
-                <input type="file" name="retailer_officialidfront" id="retailer_officialidfront" accept="image/x-png ,image/jpeg">
+                <input type="file" name="retailer_officialidfront" id="retailer_officialidfront" required accept="image/x-png ,image/jpeg">
             </div>
     </div>
      
     <div>
-        <label for="retailer_officialidback">an Official ID card picture of the card [Back Scan]</label>
+        <label for="retailer_officialidback">An Official ID card picture of the card [Back Scan]</label>
             <div>
-                <input type="file" name="retailer_officialidback" id="retailer_officialidback" accept="image/x-png ,image/jpeg">
+                <input type="file" name="retailer_officialidback" id="retailer_officialidback" required accept="image/x-png ,image/jpeg">
             </div>
     </div>
 
     <div>
-        <label for="retailer_idnumber">Full ID number of the submitted ID</label>
+        <label for="retailer_idnumber">Full ID number of the submitted ID picture.</label>
         <div>
             <input id="retailer_idnumber" type="text" class=" @error('retailer_idnumber') is-invalid @enderror" name="retailer_idnumber" required autocomplete="retailer_idnumber">
 
@@ -78,14 +77,6 @@
                 @enderror
         </div>
     </div>
-    
-    {{-- <div class="form-input">
-        <label for="birthday" >Birthday</label>
-
-        <div >
-            <input type="date" id="birthday" name="birthday">
-        </div>
-    </div> --}}
 
     {{-- <div>
         <label for="retailer_city">City</label>
@@ -102,7 +93,7 @@
 
 
     <div>
-        <label for="retailer_region">Region</label>
+        <label for="retailer_region">Region: NCR by default</label>
         <div>
             <input id="retailer_region" type="text" class=" @error('retailer_region') is-invalid @enderror" name="retailer_region" required readonly value="NCR" autocomplete="retailer_region">
 
@@ -120,10 +111,18 @@
         
         <div>
             <select id="retailer_city" required name="retailer_city">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+                <option value="Manila">Manila</option>
+                <option value="Mandaluyong">Mandaluyong</option>
+                <option value="Marikina">Marikina</option>
+                <option value="Pasig">Pasig</option>
+                <option value="Quezon City">Quezon City</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Caloocan">Caloocan</option>
+                <option value="Navotas">Navotas</option>
+                <option value="Valenzuela">Valenzuela</option>
+                <option value="Las Piñas">Las Piñas</option>
+                <option value="Makati">Makati</option>
+                <option value="Metro Manila">Metro Manila</option>
               </select>
 
                
@@ -136,7 +135,7 @@
   
      <br>
         <div>
-            <button type="submit"> Apply for Retailer</button>
+            <button type="submit" class="btn btn-dark">Send Application</button>
         </div>
 </form>
 

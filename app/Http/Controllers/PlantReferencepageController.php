@@ -63,10 +63,10 @@ class PlantReferencepageController extends Controller
                 $ref->plant_photo = request('plant_photo')->store('referecnce_page','public');
             }
             if($request->hasFile('plant_phototwo')){
-                $ref->plant_phototwo = request('plant_photo')->store('referecnce_page','public');
+                $ref->plant_phototwo = request('plant_phototwo')->store('referecnce_page','public');
             } 
             if($request->hasFile('plant_photothree')){
-                $ref->plant_photothree = request('plant_photo')->store('referecnce_page','public');
+                $ref->plant_photothree = request('plant_photothree')->store('referecnce_page','public');
             }
             $ref->save();
             

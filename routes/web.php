@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-/*Route to open Login page upon Artisan Serve */
+
     Route::get('/', function () {
         return view('storefront');
     });
@@ -81,7 +81,7 @@ Auth::routes();
     Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy');
 
 //ADMIN/ APPLICATIONS CHECKING
-    Route::get('/admin/customer_application/', 'RetailerApplicationController@get');
+    Route::get('/admin/customer_application/', 'RetailerApplicationController@index');
     Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show');
     Route::put('/admin/customer_application/approve', 'RetailerApplicationController@approve');
     Route::put('/admin/customer_application/deny', 'RetailerApplicationController@deny');
