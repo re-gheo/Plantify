@@ -100,6 +100,21 @@
     </a>
 </div>
 
+<div>         
+        @if(!$profile->retailer_approvalstateid )
+                <a href="/settings/profile/verify"> Regsiter as a Retailer </a>
+        @elseif($profile->retailer_approvalstateid == 2)
+                <a href="/settings/profile/verify"> Regsiter as a Retailer</a>
+                    <div>
+                        <p>your last application was denied, you may try again.</p>
+                    </div>
+        @else
+                <p>[Retailer Appliaction] already Sent and Awaiting Approval.</p>
+                
+        @endif
+   
+</div>
+
 
 
 

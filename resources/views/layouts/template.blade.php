@@ -40,7 +40,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
   
-          <a class="dropdown-item" href="">Account Settings</a>
+          <a class="dropdown-item" href="/settings/profile">Account Settings</a>
           <a class="dropdown-item" href="">Customization Settings</a>
           <a class="dropdown-item" href="">Preference Settings</a>
           <a class="dropdown-item" href="">Order History</a>

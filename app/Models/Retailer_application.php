@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Retailer_application extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'retailer_applicationid';
 }
