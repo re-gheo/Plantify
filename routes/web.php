@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 /*Route to open Login page upon Artisan Serve */
     Route::get('/', function () {
-        return view('retailer/storefront');
+        return view('storefront');
     });
 
 
@@ -60,6 +60,8 @@ Auth::routes();
 
 
 
+
+
 //ADMIN part
 //ADMIN/user managment
     Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
@@ -78,10 +80,17 @@ Auth::routes();
     Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update');
     Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy');
 
+//ADMIN/ APPLICATIONS CHECKING
+    Route::get('/admin/customer_application/', 'RetailerApplicationController@get');
+    Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show');
+    Route::put('/admin/customer_application/approve', 'RetailerApplicationController@approve');
+    Route::put('/admin/customer_application/deny', 'RetailerApplicationController@deny');
+
 
 
 //CUSTOMER/ SETTINGS / APPLICATIONS
-    Route::get('/application/form', function(){});
+    Route::get('/settings/application/form', 'RetailerApplicationController@form');
+    Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
 //CUSTOMER/ SETTINGS / PROFILE 
     Route::get('/settings/profile', 'UserController@profile');
