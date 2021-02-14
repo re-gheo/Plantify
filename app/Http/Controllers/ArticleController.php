@@ -69,7 +69,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
- 
+        $article = Article::latest()->get(); 
+        return view('articles.edit',['articles' => $article]);
     }
 
     /**
@@ -81,7 +82,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+      request()->validate([
+        'article_topic'=>['required'],
+           'article_description'=>['required']
+       ]);
+
+       $ref = Article::find($id);
+             $ref->article_topic = request('Article_topic');
+             $ref->article_description = request('Article_description');
+
+             return redirect('/articles')->with('success', 'Article has been updated');
     }
 
     /**
@@ -92,6 +102,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-    
+      Article::find($id)->delete();
+
+      return redirect('/articles')->with('success', 'Article has been deleted');
     }
 }
