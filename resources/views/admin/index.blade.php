@@ -22,6 +22,8 @@
                     <a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
                     <a href="/admin/account-management" class="btn btn-dark"> Check user accounts</a>
                     <a href="/admin/categories" class="btn btn-dark"> go to category</a>
+                    <a href="/admin/customer_application/" class="btn btn-dark"> go and chack application</a>
+                </div>
                 </div>
                 </div>
              

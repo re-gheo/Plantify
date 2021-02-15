@@ -108,14 +108,14 @@
 @csrf
 @method('put')
 
-<button type="submit" class="btn btn-dark"> Approve</button>
+<button type="submit" class="btn btn-dark">APPROVE APPLICATION</button>
 </form>
 
 <form action="/admin/customer_application/deny/{{$app->retailer_applicationid}}" method="POST">
     @csrf
     @method('put')
     
-    <button type="submit" class="btn btn-dark"> denied </button>
+    <button type="submit" class="btn btn-dark">DENY APPLICATION </button>
     </form>
 
 @endsection
