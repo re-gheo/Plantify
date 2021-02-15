@@ -86,7 +86,7 @@
 
 </div>
 <div>
-    <a href="/settings/profile/edit">Edit Your Profile</a>
+    <a href="/settings/profile/edit">Update My Profile</a>
 </div>
 <div>
     <a href="/settings/profile/verify">
@@ -95,23 +95,34 @@
         @if(!$profile->cp_number)
         <p>Register Your Phone Number Via SMS</p>
         @else
-        <p>Update Phone Number</p>
+        <p>Update My Phone Number</p>
         @endif
     </a>
 </div>
 
 <div>         
-        @if(!$profile->retailer_approvalstateid )
-                <a href="/settings/profile/verify"> Regsiter as a Retailer </a>
+    @if(!$profile->cp_number|| !$profile->govtid_number || !$profile->birthday || !$profile->address)
+    
+    <p><b>To Register as a Retailer in our site please complete your credentials and verify your Cellphone number</b></p>
+    @else 
+    
+      @if(!$profile->retailer_approvalstateid )
+                <a href="/settings/application/form"> Regsiter as a Retailer </a>
         @elseif($profile->retailer_approvalstateid == 2)
-                <a href="/settings/profile/verify"> Regsiter as a Retailer</a>
+                <a href="/settings/application/form"> Regsiter as a Retailer</a>
                     <div>
-                        <p>your last application was denied, you may try again.</p>
+                        <p>your last application was denied!, you may try again.</p>
                     </div>
+        @elseif($profile->retailer_approvalstateid == 2)
+        <div>
+            <p>You are registered as retailer</p>
+        </div>
         @else
-                <p>[Retailer Appliaction] already Sent and Awaiting Approval.</p>
+                <p><b>[Retailer Appliaction] already Sent and Awaiting Approval from Admins, Please wait atleast 24 hours.</b></p>
                 
         @endif
+    @endif
+      
    
 </div>
 

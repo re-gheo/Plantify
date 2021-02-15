@@ -60,6 +60,10 @@
     <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
+    @if(isset(Auth::user()->avatar))
+    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+    style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+    @endif
     
     <form class="form-inline my-2 my-lg-0">
       <ul class="navbar-nav mr-auto">
@@ -81,7 +85,7 @@
   </div>
 </nav> 
 
-<div  class="col-lg-9">
+
   @if ($message = Session::get('success'))
   <div class="alert alert-success">
       <p>{{ $message }}</p>

@@ -2,7 +2,9 @@
 
 // use Illuminate\Support\Facades\Request;
 
+use Carbon\Carbon;
 use App\Models\User;
+use Carbon\CarbonImmutable;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
@@ -83,8 +85,8 @@ Auth::routes();
 //ADMIN/ APPLICATIONS CHECKING
     Route::get('/admin/customer_application/', 'RetailerApplicationController@index');
     Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show');
-    Route::put('/admin/customer_application/approve', 'RetailerApplicationController@approve');
-    Route::put('/admin/customer_application/deny', 'RetailerApplicationController@deny');
+    Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve');
+    Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny');
 
 
 
@@ -131,7 +133,32 @@ Auth::routes();
 
 
 Route::get('/test', function(){
-
-    dd('test');
+    $date = CarbonImmutable::now();
+    // dd('time is '  .$dat);
     //dd(User::where('email',Auth::user()->email)->first());
+
+    $mutable = Carbon::now();
+$immutable = CarbonImmutable::now();
+$modifiedMutable = $mutable->add(1, 'day');
+$modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
+var_dump('time im ' .  $immutable . ' muta '.  $date);
+var_dump($modifiedMutable === $mutable);             // bool(true)
+var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
+var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
+// So it means $mutable and $modifiedMutable are the same object
+// both set to now + 1 day.
+var_dump($modifiedImmutable === $immutable);         // bool(false)
+var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
+var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
+// While $immutable is still set to now and cannot be changed and
+// $modifiedImmutable is a new instance created from $immutable
+// set to now + 1 day.
+
+$mutable = CarbonImmutable::now()->toMutable();
+var_dump($mutable->isMutable());                     // bool(true)
+var_dump($mutable->isImmutable());                   // bool(false)
+$immutable = Carbon::now()->toImmutable();
+var_dump($immutable->isMutable());                   // bool(false)
+var_dump($immutable->isImmutable());                 // bool(true)
+
 });

@@ -68,7 +68,7 @@
     <div>
         <label for="retailer_idnumber">Full ID number of the submitted ID picture.</label>
         <div>
-            <input id="retailer_idnumber" type="text" class=" @error('retailer_idnumber') is-invalid @enderror" name="retailer_idnumber" required autocomplete="retailer_idnumber">
+            <input id="retailer_idnumber" type="text" class=" @error('retailer_idnumber') is-invalid @enderror" name="retailer_idnumber" pattern="[0-9]{15} " required autocomplete="retailer_idnumber">
 
                 @error('retailer_idnumber')
                     <span class="" role="alert">
@@ -91,6 +91,18 @@
         </div>
     </div> --}}
 
+    <div>
+        <label for="retailer_barangay">Barangay Name/Location</label>
+        <div>
+            <input id="retailer_barangay" type="text" class=" @error('retailer_barangay') is-invalid @enderror" name="retailer_barangay" required autocomplete="retailer_barangay">
+
+                @error('retailer_barangay')
+                    <span class="" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+        </div>
+    </div>
 
     <div>
         <label for="retailer_region">Region: NCR by default</label>
