@@ -37,10 +37,10 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-      // //  Article::create([
-      // //   'article_topic'=>$request->title,
-      // //   'article_description'=>$request->description
-      //  ]);
+      request()->validate([
+        'article_topic'=>['required'],
+           'article_description'=>['required']
+       ]);
       $article = new Article();
       $article->article_topic = request('title');
       $article->article_description = request('description');
@@ -58,7 +58,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return view ('articles.show',compact('article'));
+      $article = Article::findOrFail($id);
+        return view ('articles.show',['article' => $article]);
     }
 
     /**
@@ -69,8 +70,12 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::latest()->get(); 
-        return view('articles.edit',['articles' => $article]);
+      // $articles = Article::latest()->paginate(5);
+      // dd($articles);
+        $article = Article::findOrFail($id); 
+        // dd($article);
+
+        return view('articles.edit',['article' => $article]);
     }
 
     /**
@@ -87,10 +92,10 @@ class ArticleController extends Controller
            'article_description'=>['required']
        ]);
 
-       $ref = Article::find($id);
-             $ref->article_topic = request('Article_topic');
-             $ref->article_description = request('Article_description');
-
+       $article = Article::find($id);
+       $article->article_topic = request('article_topic');
+       $article->article_description = request('article_description');
+       $article->save();
              return redirect('/articles')->with('success', 'Article has been updated');
     }
 

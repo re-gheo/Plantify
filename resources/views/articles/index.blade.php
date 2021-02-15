@@ -36,14 +36,13 @@
                     <td>{{ $article->article_description }}</td>
                     <div >
                         <td class="float-right">
-                            <form class="col-sm-3 my-auto float-right" action="{{ route('articles.destroy',$article->article_id) }}" method="POST" >
+                            <form action="{{ route('articles.destroy',$article->article_id) }}" method="POST" >
                                 @csrf
                                 @method('DELETE')
-                                
+                                <button type="submit" class="btn btn-danger">Delete</button>
                              
 
                             </form>
-                            <button type="submit" class="btn btn-danger">Delete</button>
                             <a class="btn btn-info" href="{{ route('articles.show',$article->article_id) }}">Show</a>
                 
                             <a class="btn btn-warning" href="{{ route('articles.edit',$article->article_id) }}">Edit</a>

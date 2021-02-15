@@ -15,13 +15,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Title:</strong>
-                {{ $article->title }}
+                {{ $article->article_topic }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
-                {{ $article->description }}
+                {{ $article->article_description }}
             </div>
         </div>
     </div>
