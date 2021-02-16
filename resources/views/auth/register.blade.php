@@ -25,7 +25,7 @@
                                             <input id="first_name" type="text" pattern="[^()/><\][\\\x22,;|]+" class=" @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" autofocus>
             
                                             @error('first_name')
-                                                <span  role="alert">
+                                                <span class="error-message pt-2"  role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -53,7 +53,7 @@
                                             <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
             
                                             @error('email')
-                                                <span class="" role="alert">
+                                                <span class="error-message pt-2" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -67,7 +67,7 @@
                                             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
             
                                             @error('password')
-                                                <span class="" role="alert">
+                                                <span class="error-message pt-2" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
@@ -94,7 +94,13 @@
                                             <a class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2" href="{{url('/login/facebook')}}" class="">  <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                                   
                                     </div>
+                                    &nbsp;
+                                    <div class="text-center">
+                                        <span>Already have an account? go back to the <a href="/login">Login Page</a> </span>
+                                    </div>
+                                   
                                 </form>
+                                
                             </div>
                         </div>
                     </div>

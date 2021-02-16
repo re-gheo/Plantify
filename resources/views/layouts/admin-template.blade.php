@@ -14,12 +14,24 @@
 </head>
 <body>
   <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-lg  ">
-    
-    <a class="navbar-brand" href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+
+    <a class="navbar-brand" href="/admin/home"><i class="fas fa-leaf mr-1"></i>Plantify</a>
        <!-- Left Side Of Navbar -->
        <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i id="bars" class="fas fa-bars"></i></span>
       </button>
+      <div class="dropdown">
+          <button class="btn dropdown-toggle text-white ml-4" data-toggle="dropdown">
+            Menu
+          </button>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin/plantreference/">Reference List</a></li>
+              <li> <a class="dropdown-item" href="/admin/account-management">User Accounts</a></li>
+              <li> <a class="dropdown-item" href="/admin/categories">Categories</a></li>
+              <li><a class="dropdown-item" href="/admin/customer_application/">Customer Logs</a></li>
+          </ul>
+      </div>
+ 
  
      <!-- Right Side Of Navbar -->
      <ul class="navbar-nav ml-auto mr-5">

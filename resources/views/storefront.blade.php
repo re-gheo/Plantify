@@ -43,14 +43,13 @@
       <div class="categories col-lg-2 pb-2 border-1">
           <h4><strong>Categories</strong></h4>
           <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
-              <a href="#" class="link">Category 1</a>
-              <a href="#" class="link">Category 1</a>
-              <a href="#" class="link">Category 1</a>
-              <a href="#" class="link">Category 1</a>
-              <a href="#" class="link">Category 1</a>
-              <a href="#" class="link">Category 1</a>
+              <a href="#" class="link">Herbs</a>
+              <a href="#" class="link">Flowers</a>
+              <a href="#" class="link">Trees</a>
+              
           </div>
       </div>
+     
       <div class="col-lg-10">
           <div class="featured d-flex align-items-left justify-content-left">
             <h1><strong>Featured Items!</strong></h1>

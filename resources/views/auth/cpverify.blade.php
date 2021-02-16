@@ -15,8 +15,8 @@
                         
                             <label class="pb-1" for="cp_number" >Verification for cell phone number</label>
 
-                            <div >
-                                <input class="@error('cp_number') is-invalid @enderror form-input"  type="" id="cp_number" name="cp_number" placeholder="+63" pattern="[6]{1}[3]{1}[0-9]{10}" required autofocus> 
+                            <div class="form-input" >
+                                <input class="@error('cp_number') is-invalid @enderror "  type="" id="cp_number" name="cp_number" placeholder="+63" pattern="[6]{1}[3]{1}[0-9]{10}" required autofocus> 
  
                                 @error('cp_number')
                                     <span class="invalid-feedback" role="alert">

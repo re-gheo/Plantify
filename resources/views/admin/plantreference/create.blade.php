@@ -1,17 +1,25 @@
-@extends ('layouts/app')
+@extends ('layouts/admin-template')
 
 @section ('content')
 
-<a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
+{{-- <div class="div text-right mt-2">
+    <a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
+</div> --}}
 
-<div class = "card-body">
 
+        <div class="container">
+            <div class="row px-2">
+                    <div class="card-body text-center">
+                        <h3>Create a Reference</h3>  
+                </div>
+                <div class="card-body">
+                    
   <form action="/admin/plantreference/store" method="POST" enctype="multipart/form-data">
     @csrf
-<h2>create a plant reference page</h2>
+
     <div>
         <label for="plant_scientificname"> Scientific name of the Plant </label>
-        <div>
+        <div class="form-input">
             <input id="plant_scientificname" type="text" class=" @error('plant_scientificname') is-invalid @enderror" name="plant_scientificname" required autocomplete="plant_scientificname">
 
                 @error('plant_scientificname')
@@ -45,6 +53,7 @@
                 @enderror
         </div>
     </div>
+    &nbsp;
     <div>
         <label for="plant_categoryid">Plant category</label>
         <select name="plant_categoryid" id="plant_categoryid">
@@ -81,11 +90,22 @@
     
      <br>
         <div>
-            <button type="submit"> create plant reference</button>
+            <button class="btn btn-success text-uppercase my-2 mx-a" type="submit"> create plant reference</button>
         </div>
 </form>
 
+                </div>
+            </div>
+        </div>
 
-</div>
+
+
+
+
+
+
+
+
+
 
 @endsection
