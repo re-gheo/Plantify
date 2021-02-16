@@ -98,7 +98,7 @@ INPUT FORM
 
 
 .form-input input {
-    width: 22rem;
+    width: 100%;
     height: 55px;
     padding-left: 1rem;
     margin-bottom: .5rem;
@@ -184,10 +184,6 @@ BUTTONS
 }
 
 
-
-
-
-
 /* 
 ------------------
 NAVBAR
@@ -221,6 +217,7 @@ NAVBAR
     padding-right: .5rem;
 
 }
+
 
 
 .nav-link {
@@ -267,6 +264,7 @@ error handling
 */
 
 .error-message {
+    margin-top: 1rem;
     font-size: small;
     color: red;
     font-family: Poppins, sans-serif;

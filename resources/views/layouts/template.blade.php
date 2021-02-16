@@ -40,10 +40,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
   
-          <a class="dropdown-item" href="/settings/profile">Account Settings</a>
-          <a class="dropdown-item" href="">Customization Settings</a>
-          <a class="dropdown-item" href="">Preference Settings</a>
-          <a class="dropdown-item" href="">Order History</a>
           <form method="POST" action="{{route('logout')}}">
             @csrf
          <button class="dropdown-item">
@@ -65,8 +61,8 @@
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
     @endif
     
-    <form class="form-inline my-2 my-lg-0">
-      <ul class="navbar-nav mr-auto">
+    <form class=" form-inline my-2 my-lg-0">
+      <ul class="navbar-nav">
  
         @if(!Auth::user())
         <a id="cta" class="" href="/login">Login</a>
