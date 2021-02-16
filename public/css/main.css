@@ -25,9 +25,43 @@ body {
 
 }
 
+
 a {
     text-decoration: none;
 }
+
+/* 
+------------------
+CAROUSEL
+-----------------
+*/
+
+.carousel-container {
+    position: absolute;
+    bottom: 1;
+    top: 1;
+    left: 1;
+    right: 1;
+}
+
+.carousel-slide {
+    width: 10%;
+}
+
+.carousel-item {
+    height: 32rem;
+    width: 100%;
+    color: white;
+    position: relative;
+
+}
+
+.carousel-item img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 
 
 /* 
@@ -214,12 +248,17 @@ SPECIAL INPUTS
 STOREFRONT
 -----------------
 */
-
+.row {
+    padding: .5rem;
+    margin: 1rem;
+}
 
 .category-link a {
     text-decoration: none;
     color: #707070;
 }
+
+
 
 /* 
 ------------------

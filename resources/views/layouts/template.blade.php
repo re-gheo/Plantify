@@ -69,8 +69,8 @@
       <ul class="navbar-nav mr-auto">
  
         @if(!Auth::user())
-        <a id="cta" class="dropdown-item" href="/login">Login</a>
-        <a id="cta" class="dropdown-item" href="/register">Register Account</a>
+        <a id="cta" class="" href="/login">Login</a>
+        <a id="cta" class="" href="/register">Register Account</a>
         @endif
        
       </ul>

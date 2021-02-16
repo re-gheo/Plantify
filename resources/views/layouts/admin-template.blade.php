@@ -13,11 +13,13 @@
   <title>Document</title>
 </head>
 <body>
-  <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-  ">
+  <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-lg  ">
     
-    <a class="navbar-brand ml-3" href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+    <a class="navbar-brand" href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
        <!-- Left Side Of Navbar -->
-
+       <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i id="bars" class="fas fa-bars"></i></span>
+      </button>
  
      <!-- Right Side Of Navbar -->
      <ul class="navbar-nav ml-auto mr-5">

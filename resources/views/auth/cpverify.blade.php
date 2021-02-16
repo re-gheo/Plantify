@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.login-style')
 
 @section('content')
 <div class="container">
