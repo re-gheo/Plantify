@@ -76,22 +76,50 @@
     
     <div>
         <label for="plant_phototwo">2nd photo for this plant</label>
+        @if(isset($reference->plant_phototwo))
             <div>
                 <img src="{{url('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="2nd">
             </div>
-       
+            @endif
             <div>
                 <input type="file" name="plant_phototwo" id="plant_phototwo">
             </div>
+           
+            @if(isset($reference->plant_phototwo))
+
+                {{-- <form action="/admin/plantreference/{{ $reference->plant_referenceid }}/removepic" method="POST">
+                    @csrf
+                    @method('put')
+
+                    <input type="hidden" name="num" value="two">
+                    <button class="btn btn-dark"> Remove Picture</button>
+                </form> --}}
+                <a href="/admin/plantreference/{{ $reference->plant_referenceid }}/removepic/two"> remove 2</a>
+            
+            @endif
     </div>
+        
     <div>
         <label for="plant_photothree">3rd photo for this plant</label>
+        @if(isset($reference->plant_photothree))
         <div>
             <img src="{{url('/storage/'. $reference->plant_photothree)  }}" width="300" height="300" alt="3rd">
         </div>
+        @endif
             <div>
                 <input type="file" name="plant_photothree" id="plant_photothree">
             </div>
+           
+            @if(isset($reference->plant_photothree))
+                {{-- <form action="/admin/plantreference/{{ $reference->plant_referenceid }}/removepic" method="POST">
+                    @csrf
+                    @method('put')
+
+                    <input type="hidden" name="num" value="three">
+                    <button class="btn btn-dark"> Remove Picture</button>
+                </form> --}}
+                <a href="/admin/plantreference/{{ $reference->plant_referenceid }}/removepic/three">remove three</a>
+            @endif
     </div>
     
      <br>

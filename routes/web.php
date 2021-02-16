@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Auth::routes();
+    Auth::routes();
 //basic user additiona creds
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/setup', 'UserController@setup');
@@ -81,6 +81,7 @@ Auth::routes();
     Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit');
     Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update');
     Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy');
+     Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic');
 
 //ADMIN/ APPLICATIONS CHECKING
     Route::get('/admin/customer_application/', 'RetailerApplicationController@index');
@@ -108,16 +109,16 @@ Auth::routes();
 
 
 
-    // Route::get('/retailer/products', function (){
-    //     $references = DB::table('plant_referencepages')
-    //     ->leftJoin('categories', 'plant_referencepages.plant_categoryid' , '=' , 'categories.product_categoryid') ->get();
-    //     $products =  DB::table('products')
-    //     ->leftJoin('categories', 'products.product_categoryid', '=' , 'categories.product_categoryid');
-        
-    //     dd($reference);
 
 
-    // });
+
+ // RETAILER/ STORE
+    Route::get('/settings/store/', 'StoreApplicationController@form');
+    Route::get('/settings/store/customize', 'StoreApplicationController@form');
+    Route::put('/settings/store/customize', 'StoreApplicationController@form');
+    Route::put('/settings/store/customize', 'StoreApplicationController@form');
+
+    
     Route::resource('articles', 'ArticleController');
 
 

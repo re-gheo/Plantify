@@ -70,7 +70,7 @@ class PlantReferencepageController extends Controller
             }
             $ref->save();
             
-            return redirect('/admin/plantreference');
+            return redirect('/admin/plantreference')->with('success', '');
 
     }
 
@@ -108,22 +108,41 @@ class PlantReferencepageController extends Controller
                  $ref->plant_photo = request('plant_photo')->store('referecnce_page','public');
              }
              if(request()->hasFile('plant_phototwo')){
-                 $ref->plant_phototwo = request('plant_photo')->store('referecnce_page','public');
+                 $ref->plant_phototwo = request('plant_phototwo')->store('referecnce_page','public');
              } 
              if(request()->hasFile('plant_photothree')){
-                 $ref->plant_photothree = request('plant_photo')->store('referecnce_page','public');
+                 $ref->plant_photothree = request('plant_photothree')->store('referecnce_page','public');
              }
              $ref->save();
              
-             return redirect('/admin/plantreference/'. $id);
+             return redirect('/admin/plantreference/'. $id)->with('success', 'edited the reference page.');
  
     }
+
+    public function removepic($id, $num)
+    {
+        
+         $ref = Plant_referencepage::findOrFail($id);
+             if(request('num') == 'two'){
+                $ref->plant_phototwo = null;
+             }
+
+             if(request('num') == 'three'){
+                $ref->plant_photothree = null;
+             }
+             $ref->save();
+             
+             return redirect('/admin/plantreference/'. $id)->with('success', 'successfully remove a picture.');
+ 
+    }
+
+    
 
   
     public function destroy($id)
     {
         Plant_referencepage::findOrFail($id)->delete();
  
-        return redirect ('/admin/plantreference/');
+        return redirect ('/admin/plantreference/')->with('success', '');
     }
 }

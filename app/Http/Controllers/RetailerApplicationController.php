@@ -137,7 +137,7 @@ class RetailerApplicationController extends Controller
         $user->retailer_approvalstateid = 2;
         $user->save(); 
 
-        return redirect()->with('success',  'an application form has been denied'); 
+        return redirect("/admin/customer_application")->with('success',  'an application form has been denied'); 
     }
 
    
