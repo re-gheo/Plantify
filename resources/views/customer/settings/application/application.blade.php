@@ -68,7 +68,7 @@
     <div>
         <label for="retailer_idnumber">Full ID number of the submitted ID picture.</label>
         <div>
-            <input id="retailer_idnumber" type="text" class=" @error('retailer_idnumber') is-invalid @enderror" name="retailer_idnumber" pattern="[0-9]{15} " required autocomplete="retailer_idnumber">
+            <input id="retailer_idnumber" type="text" class=" @error('retailer_idnumber') is-invalid @enderror" name="retailer_idnumber" pattern="[0-9]{6}" required autocomplete="retailer_idnumber">
 
                 @error('retailer_idnumber')
                     <span class="" role="alert">
