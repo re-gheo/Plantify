@@ -32,8 +32,8 @@
                                     <div class="form-input">
                                         <label for="password" class="">{{ __('Password') }}</label>
             
-                                        <div class="">
-                                            <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        <div class="form-input">
+                                            <input class="" id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                             <br>
                                             @error('password')
                                                 <span class="error-message pt-2" role="alert">

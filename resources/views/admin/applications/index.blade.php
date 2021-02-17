@@ -4,12 +4,10 @@
 
         <div class="row">
           <div class="col-lg-10 mr-auto ml-auto">
-              <div class="pull-right">
-                <a href="/admin/plantreference/create" class="btn btn-dark"> create a reference</a>
-              </div>
+            
               
               <div class="container">
-                <h3 class="text-center">Plant Reference Table</h3>
+                <h3 class="text-center">Applications</h3>
               </div>
                 <div class="div class= card-body table-responsive-sm">
                   @if ($message = Session::get('success'))
