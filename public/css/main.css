@@ -111,6 +111,23 @@ INPUT FORM
 
 }
 
+.txtarea {
+    width: 100%;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #00000020;
+    border-radius: 10px;
+    outline: none;
+    background: transparent;
+}
+
+.txtarea textarea:focus,
+.txtarea textarea:valid {
+    border: 2px solid #39976b;
+}
+
 /* 
 .form-input span {
     position: absolute;

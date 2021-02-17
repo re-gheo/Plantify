@@ -53,6 +53,9 @@
       <div class="col-lg-10">
           <div class="featured d-flex align-items-left justify-content-left">
             <h1><strong>Featured Items!</strong></h1>
+           
+
+
           </div>
           <div class="row">
 

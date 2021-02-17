@@ -32,21 +32,37 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Notifications</a>
       </li>
-      <li class="nav-item dropdown">
+    <li class="nav-item dropdown">
+    
         @if(!Auth::user())
           @else
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
           </a>
+          
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-  
-          <form method="POST" action="{{route('logout')}}">
-            @csrf
-         <button class="dropdown-item">
-            Logout
-         </button>
-        </form>
-          @endif 
+
+              {{-- With pages made --}}
+            <a class="dropdown-item" href="/settings/profile">Account Settings</a>
+                    
+            <a class="dropdown-item" href="/admin/home">Admin Controls</a>            
+              {{-- With no pages made --}}
+            <a class="dropdown-item" href="">Account Settings</a>
+
+            <a class="dropdown-item" href="">Customization Settings</a>
+            <a class="dropdown-item" href="">Preference Settings</a>
+            <a class="dropdown-item" href="">Order History</a>
+
+      
+        
+
+            <form method="POST" action="{{route('logout')}}">
+                @csrf
+            <button class="dropdown-item">
+                Logout
+            </button>
+            </form>
+              @endif 
      
         </div>
       </li>

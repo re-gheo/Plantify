@@ -33,7 +33,7 @@
     <div>
         <label for="plant_description"> Description </label>
         <div>
-            <textarea name="plant_description" id="plant_description" cols="100" rows="10" class=" @error('plant_description') is-invalid @enderror" name="plant_description" required autocomplete="plant_description" value="{{ old('plant_description') }}"></textarea>
+            <textarea name="plant_description" id="plant_description" cols="100" rows="10" class="txtarea  @error('plant_description') is-invalid @enderror" name="plant_description" required autocomplete="plant_description" value="{{ old('plant_description') }}"></textarea>
                 @error('plant_description')
                     <span class="" role="alert">
                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
     <div>
         <label for="plant_maintenance"> Maintenance Plan of the Plant</label>
         <div>
-            <textarea name="plant_maintenance" id="plant_maintenance" cols="100" rows="10" class=" @error('plant_maintenance') is-invalid @enderror" name="plant_maintenance" required autocomplete="	plant_maintenance" value="{{ old('plant_maintenance') }}"></textarea>
+            <textarea name="plant_maintenance" id="plant_maintenance" cols="100" rows="10" class="txtarea @error('plant_maintenance') is-invalid @enderror" name="plant_maintenance" required autocomplete="	plant_maintenance" value="{{ old('plant_maintenance') }}"></textarea>
                 @error('plant_maintenance')
                     <span class="" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,6 +54,8 @@
         </div>
     </div>
     &nbsp;
+
+
     <div>
         <label for="plant_categoryid">Plant category</label>
         <select name="plant_categoryid" id="plant_categoryid">
@@ -90,7 +92,7 @@
     
      <br>
         <div>
-            <button class="btn btn-success text-uppercase my-2 mx-a" type="submit"> create plant reference</button>
+            <button class="btn btn-success text-uppercase my-2 mx-a text-white" type="submit"> create plant reference</button>
         </div>
 </form>
 

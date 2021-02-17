@@ -11,7 +11,7 @@
               <div class="container">
                 <h3 class="text-center">Plant Reference Table</h3>
               </div>
-                <div class="div class= card-body table-responsive-sm">
+                <div class="card-body table-responsive-sm">
                   @if ($message = Session::get('success'))
                   <div class="alert alert-success">
                       <p>{{ $message }}</p>
@@ -19,6 +19,7 @@
               @endif
                   <table class="table table-bordered table-striped table-hover">
                   <thead class="thead-dark">
+                    
                     <tr>
                     <th>ID</th>
                     <th>scientificname</th>
@@ -26,13 +27,10 @@
                     <th>maintenance</th> --}}
                     <th>category</th>
                     <th>Photos</th>
-                    <th>options</th>
-                     
-                   
+                    <th>options</th>                 
                   </tr>
                 </thead>
 
-  
     
                 @foreach ($references as $reference)
 
@@ -46,27 +44,25 @@
                   {{-- NOTSURE IF NEEDED --}}
                   <td>{{ $reference->categories }}</td>
                   <td>
-                    <div>
-                      <img src="{{url('/storage/'. $reference->plant_photo)  }}" width="300" height="300" alt="main">
+                    <div class="row">
+                      <img src="{{url('/storage/'. $reference->plant_photo)  }}" width="150" height="150" alt="main">
+                      <img src="{{url('/storage/'. $reference->plant_phototwo)  }}" width="150" height="150" alt="None">
+                      <img src="{{url('/storage/'. $reference->plant_photothree)  }}" width="150" height="150" alt="None">
                    </div>
-                    <div>
-                      <img src="{{url('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="None">
-                   </div>
-                    <div>
-                      <img src="{{url('/storage/'. $reference->plant_photothree)  }}" width="300" height="300" alt="None">
-                   </div>
+               
                   </td>
                   <td>
-                     <div>
+                     <div class="row ">
                         <a href="/admin/plantreference/{{$reference->plant_referenceid }}" class="btn btn-dark">EDIT</a>
+                        <form action="/admin/plantreference/{{$reference->plant_referenceid }}/delete" method="POST">
+                          @csrf
+                          @method('delete')
+                         <button type="submit" class="btn btn-danger"> Delete </button> {{-- Kenneth Put a warning box here --}}
+             
+                        </form>
                      </div>
                      <div>
-                      <form action="/admin/plantreference/{{$reference->plant_referenceid }}/delete" method="POST">
-                        @csrf
-                        @method('delete')
-                       <button type="submit" class="btn btn-danger"> Delete </button> {{-- Kenneth Put a warning box here --}}
-           
-                      </form>
+                   
                     </div>
                   </td>
                </tr>

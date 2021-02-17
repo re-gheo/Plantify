@@ -26,8 +26,15 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::get('/', function () {
+       
         return view('storefront');
     });
+
+    Route::get('/test2', function () {
+       
+        dd(Auth::user()->email);
+    });
+
 
 
 
