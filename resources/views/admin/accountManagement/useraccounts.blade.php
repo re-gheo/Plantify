@@ -28,8 +28,9 @@
                   <th>options</th>
                 </tr>
               </thead>
-                                  
-                      
+                                       
+              <!--TABLE-->
+
                   @foreach ($users as $user)
 
                     
