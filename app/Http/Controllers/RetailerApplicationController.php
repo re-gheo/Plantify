@@ -67,8 +67,7 @@ class RetailerApplicationController extends Controller
 
         $apps = Retailer_application::leftJoin('users', 'retailer_applications.user_id', '=' , 'users.id')
         ->leftJoin('retailer_approvalstates', 'retailer_applications.retailer_approvalstateid', '=' , 'retailer_approvalstates.retailer_approvalstateid')->get();
-        // $apps = DB::table('retailer_applications')
-        // ->leftJoin('users', 'retailer_applications.user_id', '=' , 'users.id')->get();
+        
         
         return view('admin.applications.index',['apps' => $apps]);
     }
@@ -104,6 +103,7 @@ class RetailerApplicationController extends Controller
         $store = new Store();
         $store->store_dateregistererd = $date;
         $store->store_codoption = 0 ;
+        $store->store_phonenumber = $user->cp_number;
         $store->save();
         $store->store_id;
 

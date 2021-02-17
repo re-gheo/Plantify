@@ -73,11 +73,11 @@
       
       <div class="input-group mr-auto ">
         {{-- idk what route to put below --}}
-        <form action="{{ route('customer.index') }}" method="GET" role="search"> 
+        <form action="" method="GET" role="search"> 
         <input id="search" type="text" class="form-control" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
         <div class="input-group-append">
           {{-- idk what route to put below --}}
-          <a href="{{ route('customer.index') }}" class=" mt-1">
+          <a href="" class=" mt-1"></a>
           <button id="search-button" class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
         </div>
 
