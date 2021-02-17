@@ -114,10 +114,9 @@ use Illuminate\Support\Facades\Route;
 
  // RETAILER/ STORE
     Route::get('/settings/store/', 'StoreController@front');
-    Route::get('/settings/store/setup', 'StoreController@setup');
     Route::put('/settings/store/setup', 'StoreController@setupstore');
-    // Route::get('/settings/store/customize', 'StoreController@form');
-    // Route::put('/settings/store/customize', 'StoreController@form');
+    Route::get('/settings/store/customize', 'StoreController@edit');
+    Route::put('/settings/store/customize', 'StoreController@update');
     // Route::put('/settings/store/customize', 'StoreController@form');
 
     

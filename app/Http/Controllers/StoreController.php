@@ -26,22 +26,33 @@ class StoreController extends Controller
     }
     public function setupstore(){
        
-        $store = Store::leftJoin('retailers', 'stores.store_id' , '=' , 'retailers.store_id')->where('retailer_id', '=', Auth::user()->id);
-
-        dd($store);
+        $ret = Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
+        $store = Store::findOrFail($ret->store_id);
         $store->store_name = request('store_name');
         $store->store_description = request('store_description');
         $store->save();
-       
+
         return redirect ('/settings/store/')->with('success', 'successfully register your store name');
     }
 
     public function edit(){
+        $store =  Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
         
+        if(!$store->store_name || !$store->store_description) {
+            return view('retailer.store.setup');
+        }
+        return view('retailer.store.customize', ['store'=>$store]);
     }
 
     public function update(){
         
+        $ret = Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
+        $store = Store::findOrFail($ret->store_id);
+        $store->store_name = request('store_name');
+        $store->store_description = request('store_description');
+        $store->save();
+
+        return redirect ('/settings/store/')->with('success', 'successfully register your store name');
     }
 
 

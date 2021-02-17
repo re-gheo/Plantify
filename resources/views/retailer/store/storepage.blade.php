@@ -34,6 +34,10 @@
             <p>{{ $store->store_description }}</p>
            
         </div>
+
+    <a href="/settings/store/customize" class="btn btn-success"> Update store page</a>
+
+    <a href="/store/product"> product</a>
     </div>
 
 
