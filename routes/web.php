@@ -81,7 +81,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit');
     Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update');
     Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy');
-     Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic');
+    Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic');
 
 //ADMIN/ APPLICATIONS CHECKING
     Route::get('/admin/customer_application/', 'RetailerApplicationController@index');
@@ -113,10 +113,10 @@ use Illuminate\Support\Facades\Route;
 
 
  // RETAILER/ STORE
-    Route::get('/settings/store/', 'StoreApplicationController@form');
-    Route::get('/settings/store/customize', 'StoreApplicationController@form');
-    Route::put('/settings/store/customize', 'StoreApplicationController@form');
-    Route::put('/settings/store/customize', 'StoreApplicationController@form');
+    Route::get('/settings/store/', 'StoreController@form');
+    Route::get('/settings/store/customize', 'StoreController@form');
+    Route::put('/settings/store/customize', 'StoreController@form');
+    Route::put('/settings/store/customize', 'StoreController@form');
 
     
     Route::resource('articles', 'ArticleController');
