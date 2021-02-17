@@ -28,7 +28,7 @@
               <li><a class="dropdown-item" href="/admin/plantreference/">Reference List</a></li>
               <li> <a class="dropdown-item" href="/admin/account-management">User Accounts</a></li>
               <li> <a class="dropdown-item" href="/admin/categories">Categories</a></li>
-              <li><a class="dropdown-item" href="/admin/customer_application/">Customer Logs</a></li>
+            <li><a class="dropdown-item" href="/admin/customer_application/">Pending Applications</a></li>
           </ul>
       </div>
  
