@@ -18,7 +18,7 @@ class RetailerController extends Controller
      */
     public function index()
     {
-        return view('retailer.index');
+        return view('storefront')->with('success', 'you are logged in as retailer');
     }
   
     /**

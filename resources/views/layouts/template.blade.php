@@ -68,6 +68,13 @@
         <a id="cta" class="" href="/login">Login</a>
         <a id="cta" class="" href="/register">Register Account</a>
         @endif
+
+         @if(!Auth::user())
+        @else
+           @if(Auth::user()->user_role == "retailer")
+           <a id="cta" class="" href="/settings/store">storepage</a>
+           @endif
+        @endif
        
       </ul>
       
