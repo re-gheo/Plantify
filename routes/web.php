@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
     Auth::routes();
 //basic user additiona creds
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/homes', 'HomeController@index');
     Route::get('/setup', 'UserController@setup');
     Route::put('/setup/{email}', 'UserController@setups');
     Route::get('/verify', 'UserController@verify');
@@ -120,14 +120,25 @@ use Illuminate\Support\Facades\Route;
 
 
  // RETAILER/ STORE
-    Route::get('/settings/store/', 'StoreController@front');
-    Route::put('/settings/store/setup', 'StoreController@setupstore');
-    Route::get('/settings/store/customize', 'StoreController@edit');
-    Route::put('/settings/store/customize', 'StoreController@update');
-    // Route::put('/settings/store/customize', 'StoreController@form');
+    Route::get('/store', 'StoreController@front');
+    Route::put('/store/setup', 'StoreController@setupstore');
+    Route::get('/store/customize', 'StoreController@edit');
+    Route::put('/store/customize', 'StoreController@update');
 
+     // RETAILER/ STORE
+     Route::get('/store/products', 'ProductController@list');
+     Route::get('/store/products/create', 'ProductController@create');
+     Route::post('/store/products/store', 'ProductController@store');
+     Route::get('/store/products/{id}', 'ProductController@show');
+     Route::get('/store/products/edit', 'ProductController@edit');
+     Route::put('/store/products/edit', 'ProductController@edit');
     
-    Route::resource('articles', 'ArticleController');
+
+    // Articles
+    Route::resource('/articles', 'ArticleController');
+
+    // Notifications
+    Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
 
 
