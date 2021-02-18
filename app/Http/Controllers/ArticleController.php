@@ -42,8 +42,8 @@ class ArticleController extends Controller
            'article_description'=>['required']
        ]);
       $article = new Article();
-      $article->article_topic = request('title');
-      $article->article_description = request('description');
+      $article->article_topic = request('article_topic');
+      $article->article_description = request('article_description');
         $article->save();
       //dd($article); (test)
        return redirect('/articles')->with('success', 'Article has been added');
