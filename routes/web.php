@@ -134,8 +134,11 @@ use Illuminate\Support\Facades\Route;
      Route::put('/store/products/edit', 'ProductController@edit');
     
 
-    
-    Route::resource('articles', 'ArticleController');
+    // Articles
+    Route::resource('/articles', 'ArticleController');
+
+    // Notifications
+    Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
 
 
