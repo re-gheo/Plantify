@@ -24,7 +24,6 @@
                     <tr>
                         <th>No</th>
                         <th>Title</th>
-                        <th>Description</th>
                         <th width="250px">Action</th>
                     </tr>
                 </thead>
@@ -33,7 +32,6 @@
                 <tr>
                     <td>{{ $article->article_id }}</td>
                     <td>{{ $article->article_topic }}</td>
-                    <td>{{ $article->article_description }}</td>
                     <div >
                         <td class="float-right">
                             <form action="{{ route('articles.destroy',$article->article_id) }}" method="POST" >
