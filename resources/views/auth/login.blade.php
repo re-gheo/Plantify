@@ -4,13 +4,11 @@
 
 
             <div class="container">
-                <div  id="login-hero" class="row px-3">
-                    <div  class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow p-0 rounded border-3">
+                <div  id="login-hero" class="row">
+                    <div class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow">
                         <div class="img-left d-none d-md-flex"></div>   
-                        <div class="login-card">
-                         
-                            
-                                <form method="POST" action="{{ route('login') }}">
+                            <div class="login-card"> 
+                                <form class="pl-5" method="POST" action="{{ route('login') }}">
                                     @csrf
                                   <h4 class="text-center pb-1">Login to Plantify</h4>
                                     <div class="form-input ">

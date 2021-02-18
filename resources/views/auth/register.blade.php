@@ -16,7 +16,7 @@
                 <div class="container">
                     <div id="#register-hero"class="row px-2">
                         <div class="col-lg-8 col-xl-6 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
-                            <div class="register-card mx-auto ">
+                            <div class="card-body mx-auto ">
                                 <form method="POST" class="form-box px-2" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-input ">

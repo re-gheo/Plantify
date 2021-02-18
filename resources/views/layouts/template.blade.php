@@ -44,14 +44,18 @@
 
               {{-- With pages made --}}
             <a class="dropdown-item" href="/settings/profile">Account Settings</a>
-                    
-            <a class="dropdown-item" href="/admin/home">Admin Controls</a>            
-              {{-- With no pages made --}}
+            
+            @if(Auth::user()->user_role == 'admin')
+            <a class="dropdown-item" href="/admin/home">Admin Controls</a>    
+            
+            @endif
+            
+              {{-- With no pages made
             <a class="dropdown-item" href="">Account Settings</a>
 
             <a class="dropdown-item" href="">Customization Settings</a>
             <a class="dropdown-item" href="">Preference Settings</a>
-            <a class="dropdown-item" href="">Order History</a>
+            <a class="dropdown-item" href="">Order History</a> --}}
 
       
         
