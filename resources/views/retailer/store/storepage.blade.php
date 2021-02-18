@@ -35,7 +35,7 @@
            
         </div>
 
-    <a href="/settings/store/customize" class="btn btn-success"> Update store page</a>
+    <a href="/store/customize" class="btn btn-success"> Update store page</a>
 
     <a href="/store/product"> product</a>
     </div>

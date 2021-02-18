@@ -32,7 +32,7 @@ class StoreController extends Controller
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect ('/settings/store/')->with('success', 'successfully register your store name');
+        return redirect ('/store')->with('success', 'successfully register your store name');
     }
 
     public function edit(){
@@ -52,7 +52,7 @@ class StoreController extends Controller
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect ('/settings/store/')->with('success', 'successfully register your store name');
+        return redirect ('/store')->with('success', 'successfully register your store name');
     }
 
 

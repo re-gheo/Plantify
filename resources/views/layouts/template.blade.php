@@ -88,7 +88,7 @@
          @if(!Auth::user())
         @else
            @if(Auth::user()->user_role == "retailer")
-           <a id="cta" class="" href="/settings/store">storepage</a>
+           <a id="cta" class="" href="/store">storepage</a>
            @endif
         @endif
        
