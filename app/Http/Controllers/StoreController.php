@@ -46,13 +46,19 @@ class StoreController extends Controller
 
     public function update(){
         
+
+        request()->validate([
+            'store_name'=>['required'],
+               'store_description'=>['required']
+           ]);
+
         $ret = Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
         $store = Store::findOrFail($ret->store_id);
         $store->store_name = request('store_name');
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect ('/store')->with('success', 'successfully register your store name');
+        return redirect ('/store')->with('success', 'successfully registered your store name');
     }
 
 
