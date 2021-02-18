@@ -125,7 +125,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/store/customize', 'StoreController@edit');
     Route::put('/store/customize', 'StoreController@update');
 
-     // RETAILER/ STORE
+     // RETAILER/ Products
      Route::get('/store/products', 'ProductController@list');
      Route::get('/store/products/create', 'ProductController@create');
      Route::post('/store/products/store', 'ProductController@store');

@@ -37,7 +37,7 @@
 
     <a href="/store/customize" class="btn btn-success"> Update store page</a>
 
-    <a href="/store/product"> product</a>
+    <a href="/store/products"> product</a>
     </div>
 
 
