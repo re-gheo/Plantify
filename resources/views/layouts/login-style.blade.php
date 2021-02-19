@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/CSS/plantify_theme.css">
   <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Plantify | Login</title>
 </head>
 <body>
   

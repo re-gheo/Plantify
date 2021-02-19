@@ -16,7 +16,7 @@
 
 
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="Background">
+                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="">
                         </div>
 
                         <div>
@@ -26,13 +26,13 @@
 
                                 @error('store_backgroundimage')
                                     <span class="" role="alert">
-                                        <strong>Please upload a background photo for this Plant</strong>
+                                        <strong>Please upload a background photo for your store.</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_profileimage) }}" alt="Profile">
+                            <img src="{{ url('/storage/' . $store->store_profileimage) }}" alt="">
                         </div>
                         <div>
                             <label for="store_profileimage">Profile photo for your Store</label>
@@ -41,7 +41,7 @@
 
                                 @error('store_profileimage')
                                     <span class="" role="alert">
-                                        <strong> Please upload a profile photo for this Plant</strong>
+                                        <strong> Please upload a profile photo for your store.</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -87,7 +87,7 @@
 
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <label for="">
-                        <h3>Your phone number</h3>
+                        <h3>Phone number</h3>
                     </label>
                     <p> {{ $store->store_phonenumber }}</p>
                     <a href="">Update phone number</a>

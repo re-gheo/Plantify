@@ -138,7 +138,7 @@ use Illuminate\Support\Facades\Route;
     Route::resource('/articles', 'ArticleController');
 
     // Notifications
-    Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
+    // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
 
 

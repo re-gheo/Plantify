@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/CSS/plantify_theme.css">
   <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Plantify Admin</title>
 </head>
 <body>
   <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-lg  ">
@@ -29,7 +29,7 @@
               <li> <a class="dropdown-item" href="/admin/account-management">User Accounts</a></li>
               <li> <a class="dropdown-item" href="/admin/categories">Categories</a></li>
               <li><a class="dropdown-item" href="/admin/customer_application/">Pending Applications</a></li>
-              <li><a class="dropdown-item" href="/articles">articles</a></li>
+              <li><a class="dropdown-item" href="/articles">Articles</a></li>
           </ul>
       </div>
  

@@ -15,7 +15,7 @@
                             <label for="store_name">
                                 <h5><b>Make a Name for Your Store</b> </h3>
                             </label>
-                            <p><b>Note:</b> Your Store Name Cannot be changed</p>
+                            <p><b>Note:</b> Your Store Name Cannot be Changed</p>
 
                             <div class="form-input">
                                 <input id="store_name" type="text" class=" @error('store_name') is-invalid @enderror"

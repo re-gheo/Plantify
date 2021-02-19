@@ -61,7 +61,7 @@
 
 <div>
     <div>
-        <label for=""><b>Your Adress for delivery</b></label>
+        <label for=""><b>Your Address for delivery</b></label>
         <div>
 
             <p>{{ $app->address}}</p>

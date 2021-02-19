@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Plantify | Official Page</title>
+  <title>Plantify | Official</title>
 
   <!--CSS Preamble-->
   <link rel="stylesheet" type="text/css" href="/CSS/main.css">
@@ -92,7 +92,7 @@
          @if(!Auth::user())
         @else
            @if(Auth::user()->user_role == "retailer")
-           <a id="cta" class="" href="/store">storepage</a>
+           <a id="cta" class="" href="/store">Store Page</a>
            @endif
         @endif
        
