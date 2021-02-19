@@ -25,10 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-    Route::get('/', function () {
-       
-        return view('storefront');
-    });
+ 
+
+    Route::get('/', 'StorefrontController@front');
 
     Route::get('/test2', function () {
        
@@ -130,8 +129,10 @@ use Illuminate\Support\Facades\Route;
      Route::get('/store/products/create', 'ProductController@create');
      Route::post('/store/products/store', 'ProductController@store');
      Route::get('/store/products/{id}', 'ProductController@show');
-     Route::get('/store/products/edit', 'ProductController@edit');
-     Route::put('/store/products/edit', 'ProductController@edit');
+     Route::get('/store/products/{id}/edit', 'ProductController@edit');
+     Route::put('/store/products/{id}/edit', 'ProductController@update');
+     Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
+     Route::put('/store/products//{id}/edit', 'ProductController@edit');
     
 
     // Articles
@@ -152,33 +153,33 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/test', function(){
-    $date = CarbonImmutable::now();
-    // dd('time is '  .$dat);
-    //dd(User::where('email',Auth::user()->email)->first());
+// Route::get('/test', function(){
+//     $date = CarbonImmutable::now();
+//     // dd('time is '  .$dat);
+//     //dd(User::where('email',Auth::user()->email)->first());
 
-    $mutable = Carbon::now();
-$immutable = CarbonImmutable::now();
-$modifiedMutable = $mutable->add(1, 'day');
-$modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
-var_dump('time im ' .  $immutable . ' muta '.  $date);
-var_dump($modifiedMutable === $mutable);             // bool(true)
-var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
-var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
-// So it means $mutable and $modifiedMutable are the same object
-// both set to now + 1 day.
-var_dump($modifiedImmutable === $immutable);         // bool(false)
-var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
-var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
-// While $immutable is still set to now and cannot be changed and
-// $modifiedImmutable is a new instance created from $immutable
-// set to now + 1 day.
+//     $mutable = Carbon::now();
+// $immutable = CarbonImmutable::now();
+// $modifiedMutable = $mutable->add(1, 'day');
+// $modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
+// var_dump('time im ' .  $immutable . ' muta '.  $date);
+// var_dump($modifiedMutable === $mutable);             // bool(true)
+// var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
+// var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
+// // So it means $mutable and $modifiedMutable are the same object
+// // both set to now + 1 day.
+// var_dump($modifiedImmutable === $immutable);         // bool(false)
+// var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
+// var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
+// // While $immutable is still set to now and cannot be changed and
+// // $modifiedImmutable is a new instance created from $immutable
+// // set to now + 1 day.
 
-$mutable = CarbonImmutable::now()->toMutable();
-var_dump($mutable->isMutable());                     // bool(true)
-var_dump($mutable->isImmutable());                   // bool(false)
-$immutable = Carbon::now()->toImmutable();
-var_dump($immutable->isMutable());                   // bool(false)
-var_dump($immutable->isImmutable());                 // bool(true)
+// $mutable = CarbonImmutable::now()->toMutable();
+// var_dump($mutable->isMutable());                     // bool(true)
+// var_dump($mutable->isImmutable());                   // bool(false)
+// $immutable = Carbon::now()->toImmutable();
+// var_dump($immutable->isMutable());                   // bool(false)
+// var_dump($immutable->isImmutable());                 // bool(true)
 
-});
+// });

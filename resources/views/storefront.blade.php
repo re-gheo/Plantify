@@ -62,7 +62,7 @@
             <!--STORE ITEMS-->
               <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
                   <img class="img-fluid" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="some_image">
-                  <h5>Product Name</h5>
+                  <h5> DUMMY Product Name</h5>
                   <p>Lorem ipsum dolor si amet</p>
                   <div class="row">
                       <div class="star"></div>
@@ -73,7 +73,7 @@
               </div>
               <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
                 <img class="img-fluid" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="some_image">
-                <h5>Product Name</h5>
+                <h5>Dummy Product Name</h5>
                 <p>Lorem ipsum dolor si amet</p>
                 <div class="row">
                     <div class="star"></div>
@@ -82,31 +82,12 @@
                 </div>
                 <button class="btn btn-success btn-sm">Add to cart</button>
             </div>
-            <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
-              <img class="img-fluid" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="some_image">
-              <h5>Product Name</h5>
-              <p>Lorem ipsum dolor si amet</p>
-              <div class="row">
-                  <div class="star"></div>
-                  <div class="star"></div>
-                  <div class="star"></div>
-              </div>
-              <button class="btn btn-success btn-sm">Add to cart</button>
-          </div>
-          <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
-            <img class="img-fluid" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="some_image">
-            <h5>Product Name</h5>
-            <p>Lorem ipsum dolor si amet</p>
-            <div class="row">
-                <div class="star"></div>
-                <div class="star"></div>
-                <div class="star"></div>
-            </div>
-            <button class="btn btn-success btn-sm">Add to cart</button>
-        </div>
+        @foreach($products as $product)
+          
+        
         <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
-          <img class="img-fluid" src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="some_image">
-          <h5>Product Name</h5>
+          <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}" alt="some_image">
+          <h5>{{$product->product_name }}</h5>
           <p>Lorem ipsum dolor si amet</p>
           <div class="row">
               <div class="star"></div>
@@ -115,6 +96,8 @@
           </div>
           <button class="btn btn-success btn-sm">Add to cart</button>
       </div>
+
+      @endforeach    
           </div>
           
           

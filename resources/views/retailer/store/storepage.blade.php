@@ -37,7 +37,11 @@
 
     <a href="/store/customize" class="btn btn-success">Update Store Page</a>
 
+<<<<<<< Updated upstream
     <a href="/store/products"> Products</a>
+=======
+    <a href="/store/products"class="btn btn-success">  My product</a>
+>>>>>>> Stashed changes
     </div>
 
 

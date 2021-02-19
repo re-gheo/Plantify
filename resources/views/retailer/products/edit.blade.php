@@ -2,15 +2,16 @@
 
 @section('content')
 <div class="col-lg-10 mr-auto ml-auto">
-<h1> add  a Product</h1>
+<h1> Edit this product</h1>
 
-    <form action="/store/products/store" method="POST" enctype="multipart/form-data">
+    <form action="/store/products/{{ $product->product_id}}/edit" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('put')
         <div>
             <label for="product_name"> Name of the Product </label>
             <br>
             <input id="product_name" type="text" class=" @error('product_name') 
-    is-invalid @enderror" name="product_name"  autocomplete="product_name">
+    is-invalid @enderror" name="product_name"  autocomplete="product_name" value="{{ $product->product_name }}">
 
             @error('product_name')
                 <span class="" role="alert">
@@ -24,7 +25,7 @@
             <label for="product_description"> Description of the product </label>
             <br>      
             <textarea  id="product_description"  class=" @error('product_description') 
-            is-invalid @enderror" name="product_description"  autocomplete="product_description" cols="30" rows="10"></textarea>
+            is-invalid @enderror" name="product_description"  autocomplete="product_description" cols="30" rows="10">{{ $product->product_description }}</textarea>
 
             @error('product_description')
                 <span class="" role="alert">
@@ -38,7 +39,7 @@
             <label for="product_sizes"> Plant Size in inches </label>
             <br>
             <input id="product_sizes" type="number" class=" @error('product_sizes') 
-    is-invalid @enderror" name="product_sizes"  autocomplete="product_sizes">
+    is-invalid @enderror" name="product_sizes"  value="{{ $product->product_sizes }}" autocomplete="product_sizes">
 
             @error('product_sizes')
                 <span class="" role="alert">
@@ -66,20 +67,26 @@
         <label for="plant_referenceid">Plant refrence</label>
         <br>
         <select name="product_referenceid" id="product_referenceid">
+            <option value="{{ $product->plant_referenceid }}" selected>{{ $product->plant_scientificname }} [SELECTED] </option>
             @foreach ($refs as $ref)
                 <option value="{{ $ref->plant_referenceid }}">{{ $ref->plant_scientificname }}</option>
             @endforeach
         </select>
 
       <br><br>
+   
 
-       
+    
         <div>
             <div>
                 <label for="">TAGS</label> <br>
                 @foreach($keys as $key)
-                <label for="keywords">{{ $key->keyword_name }}</label>
-                <input type="checkbox" name="keywords[]" value="{{ $key->keyword_id  }}"/>
+                    <label for="keywords">{{ $key->keyword_name }}</label>
+                        <input type="checkbox" name="keywords[]" value="{{ $key->keyword_id }}"
+                            @foreach($askeys  as $akey ) @if($akey->owned_keywordid == $key->keyword_id) 
+                            {{ $akey->owned_keywordid }} is checked @endif 
+                            @endforeach
+                        />
                 @endforeach
             </div>
         </div>
@@ -91,10 +98,10 @@
     @enderror
 
         <div>
-            <label for="product_price"> Price  </label>
+            <label for="product_price"> Price (Php) </label>
             <br>
             <input id="product_price" type="number" class=" @error('product_price') 
-    is-invalid @enderror" name="product_price"  autocomplete="product_price">
+    is-invalid @enderror" name="product_price"  autocomplete="product_price" value="{{ $product->product_price }}">
 
             @error('product_price')
                 <span class="" role="alert">
@@ -107,7 +114,7 @@
             <label for="product_quantity"> Quantity  </label>
             <br>
             <input id="product_quantity" type="number" class=" @error('product_quantity') 
-    is-invalid @enderror" name="product_quantity"  autocomplete="product_quantity">
+    is-invalid @enderror" name="product_quantity"  autocomplete="product_quantity" value="{{ $product->product_quantity }}">
 
             @error('product_quantity')
                 <span class="" role="alert">
@@ -117,10 +124,13 @@
         </div>
 
         <div>
-            <label for="product_mainphoto">Main Photo for this Product</label>
+            <label for="product_mainphoto">Update Main Photo for this product</label>
                 <div>
                     <input type="file" name="product_mainphoto" id="product_mainphoto" accept="image/x-png ,image/jpeg" multiple>
+                    
                 </div>
+
+                <img src="{{url('/storage/'. $product->product_mainphoto)  }}" alt="">
         </div>
 
         @error('product_mainphoto')
@@ -129,17 +139,24 @@
                 </span>
             @enderror
         <div>
-            <label for="product_photo">multiple photos</label>
+            <label for="product_photo">add more photos of the product</label>
                 <div>
                     <input type="file" name="product_photo[]" id="product_photo[]" accept="image/x-png ,image/jpeg" multiple>
                 </div>
+
+                
+               
         </div>
 
-      
+        @foreach($asphotos as $asp)
+        <div>
+            <img src="{{url('/storage/'. $asp->product_photo)  }}" height="120" alt="">
+            <a href="/store/products/{{$product->product_id}}/removepic/{{ $asp->assigned_photoid }}". > remove pic</a>
+           </div>
+        @endforeach 
 
-<button type="submit"> Add this product</button>
+<button type="submit"> Update product</button>
     </form>
-
-</div >
-
+    <br>
+</div>
 @endsection
