@@ -4,7 +4,7 @@
 
 
 
-<h1><b>Your Store information</b>  </h1>
+<h1><b>Your Store Information</b>  </h1>
 
 
 <div>  
@@ -35,9 +35,9 @@
            
         </div>
 
-    <a href="/store/customize" class="btn btn-success"> Update store page</a>
+    <a href="/store/customize" class="btn btn-success">Update Store Page</a>
 
-    <a href="/store/products"> product</a>
+    <a href="/store/products"> Products</a>
     </div>
 
 

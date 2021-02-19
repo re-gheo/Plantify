@@ -32,7 +32,7 @@ class StoreController extends Controller
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect ('/store')->with('success', 'successfully register your store name');
+        return redirect ('/store')->with('success', 'Successfully Registered Your Store!');
     }
 
     public function edit(){
@@ -56,9 +56,19 @@ class StoreController extends Controller
         $store = Store::findOrFail($ret->store_id);
         $store->store_name = request('store_name');
         $store->store_description = request('store_description');
+        // $store->store_backgroundimage = request('store_backgroundimage')->store('store','public');
+        // $store->store_profileimage= request('store_profileimage')->store('store','public');
+ 
+        if(request()->hasFile('store_backgroundimage')){
+            $store->store_backgroundimage = request('store_backgroundimage')->store('store','public');
+        }
+        if(request()->hasFile('store_profileimage')){
+            $store->store_profileimage = request('store_profileimage')->store('store','public');
+        }
+
         $store->save();
 
-        return redirect ('/store')->with('success', 'successfully registered your store name');
+        return redirect ('/store')->with('success', 'Successfully Updated Your Store!');
     }
 
 

@@ -16,32 +16,32 @@
 
 
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="background">
+                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="Background">
                         </div>
 
                         <div>
-                            <label for="store_backgroundimage">main photo for this plant</label>
+                            <label for="store_backgroundimage">Background photo for your store</label>
                             <div>
                                 <input type="file" name="store_backgroundimage" id="store_backgroundimage" required>
 
                                 @error('store_backgroundimage')
                                     <span class="" role="alert">
-                                        <strong> Please upload the main photo for this Plant</strong>
+                                        <strong>Please upload a background photo for this Plant</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_profileimage) }}" alt="profile">
+                            <img src="{{ url('/storage/' . $store->store_profileimage) }}" alt="Profile">
                         </div>
                         <div>
-                            <label for="store_profileimage">main photo for this plant</label>
+                            <label for="store_profileimage">Profile photo for your Store</label>
                             <div>
                                 <input type="file" name="store_profileimage" id="store_profileimage" required>
 
                                 @error('store_profileimage')
                                     <span class="" role="alert">
-                                        <strong> Please upload the main photo for this Plant</strong>
+                                        <strong> Please upload a profile photo for this Plant</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -75,7 +75,7 @@
             <div class="row px-2 pt-5">
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <label for="cod_option">
-                        <h3>Cash on delivery option</h3>
+                        <h3>Cash on Delivery Option</h3>
                     </label><br />
 
 
@@ -87,17 +87,17 @@
 
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <label for="">
-                        <h3>your phone number</h3>
+                        <h3>Your phone number</h3>
                     </label>
                     <p> {{ $store->store_phonenumber }}</p>
-                    <a href="">Update Phone number</a>
+                    <a href="">Update phone number</a>
                 </div>
 
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
-                    <h3>Cash out options</h3>
-                    <a href="">register a card</a>
+                    <h3>Cash Out Options</h3>
+                    <a href="">Register a Card</a>
                     <br>
-                    <a href="">register a gcash number</a>
+                    <a href="">Register a GCash Number</a>
                 </div>
 
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
@@ -109,6 +109,6 @@
             </div>
         </div>
 
-        <button class="btn btn-success text-uppercase my-2 mx-a" type="submit">UPDATE STORE PAGE </button>
+        <button class="btn btn-success text-uppercase my-2 mx-a" type="submit">Update Store Page</button>
     </form>
 @endsection

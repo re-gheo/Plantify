@@ -6,16 +6,16 @@
         <div class="row px-2 pt-5">
             <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                 <div class="card-body mx-auto  ">
-                    <h3 class="card-title text-center pb-3">Let's Set up your your store</h3>
+                    <h3 class="card-title text-center pb-3">Let's Set up Your Store</h3>
                     <form method="POST" action="/store/setup">
                         @csrf
                         @method('PUT')
 
                         <div>
                             <label for="store_name">
-                                <h5><b>Make a Name for your store</b> </h3>
+                                <h5><b>Make a Name for Your Store</b> </h3>
                             </label>
-                            <p><b>Note:</b> your store name cant be changed</p>
+                            <p><b>Note:</b> Your Store Name Cannot be changed</p>
 
                             <div class="form-input">
                                 <input id="store_name" type="text" class=" @error('store_name') is-invalid @enderror"
@@ -58,7 +58,7 @@
 
 
 
-                        <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
+                        <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">Submit</button>
 
 
                     </form>

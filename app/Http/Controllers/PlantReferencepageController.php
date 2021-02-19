@@ -115,7 +115,7 @@ class PlantReferencepageController extends Controller
              }
              $ref->save();
              
-             return redirect('/admin/plantreference/'. $id)->with('success', 'edited the reference page.');
+             return redirect('/admin/plantreference/'. $id)->with('success', 'Edited the reference page.');
  
     }
 
@@ -132,7 +132,7 @@ class PlantReferencepageController extends Controller
              }
              $ref->save();
              
-             return redirect('/admin/plantreference/'. $id)->with('success', 'successfully remove a picture.');
+             return redirect('/admin/plantreference/'. $id)->with('success', 'Successfully removed a picture.');
  
     }
 
