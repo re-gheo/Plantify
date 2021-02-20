@@ -74,7 +74,6 @@ class ProductController extends Controller
         $product->product_sizes = request('product_sizes');
         $product->product_mainphoto = request('product_mainphoto')->store('product_photo','public');
         $product->product_referenceid = request('product_referenceid');
-       
         $product->product_price = request('product_price');
         $product->product_quantity = request('product_quantity');
         $product->retailer_id = Auth::user()->id;

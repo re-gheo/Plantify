@@ -1,0 +1,405 @@
+create database plantifydb;
+
+use plantifydb;
+
+create table user_states
+(
+	user_stateid int primary key auto_increment,
+    user_state varchar(60)
+);
+
+create table retailer_approvalstates
+(
+	retailer_approvalstateid int primary key,
+    retailer_approvalstate varchar(60)
+);
+
+
+
+create table users
+(
+	id int primary key auto_increment,
+    email varchar(60) unique key,
+    password varchar(60) null,
+    first_name varchar(300) null,
+    last_name varchar(300) null,
+    name varchar(300) null,
+    address varchar(300) null,
+    govtid_number varchar(500),
+    cp_number varchar(500) null,
+    region varchar(30) null,
+    birthday date null,
+    provider_id varchar(300) null,
+    avatar varchar(300) null,
+    remember_token varchar(500) null,
+    otp_verified boolean,
+    user_stateid int,
+    foreign key(user_stateid) references user_states(user_stateid),
+    retailer_approvalstateid int,
+    foreign key(retailer_approvalstateid) references retailer_approvalstates(retailer_approvalstateid),
+    user_role varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table retailer_applications
+(
+	retailer_applicationid int primary key auto_increment,
+    retailer_address varchar(300),
+    retailer_postalcode int,
+    retailer_personincharge varchar(300),
+    retailer_officialidfront varchar(300),
+    retailer_officialidback varchar(300),
+    retailer_idnumber int,
+    retailer_birthdate date,
+    retailer_city varchar(300),
+    retailer_barangay varchar(300),
+    retailer_region varchar(300),
+    retailer_approvalstateid int,
+    foreign key(retailer_approvalstateid) references retailer_approvalstates(retailer_approvalstateid),
+    user_id int,
+    deny_reason varchar(300),
+    foreign key(user_id) references users(id),
+    
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table audit_logs
+(
+	audit_id int primary key auto_increment,
+    audit_userid int unique key,
+    foreign key(audit_userid) references users(id),
+    table_changed varchar(300),
+    activity varchar(300),
+    date_created datetime,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table advertisment_states
+(
+	advertisment_stateid int primary key auto_increment,
+    advertisment_state varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table advertisments
+(
+	advertisment_id int primary key auto_increment,
+    advertisment_stateid int,
+    foreign key(advertisment_stateid) references advertisment_states(advertisment_stateid),
+    advertisment_start datetime,
+    advertisment_end datetime,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table payment_types
+(
+	payment_typeid int primary key auto_increment,
+    payment_type varchar(300) ,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table advertisment_history
+(
+	advertisment_historyid int primary key auto_increment,
+    user_id int,
+    foreign key(user_id) references users(id),
+    advertisment_datepurchased datetime,
+    advertisment_cost float,
+    advertisment_paymenttype int,
+    foreign key(advertisment_paymenttype) references payment_types(payment_typeid),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table customers
+(
+	customer_id int primary key auto_increment,
+    foreign key(customer_id) references users(id),
+    retailer_application int,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table order_status
+(
+	order_statusid int primary key auto_increment,
+    order_status varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table shipping_types
+(
+	shipping_typeid int primary key auto_increment,
+    shipping_type varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table shipping_infos
+(
+	shipping_id int primary key auto_increment,
+    shipping_type int,
+    foreign key(shipping_type) references shipping_types(shipping_typeid),
+    shipping_pickupdate datetime,
+    shipping_currentaddress varchar(300),
+    shipping_address varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table orders
+(
+	order_id int primary key auto_increment,
+    payment_type int,
+    foreign key(payment_type) references payment_types(payment_typeid),
+    order_datecreated datetime,
+    order_dateshipped datetime,
+    order_customerid int,
+    foreign key(order_customerid) references customers(customer_id), 
+    order_status int,
+    foreign key(order_status) references order_status(order_statusid),
+    shipping_id int,
+    foreign key(shipping_id) references shipping_infos(shipping_id),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table categories
+(
+	product_categoryid int primary key auto_increment,
+    categories varchar(300),
+	isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table keywords
+(
+	keyword_id int primary key auto_increment,
+    keyword_name varchar(300),
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+); 
+
+create table plant_referencepages
+(
+	plant_referenceid int primary key auto_increment,
+    plant_scientificname varchar(300) not null,
+    plant_description varchar(5000) not null,
+    plant_maintenance varchar(5000) not null,
+    plant_categoryid int null,
+    foreign key(plant_categoryid) references categories(product_categoryid),
+    plant_photo varchar(300) not null,
+    plant_phototwo varchar(300) null,
+    plant_photothree varchar(300) null,
+    keyword_id int,
+    foreign key(keyword_id) references keywords(keyword_id),
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table card_types
+(
+	card_typeid int primary key auto_increment,
+    card_type varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table cards
+(
+	card_id int primary key auto_increment,
+    card_accountname varchar(300),
+    card_bankname varchar(300),
+    card_bankinfo varchar(300),
+    card_number varchar(300),
+    card_typeid int,
+    foreign key(card_typeid) references card_types(card_typeid),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table stores
+(
+	store_id int primary key auto_increment,
+    store_name varchar(300) null,
+    store_description varchar(300) null,
+    store_profileimage varchar(300) null,
+    store_backgroundimage varchar(300) null,
+    store_phonenumber varchar(300) null,
+    store_dateregistererd datetime null,
+    store_cardid int null,
+    foreign key(store_cardid) references cards(card_id),
+    store_gcashnumber varchar(300) null,
+    store_codoption boolean not null,
+    store_advertismentid int null,
+    foreign key(store_advertismentid) references advertisments(advertisment_id),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table retailers
+(
+	retailer_id int,
+    foreign key(retailer_id) references users(id), 
+    store_id int,
+    foreign key(store_id) references stores(store_id),
+    computed_ratings int,
+    ratings_id float,
+    retailer_address varchar(300),
+    retailer_postalcode int,
+    retailer_personincharge varchar(300),
+    retailer_officialidfront varchar(300),
+    retailer_officialidback varchar(300),
+    retailer_idnumber int,
+    retailer_birthdate date,
+    retailer_city varchar(300),
+    retailer_barangay varchar(300),
+    retailer_region varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table products
+(
+	product_id int primary key auto_increment,
+    product_name varchar(100),
+    product_description varchar(600),
+    product_sizes float,
+    product_varieties varchar(60) null,
+    product_referencep varchar(200) null,
+    product_mainphoto varchar(300) null,
+    product_referenceid int null,
+    foreign key(product_referenceid) references plant_referencepages(plant_referenceid),
+    product_categoryid int,
+    foreign key(product_categoryid) references categories(product_categoryid),
+    product_price float,
+    product_quantity int,
+    retailer_id int,
+    foreign key(retailer_id) references retailers(retailer_id),
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table assigned_photos
+(
+	assigned_photoid int primary key auto_increment,
+    product_id int,
+    foreign key(product_id) references products(product_id),
+    product_photo varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table assigned_keywords
+(
+	assigned_keywordid int primary key auto_increment,
+	product_id int,
+    foreign key(product_id) references products(product_id),
+    owned_keywordid int,
+    foreign key(owned_keywordid) references keywords(keyword_id),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table comments
+(
+	comment_id int primary key auto_increment,
+    comment_userid int,
+    foreign key(comment_userid) references users(id),
+    product_id int,
+    foreign key(product_id) references products(product_id),
+    user_comment varchar(5000),
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table order_details
+(
+	orderdetails_id int primary key,
+    foreign key(orderdetails_id) references orders(order_id),
+    product_id int,
+    foreign key(product_id) references products(product_id),
+    order_quantity int,
+    order_unitcost float,
+    order_subtotal float,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table admins
+(
+	admin_id int primary key auto_increment,
+    foreign key(admin_id) references users(id),
+    access_level int,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table cart_items
+(
+	cart_itemid int primary key auto_increment,
+    cart_itemname varchar(300),
+    product_id int,
+    foreign key(product_id) references products(product_id),
+    cart_quantityid int unique key,
+    cart_itemcost float,
+    cart_subtotal float,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table shopping_carts
+(
+	cart_id int primary key auto_increment,
+    product_id int,
+    foreign key(product_id) references products(product_id),
+    cart_quantity int,
+    foreign key(cart_quantity) references cart_items(cart_quantityid),
+    cart_dateadded datetime,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table articles
+(
+	article_id int primary key auto_increment,
+    article_topic varchar(300),
+    article_description varchar(5000),
+    created_at datetime,
+    updated_at datetime,
+    user_id int,
+    foreign key(user_id) references users(id),
+    isDeleted boolean null,
+    article_resolved bool
+);
+
+create table article_comments
+(
+	article_commentid int primary key,
+    article_userid int,
+    foreign key(article_userid) references users(id),
+    isDeleted boolean null,
+    article_comment varchar(500)
+);
+
+
+
+INSERT INTO `retailer_approvalstates` VALUES (1, 'Approved');
+INSERT INTO `retailer_approvalstates` VALUES (2, 'Denied');
+INSERT INTO `retailer_approvalstates` VALUES (3, 'Pending');
+
+INSERT INTO `user_states` VALUES (1, 'Granted');
+INSERT INTO `user_states` VALUES (2, 'Banned');
+INSERT INTO `user_states` VALUES (3, 'Locked');

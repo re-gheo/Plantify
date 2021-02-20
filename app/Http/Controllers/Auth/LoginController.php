@@ -50,7 +50,7 @@ class LoginController extends Controller
             //     return $this->redirectTo;
             //     break;
             default:
-                $this->redirectTo = '/home';
+                $this->redirectTo = '/';
                 return $this->redirectTo;
         }
 
