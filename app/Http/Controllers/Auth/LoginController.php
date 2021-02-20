@@ -40,15 +40,15 @@ class LoginController extends Controller
                 $this->redirectTo = ('admin/home');
                 return $this->redirectTo;
                 break;
-            case 'customer':
-                $this->redirectTo = ('customer/home');
-                return $this->redirectTo;
-                break;
+            // case 'customer':
+            //     $this->redirectTo = ('customer/home');
+            //     return $this->redirectTo;
+            //     break;
 
-            case 'retailer':
-                $this->redirectTo = ('retailer/home');
-                return $this->redirectTo;
-                break;
+            // case 'retailer':
+            //     $this->redirectTo = ('retailer/home');
+            //     return $this->redirectTo;
+            //     break;
             default:
                 $this->redirectTo = '/home';
                 return $this->redirectTo;
