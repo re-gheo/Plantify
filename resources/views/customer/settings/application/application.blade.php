@@ -37,7 +37,7 @@
     <div>
         <label for="retailer_personincharge">Full name of the Person In-charge/Owner of this store </label>
         <div>
-            <input id="retailer_personincharge" type="text" class=" @error('retailer_personincharge') is-invalid @enderror" name="retailer_personincharge" required autocomplete="	retailer_personincharge">
+            <input id="retailer_personincharge" type="text" class=" @error('retailer_personincharge') is-invalid @enderror" name="retailer_personincharge" required readonly value="{{ Auth::user()->first_name . ' '. Auth::user()->last_name}}" autocomplete="retailer_personincharge">
 
                 @error('retailer_personincharge')
                     <span class="" role="alert">

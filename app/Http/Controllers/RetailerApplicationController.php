@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Retailer_application;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class RetailerApplicationController extends Controller
 {
@@ -31,6 +32,9 @@ class RetailerApplicationController extends Controller
     {
         //dd(request()->retailer_address);
 
+        $encrypted = Crypt::encryptString(request('retailer_address')); 
+        $decrypted = Crypt::decryptString($encrypted);
+        dd(request('retailer_address'), $encrypted ,$decrypted);
 
         $form = new Retailer_application();
         $form->retailer_address = request('retailer_address');        

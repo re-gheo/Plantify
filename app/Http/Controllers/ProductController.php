@@ -42,7 +42,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $refs = Plant_referencepage::all();
+        $refs = Plant_referencepage::latest()->where('isDeleted',FALSE)->get();
         $keys = Keyword::all();
         return view('retailer.products.create', ['refs' => $refs, 'keys' => $keys] );
     }
@@ -117,7 +117,7 @@ class ProductController extends Controller
    
     public function edit($id)
     {
-        $refs = Plant_referencepage::all();
+        $refs = Plant_referencepage::latest()->where('isDeleted',FALSE)->get();
         $keys = Keyword::all();
 
         $product = Product::join('plant_referencepages', 'products.product_referenceid' , '=' , 'plant_referencepages.plant_referenceid')->findOrFail($id);

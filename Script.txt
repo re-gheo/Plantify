@@ -280,8 +280,6 @@ create table products
     product_mainphoto varchar(300) null,
     product_referenceid int null,
     foreign key(product_referenceid) references plant_referencepages(plant_referenceid),
-    product_categoryid int,
-    foreign key(product_categoryid) references categories(product_categoryid),
     product_price float,
     product_quantity int,
     retailer_id int,

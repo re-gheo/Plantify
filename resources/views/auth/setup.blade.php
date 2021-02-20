@@ -49,7 +49,7 @@
                                     <label for="birthday" >Birthday</label>
         
                                     <div >
-                                        <input type="date" id="birthday" name="birthday">
+                                        <input type="date" id="birthday" name="birthday" max="2005-12-31">
                                     </div>
                                 </div>
         

@@ -67,9 +67,9 @@
         
                 <td>{{ $category->product_categoryid}}</td>
         
-                <td>  <input id="categories" type="text" class=" @error('categories') is-invalid @enderror" name="categories" required autocomplete="categories" value="{{ $category->categories}}">
+                <td>  <input id="categorieedit" type="text" class=" @error('categorieedit') is-invalid @enderror" name="categorieedit" required autocomplete="categorieedit" value="{{ $category->categories}}">
         
-                  @error('categories')
+                  @error('categorieedit')
                       <span class="" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>
