@@ -30,19 +30,19 @@ class RetailerApplicationController extends Controller
 
     public function send(Request $request)
     {
-        //dd(request()->retailer_address);
+        
 
-        $encrypted = Crypt::encryptString(request('retailer_address')); 
-        $decrypted = Crypt::decryptString($encrypted);
-        dd(request('retailer_address'), $encrypted ,$decrypted);
+        // $encrypted = Crypt::encryptString(request('retailer_address')); 
+        // $decrypted = Crypt::decryptString($encrypted);
+        // dd(request('retailer_address'), $encrypted ,$decrypted);
 
         $form = new Retailer_application();
-        $form->retailer_address = request('retailer_address');        
-        $form->retailer_postalcode = request('retailer_postalcode');
+        $form->retailer_address =  request('retailer_address');        
+        $form->retailer_postalcode =  Crypt::encryptString(request('retailer_postalcode'));
         $form->retailer_personincharge= request('retailer_personincharge');
         $form->retailer_officialidfront = request('retailer_officialidfront')->store('officialid','public');
         $form->retailer_officialidback= request('retailer_officialidback')->store('officialid','public');
-        $form->retailer_idnumber = request('retailer_idnumber');
+        $form->retailer_idnumber =  Crypt::encryptString(request('retailer_idnumber'));
         $form->retailer_barangay = request('retailer_barangay');     
         $form->retailer_region = request('retailer_region');
         $form->retailer_city = request('retailer_city');
