@@ -8,6 +8,7 @@ use Vonage\Verify\Client;
 use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
+use App\Models\Retailer_application;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -204,9 +205,9 @@ class UserController extends Controller
     {
         
             $profile = User::where('email',Auth::user()->email)->first();
-    
+           $app = Retailer_application::latest()->where('user_id', Auth::user()->id)->first();
             
-            return view('customer.settings.profile.profile',['profile' => $profile]); 
+            return view('customer.settings.profile.profile',['profile' => $profile,'app' => $app]); 
     }
 
     public function editprofile()

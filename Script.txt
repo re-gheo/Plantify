@@ -57,7 +57,7 @@ create table retailer_applications
     retailer_approvalstateid int,
     foreign key(retailer_approvalstateid) references retailer_approvalstates(retailer_approvalstateid),
     user_id int,
-    deny_reason varchar(300),
+    deny_reason varchar(500),
     foreign key(user_id) references users(id),
     
     created_at timestamp null,
@@ -255,11 +255,11 @@ create table retailers
     computed_ratings int,
     ratings_id float,
     retailer_address varchar(300),
-    retailer_postalcode int,
+    retailer_postalcode varchar(300),
     retailer_personincharge varchar(300),
     retailer_officialidfront varchar(300),
     retailer_officialidback varchar(300),
-    retailer_idnumber int,
+    retailer_idnumber varchar(300),
     retailer_birthdate date,
     retailer_city varchar(300),
     retailer_barangay varchar(300),
@@ -400,3 +400,8 @@ INSERT INTO `retailer_approvalstates` VALUES (3, 'Pending');
 INSERT INTO `user_states` VALUES (1, 'Granted');
 INSERT INTO `user_states` VALUES (2, 'Banned');
 INSERT INTO `user_states` VALUES (3, 'Locked');
+
+INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (1, 'green', 0);
+INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (2, 'healthy', 0);
+INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (3, 'bloom', 0);
+

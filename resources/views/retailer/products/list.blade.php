@@ -13,9 +13,12 @@
                 <div class="div class= card-body table-responsive-sm">
               
 
-  
+
                   
-                @foreach ($products as $product)
+               
+
+               
+                @forelse ($products as $product)
 
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <a href="/store/products/{{$product->product_id}}">
@@ -26,11 +29,18 @@
                    <b>{{ $product->product_price }} PHP</b><br>
                    <b>Stocks ({{ $product->product_quantity }} X)  </b>
                   </a>
-                   
+                  @empty
+                  <div class="col-lg-8 col-xl-6   mx-auto mt-5  p-3border-3 ">
+                  <h1>OH! Seems empty try to<a href="/store/products/create"> Add a Products</a></h1>
+                  </div>
                 </div>
                
                   
-               @endforeach
+                @endforelse
+
+              
+               
+
 
             
                  </div>

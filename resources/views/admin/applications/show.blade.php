@@ -126,19 +126,40 @@
 <form action="/admin/customer_application/deny/{{$app->retailer_applicationid}}" method="POST">
     @csrf
     @method('put')
+    <h3><label for="">Reason to deny application</label></h3>
+    <label><input type="checkbox" name="deny_reason[]" value="<li> User ID does not exist in our records </li>" onClick="otherReason()">User ID does not exist in our records</label><br>
+    <label><input type="checkbox" name="deny_reason[]" value="<li> Invalid/incorrect Information Submitted. </li>" onClick="otherReason()">Invalid/incorrect Information Submitted</label><br>
+    <label><input type="checkbox" name="deny_reason[]" value="<li> Invalid ID or ID number does not match. </li>" onClick="otherReason()">Invalid ID or ID number does not match</label><br>
+    <label><input type="checkbox" name="deny_reason[]" value="<li> Incorrect or Incomplete Address postal code and Barangay fiels submitted Submitted. </li>" onClick="otherReason()">Incorrect or Incomplete Address postal code and Barangay fiels submitted Submitted</label><br>
+    <label onClick="otherReason()">
+        <input type="checkbox" name="deny_reason[]" id="other" value="other" >OTHERS:
+        <br><textarea name="other" id="inputother" onchange="checkother ()" cols="50" rows="5"></textarea>
+       
+    <br>
 
-    {{-- <label><input type="radio" name="fruit" value="apple" onClick="regularFruit()">apple</input></label>
-    <label><input type="radio" name="fruit" value="orange" onClick="regularFruit()">orange</input></label>
-    <label><input type="radio" name="fruit" value="lemon" onClick="regularFruit()">lemon</input></label>
-    <label onClick="otherFruit()">
-        <input type="radio" name="fruit" id="other_fruit" value="other" >or other fruit:</input>
-        <input type ="text" name="other" id="other_text"/></label>
-        <input type="submit" value="Submit">
-    <br> --}}
-    <button type="submit" class="btn btn-dark">DENY APPLICATION </button>
+    
+    <br>
+    <button type="submit" class="btn btn-dark"> DENY APPLICATION </button>
     </form>
+
+
+    <br>
+    @if(isset($app->deny_reason))
+    <ol>
+        Status of the application was denied because: 
+        {!! $app->deny_reason !!}
+    </ol>
+    @endif
     <br>
     <br>
     <br>
     <br>
+
+    <script>
+        function checkother() {
+          
+  var other = document.getElementById("other");
+  other.value = document.getElementById("inputother").value;
+}
+    </script>
 @endsection

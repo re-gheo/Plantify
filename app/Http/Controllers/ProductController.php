@@ -164,7 +164,7 @@ class ProductController extends Controller
         $product->product_price = request('product_price');
         $product->product_quantity = request('product_quantity');
         $product->retailer_id = Auth::user()->id;
-        
+        $product->isDeleted = 0;
         $product->save();
             
 

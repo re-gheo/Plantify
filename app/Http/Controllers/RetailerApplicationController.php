@@ -51,6 +51,7 @@ class RetailerApplicationController extends Controller
         $form->save();
         $form->retailer_applicationid;
 
+        
 
         $user = User::where('email',Auth::user()->email)->first();
         $user->retailer_approvalstateid = 3;
@@ -131,8 +132,17 @@ class RetailerApplicationController extends Controller
 
     public function deny(Request $request, $id)
     {
+        $request->validate([
+            
+            'deny_reason'=> 'required|min:1'
+        ]);
+          
+
+        $reas = $request->input('deny_reason' );
+        
         $form = Retailer_application::findOrFail($id);
         $form->retailer_approvalstateid = 2;
+        $form->deny_reason = implode(" ",$reas );
         $form->save();
 
         $form->retailer_applicationid;
