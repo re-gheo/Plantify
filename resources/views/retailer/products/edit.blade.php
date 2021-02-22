@@ -34,12 +34,12 @@
             @enderror
         </div>
 
-
+        @if ($product->isPlant == 1)
         <div>
             <label for="product_sizes"> Plant Size in inches </label>
             <br>
             <input id="product_sizes" type="number" class=" @error('product_sizes') 
-    is-invalid @enderror" name="product_sizes"  value="{{ $product->product_sizes }}" autocomplete="product_sizes">
+is-invalid @enderror" name="product_sizes" value="{{ $product->product_sizes }}" autocomplete="product_sizes">
 
             @error('product_sizes')
                 <span class="" role="alert">
@@ -47,33 +47,17 @@
                 </span>
             @enderror
         </div>
-
-
-        {{-- <div>
-            <label for="product_varieties"> LABEL </label>
-            <br>
-            <input id="product_varieties" type="text" class=" @error('product_varieties') 
-    is-invalid @enderror" name="product_varieties"  autocomplete="product_varieties">
-
-            @error('product_varieties')
-                <span class="" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div> --}}
-
-
-
         <label for="plant_referenceid">Plant refrence</label>
         <br>
         <select name="product_referenceid" id="product_referenceid">
-            <option value="{{ $product->plant_referenceid }}" selected>{{ $product->plant_scientificname }} [SELECTED] </option>
+            <option value="{{ $product->plant_referenceid }}" selected>{{ $product->plant_scientificname }}
+                [SELECTED] </option>
             @foreach ($refs as $ref)
                 <option value="{{ $ref->plant_referenceid }}">{{ $ref->plant_scientificname }}</option>
             @endforeach
         </select>
-
-      <br><br>
+    @endif
+      <br>
    
 
     
@@ -109,7 +93,9 @@
                 </span>
             @enderror
         </div>
-
+        @if($errors->any())
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    @endif
         <div>
             <label for="product_quantity"> Quantity  </label>
             <br>

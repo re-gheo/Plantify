@@ -14,7 +14,7 @@ class StorefrontController extends Controller
 {
     public function front()
     {
-        $products = Product::latest()->get();
+        $products = Product::latest()->get()->where('isDeleted', FALSE);
         
         return view('storefront', ['products' => $products]);
     }

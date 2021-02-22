@@ -70,7 +70,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-//ADMIN part
+// █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+// ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+// ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+// ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+// ██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+// ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
+                                            
 //ADMIN/user managment
     Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
 
@@ -95,27 +101,44 @@ use Illuminate\Support\Facades\Route;
     Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve');
     Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny');
 
+// ██████╗██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗ 
+// ██╔════╝██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
+// ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
+// ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
+// ╚██████╗╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗██║  ██║
+//  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+                                                                          
+
+// CUSTOMER
+    //Customer PRODUCTS
+    Route::get('/store/item/{id}', 'ProductController@showCustomer');
 
 
-//CUSTOMER/ SETTINGS / APPLICATIONS
-    Route::get('/settings/application/form', 'RetailerApplicationController@form');
-    Route::post('/settings/application/form', 'RetailerApplicationController@send');
+    //CUSTOMER/ SETTINGS / APPLICATIONS
+        Route::get('/settings/application/form', 'RetailerApplicationController@form');
+        Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
-//CUSTOMER/ SETTINGS / PROFILE 
-    Route::get('/settings/profile', 'UserController@profile');
-    //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
-        Route::get('/settings/profile/edit', 'UserController@editprofile');
-        Route::put('/settings/profile/update', 'UserController@updateprofile');
-    //CUSTOMER/ SETTINGS / PROFILE / VERIFY - OTP if user skip OTP
-            Route::get('/settings/profile/verify', 'UserController@pverify');
-            Route::put('/settings/profile/verify', 'UserController@pgetcode');
-            Route::get('/settings/profile/verify/check', 'UserController@pentercode');
-            Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
-            Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
-
-
+    //CUSTOMER/ SETTINGS / PROFILE 
+        Route::get('/settings/profile', 'UserController@profile');
+        //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
+            Route::get('/settings/profile/edit', 'UserController@editprofile');
+            Route::put('/settings/profile/update', 'UserController@updateprofile');
+        //CUSTOMER/ SETTINGS / PROFILE / VERIFY - OTP if user skip OTP
+                Route::get('/settings/profile/verify', 'UserController@pverify');
+                Route::put('/settings/profile/verify', 'UserController@pgetcode');
+                Route::get('/settings/profile/verify/check', 'UserController@pentercode');
+                Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
+                Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
 
 
+
+// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗ 
+// ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
+// ██████╔╝█████╗     ██║   ███████║██║██║     █████╗  ██████╔╝
+// ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║     ██╔══╝  ██╔══██╗
+// ██║  ██║███████╗   ██║   ██║  ██║██║███████╗███████╗██║  ██║
+// ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
+                                                                            
 
 
  // RETAILER/ STORE
@@ -126,13 +149,13 @@ use Illuminate\Support\Facades\Route;
 
      // RETAILER/ Products
      Route::get('/store/products', 'ProductController@list');
-     Route::get('/store/products/create', 'ProductController@create');
+     Route::get('/store/products/create/{type}', 'ProductController@create');
      Route::post('/store/products/store', 'ProductController@store');
      Route::get('/store/products/{id}', 'ProductController@show');
      Route::get('/store/products/{id}/edit', 'ProductController@edit');
      Route::put('/store/products/{id}/edit', 'ProductController@update');
      Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
-     Route::put('/store/products//{id}/edit', 'ProductController@edit');
+     Route::get('/store/products/{id}/remove', 'ProductController@remove');
     
 
     // Articles

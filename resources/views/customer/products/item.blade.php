@@ -1,7 +1,22 @@
 @extends('layouts.template')
 
 @section('content')
-    <a href="/store/products" class="btn btn-dark"> back to my profuct list</a>
+    @if (!Auth::user())
+    @else
+        @if ($product->product_id==Auth::user()->id)
+            <b>I own this Product</p>
+            <a href="/store/products" class="btn btn-dark"> Go to my product list</a>
+        @endif
+    @endif
+
+    @if (!Auth::user())
+    @else
+    @if ($product->product_id==Auth::user()->id)
+           
+            <a  class="btn btn-dark" href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
+        @endif
+    @endif
+    
     <div class="container mt-2">
         <div id="pic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -43,7 +58,7 @@
     <div class="container mt-2">
 
         <h3><b>Product Name</b></h3><br>
-        <p>{{ $product->product_name }}</p><br> <br>
+        <h4>{{ $product->product_name }}</h4><br> <br>
 
         <h3><b>Product Description</b></h3><br>
         <p>{{ $product->product_description }}</p><br> <br>
@@ -71,10 +86,28 @@
         <h3><b>Current Stocks</b></h3><br>
         <p>{{ $product->product_quantity }} <b> Items</b></p><br> <br>
 
+       
 
 
-        <a href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
-
+        
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2><b>COMMENTS</b></h2>
+    <br>
+    <br>
+    <h2><b>QUESTIONS</b></h2>
+    <br>
+    <br>
+    <br>
+    <br>
     </div>
+
+
+
+
+
 
 @endsection

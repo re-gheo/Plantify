@@ -188,6 +188,19 @@ create table keywords
     updated_at timestamp null
 ); 
 
+create table commissions
+(
+	commission_id int primary key auto_increment,
+    commission type varchar(300),
+    commissions_max_add float,
+    commissions_max_percentage float,
+    commissions_min float,
+    commissions_min_add float,
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+); 
+
 create table plant_referencepages
 (
 	plant_referenceid int primary key auto_increment,
@@ -201,6 +214,7 @@ create table plant_referencepages
     plant_photothree varchar(300) null,
     keyword_id int,
     foreign key(keyword_id) references keywords(keyword_id),
+    isPlant boolean null,
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
@@ -309,6 +323,21 @@ create table assigned_keywords
     updated_at timestamp null
 );
 
+create table inquirys
+(
+	inquiry_id int primary key auto_increment,
+    inquiry_userid int,
+    foreign key(comment_userid) references users(id),
+    inquiry_retailerid int,
+    foreign key(inquiry_retailerid) references retailers(retailer_id),
+    product_id int null,
+    foreign key(product_id) references products(product_id),
+    user_inquiry varchar(5000),
+    isDeleted boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
 create table comments
 (
 	comment_id int primary key auto_increment,
@@ -316,11 +345,16 @@ create table comments
     foreign key(comment_userid) references users(id),
     product_id int,
     foreign key(product_id) references products(product_id),
+    inquiryAnswer boolean null,
+     inquiry_id int null,
+    foreign key(inquiry_id) references inquirys(inquiry_id),
     user_comment varchar(5000),
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
 );
+
+
 
 create table order_details
 (

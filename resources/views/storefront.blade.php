@@ -84,7 +84,8 @@
             </div>
         @foreach($products as $product)
           
-        
+       <a href="/store/item/{{ $product->product_id }}">
+          
         <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
           <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}" alt="some_image">
           <h5>{{$product->product_name }}</h5>
@@ -94,6 +95,7 @@
               <div class="star"></div>
               <div class="star"></div>
           </div>
+       </a>
           <button class="btn btn-success btn-sm">Add to cart</button>
       </div>
 
