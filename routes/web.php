@@ -76,6 +76,9 @@ use Illuminate\Support\Facades\Route;
 // ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
 // ██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
 // ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
+
+
+
                                             
 //ADMIN/user managment
     Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
@@ -101,12 +104,23 @@ use Illuminate\Support\Facades\Route;
     Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve');
     Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny');
 
+//ADMIN/ COMMISSIONS
+Route::get('/admin/commissions', 'CommissionsController@index');
+Route::get('/admin/commissions/create', 'CommissionsController@create');
+Route::post('/admin/commissions/store', 'CommissionsController@store');
+Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
+Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
+
+
 // ██████╗██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗ 
 // ██╔════╝██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
 // ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
 // ╚██████╗╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗██║  ██║
 //  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+
+
+
                                                                           
 
 // CUSTOMER
@@ -138,6 +152,9 @@ use Illuminate\Support\Facades\Route;
 // ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║     ██╔══╝  ██╔══██╗
 // ██║  ██║███████╗   ██║   ██║  ██║██║███████╗███████╗██║  ██║
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
+
+
+
                                                                             
 
 

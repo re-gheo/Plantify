@@ -287,6 +287,8 @@ create table products
 	product_id int primary key auto_increment,
     product_name varchar(100),
     product_description varchar(600),
+    commission_id int null,
+    foreign key(commission_id) references commissions(commission_id),
     product_sizes float,
     product_varieties varchar(60) null,
     product_referencep varchar(200) null,
@@ -327,7 +329,7 @@ create table inquirys
 (
 	inquiry_id int primary key auto_increment,
     inquiry_userid int,
-    foreign key(comment_userid) references users(id),
+    foreign key(inquiry_userid) references users(id),
     inquiry_retailerid int,
     foreign key(inquiry_retailerid) references retailers(retailer_id),
     product_id int null,
