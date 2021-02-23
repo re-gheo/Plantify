@@ -89,7 +89,7 @@
                                             </button>
                                         </div>
                                        
-                                            <a class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold" href="{{url('/login/google')}}" class="">   <i class="fab fa-google"></i> Login with Google</a>
+                                        <a class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold" href="{{url('/login/google')}}" class="">   <i class="fab fa-google"></i> Login with Google</a>
                                     
                                             <a class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2" href="{{url('/login/facebook')}}" class="">  <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                                   

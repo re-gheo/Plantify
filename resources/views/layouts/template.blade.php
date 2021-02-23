@@ -26,12 +26,24 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto ml-2">
+
       <li class="nav-item active">
         <a class="nav-link" href="#">Messages <span class="sr-only">(current)</span></a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="#">Notifications</a>
       </li>
+
+      <li class="nav-search"> 
+        <form action="" class="" method="GET" role="search"> 
+          <input id="search" type="text" class="" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
+            <button class="search-button btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>   
+        </form>
+      </li>
+
+
+
     <li class="nav-item dropdown">
     
         @if(!Auth::user())
@@ -76,52 +88,46 @@
     <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
-    @if(isset(Auth::user()->avatar))
-    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
-    style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
-    @endif
-    
-    <form class=" form-inline my-2 my-lg-0">
-      <ul class="navbar-nav">
- 
-        @if(!Auth::user())
-        <a id="cta" class="" href="/login">Login</a>
-        <a id="cta" class="" href="/register">Register Account</a>
-        @endif
-
-         @if(!Auth::user())
-        @else
-           @if(Auth::user()->user_role == "retailer")
-           <a id="cta" class="" href="/store">Store Page</a>
-           @endif
-        @endif
-       
-      </ul>
+    <div class="d-flex flex-row-reverse">
+      @if(isset(Auth::user()->avatar))
+      <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+      style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+      @endif
       
-      <div class="input-group mr-auto ">
-        <form action="" method="GET" role="search"> 
-        <input id="search" type="text" class="form-control" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <a href="" class=" mt-1"></a>
-          <button id="search-button" class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
-        </div>
+      <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse  ">
+        <ul class="navbar-nav">
+   
+          @if(!Auth::user())
+          <a id="cta" class="" href="/login">Login</a>
+          <a id="cta" class="" href="/register">Register Account</a>
+          @endif
+  
+           @if(!Auth::user())
+          @else
+             @if(Auth::user()->user_role == "retailer")
+             <a id="cta" class="" href="/store">Store Page</a>
+             @endif
+          @endif
+         
+        </ul>
+        
+    </div>
 
-    </form>
-  </div>
+      
 </nav> 
 
 
-  @if ($message = Session::get('success'))
-  <div class="alert alert-success">
-      <p>{{ $message }}</p>
-  </div>
-  @endif
+      @if ($message = Session::get('success'))
+      <div class="alert alert-success">
+          <p>{{ $message }}</p>
+      </div>
+      @endif
 
-  @error('err')
-    <span class="alert alert-danger" role="alert">
-        <strong>{{ $message }}</strong>
-    </span>
-  @enderror
+      @error('err')
+        <span class="alert alert-danger" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+      @enderror
 
 
 
@@ -136,3 +142,15 @@
 
 </body>
 </html>
+
+
+{{-- <div class="input-group mr-auto ">
+  <form action="" method="GET" role="search"> 
+  <input id="search" type="text" class="form-input" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <a href="" class=" mt-1"></a>
+    <button id="search-button" class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+  </div>
+
+</form>
+</div> --}}
