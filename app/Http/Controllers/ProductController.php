@@ -76,6 +76,7 @@ class ProductController extends Controller
                 'product_name' => 'required',
                 'product_description' => 'required',
                 'product_sizes' => 'required',
+                'commission_id' => 'required',
                 'product_mainphoto' => 'required',
                 'product_referenceid' => 'required',
                 'product_price' => 'required',

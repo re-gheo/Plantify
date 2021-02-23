@@ -441,3 +441,9 @@ INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (1, 'gr
 INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (2, 'healthy', 0);
 INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (3, 'bloom', 0);
 
+INSERT INTO `commissions`(`commission_id`, `commissiontype`, `commissions_max_add`, `commissions_max_percentage`, `commissions_min`, `commissions_min_add`, `isDeleted`, `created_at`, `updated_at`) VALUES (1,'Plant',15,0.05,249,25,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
+INSERT INTO `commissions` VALUES (2,'Seed',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45')
+INSERT INTO `commissions` VALUES (3,'Tools ,Soils and Pots',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
+INSERT INTO `commissions` VALUES (4,'Device  And Machine ',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
+INSERT INTO `commissions` VALUES (5,'Chemical and natural Products  ',15,0.05,249,25,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
+INSERT INTO `commissions` VALUES (6,'Ornaments',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45')
