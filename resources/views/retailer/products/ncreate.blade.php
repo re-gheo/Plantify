@@ -50,11 +50,27 @@
                 </div>
             </div>
 
+            
+
             @error('keywords')
                 <span class="" role="alert">
                     <strong>{{ $message }} : At least 1 keyword required</strong>
                 </span>
             @enderror
+
+            <label for="commission_id">Product Type</label>
+            <br>
+            <select name="commission_id" id="commission_id">
+                @foreach ($com as $c)
+                    <option value="{{ $c->commission_id }}">{{ $c->commissiontype }}</option>
+                @endforeach
+            </select>
+
+            @error('commission_id')
+            <span class="" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
             <div>
                 <label for="product_price"> Price </label>

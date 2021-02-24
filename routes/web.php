@@ -127,6 +127,11 @@ Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
     //Customer PRODUCTS
     Route::get('/store/item/{id}', 'ProductController@showCustomer');
 
+    // CUSTOMER / CART
+    Route::get('/store/cart', 'ProductController@getmycart')->middleware('customer');
+    Route::post('/store/item/addtocart/{id}', 'ProductController@addtocart1')->middleware('customer');
+
+
 
     //CUSTOMER/ SETTINGS / APPLICATIONS
         Route::get('/settings/application/form', 'RetailerApplicationController@form');

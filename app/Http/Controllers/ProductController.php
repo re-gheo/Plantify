@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Keyword;
 use App\Models\Product;
+use App\Models\Cart_item;
+use App\Models\Commission;
 use Illuminate\Http\Request;
+use App\Models\Shopping_cart;
 use App\Models\Assigned_photos;
 use App\Models\Assigned_keywords;
 use App\Models\Plant_referencepage;
@@ -54,14 +57,16 @@ class ProductController extends Controller
 
     public function create($type)
     {
+        
         if ($type == "plant") {
             $refs = Plant_referencepage::latest()->where('isDeleted', FALSE)->get();
-            $keys = Keyword::all();
+            $keys = Keyword::all()->where('isDeleted', 0);
 
             return view('retailer.products.create', ['refs' => $refs, 'keys' => $keys]);
         } elseif ($type == "product") {
-            $keys = Keyword::all();
-            return view('retailer.products.ncreate', ['keys' => $keys]);
+            $keys = Keyword::all()->where('isDeleted', 0);
+            $com = Commission::all()->except(1);
+            return view('retailer.products.ncreate', ['keys' => $keys, 'com' => $com]);
         }
     }
 
@@ -76,7 +81,6 @@ class ProductController extends Controller
                 'product_name' => 'required',
                 'product_description' => 'required',
                 'product_sizes' => 'required',
-                'commission_id' => 'required',
                 'product_mainphoto' => 'required',
                 'product_referenceid' => 'required',
                 'product_price' => 'required',
@@ -86,6 +90,7 @@ class ProductController extends Controller
             $product->product_sizes = request('product_sizes');
             $product->product_referenceid = request('product_referenceid');
             $product->isPlant = 1;
+            $product->commission_id= 1;
         } elseif (url()->previous() == "http://localhost:8000/store/products/create/product") {
 
             $request->validate([
@@ -93,10 +98,12 @@ class ProductController extends Controller
                 'product_description' => 'required',
                 'product_mainphoto' => 'required',
                 'product_price' => 'required',
+                'commission_id' => 'required',
                 'product_quantity' => 'required',
                 'keywords' => 'required|min:1'
             ]);
             $product->isPlant = 0;
+            $product->commission_id= request('commission_id');
         }
 
 
@@ -233,10 +240,89 @@ class ProductController extends Controller
     }
 
 
+
+
+
     public function removepicture($id, $picid)
     {
 
         $asphotos = Assigned_photos::where('assigned_photoid', '=', $picid)->where('product_id', '=', $id)->delete();
         return redirect('/store/products/' . $id . '/edit');
     }
+
+
+
+    // Phase 2 - Add to cart
+    public function getmycart()
+    {
+         
+        $cart = Cart_item::join('shopping_carts','cart_items.cart_id','=','shopping_carts.cart_id')
+        ->join('products','cart_items.product_id', '=', 'products.product_id' )
+        ->where('cart_items.user_id' ,  Auth::user()->id)->get();
+        dd($cart);
+
+        return view('customer.cart.mycart',['carts'=>$cart ] );
+    }
+
+
+
+    public function addtocart1($id)
+    {
+
+        $product = Product::findOrFail($id);
+        $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
+        if(count($checks)==0){
+            $scart = new Shopping_cart();
+            $scart->user_id = Auth::user()->id;    
+            $scart->cartset = 1;
+            $scart->checked = 0;
+            $scart->save();
+        }
+        if(!count($checks)==0){
+            $scart = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
+        }
+        
+        $items = new Cart_item();
+        $items->cart_itemname = $product->product_name;
+        $items->product_id = $product->product_id;
+        $items->cart_id = $scart->cart_id;
+        $items->retailer_id = $product->retailer_id;
+        $items->user_id =Auth::user()->id;
+        $items->cart_quantityid=1;
+        $items->cart_itemcost=$product->product_price;
+        $items->cart_subtotal=$product->product_price;
+        $items->save();
+
+        return redirect('/store/cart');
+
+    }
+
+    public function addtocartM($id)
+    {
+
+        $product = Product::findOrFail($id);
+        $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
+        if(count($checks)>1){
+            $scart = new Shopping_cart();
+            $scart->user_id = Auth::user()->id;    
+            $scart->cartset = 1;
+            $scart->checked = 0;
+            $scart->save();
+        }
+        
+        $items = new Cart_item();
+        $items->cart_itemname = $product->product_name;
+        $items->product_id = $product->product_id;
+        $items->cart_id = $scart->cart_id;
+        $items->retailer_id = $product->retailer_id;
+        $items->user_id =Auth::user()->id;
+        $items->cart_quantityid=  request("count");
+        $items->cart_itemcost=    $product->product_price;
+        $items->cart_subtotal= request("count") *   $product->product_price;
+        $items->save();
+        return redirect('/store/cart');
+    }
+
+
+
 }

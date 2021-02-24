@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Commission extends Model
+class Shopping_cart extends Model
 {
-    protected $primaryKey = 'commission_id';
     use HasFactory;
+    protected $primaryKey = 'cart_id';
 }

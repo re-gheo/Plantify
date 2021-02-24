@@ -118,7 +118,7 @@ create table advertisment_history
 
 create table customers
 (
-	customer_id int primary key auto_increment,
+	customer_id int primary key,
     foreign key(customer_id) references users(id),
     retailer_application int,
     created_at timestamp null,
@@ -162,8 +162,8 @@ create table orders
     order_dateshipped datetime,
     order_customerid int,
     foreign key(order_customerid) references customers(customer_id), 
-    order_status int,
-    foreign key(order_status) references order_status(order_statusid),
+    order_statusid int,
+    foreign key(order_statusid) references order_status(order_statusid),
     shipping_id int,
     foreign key(shipping_id) references shipping_infos(shipping_id),
     created_at timestamp null,
@@ -191,7 +191,7 @@ create table keywords
 create table commissions
 (
 	commission_id int primary key auto_increment,
-    commission type varchar(300),
+    commissiontype varchar(300),
     commissions_max_add float,
     commissions_max_percentage float,
     commissions_min float,
@@ -380,27 +380,35 @@ create table admins
     updated_at timestamp null
 );
 
-create table cart_items
-(
-	cart_itemid int primary key auto_increment,
-    cart_itemname varchar(300),
-    product_id int,
-    foreign key(product_id) references products(product_id),
-    cart_quantityid int unique key,
-    cart_itemcost float,
-    cart_subtotal float,
-    created_at timestamp null,
-    updated_at timestamp null
-);
+
 
 create table shopping_carts
 (
 	cart_id int primary key auto_increment,
+    user_id int,
+    foreign key(user_id) references users(id),
+    cartset int null,
+    cartdate date null,
+    checked boolean null,
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table cart_items
+(
+	cart_itemid int primary key auto_increment,
+    cart_itemname varchar(300),
+    cart_id int,
+     foreign key(cart_id) references shopping_carts(cart_id),
     product_id int,
     foreign key(product_id) references products(product_id),
-    cart_quantity int,
-    foreign key(cart_quantity) references cart_items(cart_quantityid),
-    cart_dateadded datetime,
+    retailer_id int,
+    foreign key(retailer_id) references retailers(retailer_id),
+     user_id int,
+    foreign key(user_id) references users(id),
+    cart_quantityid int unique key,
+    cart_itemcost float,
+    cart_subtotal float,
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -442,8 +450,8 @@ INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (2, 'he
 INSERT INTO `keywords`(`keyword_id`, `keyword_name`, `isDeleted`) VALUES (3, 'bloom', 0);
 
 INSERT INTO `commissions`(`commission_id`, `commissiontype`, `commissions_max_add`, `commissions_max_percentage`, `commissions_min`, `commissions_min_add`, `isDeleted`, `created_at`, `updated_at`) VALUES (1,'Plant',15,0.05,249,25,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
-INSERT INTO `commissions` VALUES (2,'Seed',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45')
+INSERT INTO `commissions` VALUES (2,'Seed',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
 INSERT INTO `commissions` VALUES (3,'Tools ,Soils and Pots',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
 INSERT INTO `commissions` VALUES (4,'Device  And Machine ',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
 INSERT INTO `commissions` VALUES (5,'Chemical and natural Products  ',15,0.05,249,25,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
-INSERT INTO `commissions` VALUES (6,'Ornaments',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45')
+INSERT INTO `commissions` VALUES (6,'Ornaments',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
