@@ -10,6 +10,8 @@
                             <div class="login-card"> 
                                 <form class="p-3 pl-5 pr-5  " method="POST" action="{{ route('login') }}">
                                     @csrf
+
+                                   
                                   <h4 class="text-center pb-1">Login to Plantify</h4>
                                     <div class="form-input ">
                                       

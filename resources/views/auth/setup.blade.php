@@ -49,7 +49,8 @@
                                     <label for="birthday" >Birthday</label>
         
                                     <div >
-                                        <input class="datepicker" type="text" id="birthday" name="birthday" endDate="today">
+                                        <input class="datepicker" type="date" id="birthday" name="birthday" endDate="today"
+                                         max="{{ Carbon\Carbon::today('Asia/Manila')->subYear(18)->toDateString() }}">
                                     </div>
                                 </div>
         

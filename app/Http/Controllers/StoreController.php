@@ -76,4 +76,17 @@ class StoreController extends Controller
 
         return redirect('/store')->with('success', 'Successfully Updated Your Store!');
     }
+
+
+
+    public function setGcash()
+    {
+
+    }
+
+
+    public function setPayoutCard()
+    {
+
+    }
 }

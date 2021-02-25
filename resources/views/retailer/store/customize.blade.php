@@ -16,13 +16,13 @@
 
 
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="">
+                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" width="50%" height="50%" alt="">
                         </div>
 
                         <div>
                             <label for="store_backgroundimage">Background photo for your store</label>
                             <div>
-                                <input type="file" name="store_backgroundimage" id="store_backgroundimage" required>
+                                <input type="file" name="store_backgroundimage" id="store_backgroundimage"  >
 
                                 @error('store_backgroundimage')
                                     <span class="" role="alert">
@@ -32,12 +32,12 @@
                             </div>
                         </div>
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_profileimage) }}" alt="">
+                            <img src="{{ url('/storage/' . $store->store_profileimage) }}"  width="50%" height="50%" alt="">
                         </div>
                         <div>
                             <label for="store_profileimage">Profile photo for your Store</label>
                             <div>
-                                <input type="file" name="store_profileimage" id="store_profileimage" required>
+                                <input type="file" name="store_profileimage" id="store_profileimage" >
 
                                 @error('store_profileimage')
                                     <span class="" role="alert">
