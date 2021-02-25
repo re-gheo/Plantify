@@ -30,6 +30,8 @@ a {
     text-decoration: none;
 }
 
+
+
 /* 
 ------------------
 CAROUSEL
@@ -72,6 +74,7 @@ CARD
 
 #login-hero,
 #register-hero {
+
     border-radius: 10px !important;
     margin-top: 8rem;
 
@@ -222,8 +225,13 @@ NAVBAR
 
 .nav-search input {
 
-    border: none;
-    align-items: center;
+    width: 20rem;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #00000020;
+    border-radius: 10px;
+    outline: none;
+
     margin-top: .5rem;
 }
 
@@ -295,3 +303,9 @@ error handling
     color: red;
     font-family: Poppins, sans-serif;
 }
+
+/* 
+------------------
+Profile Page
+-----------------
+*/

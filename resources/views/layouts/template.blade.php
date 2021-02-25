@@ -35,16 +35,36 @@
         <a class="nav-link" href="#">Notifications</a>
       </li>
 
-      <li class="nav-search"> 
-        <form action="" class="" method="GET" role="search"> 
-          <input id="search" type="text" class="" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
-            <button class="search-button btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>   
+      <li class="nav-item">
+        <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse  ">
+          <ul class="navbar-nav">
+     
+            @if(!Auth::user())
+            <a id="cta" class="nav-item" href="/login">Login</a>
+            <a id="cta" class="nav-item" href="/register">Register Account</a>
+            @endif
+    
+             @if(!Auth::user())
+            @else
+               @if(Auth::user()->user_role == "retailer")
+               <a id="cta" class="" href="/store">Store Page</a>
+               @endif
+            @endif
+           
+          </ul>
         </form>
       </li>
 
+          <div class="d-flex flex-row-reverse">
+      @if(isset(Auth::user()->avatar))
+      <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+      style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+      @endif
+      
 
+    </div>
 
-    <li class="nav-item dropdown">
+      <li class="nav-item dropdown">
     
         @if(!Auth::user())
           @else
@@ -82,34 +102,17 @@
      
         </div>
       </li>
+
     </ul>
 
       {{-- @if($user->status =='waiting')
     <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
-    <div class="d-flex flex-row-reverse">
-      @if(isset(Auth::user()->avatar))
-      <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
-      style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
-      @endif
-      
-      <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse  ">
-        <ul class="navbar-nav">
-   
-          @if(!Auth::user())
-          <a id="cta" class="" href="/login">Login</a>
-          <a id="cta" class="" href="/register">Register Account</a>
-          @endif
-  
-           @if(!Auth::user())
-          @else
-             @if(Auth::user()->user_role == "retailer")
-             <a id="cta" class="" href="/store">Store Page</a>
-             @endif
-          @endif
-         
-        </ul>
+    <div class="nav-search pl-2 pull-right">
+      <form action="" class="" method="GET" role="search">
+        <input id="search" type="text" class="" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
+       {{-- <button class="search-button btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>    --}}
       </form>
     </div>
 

@@ -5,10 +5,10 @@
 
             <div class="container">
                 <div  id="login-hero" class="row">
-                    <div class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow">
+                    <div class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow ">
                         <div class="img-left d-none d-md-flex"></div>   
                             <div class="login-card"> 
-                                <form class="pl-5" method="POST" action="{{ route('login') }}">
+                                <form class="p-3 pl-5 pr-5  " method="POST" action="{{ route('login') }}">
                                     @csrf
                                   <h4 class="text-center pb-1">Login to Plantify</h4>
                                     <div class="form-input ">
@@ -17,7 +17,7 @@
             
                                         <div class="form-input">
                                             
-                                            <input id="email" type="email" class=" @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                            <input id="email" type="email"  @error('email') is-invalid @enderror"  name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                             <br>
                                             @error('email') 
                                                 <span class="error-message pt-2" role="alert">

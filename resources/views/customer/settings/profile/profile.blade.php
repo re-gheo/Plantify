@@ -4,6 +4,46 @@
 
 
 
+    <div class="bg-light">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 mt-5 pt-5">
+                    <div class="row z-depth-3">
+
+                        <!--LEFT SIDE-->
+                        <div class="col-sm-4 bg-success rounded-left ">
+                            <div class="card-block text-center text-white">
+                                @if(isset(Auth::user()->avatar))
+                                <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+                                style="border: 1px solid #cccccc; border-radius: 5px; width: 4rem; height: auto; float: left; margin-right: 7px;">
+                                @endif
+                                <h2 class="font-weight-bold mt-4">   <p>{{ $profile->name }}</p></h2>
+                                <p>{{ $profile->user_role }}</p>
+                                <a class="" href="/settings/profile/edit"><i class=" far fa-edit fa-2x mb-4 text-white"></i></a>
+                            </div>
+                        </div>
+
+                          <!--RIGHT SIDE-->
+                        <div class="col-sm-8 bg-info rounded-right">
+                            <h3 class="mt-3 text-center text-white">information</h3>
+                            <hr class="badge-primary mt-0 w-25 bg-white">
+                            <div class="row">
+                                <p class="font-weight-bold text-white">Email:  </p>
+                                <h6 class="text-white">{{ $profile->email }}</h6>
+                            </div>
+
+                            <div class="col-sm-6">
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <h1><b>Your Profile information</b> </h1>
 
@@ -138,11 +178,6 @@
 
 
     </div>
-
-
-
-
-
 
 
 @endsection
