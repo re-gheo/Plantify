@@ -300,6 +300,7 @@ create table products
     retailer_id int,
     foreign key(retailer_id) references retailers(retailer_id),
     isDeleted boolean null,
+    isPlant boolean null,
     created_at timestamp null,
     updated_at timestamp null
 );

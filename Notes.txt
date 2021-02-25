@@ -1,0 +1,131 @@
+Black Box Testing (Feb 11, 2021):
+1. Login and Registration should be present immediately on navbar
+	- Under profile
+		- Account Settings
+		- Customization Settings
+		- Preference Settings
+		- Order History
+	- Once logged in, login and register shouldn't be in the profile dropdown,
+		only logout and the rest.
+2. Remove skip for now in sms verification
+3. Remove navbar on login page
+4. Field Validation for First Name
+	- Formatting Red font color for error message
+	- must be same font as Last Name field validation
+	- must not take symbols
+5. Field Validation Last Name
+	- must not take symbols
+6. Field Validation Password
+	- Formatting Red font color for error message
+	- must be same font as Last Name field validation
+7. Field Validation Confirm Password
+	- Formatting Red font color for error message
+	- must be same font as Last Name field validation
+8. Birthday Error message is missing
+	- limit to until 10 years before
+	- no future dates should be accepted
+9. Exception for otp (my end) fix within today
+10. Messages (In-Progress)
+11. Notification (In-Progress)
+12. Listing Product Picture is not linked ((In-Progress)
+13. Add to Cart button (In-Progress)
+14. Cart page (In-Progress)
+15. Search bar (In-Progress)
+16. No cookie created on remember me checkbox (Login)
+17. Admin Account Functionality
+	- Check User Account options not working yet (In-Progress)
+	- Suggestion: Add back button
+		- Can't get back to dashboard from category
+	- Category edit and delete success message
+	- Category delete confirmation pop up
+18. Plant reference page table
+	- Fix no image not to appear when photo 2 and photo 3 has no image uploaded
+	- Photo 1-3 edit, cannot remove photos
+	- Photo uploading has no error message if file is not photo
+	- No confirmation message of edit and delete success
+	- Reference delete confirmation pop up
+	- no back button to dashboard
+19. Articles
+	- No field validation (Required)
+	- No spaces only
+20. Facebook Login (In-Progress)
+
+Notes (Feb 15):
+1.  Your Government id
+    Please register Government id here -> Change to: Government id number here
+2. Changed varchar value from 500 to 5000 for plant_description
+3. Front end please don't forget back buttons
+4. Articles: Remove descriptions from the list if the description is too big
+5. 
+    {
+      request()->validate([
+        'title'=>['required'],
+           'description'=>['required']
+    ]);
+    
+    - Changed by Reignald (Please talk to Reig, Arthur)
+6. Data Privacy (Perform Encryption)
+7. Remove Full name of the Person In-charge/Owner of this store on register as retailer
+	- Change to store name
+	- Get First Name and Last Name from the session instead of database
+8. Alternate grey coloring on the tables
+9. Invert Application ID orderings
+10. When denying an application, add a reason
+	- also add pre-determined reasons for ui friendliness
+11. Change from Physical delete to Logical Delete
+12. Return unique key for Categories
+13. Default picture for no picture added on plant reference table.
+
+Black Box Testing (Feb 18, 2021)
+New Features:
+1. Edit profile
+2. Register as retailer
+3. Approve Application for User to retailer
+
+Testing:
+1. Add format for Valid Gov't ID
+2. Birthday Future Date fix
+3. Add ui for forgot password
+4. Fix Google Login (My end for some reason)
+5. Admin Dashboard Home Page needs a ui
+6. Redirect for customer login should go to plantify storefront
+7. Remove Admin Controls on profile navbar
+8. Remove 1 account settings
+9. Change to store name
+10. Register as Retailer System not done
+11. Store customization in the works
+12. no store product page
+13. fix cookies
+
+Black Box Testing (Feb 25, 2021)
+New Features
+1. Update Store Page
+2. Input keyword admin dashboard (Fully Functional)
+3. Add to cart
+4. Create Product Redesign
+5. Store customization in the works
+
+To Fix:
+1. Add format for Valid Gov't ID
+2. Admin Dashboard Home Page needs a ui
+3. Register as Retailer System not done
+4. store product page
+5. fix cookies
+6. Birthday Future Date fix
+7. Change one of the categories to keyword (admin dashboard)
+8. create category button on keywords change to create keyword
+9. Still no back buttons on dashboard (Everywhere)
+10. Formatting for application denial
+11. Default background and profile image for store information
+12. Plant Reference Table still no removed default photo on none
+13. Tags, fix if there's many tags
+14. Go back to storefront button in admin
+15. Remove storefront item placeholder
+16. Still can edit products as customer and check product list
+17. Remove Product in shopping cart
+18. Add middleware for the carts
+
+Fixed Issues
+1. Google Login 
+2. Redirect for customer login should go to plantify storefront
+3. Remove Admin Controls on profile navbar
