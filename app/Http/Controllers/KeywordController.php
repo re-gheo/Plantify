@@ -10,32 +10,38 @@ class KeywordController extends Controller
     public function index()
     {
 
-       $keyword = Keyword::latest()->where('isDeleted',FALSE)->get();
-        return view('admin.category.index', ['keywords' =>$keyword]);
+       $keyword = Keyword::orderBy('keyword_id', 'desc')->where('isDeleted',FALSE)->get();
+       
+        return view('admin.keywords.index', ['keywords' =>$keyword]);
     }
 
 
     public function store()
     {
+        
         request()->validate([
             'keywords' => 'required',
         ]);
 
        $keyword = new Keyword();
-       $keyword->keywords = request('keywords');
+       $keyword->keyword_name = request('keywords');
        $keyword->isDeleted = FALSE;
        $keyword->save();
-        return redirect('/admin/keyword')->with('success', 'created new category ' .$keyword->product_categoryid. ' '.$keyword->keywords );
+        return redirect('/admin/keyword')->with('success', 'created new keyword ' .$keyword->product_categoryid. ' '.$keyword->keyword_name );
     }
 
 
     public function update($id)
     {
+
+        request()->validate([
+            'keywordedit' => 'required',
+        ]);
        $keyword = Keyword::find($id);
-        $temp =$keyword->keywords;
-       $keyword->keywords = request('keywordedit');
+        $temp =$keyword->keyword_name;
+       $keyword->keyword_name = request('keywordedit');
        $keyword->save();
-        return redirect('/admin/keyword')->with('success', 'successfully edit catergory ' . $id . '. ' . $temp . ' to ' . request('categorieedit'));
+        return redirect('/admin/keyword')->with('success', 'successfully edit keyword ' . $id . '. ' . $temp . ' to ' . request('keywordedit'));
     }
 
     public function destroy($id)
@@ -43,6 +49,6 @@ class KeywordController extends Controller
         $set = Keyword::find($id);
         $set->isDeleted = TRUE;
         $set->save();
-        return redirect('/admin/keyword')->with('success', 'Removed catergory ' . $id . '. ' . $set->keywords);
+        return redirect('/admin/keyword')->with('success', 'Removed keyword ' . $id . '. ' . $set->keyword_name);
     }
 }

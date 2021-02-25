@@ -238,8 +238,7 @@ class UserController extends Controller
     }
 
 // OTP VERSION FOR PROFILE -------------------------------------------------------------------
-// OTP VERSION FOR PROFILE -------------------------------------------------------------------
-// OTP VERSION FOR PROFILE -------------------------------------------------------------------
+
 
     protected function pverify(){
        
