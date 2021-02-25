@@ -8,12 +8,12 @@
 
 
 <div>  
-    <img src="{{url('/storage/'.$store->store_backgroundimage) }}" alt="background"> 
+    <img src="{{url('/storage/'.$store->store_backgroundimage) }}" height="500" width="500" alt="background"> 
 </div>
 
 
 <div>   
-    <img src="{{url('/storage/'.$store->store_profileimage) }}" alt="profile"> 
+    <img src="{{url('/storage/'.$store->store_profileimage) }}" height="100" width="100" alt="profile"> 
 </div>
 
 
@@ -37,11 +37,9 @@
 
     <a href="/store/customize" class="btn btn-success">Update Store Page</a>
 
-<<<<<<< Updated upstream
-    <a href="/store/products"> Products</a>
-=======
+
     <a href="/store/products"class="btn btn-success">  My product</a>
->>>>>>> Stashed changes
+
     </div>
 
 

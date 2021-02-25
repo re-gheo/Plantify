@@ -1,7 +1,7 @@
 @extends ('layouts/template')
 
 @section('content')
-    <form method="POST" action="/store/setup">
+    <form method="POST" action="/store/customize" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="container">
@@ -57,10 +57,10 @@
                     <div class="form-group green-border-focus">
 
                         <textarea id="store_description" type="text"
-                            class=" @error('store_description') is-invalid @enderror form-control" name="store_description" value="{{ old('store_description') }}" 
-                            required autocomplete="store_description" autofocus cols="60" 
-                            rows="10">{{ $store->store_description }}
-                        </textarea>
+                            class=" @error('store_description') is-invalid @enderror form-control" name="store_description"
+                            value="{{ old('store_description') }}" required autocomplete="store_description" autofocus
+                            cols="60" rows="10">{{ $store->store_description }}
+                            </textarea>
                         @error('store_description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -103,7 +103,7 @@
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <h3>Advertisement Status</h3>
                     <a href="">Buy Advertisement</a>
-                   
+
                 </div>
 
             </div>
