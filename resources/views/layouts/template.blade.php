@@ -44,13 +44,6 @@
             <a id="cta" class="nav-item" href="/register">Register Account</a>
             @endif
     
-             @if(!Auth::user())
-            @else
-               @if(Auth::user()->user_role == "retailer")
-               <a id="cta" class="" href="/store">Store Page</a>
-               @endif
-            @endif
-           
           </ul>
         </form>
       </li>
@@ -80,6 +73,9 @@
             @if(Auth::user()->user_role == 'admin')
             <a class="dropdown-item" href="/admin/home">Admin Controls</a>    
             
+            
+            @elseif(Auth::user()->user_role == 'retailer')
+            <a  class="dropdown-item" href="/store">Store Page</a>
             @endif
             
               {{-- With no pages made

@@ -28,9 +28,10 @@
               <li><a class="dropdown-item" href="/admin/plantreference/">Reference List</a></li>
               <li> <a class="dropdown-item" href="/admin/account-management">User Accounts</a></li>
               <li> <a class="dropdown-item" href="/admin/categories">Categories</a></li>
-              <li> <a class="dropdown-item" href="/admin/keyword">Categories</a></li>
+              <li> <a class="dropdown-item" href="/admin/keyword">Keywords List</a></li>
               <li><a class="dropdown-item" href="/admin/customer_application/">Pending Applications</a></li>
               <li><a class="dropdown-item" href="/articles">Articles</a></li>
+              <li><a class="dropdown-item" href="/">Storefront</a></li>
           </ul>
       </div>
  

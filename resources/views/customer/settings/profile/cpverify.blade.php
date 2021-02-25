@@ -15,7 +15,7 @@
                         
                             <label class="pb-1" for="cp_number" >Verification for cell phone number</label>
 
-                            <div >
+                            <div class="form-input" >
                                 <input class="@error('cp_number') is-invalid @enderror form-input"  type="" id="cp_number" name="cp_number" placeholder="+63" pattern="[6]{1}[3]{1}[0-9]{10}" required autofocus> 
  
                                 @error('cp_number')
@@ -32,7 +32,9 @@
 
                     
 
-                        <button class="btn btn-block btn-success text-uppercase my-2 mx-a button is-link" type="submit">SUBMIT</button>
+                        <button class="btn btn-block btn-success text-uppercase my-2 mx-a button is-link text-white " type="submit">
+                            SUBMIT
+                        </button>
                     </form>
                     @error('mes')
                     <span class=”invalid-feedback” role=”alert”>
