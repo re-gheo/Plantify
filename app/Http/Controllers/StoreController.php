@@ -9,68 +9,71 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
-    public function front(){
+    public function front()
+    {
 
 
 
-        $store =  Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
-        
-        if(!$store->store_name || !$store->store_description) {
+        $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+
+        if (!$store->store_name || !$store->store_description) {
             return view('retailer.store.setup');
         }
-        return view('retailer.store.storepage', ['store'=>$store]);
+        return view('retailer.store.storepage', ['store' => $store]);
     }
 
-    public function setup(){
+    public function setup()
+    {
         return view('retailer.store.setup');
     }
-    public function setupstore(){
-       
-        $ret = Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
+    public function setupstore()
+    {
+
+        $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
         $store = Store::findOrFail($ret->store_id);
         $store->store_name = request('store_name');
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect ('/store')->with('success', 'Successfully Registered Your Store!');
+        return redirect('/store')->with('success', 'Successfully Registered Your Store!');
     }
 
-    public function edit(){
-        $store =  Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
-        
-        if(!$store->store_name || !$store->store_description) {
+
+
+
+    public function edit()
+    {
+        $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+
+        if (!$store->store_name || !$store->store_description) {
             return view('retailer.store.setup');
         }
-        return view('retailer.store.customize', ['store'=>$store]);
+        return view('retailer.store.customize', ['store' => $store]);
     }
 
-    public function update(){
-        
+    public function update()
+    {
 
+       
         request()->validate([
-            'store_name'=>['required'],
-               'store_description'=>['required']
-           ]);
+            'store_description' => ['required']
+        ]);
+        $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+        
+       
 
-        $ret = Retailer::leftJoin('stores', 'retailers.store_id' , '=' , 'stores.store_id')->findOrFail(Auth::user()->id);
         $store = Store::findOrFail($ret->store_id);
-        $store->store_name = request('store_name');
+        $ret->store_codoption =  request('cod_option');
         $store->store_description = request('store_description');
-        // $store->store_backgroundimage = request('store_backgroundimage')->store('store','public');
-        // $store->store_profileimage= request('store_profileimage')->store('store','public');
- 
-        if(request()->hasFile('store_backgroundimage')){
-            $store->store_backgroundimage = request('store_backgroundimage')->store('store','public');
+        if (request()->hasFile('store_backgroundimage')) {
+            $store->store_backgroundimage = request('store_backgroundimage')->store('store', 'public');
         }
-        if(request()->hasFile('store_profileimage')){
-            $store->store_profileimage = request('store_profileimage')->store('store','public');
+        if (request()->hasFile('store_profileimage')) {
+            $store->store_profileimage = request('store_profileimage')->store('store', 'public');
         }
 
         $store->save();
 
-        return redirect ('/store')->with('success', 'Successfully Updated Your Store!');
+        return redirect('/store')->with('success', 'Successfully Updated Your Store!');
     }
-
-
-
 }
