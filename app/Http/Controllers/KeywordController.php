@@ -7,79 +7,42 @@ use Illuminate\Http\Request;
 
 class KeywordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+
+       $keyword = Keyword::latest()->where('isDeleted',FALSE)->get();
+        return view('admin.category.index', ['keywords' =>$keyword]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function store()
     {
-        //
+        request()->validate([
+            'keywords' => 'required',
+        ]);
+
+       $keyword = new Keyword();
+       $keyword->keywords = request('keywords');
+       $keyword->isDeleted = FALSE;
+       $keyword->save();
+        return redirect('/admin/keyword')->with('success', 'created new category ' .$keyword->product_categoryid. ' '.$keyword->keywords );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function update($id)
     {
-        //
+       $keyword = Keyword::find($id);
+        $temp =$keyword->keywords;
+       $keyword->keywords = request('keywordedit');
+       $keyword->save();
+        return redirect('/admin/keyword')->with('success', 'successfully edit catergory ' . $id . '. ' . $temp . ' to ' . request('categorieedit'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Keyword  $keyword
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Keyword $keyword)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Keyword  $keyword
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Keyword $keyword)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Keyword  $keyword
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Keyword $keyword)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Keyword  $keyword
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Keyword $keyword)
-    {
-        //
+        $set = Keyword::find($id);
+        $set->isDeleted = TRUE;
+        $set->save();
+        return redirect('/admin/keyword')->with('success', 'Removed catergory ' . $id . '. ' . $set->keywords);
     }
 }

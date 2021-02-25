@@ -130,7 +130,7 @@
                     <p>You are registered as retailer</p>
                 </div>
             @else
-                <p><b>[Retailer Appliaction] already Sent and Awaiting Approval from Admins, Please wait atleast 24
+                <p><b>[Retailer Appliaction] already Sent and Awaiting Approval from Admins, Please wait atleast 5 working days.
                         hours.</b></p>
 
             @endif

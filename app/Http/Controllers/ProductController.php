@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Keyword;
 use App\Models\Product;
 use App\Models\Cart_item;
@@ -57,7 +58,7 @@ class ProductController extends Controller
 
     public function create($type)
     {
-        
+
         if ($type == "plant") {
             $refs = Plant_referencepage::latest()->where('isDeleted', FALSE)->get();
             $keys = Keyword::all()->where('isDeleted', 0);
@@ -90,7 +91,7 @@ class ProductController extends Controller
             $product->product_sizes = request('product_sizes');
             $product->product_referenceid = request('product_referenceid');
             $product->isPlant = 1;
-            $product->commission_id= 1;
+            $product->commission_id = 1;
         } elseif (url()->previous() == "http://localhost:8000/store/products/create/product") {
 
             $request->validate([
@@ -103,7 +104,7 @@ class ProductController extends Controller
                 'keywords' => 'required|min:1'
             ]);
             $product->isPlant = 0;
-            $product->commission_id= request('commission_id');
+            $product->commission_id = request('commission_id');
         }
 
 
@@ -255,13 +256,35 @@ class ProductController extends Controller
     // Phase 2 - Add to cart
     public function getmycart()
     {
-         
-        $cart = Cart_item::join('shopping_carts','cart_items.cart_id','=','shopping_carts.cart_id')
-        ->join('products','cart_items.product_id', '=', 'products.product_id' )
-        ->where('cart_items.user_id' ,  Auth::user()->id)->get();
-        dd($cart);
 
-        return view('customer.cart.mycart',['carts'=>$cart ] );
+        // $cart = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
+        //     ->join('products', 'cart_items.product_id', '=', 'products.product_id')
+        //     ->where('cart_items.user_id',  Auth::user()->id)->get();
+
+
+        $disd = Shopping_cart::where('user_id',  Auth::user()->id)
+            ->distinct()->get(['cartdate']);
+
+        $discart = array();
+        foreach ($disd as $d) {
+            $cart = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
+                ->join('products', 'cart_items.product_id', '=', 'products.product_id')
+                ->where('cart_items.user_id',  Auth::user()->id)
+                ->where('shopping_carts.cartdate', $d->cartdate)
+                ->get();
+
+            $discart[$d->cartdate] = $cart;
+
+            //  $keyn[] =  key($discart[$d->cartdate]);
+        }
+        // $keyn[] =  array_reverse(array_keys($discart));
+        // foreach( array_reverse($discart) as $key => $dc){
+        //     echo  $key. ' ';
+        // }
+
+
+        // dd(count($disd ), array_reverse($discart) ,$keyn );
+        return view('customer.cart.mycart', ['carts' => array_reverse($discart)]);
     }
 
 
@@ -269,32 +292,61 @@ class ProductController extends Controller
     public function addtocart1($id)
     {
 
+
+
         $product = Product::findOrFail($id);
-        $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
-        if(count($checks)==0){
-            $scart = new Shopping_cart();
-            $scart->user_id = Auth::user()->id;    
-            $scart->cartset = 1;
-            $scart->checked = 0;
-            $scart->save();
-        }
-        if(!count($checks)==0){
-            $scart = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
-        }
-        
-        $items = new Cart_item();
-        $items->cart_itemname = $product->product_name;
-        $items->product_id = $product->product_id;
-        $items->cart_id = $scart->cart_id;
-        $items->retailer_id = $product->retailer_id;
-        $items->user_id =Auth::user()->id;
-        $items->cart_quantityid=1;
-        $items->cart_itemcost=$product->product_price;
-        $items->cart_subtotal=$product->product_price;
-        $items->save();
+       
+        $existItem = Cart_item::where('product_id', $product->product_id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+        if ($existItem) {
+            return redirect('/store/cart')->withErrors('err', 'this item '. $product->product_name.' already exist');
+        } else {
+            $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
+            if (!count($checks) == 0) {
+                if (!Shopping_cart::where('user_id', Auth::user()->id)
+                    ->where('cartdate', Carbon::today('Asia/Manila')->toDateString())
+                    ->exists()) {
 
-        return redirect('/store/cart');
+                        
+                    $checks2 = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
+                    $scart = new Shopping_cart();
+                    $scart->user_id = Auth::user()->id;
+                    $scart->cartset = $checks2->cartset + 1;
+                    $scart->cartdate =  Carbon::today('Asia/Manila')->toDateString();
+                    $scart->checked = 0;
+                    $scart->save();
+                } else {
+                    $scart = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
+                }
+            }
+            if (count($checks) == 0) {
+                $scart = new Shopping_cart();
+                $scart->user_id = Auth::user()->id;
+                $scart->cartset = 1;
+                $scart->cartdate = Carbon::today('Asia/Manila')->toDateString();
+                $scart->checked = 0;
+                $scart->save();
+            }
+            
+            
 
+
+
+            $items = new Cart_item();
+            $items->cart_itemname = $product->product_name;
+            $items->product_id = $product->product_id;
+            $items->cart_id = $scart->cart_id;
+            $items->retailer_id = $product->retailer_id;
+            $items->user_id = Auth::user()->id;
+            $items->cart_quantity = 1;
+
+            $items->cart_itemcost = $product->product_price;
+            $items->cart_subtotal = $product->product_price;
+            $items->save();
+
+            return redirect('/store/cart')->with('success',  'added '. $product->product_name.' to cart');
+        }
     }
 
     public function addtocartM($id)
@@ -302,27 +354,45 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
-        if(count($checks)>1){
+        if (count($checks) == 0) {
             $scart = new Shopping_cart();
-            $scart->user_id = Auth::user()->id;    
+            $scart->user_id = Auth::user()->id;
             $scart->cartset = 1;
+            $scart->cartdate = Carbon::now()->toDateString();
             $scart->checked = 0;
             $scart->save();
         }
-        
+        if (!count($checks) == 0) {
+            $scart = new Shopping_cart();
+            $scart->user_id = Auth::user()->id;
+            $scart->cartset = 1;
+            $scart->cartdate = Carbon::now()->toDateString();
+            $scart->checked = 0;
+            $scart->save();
+        }
+
+        if (Shopping_cart::where('user_id', Auth::user()->id)
+            ->where('cartdate', Carbon::now()->toDateString())
+            ->exist()
+        ) {
+            $scart = new Shopping_cart();
+            $scart->user_id = Auth::user()->id;
+            $scart->cartset = count($checks) + 1;
+            $scart->cartdate = Carbon::now()->toDateString();
+            $scart->checked = 0;
+            $scart->save();
+        }
+
         $items = new Cart_item();
         $items->cart_itemname = $product->product_name;
         $items->product_id = $product->product_id;
         $items->cart_id = $scart->cart_id;
         $items->retailer_id = $product->retailer_id;
-        $items->user_id =Auth::user()->id;
-        $items->cart_quantityid=  request("count");
-        $items->cart_itemcost=    $product->product_price;
-        $items->cart_subtotal= request("count") *   $product->product_price;
+        $items->user_id = Auth::user()->id;
+        $items->cart_quantity =  request("count");
+        $items->cart_itemcost =    $product->product_price;
+        $items->cart_subtotal = request("count") *   $product->product_price;
         $items->save();
         return redirect('/store/cart');
     }
-
-
-
 }

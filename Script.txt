@@ -406,7 +406,7 @@ create table cart_items
     foreign key(retailer_id) references retailers(retailer_id),
      user_id int,
     foreign key(user_id) references users(id),
-    cart_quantityid int unique key,
+    cart_quantity int ,
     cart_itemcost float,
     cart_subtotal float,
     created_at timestamp null,

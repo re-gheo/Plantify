@@ -20,10 +20,8 @@ class Customer
         if (Auth::user()) {
             if (Auth::user()->user_role == 'customer' || Auth::user()->user_role == 'retailer') {
                 return $next($request);
-            }elseif(Auth::user()->user_role == 'admin'){
-                return redirect('/')->with('success', 'Admins cant have a cart');
             }
         } else
-            return redirect('/login')->with('success', 'you need to login first.');
+            return redirect('/login')->with('success', 'you need to login first as a customer.');
     }
 }
