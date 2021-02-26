@@ -74,7 +74,6 @@ CARD
 
 #login-hero,
 #register-hero {
-
     border-radius: 10px !important;
     margin-top: 8rem;
 
@@ -148,6 +147,10 @@ INPUT FORM
 .form-input input::placeholder {
     color: black;
     padding-left: 0px;
+}
+
+.cp-input input {
+    color: red;
 }
 
 

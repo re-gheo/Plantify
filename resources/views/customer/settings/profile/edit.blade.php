@@ -2,8 +2,13 @@
 
 @section('content')
 
-           
-                            <h3 >EDIT PROFILE</h3>
+
+            <div class="container">
+                <div class="row px-2">
+                    <div class="col-lg-8 col-xl-6 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
+                        <div class="card-body mx-auto">
+                            <h3 class="text-center" >EDIT PROFILE</h3>
+                            
                             <form method="POST" action="/settings/profile/update">
                                 @csrf
                                 @method('PUT')
@@ -89,6 +94,13 @@
                                                       
                             </form>
                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+                            
         
     
 
