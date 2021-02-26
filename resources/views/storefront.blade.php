@@ -96,7 +96,7 @@
           </div>
 
         </a> 
-          <form action="/store/item/addtocart/{{$product->product_id}}" method="POST">
+          <form action="/store/cart/addtocart/{{$product->product_id}}" method="POST">
             @csrf
             {{$product->product_id}}
             <button class="btn btn-success btn-sm" type="submit">Add to cart</button>

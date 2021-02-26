@@ -31,7 +31,12 @@
                         </div>
 
                         <div style="margin-left: 400px;">
-                            <a href="/store/cart/{{ $i->product_id }}/remove" class="btn btn-dark"> remove Product</a>
+                            {{-- <a href= class="btn btn-dark"> remove Product</a> --}}
+                            <form action="/store/cart/remove/{{$i->product_id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-dark"> Remove</button>
+                            </form>
                             <label for="">include in check out</label>
                             <input type="checkbox" name="checkout[]" id="checkout">
                         </div>
