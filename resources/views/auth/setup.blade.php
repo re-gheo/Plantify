@@ -50,10 +50,11 @@
         
                                     <div >
                                         <input class="datepicker" type="date" id="birthday" name="birthday" endDate="today"
-                                         max="{{ Carbon\Carbon::today('Asia/Manila')->subYear(18)->toDateString() }}">
+                                         max="{{ Carbon\Carbon::today('Asia/Manila')->subYear(10)->toDateString() }}">
                                     </div>
                                 </div>
         
+                               
                                 {{-- <input type="hidden" id="email" name="email" value={{ Auth::user->email }}> --}}
         
                             

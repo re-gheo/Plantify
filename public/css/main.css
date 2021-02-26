@@ -312,3 +312,13 @@ error handling
 Profile Page
 -----------------
 */
+
+.left-div {
+    background-color: #39976b;
+}
+
+.card-row {
+    border: 2px;
+    border: black;
+    border-width: 1rem;
+}
