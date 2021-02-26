@@ -231,12 +231,13 @@ create table card_types
 create table cards
 (
 	card_id int primary key auto_increment,
-    card_accountname varchar(300),
-    card_bankname varchar(300),
-    card_bankinfo varchar(300),
-    card_number varchar(300),
+    card_holdername varchar(300),
+    card_cvv varchar(300),
+    card_exp varchar(300),
     card_typeid int,
     foreign key(card_typeid) references card_types(card_typeid),
+    user_id int,
+    foreign key(user_id) references users(id),
     created_at timestamp null,
     updated_at timestamp null
 );

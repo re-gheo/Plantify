@@ -3,20 +3,20 @@
 @section('content')
     @if (!Auth::user())
     @else
-        @if ($product->product_id==Auth::user()->id)
+        @if ($product->product_id == Auth::user()->id)
             <b>I own this Product</p>
-            <a href="/store/products" class="btn btn-dark"> Go to my product list</a>
+                <a href="/store/products" class="btn btn-dark"> Go to my product list</a>
         @endif
     @endif
 
     @if (!Auth::user())
     @else
-    @if ($product->product_id==Auth::user()->id)
-           
-            <a  class="btn btn-dark" href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
+        @if ($product->retailer_id == Auth::user()->id)
+
+            <a class="btn btn-dark" href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
         @endif
     @endif
-    
+
     <div class="container mt-2">
         <div id="pic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -86,23 +86,23 @@
         <h3><b>Current Stocks</b></h3><br>
         <p>{{ $product->product_quantity }} <b> Items</b></p><br> <br>
 
-       
 
 
-        
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h2><b>COMMENTS</b></h2>
-    <br>
-    <br>
-    <h2><b>QUESTIONS</b></h2>
-    <br>
-    <br>
-    <br>
-    <br>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2><b>COMMENTS</b></h2>
+        <br>
+        <br>
+        <h2><b>QUESTIONS</b></h2>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
 
 

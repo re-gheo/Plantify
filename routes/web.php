@@ -31,7 +31,9 @@ Route::get('/', 'StorefrontController@front');
 
 Route::get('/test2', function () {
 
-    dd(Auth::user()->email);
+    $cars = array( 'key1' => "Volvo", "BMW", "Toyota");
+    $cars2 = json_encode($cars);
+    dd( json_decode($cars2)->key1,  json_encode($cars));
 });
 
 //                                          ██╗       
@@ -56,6 +58,7 @@ Route::put('/verify', 'UserController@getcode');
 Route::get('/verify/check', 'UserController@entercode');
 Route::put('/verify/check', 'UserController@checkcode');
 Route::post('/verify/cancel', 'UserController@cancelcode');
+
 
 
 
@@ -142,7 +145,8 @@ Route::get('/store/item/{id}', 'ProductController@showCustomer');
 
 // CUSTOMER / CART
 Route::get('/store/cart', 'ProductController@getmycart');
-Route::any('/store/item/addtocart/{id}', 'ProductController@addtocart1');
+Route::post('/store/cart/addtocart/{id}', 'ProductController@addtocart1');
+Route::delete('/store/cart/remove/{id}', 'ProductController@removecartitem');
 
 
 
