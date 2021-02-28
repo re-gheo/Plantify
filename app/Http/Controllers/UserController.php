@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\User;
 use Vonage\Verify\Client;
+use Faker\Calculator\Luhn;
 use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
 use App\Models\Retailer_application;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+{  
+    
     public function index()
     {
         $user = User::latest()->get();   
@@ -322,7 +320,19 @@ class UserController extends Controller
         return redirect ('/settings/profile/verify');
     }
 
+    public function addcard(Request $request)
+    {
+
+   
+        $request->validate([
+            'num' => 'luhn'
     
+        ]);
+    
+         dd(Luhn::isValid(request('num')),
+        Luhn::computeCheckDigit(request('num')),
+        Luhn::computeCheckSum(request('num')));
+    }
 
 
 }

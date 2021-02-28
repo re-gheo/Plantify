@@ -156,6 +156,7 @@ Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
 //CUSTOMER/ SETTINGS / PROFILE 
 Route::get('/settings/profile', 'UserController@profile');
+
 //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
 Route::get('/settings/profile/edit', 'UserController@editprofile');
 Route::put('/settings/profile/update', 'UserController@updateprofile');
@@ -165,6 +166,8 @@ Route::put('/settings/profile/verify', 'UserController@pgetcode');
 Route::get('/settings/profile/verify/check', 'UserController@pentercode');
 Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
 Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
+//CUSTOMER/ SETTINGS / PROFILE / add payment method
+Route::post('/store/profile/addpayment',  'UserController@addcard');
 
 
 

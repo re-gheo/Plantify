@@ -406,4 +406,7 @@ class ProductController extends Controller
         Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
         return redirect('/store/cart')->with('success', 'Removed '.$item->cart_itemname .'from cart.' );
     }
+
+
+    
 }

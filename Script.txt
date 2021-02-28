@@ -242,6 +242,21 @@ create table cards
     updated_at timestamp null
 );
 
+create table retailercards
+(
+	card_id int primary key auto_increment,
+    card_holdername varchar(300),
+    card_cvv varchar(300),
+    card_exp varchar(300),
+    card_typeid int,
+    foreign key(card_typeid) references card_types(card_typeid),
+    user_id int,
+    foreign key(user_id) references users(id),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+
 create table stores
 (
 	store_id int primary key auto_increment,
@@ -457,3 +472,11 @@ INSERT INTO `commissions` VALUES (3,'Tools ,Soils and Pots',12,0.04,249,22,0,'20
 INSERT INTO `commissions` VALUES (4,'Device  And Machine ',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
 INSERT INTO `commissions` VALUES (5,'Chemical and natural Products  ',15,0.05,249,25,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
 INSERT INTO `commissions` VALUES (6,'Ornaments',12,0.04,249,22,0,'2021-02-20 21:17:45','2021-02-20 21:17:45');
+
+
+INSERT INTO `card_types`( `card_type` ) VALUES ('American Express');
+INSERT INTO `card_types`( `card_type` ) VALUES ('Diners Club');
+INSERT INTO `card_types`( `card_type` ) VALUES ('Discover');
+INSERT INTO `card_types`( `card_type` ) VALUES ('JCB');
+INSERT INTO `card_types`( `card_type`) VALUES ('MasterCard');
+INSERT INTO `card_types`( `card_type` ) VALUES ('Visa');
