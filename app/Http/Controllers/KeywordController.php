@@ -9,16 +9,14 @@ class KeywordController extends Controller
 {
     public function index()
     {
-
        $keyword = Keyword::orderBy('keyword_id', 'desc')->where('isDeleted',FALSE)->get();
-       
+
         return view('admin.keywords.index', ['keywords' =>$keyword]);
     }
 
 
     public function store()
     {
-        
         request()->validate([
             'keywords' => 'required',
         ]);

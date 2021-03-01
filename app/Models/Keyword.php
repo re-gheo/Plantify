@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Keyword extends Model
 {
-protected $primaryKey = 'keyword_id';
     use HasFactory;
+
+    protected $primaryKey = 'keyword_id';
+
 }

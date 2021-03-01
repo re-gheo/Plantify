@@ -3,10 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assigned_keywords;
+use App\Models\Keyword;
 use Illuminate\Http\Request;
 
 class AssignedKeywordsController extends Controller
 {
+    public function searchResults(Request $request){
+         $keywords = [];
+
+        foreach($request->keywords as $id){
+            Keyword::find($id)
+
+            $keywords = ();
+        }
+
+        dd($keywords);
+
+        return view('search.result', compact('keywords'));
+    }
+
     /**
      * Display a listing of the resource.
      *

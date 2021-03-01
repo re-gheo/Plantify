@@ -108,20 +108,15 @@
         </ul>
 
         {{-- @if ($user->status == 'waiting')
-    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
+    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} "
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
         <div class="nav-search pl-2 pull-right">
-            <form action="" class="" method="GET" role="search">
-                <input id="search" type="text" class="" placeholder="   Search here" aria-label="search-bar"
-                    aria-describedby="basic-addon2">
-                <button class="search-button btn btn-outline-success text-white"><i
-                        class="fas fa-search"></i></button></button>
-                {{-- <button class="search-button btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button> --}}
-            </form>
+            <button class="search-button btn btn-outline-success text-white"  data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-search"></i>
+                Looking for something...
+            </button>
         </div>
-
-
     </nav>
 
 
@@ -136,6 +131,8 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
+
+    @include('component.search')
 
 
 
@@ -160,7 +157,7 @@
 
 
 {{-- <div class="input-group mr-auto ">
-  <form action="" method="GET" role="search"> 
+  <form action="" method="GET" role="search">
   <input id="search" type="text" class="form-input" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <a href="" class=" mt-1"></a>
