@@ -37,7 +37,7 @@ Route::get('/test2', function () {
 });
 
 //Store Search
-Route::get('/keyword/search', 'AssignedKeywordsController@searchResults')->name('keyword.result');
+Route::get('/keyword/search', 'SearchController@results')->name('keyword.result');
 
 
 //                                          ██╗

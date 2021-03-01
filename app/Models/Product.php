@@ -12,6 +12,6 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     public function keywords(){
-        return $this->belongsToMany(Keyword::class, 'assigned_keywords','owned_keywordid');
+        return $this->belongsToMany(Keyword::class);
     }
 }

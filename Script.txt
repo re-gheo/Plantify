@@ -59,7 +59,7 @@ create table retailer_applications
     user_id int,
     deny_reason varchar(500),
     foreign key(user_id) references users(id),
-    
+
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -161,7 +161,7 @@ create table orders
     order_datecreated datetime,
     order_dateshipped datetime,
     order_customerid int,
-    foreign key(order_customerid) references customers(customer_id), 
+    foreign key(order_customerid) references customers(customer_id),
     order_statusid int,
     foreign key(order_statusid) references order_status(order_statusid),
     shipping_id int,
@@ -186,7 +186,7 @@ create table keywords
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
-); 
+);
 
 create table commissions
 (
@@ -199,7 +199,7 @@ create table commissions
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
-); 
+);
 
 create table plant_referencepages
 (
@@ -279,7 +279,7 @@ create table stores
 create table retailers
 (
 	retailer_id int,
-    foreign key(retailer_id) references users(id), 
+    foreign key(retailer_id) references users(id),
     store_id int,
     foreign key(store_id) references stores(store_id),
     computed_ratings int,
@@ -335,11 +335,22 @@ create table assigned_keywords
 (
 	assigned_keywordid int primary key auto_increment,
 	product_id int,
-    foreign key(product_id) references products(product_id),
+    foreign key(product_id)references products(product_id),
     owned_keywordid int,
     foreign key(owned_keywordid) references keywords(keyword_id),
     created_at timestamp null,
     updated_at timestamp null
+);
+
+CREATE TABLE keyword_product
+(
+  id int primary key auto_increment,
+  product_product_id int,
+  foreign key(product_product_id) references products(product_id),
+  keyword_keyword_id int,
+  foreign key(keyword_keyword_id) references keywords(keyword_id),
+  created_at timestamp null,
+  updated_at timestamp null
 );
 
 create table inquirys

@@ -13,12 +13,9 @@ class AssignedKeywordsController extends Controller
 
         foreach($request->keywords as $id){
             $key = Keyword::find($id);
-
             $keyword = $key->products;
-            dd($keyword);
+
         }
-
-
 
         return view('search.result', compact('keywords'));
     }

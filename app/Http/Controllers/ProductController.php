@@ -25,7 +25,7 @@ class ProductController extends Controller
             $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
         }
 
-        $askeys = Assigned_keywords::join('keywords', 'assigned_keywords.owned_keywordid', '=', 'keywords.keyword_id')->where('product_id', '=', $product->product_id)->get();
+        $askeys = $product->keywords;
 
         $asphotos = Assigned_photos::latest()->where('product_id', '=', $product->product_id)->get();
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
             $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
         }
 
-        $askeys = Assigned_keywords::join('keywords', 'assigned_keywords.owned_keywordid', '=', 'keywords.keyword_id')->where('product_id', '=', $product->product_id)->get();
+        $askeys = $product->keywords;
 
         $asphotos = Assigned_photos::latest()->where('product_id', '=', $product->product_id)->get();
 
@@ -129,16 +129,8 @@ class ProductController extends Controller
         }
 
         $keys = $request->input('keywords');
-        foreach ($keys as $key) {
-            // if(!Assigned_keywords::where('owned_keywordid', '=', $key)->where()->exists()){
-            $keyword = new Assigned_keywords();
-            $keyword->owned_keywordid = $key;
-            $keyword->product_id =  $product->product_id;
-            $keyword->save();
-            // }
+        $product->keywords()->attach($keys);
 
-
-        }
         return redirect('/store/products/' . $product->product_id);
     }
 
@@ -152,8 +144,7 @@ class ProductController extends Controller
         if ($product->isPlant == 1) {
             $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
         }
-        $askeys = Assigned_keywords::join('keywords', 'assigned_keywords.owned_keywordid', '=', 'keywords.keyword_id')
-            ->where('product_id', '=', $product->product_id)->get();
+        $askeys = $product->keywords;
         $asphotos = Assigned_photos::latest()
             ->where('product_id', '=', $product->product_id)->get();
 
@@ -215,18 +206,9 @@ class ProductController extends Controller
                 $photo->save();
             }
         }
-        Assigned_keywords::where('product_id', $product->product_id)->delete();
+        $product->keywords()->delete();
         $keys = $request->input('keywords');
-        foreach ($keys as $key) {
-            // if(!Assigned_keywords::where('owned_keywordid', '=', $key)->where()->exists()){
-            $keyword = new Assigned_keywords();
-            $keyword->owned_keywordid = $key;
-            $keyword->product_id =  $product->product_id;
-            $keyword->save();
-            // }
-
-
-        }
+        $product->keywords()->attach($keys);
 
 
         return redirect('/store/products/' . $product->product_id);
@@ -295,7 +277,7 @@ class ProductController extends Controller
 
 
         $product = Product::findOrFail($id);
-       
+
         $existItem = Cart_item::where('product_id', $product->product_id)
             ->where('user_id', Auth::user()->id)
             ->exists();
@@ -309,7 +291,7 @@ class ProductController extends Controller
                     ->where('cartdate', Carbon::today('Asia/Manila')->toDateString())
                     ->exists()) {
 
-                        
+
                     $checks2 = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
                     $scart = new Shopping_cart();
                     $scart->user_id = Auth::user()->id;
@@ -329,8 +311,8 @@ class ProductController extends Controller
                 $scart->checked = 0;
                 $scart->save();
             }
-            
-            
+
+
 
 
 
@@ -402,11 +384,11 @@ class ProductController extends Controller
 //         dd($id, ->get());
 // dd(Cart_item::findOrFail($id));
         $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
-   
+
         Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
         return redirect('/store/cart')->with('success', 'Removed '.$item->cart_itemname .'from cart.' );
     }
 
 
-    
+
 }
