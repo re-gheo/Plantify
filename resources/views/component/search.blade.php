@@ -10,7 +10,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="advsearch" method="POST" action="{{route('keyword.result')}}">
+          <form id="advsearch" method="GET" action="{{route('keyword.result')}}">
             @csrf
             <div class="form-group">
                 <label for="keywords">Keywords</label>

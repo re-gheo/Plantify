@@ -10,4 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $primaryKey = 'product_id';
+
+    public function keywords(){
+        return $this->belongsToMany(Keyword::class, 'assigned_keywords','owned_keywordid');
+    }
 }

@@ -11,4 +11,7 @@ class Keyword extends Model
 
     protected $primaryKey = 'keyword_id';
 
+    public function products(){
+        return $this->belongsToMany(Product::class, 'assigned_keywords', 'product_id');
+    }
 }
