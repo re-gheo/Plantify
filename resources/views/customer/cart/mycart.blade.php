@@ -65,7 +65,7 @@
     <form action="/store/itemcheckout" method="POST">
         @csrf
         <input type="hidden" name="hidid" id="mysel">
-        <button type="submit"> CHECKOUT</button>
+        <button type="submit"> CHECKOUT SELECTED PRODUCTS</button>
     </form>
 
     <script type="text/javascript">

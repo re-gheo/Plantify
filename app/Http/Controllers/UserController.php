@@ -243,11 +243,11 @@ class UserController extends Controller
         return view('customer.settings.profile.cpverify');  
     }
 
-    public function pgetcode()
-    {
-      // dd(request('cp_number'));
+    public function pgetcode(){
+    
+     
         request()->validate([
-            'cp_number' => 'required',    
+            'cp_number' => 'required'   
         ]);
 
     $nexmo = app('Nexmo\Client');

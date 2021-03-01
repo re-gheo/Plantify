@@ -140,6 +140,8 @@ Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
 
 
 
+
+
 //Customer / PRODUCTS
 Route::get('/store/item/{id}', 'ProductController@showCustomer');
 
@@ -150,9 +152,11 @@ Route::delete('/store/cart/remove/{id}', 'ProductController@removecartitem');
 Route::put('/store/cart/quantity/{id}', 'ProductController@updatequantity');
 
 
-// CUSTOMER / CART
-Route::get('/store/checkout', 'OrderController@getmycart');
+// CUSTOMER / CART / CHECKOUT
+Route::get('/store/checkout', 'OrderController@checkoutpage');
 Route::post('/store/itemcheckout', 'OrderController@addtocheckout');
+Route::post('/store/itemcheckout/order', 'OrderController@placeorder');
+
 
 
 //CUSTOMER/ SETTINGS / APPLICATIONS
