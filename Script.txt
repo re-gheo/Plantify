@@ -116,14 +116,7 @@ create table advertisment_history
     updated_at timestamp null
 );
 
-create table customers
-(
-	customer_id int primary key,
-    foreign key(customer_id) references users(id),
-    retailer_application int,
-    created_at timestamp null,
-    updated_at timestamp null
-);
+
 
 create table order_status
 (
@@ -148,27 +141,24 @@ create table shipping_infos
     foreign key(shipping_type) references shipping_types(shipping_typeid),
     shipping_pickupdate datetime,
     shipping_currentaddress varchar(300),
+    shipping_status varchar(300),
     shipping_address varchar(300),
     created_at timestamp null,
     updated_at timestamp null
 );
-
 create table orders
 (
 	order_id int primary key auto_increment,
     payment_type int,
     foreign key(payment_type) references payment_types(payment_typeid),
-    order_datecreated datetime,
-    order_dateshipped datetime,
-    order_customerid int,
-    foreign key(order_customerid) references customers(customer_id), 
-    order_statusid int,
+    order_datecreated datetime null,
+    order_dateshipped datetime null,
+    order_statusid int null,
     foreign key(order_statusid) references order_status(order_statusid),
-    shipping_id int,
-    foreign key(shipping_id) references shipping_infos(shipping_id),
     created_at timestamp null,
     updated_at timestamp null
 );
+
 
 create table categories
 (
@@ -232,9 +222,10 @@ create table cards
 (
 	card_id int primary key auto_increment,
     card_holdername varchar(300),
+    card_number varchar(300),
     card_cvv varchar(300),
     card_exp varchar(300),
-    card_typeid int,
+    card_typeid int null,
     foreign key(card_typeid) references card_types(card_typeid),
     user_id int,
     foreign key(user_id) references users(id),
@@ -294,6 +285,17 @@ create table retailers
     retailer_city varchar(300),
     retailer_barangay varchar(300),
     retailer_region varchar(300),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+create table customers
+(
+	customer_id int primary key auto_increment,
+    user_id int,
+    foreign key(user_id) references users(id),
+    retailer_id int,
+    foreign key(retailer_id) references retailers(retailer_id),
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -375,12 +377,34 @@ create table comments
 
 
 
+
 create table order_details
 (
-	orderdetails_id int primary key,
-    foreign key(orderdetails_id) references orders(order_id),
-    product_id int,
+	orderdetails_id int primary key auto_increment,
+    products varchar(500), 
+    order_id int null,
+    foreign key(order_id) references orders(order_id),
+    order_unitcost float null,
+    order_subtotal float null,
+    user_id int,
+    foreign key(user_id) references users(id),
+    created_at timestamp null,
+    updated_at timestamp null
+);
+
+
+create table order_bystoreitems
+(
+	order_bystoreitem_id int primary key auto_increment,
+    product_id int, 
     foreign key(product_id) references products(product_id),
+    retailer_id int,
+    foreign key(retailer_id) references retailers(retailer_id),
+    order_customerid int,
+    foreign key(order_customerid) references customers(customer_id), 
+    order_id int,
+    shipping_id int null,
+    foreign key(shipping_id) references shipping_infos(shipping_id),
     order_quantity int,
     order_unitcost float,
     order_subtotal float,
@@ -419,6 +443,7 @@ create table cart_items
      foreign key(cart_id) references shopping_carts(cart_id),
     product_id int,
     foreign key(product_id) references products(product_id),
+    product_varieties varchar(60) null,
     retailer_id int,
     foreign key(retailer_id) references retailers(retailer_id),
      user_id int,
@@ -480,3 +505,16 @@ INSERT INTO `card_types`( `card_type` ) VALUES ('Discover');
 INSERT INTO `card_types`( `card_type` ) VALUES ('JCB');
 INSERT INTO `card_types`( `card_type`) VALUES ('MasterCard');
 INSERT INTO `card_types`( `card_type` ) VALUES ('Visa');
+
+INSERT INTO `payment_types`( `payment_type` ) VALUES ('card');
+INSERT INTO `payment_types`( `payment_type` ) VALUES ('gcash');
+
+
+INSERT INTO `order_status`(`order_status`) VALUES ('Awaiting Payment Gcash');
+INSERT INTO `order_status`(`order_status`) VALUES ('Awaiting Payment Card');
+INSERT INTO `order_status`(`order_status`) VALUES ('Completed');
+INSERT INTO `order_status`(`order_status`) VALUES ('Refunded(Partialy)');
+INSERT INTO `order_status`(`order_status`) VALUES ('Refunded');
+INSERT INTO `order_status`(`order_status`) VALUES ('Cancelled');
+INSERT INTO `order_status`(`order_status`) VALUES ('Failed');
+INSERT INTO `order_status`(`order_status`) VALUES ('Expired');

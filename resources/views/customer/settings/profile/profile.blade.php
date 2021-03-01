@@ -140,7 +140,21 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class=" card-row col-md-10 mt-5 pt-5 border">
+                <a href="/store/profile/paymentmethods"> my payment methods</a>
+            </div>
+        </div>
+    </div>
 
+        
+    <br>
 
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
 
 @endsection

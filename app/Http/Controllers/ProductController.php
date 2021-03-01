@@ -295,13 +295,13 @@ class ProductController extends Controller
 
 
         $product = Product::findOrFail($id);
-       
+
         $existItem = Cart_item::where('product_id', $product->product_id)
             ->where('user_id', Auth::user()->id)
             ->exists();
         if ($existItem) {
 
-            return redirect('/store/cart')->with('success', 'this item '. $product->product_name.' is already listed in your cart');
+            return redirect('/store/cart')->with('success', 'this item ' . $product->product_name . ' is already listed in your cart');
         } else {
             $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
             if (!count($checks) == 0) {
@@ -309,7 +309,7 @@ class ProductController extends Controller
                     ->where('cartdate', Carbon::today('Asia/Manila')->toDateString())
                     ->exists()) {
 
-                        
+
                     $checks2 = Shopping_cart::latest()->where('user_id', Auth::user()->id)->first();
                     $scart = new Shopping_cart();
                     $scart->user_id = Auth::user()->id;
@@ -329,8 +329,8 @@ class ProductController extends Controller
                 $scart->checked = 0;
                 $scart->save();
             }
-            
-            
+
+
 
 
 
@@ -346,67 +346,37 @@ class ProductController extends Controller
             $items->cart_subtotal = $product->product_price;
             $items->save();
 
-            return redirect('/store/cart')->with('success',  'added '. $product->product_name.' to cart');
+            return redirect('/store/cart')->with('success',  'added ' . $product->product_name . ' to cart');
         }
     }
 
-    // public function addtocartM($id)
-    // {
-
-    //     $product = Product::findOrFail($id);
-    //     $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
-    //     if (count($checks) == 0) {
-    //         $scart = new Shopping_cart();
-    //         $scart->user_id = Auth::user()->id;
-    //         $scart->cartset = 1;
-    //         $scart->cartdate = Carbon::now()->toDateString();
-    //         $scart->checked = 0;
-    //         $scart->save();
-    //     }
-    //     if (!count($checks) == 0) {
-    //         $scart = new Shopping_cart();
-    //         $scart->user_id = Auth::user()->id;
-    //         $scart->cartset = 1;
-    //         $scart->cartdate = Carbon::now()->toDateString();
-    //         $scart->checked = 0;
-    //         $scart->save();
-    //     }
-
-    //     if (Shopping_cart::where('user_id', Auth::user()->id)
-    //         ->where('cartdate', Carbon::now()->toDateString())
-    //         ->exist()
-    //     ) {
-    //         $scart = new Shopping_cart();
-    //         $scart->user_id = Auth::user()->id;
-    //         $scart->cartset = count($checks) + 1;
-    //         $scart->cartdate = Carbon::now()->toDateString();
-    //         $scart->checked = 0;
-    //         $scart->save();
-    //     }
-
-    //     $items = new Cart_item();
-    //     $items->cart_itemname = $product->product_name;
-    //     $items->product_id = $product->product_id;
-    //     $items->cart_id = $scart->cart_id;
-    //     $items->retailer_id = $product->retailer_id;
-    //     $items->user_id = Auth::user()->id;
-    //     $items->cart_quantity =  request("count");
-    //     $items->cart_itemcost =    $product->product_price;
-    //     $items->cart_subtotal = request("count") *   $product->product_price;
-    //     $items->save();
-    //     return redirect('/store/cart');
-    // }
-
-
-    public function removecartitem($id){
-//         dd($id, ->get());
-// dd(Cart_item::findOrFail($id));
-        $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
-   
-        Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
-        return redirect('/store/cart')->with('success', 'Removed '.$item->cart_itemname .'from cart.' );
+    public function updatequantity($id)
+    {
+        request()->validate([
+            'keywords' => 'required|min:1'
+        ]);
+        $item = Cart_item::find($id)->where('user_id',  Auth::user()->id)->first();
+        if ($item->user_id ==  Auth::user()->id) {
+            $item->cart_quantity = request()->quantity;
+            $item->cart_subtotal = $item->cart_itemcost * request()->quantity;
+            $item->save();
+            return redirect('/store/cart')->with('success', 'updared quantity for ' . $item->cart_itemname . 'from cart.');
+        } else {
+            return redirect('/');
+        }
     }
 
 
-    
+    public function removecartitem($id)
+    {
+      
+
+        $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
+        if ($item->user_id ==  Auth::user()->id) {
+            Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
+            return redirect('/store/cart')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
+        } else {
+            return redirect('/');
+        }
+    }
 }

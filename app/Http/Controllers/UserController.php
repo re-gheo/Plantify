@@ -320,19 +320,7 @@ class UserController extends Controller
         return redirect ('/settings/profile/verify');
     }
 
-    public function addcard(Request $request)
-    {
-
-   
-        $request->validate([
-            'num' => 'luhn'
     
-        ]);
-    
-         dd(Luhn::isValid(request('num')),
-        Luhn::computeCheckDigit(request('num')),
-        Luhn::computeCheckSum(request('num')));
-    }
 
 
 }

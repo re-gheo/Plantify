@@ -39,7 +39,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>
                 </li>
+                
 
+                
                 <li class="nav-item">
                     <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse ">
                         <ul class="navbar-nav">
@@ -61,11 +63,18 @@
 
 
                 </div>
-
+                @if (!Auth::user())
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/store/cart">My Cart</a>
+                </li>
+                @endif
                 <li class="nav-item dropdown">
 
                     @if (!Auth::user())
                     @else
+                   
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
@@ -75,6 +84,7 @@
 
                             {{-- With pages made --}}
                             <a class="dropdown-item" href="/settings/profile">Account Settings</a>
+                            
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="/admin/home">Admin Controls</a>

@@ -43,7 +43,8 @@ class StoreController extends Controller
 
     public function edit()
     {
-        $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+        $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')
+        ->findOrFail(Auth::user()->id);
 
         if (!$store->store_name || !$store->store_description) {
             return view('retailer.store.setup');
@@ -58,7 +59,8 @@ class StoreController extends Controller
         request()->validate([
             'store_description' => ['required']
         ]);
-        $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+        $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')
+        ->findOrFail(Auth::user()->id);
         
        
 

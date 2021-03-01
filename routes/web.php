@@ -147,12 +147,18 @@ Route::get('/store/item/{id}', 'ProductController@showCustomer');
 Route::get('/store/cart', 'ProductController@getmycart');
 Route::post('/store/cart/addtocart/{id}', 'ProductController@addtocart1');
 Route::delete('/store/cart/remove/{id}', 'ProductController@removecartitem');
+Route::put('/store/cart/quantity/{id}', 'ProductController@updatequantity');
 
+
+// CUSTOMER / CART
+Route::get('/store/checkout', 'OrderController@getmycart');
+Route::post('/store/itemcheckout', 'OrderController@addtocheckout');
 
 
 //CUSTOMER/ SETTINGS / APPLICATIONS
 Route::get('/settings/application/form', 'RetailerApplicationController@form');
 Route::post('/settings/application/form', 'RetailerApplicationController@send');
+
 
 //CUSTOMER/ SETTINGS / PROFILE 
 Route::get('/settings/profile', 'UserController@profile');
@@ -167,7 +173,9 @@ Route::get('/settings/profile/verify/check', 'UserController@pentercode');
 Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
 Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
 //CUSTOMER/ SETTINGS / PROFILE / add payment method
-Route::post('/store/profile/addpayment',  'UserController@addcard');
+Route::get('/store/profile/addpayment',  'CardController@register');
+Route::post('/store/profile/addpayment/register',  'CardController@addcard');
+Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 
 
 
