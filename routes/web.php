@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Luigel\Paymongo\Facades\Paymongo;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,6 +181,7 @@ Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
 Route::get('/store/profile/addpayment',  'CardController@register');
 Route::post('/store/profile/addpayment/register',  'CardController@addcard');
 Route::get('/store/profile/paymentmethods',  'CardController@mycards');
+Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
 
 
@@ -190,6 +192,11 @@ Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 // ██║  ██║███████╗   ██║   ██║  ██║██║███████╗███████╗██║  ██║
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
 
+Route::get('/test7', function (Request $request) {
+
+    $retrievedsource = Paymongo::paymentIntent()->find('pi_deUPJz3ni8HbwRQfFw5SoQMU');
+    dd($retrievedsource);
+});
 
 
 

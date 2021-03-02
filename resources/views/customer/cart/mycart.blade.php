@@ -78,7 +78,7 @@
                     selected.push(chks[i].value);
                 }
             }
-            if (selected.length > 0 ) {
+            if (selected.length > 0) {
                 document.getElementById("mysel").value = "[" + selected.join(",") + "]";
             }
             if (selected.length == 0) {

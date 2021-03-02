@@ -27,9 +27,14 @@
                         <div>
                             <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
                         </div>
-                        <div>
-                            <button type="submit"> Remove card</button>
-                        </div>
+                        <form action="/store/profile/paymentmethods/{{ $c->card_id }}/delete" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div>
+                                <button type="submit"> Remove card</button>
+                            </div>
+                        </form>
+                       
                     </div>
                 @empty
                     <h3>You have no Payment Register in our site</h3>

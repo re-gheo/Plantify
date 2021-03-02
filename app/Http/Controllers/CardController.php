@@ -35,18 +35,37 @@ class CardController extends Controller
         }
     }
 
+    public function remove($id)
+    {
+        Card::find($id)->delete();
+
+      return redirect('/store/profile/paymentmethods')->with('success', 'Payment method has been removed');
+    }
+
 
 
     public function addcard(Request $request)
     {
 
+        $mycards = Card::latest()->where('user_id', Auth::user()->id)->select('card_number')->get();
+        $ucards = array();
+        foreach ($mycards as $c) {
+            $ucards[] = Crypt::decryptString($c->card_number);
+        }
+
+
         $request->validate([
             'card_number' => ['luhn', 'required'],
             'card_holdername' => 'required',
             'card_cvv' => 'required',
-            'card_exp' => 'required'
-
+            'card_exp' => 'required',
+            //set billing address
+            'card_line1' => 'required',
+            'card_city' => 'required',
+            'card_state' => 'required',
+            'card_postal_code' => 'required'
         ]);
+       
 
 
 
@@ -56,16 +75,29 @@ class CardController extends Controller
         $jso = json_encode($mon);
         $ejso =  Crypt::encryptString($jso);
 
+
         $valid =  Luhn::isValid(request('card_number'));
 
 
         if ($valid == true) {
+            if (in_array(request('card_number'), $ucards)) {
+
+                return redirect(url()->previous())
+                ->with('err', 'This payment method already exist within our system');
+            }
+           
             $card =  new Card();
             $card->card_number = Crypt::encryptString(request('card_number'));
             $card->card_holdername = Crypt::encryptString(request('card_holdername'));
             $card->card_cvv = Crypt::encryptString(request('card_cvv'));
             $card->card_exp = $ejso;
             $card->user_id = Auth::user()->id;
+            $card->card_line1 = Crypt::encryptString(request("card_line1"));
+            $card->card_city = request("card_city");
+            $card->card_state = request("card_state");
+            $card->card_postal_code = Crypt::encryptString(request("card_postal_code"));
+
+
             $card->save();
         }
 

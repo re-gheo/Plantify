@@ -129,7 +129,7 @@ create table order_status
 create table shipping_types
 (
 	shipping_typeid int primary key auto_increment,
-    shipping_type varchar(300),
+    shipping_type varchar(60),
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -222,10 +222,14 @@ create table cards
 (
 	card_id int primary key auto_increment,
     card_holdername varchar(300),
-    card_number varchar(300),
+    card_number varchar(300) unique key,
     card_cvv varchar(300),
     card_exp varchar(300),
     card_typeid int null,
+    card_line1 varchar(500),
+    card_city varchar(300),
+    card_state varchar(300),
+    card_postal_code varchar(300),
     foreign key(card_typeid) references card_types(card_typeid),
     user_id int,
     foreign key(user_id) references users(id),
@@ -380,10 +384,11 @@ create table comments
 
 create table order_details
 (
-	orderdetails_id int primary key auto_increment,
+	orderdetails_id varchar(300) primary key,
     products varchar(500), 
     order_id int null,
     foreign key(order_id) references orders(order_id),
+    paymentintentid varchar(150), 
     order_unitcost float null,
     order_subtotal float null,
     user_id int,
