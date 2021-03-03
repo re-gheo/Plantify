@@ -5,8 +5,8 @@
 
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class=" card-row col-md-10 mt-5 pt-5 border">
-                <h1><b>my Profile information</b> </h1>
+            <div class=" card-row col-md-10 border">
+                {{-- <h1><b>my Profile information</b> </h1> --}}
                 <div class=" row z-depth-3">
                     <div class="left-div col-sm-4  rounded-left">
                         <div class="card-block text-center text-white">
@@ -148,13 +148,13 @@
         </div>
     </div>
 
-        
+
     <br>
 
- <br>
- <br>
- <br>
- <br>
- <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 @endsection
