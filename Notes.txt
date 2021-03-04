@@ -124,8 +124,22 @@ To Fix:
 16. Still can edit products as customer and check product list
 17. Remove Product in shopping cart
 18. Add middleware for the carts
+19. validation for same keywords
+20. no articles notif on admin page
+21. checkbox before word on add products
+22. retailer cannot add his own products
 
 Fixed Issues
 1. Google Login 
 2. Redirect for customer login should go to plantify storefront
 3. Remove Admin Controls on profile navbar
+
+Black Box Testing (March 04, 2021)
+New Features
+1. 
+
+To Fix:
+1. 
+
+Fixed Issues
+1. 
