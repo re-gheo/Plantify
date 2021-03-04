@@ -59,7 +59,7 @@ create table retailer_applications
     user_id int,
     deny_reason varchar(500),
     foreign key(user_id) references users(id),
-    
+
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -176,7 +176,7 @@ create table keywords
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
-); 
+);
 
 create table commissions
 (
@@ -189,7 +189,7 @@ create table commissions
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null
-); 
+);
 
 create table plant_referencepages
 (
@@ -274,7 +274,7 @@ create table stores
 create table retailers
 (
 	retailer_id int,
-    foreign key(retailer_id) references users(id), 
+    foreign key(retailer_id) references users(id),
     store_id int,
     foreign key(store_id) references stores(store_id),
     computed_ratings int,
@@ -348,17 +348,13 @@ create table assigned_keywords
     updated_at timestamp null
 );
 
-create table inquirys
+create table inquiries
 (
-	inquiry_id int primary key auto_increment,
-    inquiry_userid int,
-    foreign key(inquiry_userid) references users(id),
-    inquiry_retailerid int,
-    foreign key(inquiry_retailerid) references retailers(retailer_id),
-    product_id int null,
-    foreign key(product_id) references products(product_id),
-    user_inquiry varchar(5000),
-    isDeleted boolean null,
+	id int primary key auto_increment,
+	product_id int,
+    rater_id int,
+    inquiry text,
+    deleted_at timestamp null,
     created_at timestamp null,
     updated_at timestamp null
 );
@@ -385,10 +381,10 @@ create table comments
 create table order_details
 (
 	orderdetails_id varchar(300) primary key,
-    products varchar(500), 
+    products varchar(500),
     order_id int null,
     foreign key(order_id) references orders(order_id),
-    paymentintentid varchar(150), 
+    paymentintentid varchar(150),
     order_unitcost float null,
     order_subtotal float null,
     user_id int,
@@ -401,12 +397,12 @@ create table order_details
 create table order_bystoreitems
 (
 	order_bystoreitem_id int primary key auto_increment,
-    product_id int, 
+    product_id int,
     foreign key(product_id) references products(product_id),
     retailer_id int,
     foreign key(retailer_id) references retailers(retailer_id),
     order_customerid int,
-    foreign key(order_customerid) references customers(customer_id), 
+    foreign key(order_customerid) references customers(customer_id),
     order_id int,
     shipping_id int null,
     foreign key(shipping_id) references shipping_infos(shipping_id),
@@ -523,3 +519,4 @@ INSERT INTO `order_status`(`order_status`) VALUES ('Refunded');
 INSERT INTO `order_status`(`order_status`) VALUES ('Cancelled');
 INSERT INTO `order_status`(`order_status`) VALUES ('Failed');
 INSERT INTO `order_status`(`order_status`) VALUES ('Expired');
+
