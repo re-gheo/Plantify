@@ -19,12 +19,12 @@
 
         <a class="navbar-brand" href="/admin/home"><i class="fas fa-leaf mr-1"></i>Plantify</a>
         <!-- Left Side Of Navbar -->
-        <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
+        {{-- <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"><i id="bars" class="fas fa-bars"></i></span>
-        </button>
-        <div class="dropdown">
+        </button> --}}
+        {{-- <div class="dropdown">
             <button class="btn dropdown-toggle text-white ml-4" data-toggle="dropdown">
                 Menu
             </button>
@@ -37,7 +37,7 @@
                 <li><a class="dropdown-item" href="/articles">Articles</a></li>
                 <li><a class="dropdown-item" href="/">Storefront</a></li>
             </ul>
-        </div>
+        </div> --}}
 
 
         <!-- Right Side Of Navbar -->
@@ -71,8 +71,10 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/settings/profile">Account Settings</a>
 
+                        <a class="dropdown-item" href="/">Storefront</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                           document.getElementById('logout-form').submit();">
+                                                               document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -101,6 +103,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
+    <script src="/js/main.js">
+    </script>
 </body>
 
 </html>

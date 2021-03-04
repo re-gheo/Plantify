@@ -14,6 +14,7 @@ class StoreController extends Controller
 
 
 
+
         $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
 
         if (!$store->store_name || !$store->store_description) {
@@ -44,7 +45,7 @@ class StoreController extends Controller
     public function edit()
     {
         $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')
-        ->findOrFail(Auth::user()->id);
+            ->findOrFail(Auth::user()->id);
 
         if (!$store->store_name || !$store->store_description) {
             return view('retailer.store.setup');
@@ -55,14 +56,14 @@ class StoreController extends Controller
     public function update()
     {
 
-       
+
         request()->validate([
             'store_description' => ['required']
         ]);
         $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')
-        ->findOrFail(Auth::user()->id);
-        
-       
+            ->findOrFail(Auth::user()->id);
+
+
 
         $store = Store::findOrFail($ret->store_id);
         $ret->store_codoption =  request('cod_option');
@@ -83,12 +84,10 @@ class StoreController extends Controller
 
     public function setGcash()
     {
-
     }
 
 
     public function setPayoutCard()
     {
-
     }
 }
