@@ -270,6 +270,7 @@ class ProductController extends Controller
             $cart = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
                 ->join('products', 'cart_items.product_id', '=', 'products.product_id')
                 ->where('cart_items.user_id',  Auth::user()->id)
+                ->where('cart_items.checked',  null)
                 ->where('shopping_carts.cartdate', $d->cartdate)
                 ->get();
 

@@ -126,26 +126,7 @@ create table order_status
     updated_at timestamp null
 );
 
-create table shipping_types
-(
-	shipping_typeid int primary key auto_increment,
-    shipping_type varchar(60),
-    created_at timestamp null,
-    updated_at timestamp null
-);
 
-create table shipping_infos
-(
-	shipping_id int primary key auto_increment,
-    shipping_type int,
-    foreign key(shipping_type) references shipping_types(shipping_typeid),
-    shipping_pickupdate datetime,
-    shipping_currentaddress varchar(300),
-    shipping_status varchar(300),
-    shipping_address varchar(300),
-    created_at timestamp null,
-    updated_at timestamp null
-);
 create table orders
 (
 	order_id int primary key auto_increment,
@@ -158,6 +139,29 @@ create table orders
     created_at timestamp null,
     updated_at timestamp null
 );
+
+
+
+
+create table shipping_infos
+(
+shipping_id int primary key ,
+tracking_number varchar(300) null,
+carrier_code varchar(20) null,
+title varchar(120) null,
+logistics_channel varchar(120) null,
+order_id int null,
+foreign key(order_id) references orders(order_id),
+customer_phone varchar(20) null,
+order_create_time  datetime null,
+destination_code varchar(12) null,
+tracking_ship_date varchar(12) null, 
+tracking_postal_code varchar(6) null,
+Adress varchar(300) null,
+created_at timestamp null,
+updated_at timestamp null
+);
+
 
 
 create table categories
@@ -456,6 +460,7 @@ create table cart_items
     cart_quantity int ,
     cart_itemcost float,
     cart_subtotal float,
+    checked boolean null,
     created_at timestamp null,
     updated_at timestamp null
 );

@@ -79,6 +79,7 @@ class RegisterController extends Controller
             'name' => $data['first_name'] . ' ' . $data['last_name'],
             'email' => $data['email'],
             'user_role' => 'customer',
+            'region' => "National Capital Region (NCR)",
             'otp_verified' => 0,
             'password' => Hash::make($data['password']),
 

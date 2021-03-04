@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\CarbonImmutable;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
+use App\Classes\Trackingmore;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,47 @@ Route::get('/', 'StorefrontController@front');
 
 Route::get('/test2', function () {
 
-    $cars = array( 'key1' => "Volvo", "BMW", "Toyota");
-    $cars2 = json_encode($cars);
-    dd( json_decode($cars2)->key1,  json_encode($cars));
+    // $cars = array( 'key1' => "Volvo", "BMW", "Toyota");
+    // $cars2 = json_encode($cars);
+    // dd( json_decode($cars2)->key1,  json_encode($cars));
+    dd(uniqid());
+});
+
+Route::get('/test3', function () {
+
+    $length = 4 ;
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+
+    
+    $lengthN = 10;
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    $randomString2 = '';
+    for ($i = 0; $i < $lengthN; $i++) {
+        $randomString2 .= $characters[rand(0, $charactersLength - 1)];
+    }
+    dd($randomString. $randomString2);
+
+    //usage 
+
+});
+
+
+Route::get('/test9', function (Request $request) {
+
+    $track = new Trackingmore();
+
+ 
+$data = $track->getSingleTrackingResult("phlpost","RUI1234567");
+
+
+dd($data["data"]);
+
 });
 
 //                                          ██╗       
