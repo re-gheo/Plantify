@@ -13,7 +13,7 @@ class CreateInquiryReplyTable extends Migration
      */
     public function up()
     {
-        Schema::create('inquiry_reply', function (Blueprint $table) {
+        Schema::create('inquiry_replies', function (Blueprint $table) {
             $table->id();
             $table->integer('inquiry_id')->unsigned();
             $table->text('reply')->nullable();

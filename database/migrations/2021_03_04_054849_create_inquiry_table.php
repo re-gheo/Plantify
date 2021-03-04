@@ -13,7 +13,7 @@ class CreateInquiryTable extends Migration
      */
     public function up()
     {
-        Schema::create('inquiry', function (Blueprint $table) {
+        Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id')->unsigned();
             $table->integer('rater_id')->unsigned();
