@@ -183,6 +183,9 @@ Route::post('/store/profile/addpayment/register',  'CardController@addcard');
 Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
+//RETAILER Reply
+Route::post('/product/inquire/{product_id}/', 'InquiryReplyController@store')->name('customer.inquiry.store');
+Route::delete('/product/inquire/{inquiry_id}/delete', 'InquiryReplyController@update')->name('customer.inquiry.delete');
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
@@ -217,6 +220,10 @@ Route::get('/store/products/{id}/edit', 'ProductController@edit');
 Route::put('/store/products/{id}/edit', 'ProductController@update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove');
+
+//RETAILER Reply
+Route::post('/store/reply/{id}', 'InquiryReplyController@store')->name('retailer.reply.store');
+Route::put('/store/reply/{id}/update', 'InquiryReplyController@update')->name('retailer.reply.update');
 
 
 // Articles
