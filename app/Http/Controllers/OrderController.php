@@ -228,7 +228,17 @@ $detemp = $this->genID();
             $request->session()->forget('selected_item');
             return redirect('/')->with('success', 'Successfully created an order');
         } elseif (json_decode($request->paytype)[0] == 0) {
-            dd('gccah');
+            $source = Paymongo::source()->create([
+                'type' => 'gcash',
+                'amount' => $gsum,
+                'currency' => 'PHP',
+                'redirect' => [
+                    'success' => 'http://localhost:8000/success',
+                    'failed' => 'http://localhost:8000/failed',
+                ],
+            ]);
+        
+             return redirect($source->redirect['checkout_url']);
         }
     }
 
