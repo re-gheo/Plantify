@@ -136,10 +136,15 @@ Fixed Issues
 
 Black Box Testing (March 04, 2021)
 New Features
-1. 
+1. Payment Method (CD)
+2. Encryption and Censorship (For payment)
+3. Checkout (Credit cards)
+4. 
 
 To Fix:
-1. 
+1. Retailer Registration instantly Denied
+2. Remember Me Cookies	
+3. Quantity Edit for Shopping Cart
 
 Fixed Issues
-1. 
+1. Shopping Cart Fully Functional
