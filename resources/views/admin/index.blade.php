@@ -1,88 +1,103 @@
 @extends('layouts/admin-template')
 
 @section('content')
-    <div class="container">
-        <h1>
-            Admin Dashboard
-        </h1>
+    <div id="wrapper">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check References</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/admin/plantreference/">References</a>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check Accounts</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/admin/account-management">Account Management</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check Categories</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/admin/categories">Categories</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check Keywords</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/admin/keyword">Keywords</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check Applications</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/admin/customer_application/">Pending Applications</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="some_image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Check Articles</h5>
-                        <button class="btn btn-info">
-                            <a class="text-white" href="/articles">Articles</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" class="col-sm-3">
+            <ul class="sidebar-nav ">
+                <li class="sidebar-brand">
+                    @if (isset(Auth::user()->avatar))
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                            style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+                    @endif
+                    <a href="/settings/profile">
+                        {{ Auth::user()->name }}
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/plantreference/">Manage References</a>
+                </li>
+                <li>
+                    <a href="/admin/account-management">Manage Accountss</a>
+                </li>
+                <li>
+                    <a href="/admin/categories">Manage Categories</a>
+                </li>
+                <li>
+                    <a href="/admin/keyword">Manage Keywords</a>
+                </li>
+                <li>
+                    <a href="/admin/customer_application/">Manage Applications</a>
+                </li>
+                <li>
+                    <a href="/articles">Manage Articles</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-    @endsection
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+
+        <head>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Year', 'Sales', 'Expenses'],
+                        ['2004', 1000, 400],
+                        ['2005', 1170, 460],
+                        ['2006', 660, 1120],
+                        ['2007', 1030, 540]
+                    ]);
+
+                    var options = {
+                        title: 'Company Performance',
+                        curveType: 'function',
+                        legend: {
+                            position: 'bottom'
+                        }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                    chart.draw(data, options);
+                }
+
+            </script>
+        </head>
+
+        <body>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <a href="#menu-toggle" class="float-left" id="menu-toggle"> <i class="fas fa-bars"></i></a>
+                </div>
+                <div class="container">
+
+                    <h1 class="title">Dashboard</h1>
+                    <div class=" mt-5">
+                        <div class="col-lg-12 float-left" id="curve_chart" style="width: 900px; height: 500px"></div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </body>
+
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    </div>
+
+@endsection
