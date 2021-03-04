@@ -10,4 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $primaryKey = 'product_id';
+
+    public function inquiry(){
+        return $this->hasMany(Inquiry::class);
+    }
 }

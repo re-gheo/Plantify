@@ -37,14 +37,14 @@ Route::get('/test2', function () {
     dd( json_decode($cars2)->key1,  json_encode($cars));
 });
 
-//                                          ██╗       
+//                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
 // ██╔══██╗██║   ██║╚══██╔══╝██║  ██║       ██╗      ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║
 // ███████║██║   ██║   ██║   ███████║       ██╗      ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║
 // ██╔══██║██║   ██║   ██║   ██╔══██║       ██╗      ██║     ██║   ██║██║   ██║██║██║╚██╗██║
 // ██║  ██║╚██████╔╝   ██║   ██║  ██║       ██╗      ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║
 // ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝       ██╗      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
-//                                          ██╗  
+//                                          ██╗
 
 Auth::routes();
 //basic user additiona creds
@@ -100,7 +100,7 @@ Route::post('/admin/categories/create', 'CategorieController@store');
 Route::put('/admin/categories/update/{id}', 'CategorieController@update');
 Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy');
 
-//ADMIN/ KEYWORD 
+//ADMIN/ KEYWORD
 Route::get('/admin/keyword', 'KeywordController@index');/*->middleware('admin')*/;
 Route::post('/admin/keyword/create', 'KeywordController@store');
 Route::put('/admin/keyword/update/{id}', 'KeywordController@update');
@@ -129,7 +129,7 @@ Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
 Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
 
 
-// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗ 
+// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
 // ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
@@ -165,7 +165,7 @@ Route::get('/settings/application/form', 'RetailerApplicationController@form');
 Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
 
-//CUSTOMER/ SETTINGS / PROFILE 
+//CUSTOMER/ SETTINGS / PROFILE
 Route::get('/settings/profile', 'UserController@profile');
 
 //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
@@ -185,7 +185,7 @@ Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remo
 
 
 
-// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗ 
+// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
 // ██████╔╝█████╗     ██║   ███████║██║██║     █████╗  ██████╔╝
 // ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║     ██╔══╝  ██╔══██╗
@@ -212,7 +212,7 @@ Route::put('/store/customize', 'StoreController@update');
 Route::get('/store/products', 'ProductController@list');
 Route::get('/store/products/create/{type}', 'ProductController@create');
 Route::post('/store/products/store', 'ProductController@store');
-Route::get('/store/products/{id}', 'ProductController@show');
+Route::get('/store/products/{id}', 'ProductController@show')->name('product_show');
 Route::get('/store/products/{id}/edit', 'ProductController@edit');
 Route::put('/store/products/{id}/edit', 'ProductController@update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
