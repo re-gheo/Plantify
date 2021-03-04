@@ -184,8 +184,8 @@ Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
 //RETAILER Reply
-Route::post('/product/inquire/{product_id}/', 'InquiryController@store')->name('customer.inquiry.store');
-Route::delete('/product/inquire/{inquiry_id}/delete', 'InquiryController@update')->name('customer.inquiry.delete');
+Route::post('/product/inquire/{id}', 'InquiryController@store')->name('customer.inquiry.store');
+Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗

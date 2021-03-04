@@ -101,8 +101,10 @@
         <h2><b>QUESTIONS</b></h2>
 
         @if(Auth::check())
-            <form method="POST" action="{{route('customer.inquiry.store', ['product_id' => $product->id] )}}">
+            <form method="POST" action="{{route('customer.inquiry.store', ['id' => $product->product_id] )}}">
+
                 @csrf
+
                 <input type="text" name="inquiry" placeholder="Ask A Question">
             </form>
         @else
@@ -122,7 +124,8 @@
                 @endif
 
                 @if($inquiry->rater_id == Auth::id())
-                    <form method="DELETE" action="{{route('customer.inquiry.delete', ['inquiry_id' => $inquiry->id] )}}">
+                    <form method="POST" action="{{route('customer.inquiry.delete', ['id' => $inquiry->id] )}}">
+                        @method('delete')
                         @csrf
                         <button type="submit" class="btn-danger"> Delete</button>
                     </form>

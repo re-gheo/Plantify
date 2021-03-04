@@ -10,6 +10,8 @@ class Inquiry extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded=[];
+
     public function reply(){
         return $this->hasOne(InquiryReply::class);
     }

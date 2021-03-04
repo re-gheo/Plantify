@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inquiry;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Auth;
+use Auth, Session;
 
 class InquiryController extends Controller
 {
@@ -16,10 +16,10 @@ class InquiryController extends Controller
      * @param Product $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $product_id)
+    public function store(Request $request, $id)
     {
         //fix for update
-        $product = Product::findOrFail($product_id);
+        $product = Product::findOrFail($id);
         $product->inquiry()->create([
             'rater_id' => Auth::id(),
             'inquiry' => $request->inquiry,
@@ -37,9 +37,9 @@ class InquiryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($inquiry_id)
+    public function delete($id)
     {
-       Inquiry::findOrFail($inquiry_id)->delete();
+       Inquiry::findOrFail($id)->delete();
 
        //fix for message based on frontend
        Session::flash('success', 'This message have been removed');
