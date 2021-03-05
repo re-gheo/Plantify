@@ -2,102 +2,76 @@
 
 @section('content')
     <div id="wrapper">
+        <!-- Page content holder -->
+        <div class="page-content p-5" id="content">
+            <!-- Toggle button -->
+            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+                    class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="col-sm-3">
-            <ul class="sidebar-nav ">
-                <li class="sidebar-brand">
-                    @if (isset(Auth::user()->avatar))
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                            style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
-                    @endif
-                    <a href="/settings/profile">
-                        {{ Auth::user()->name }}
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/plantreference/">Manage References</a>
-                </li>
-                <li>
-                    <a href="/admin/account-management">Manage Accountss</a>
-                </li>
-                <li>
-                    <a href="/admin/categories">Manage Categories</a>
-                </li>
-                <li>
-                    <a href="/admin/keyword">Manage Keywords</a>
-                </li>
-                <li>
-                    <a href="/admin/customer_application/">Manage Applications</a>
-                </li>
-                <li>
-                    <a href="/articles">Manage Articles</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-
-        <head>
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript">
-                google.charts.load('current', {
-                    'packages': ['corechart']
-                });
-                google.charts.setOnLoadCallback(drawChart);
-
-                function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2004', 1000, 400],
-                        ['2005', 1170, 460],
-                        ['2006', 660, 1120],
-                        ['2007', 1030, 540]
-                    ]);
-
-                    var options = {
-                        title: 'Company Performance',
-                        curveType: 'function',
-                        legend: {
-                            position: 'bottom'
-                        }
-                    };
-
-                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-                    chart.draw(data, options);
-                }
-
-            </script>
-        </head>
-
-        <body>
-            <div id="page-content-wrapper">
-                <div class="container-fluid">
-                    <a href="#menu-toggle" class="float-left" id="menu-toggle"> <i class="fas fa-bars"></i></a>
+            <!-- Demo content -->
+            <h2 class="display-4 tex-dark">Bootstrap vertical nav</h2>
+            <p class="lead text-dark mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.
+            </p>
+            <div class="separator"></div>
+            <div class="row tex-dark">
+                <div class="col-lg-7">
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor.
+                    </p>
                 </div>
-                <div class="container">
-
-                    <h1 class="title">Dashboard</h1>
-                    <div class=" mt-5">
-                        <div class="col-lg-12 float-left" id="curve_chart" style="width: 900px; height: 500px"></div>
-                    </div>
-
-
-
+                <div class="col-lg-5">
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                        dolor.
+                    </p>
                 </div>
             </div>
 
-        </body>
+        </div>
+        <!-- End demo content -->
 
 
-    </div>
-    <!-- /#page-content-wrapper -->
 
-    </div>
-
-@endsection
+    @endsection
