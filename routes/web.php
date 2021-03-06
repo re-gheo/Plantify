@@ -49,7 +49,7 @@ Route::get('/test3', function () {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
 
-    
+
     $lengthN = 10;
     $characters = '0123456789';
     $charactersLength = strlen($characters);
@@ -59,7 +59,7 @@ Route::get('/test3', function () {
     }
     dd($randomString. $randomString2);
 
-    //usage 
+    //usage
 
 });
 
@@ -68,7 +68,7 @@ Route::get('/test9', function (Request $request) {
 
     $track = new Trackingmore();
 
- 
+
 $data = $track->getSingleTrackingResult("phlpost","RUI1234567");
 
 
@@ -76,14 +76,14 @@ dd($data["data"]);
 
 });
 
-//                                          ██╗       
+//                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
 // ██╔══██╗██║   ██║╚══██╔══╝██║  ██║       ██╗      ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║
 // ███████║██║   ██║   ██║   ███████║       ██╗      ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║
 // ██╔══██║██║   ██║   ██║   ██╔══██║       ██╗      ██║     ██║   ██║██║   ██║██║██║╚██╗██║
 // ██║  ██║╚██████╔╝   ██║   ██║  ██║       ██╗      ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║
 // ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝       ██╗      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
-//                                          ██╗  
+//                                          ██╗
 
 Auth::routes();
 //basic user additiona creds
@@ -139,7 +139,7 @@ Route::post('/admin/categories/create', 'CategorieController@store');
 Route::put('/admin/categories/update/{id}', 'CategorieController@update');
 Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy');
 
-//ADMIN/ KEYWORD 
+//ADMIN/ KEYWORD
 Route::get('/admin/keyword', 'KeywordController@index');/*->middleware('admin')*/;
 Route::post('/admin/keyword/create', 'KeywordController@store');
 Route::put('/admin/keyword/update/{id}', 'KeywordController@update');
@@ -168,7 +168,7 @@ Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
 Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
 
 
-// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗ 
+// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
 // ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
@@ -204,7 +204,7 @@ Route::get('/settings/application/form', 'RetailerApplicationController@form');
 Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
 
-//CUSTOMER/ SETTINGS / PROFILE 
+//CUSTOMER/ SETTINGS / PROFILE
 Route::get('/settings/profile', 'UserController@profile');
 
 //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
@@ -222,9 +222,10 @@ Route::post('/store/profile/addpayment/register',  'CardController@addcard');
 Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
+Route::get('/orders',  'OrderController@index')->name('client.order');
 
 
-// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗ 
+// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
 // ██████╔╝█████╗     ██║   ███████║██║██║     █████╗  ██████╔╝
 // ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║     ██╔══╝  ██╔══██╗

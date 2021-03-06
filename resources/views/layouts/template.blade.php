@@ -72,9 +72,8 @@
                 <li class="nav-item dropdown">
 
                     @if (!Auth::user())
+
                     @else
-
-
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
@@ -82,9 +81,10 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+                            <a class="dropdown-item" href="{{route('client.order')}}">My Orders & Transactions</a>
+
                             {{-- With pages made --}}
                             <a class="dropdown-item" href="/settings/profile">Account Settings</a>
-
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="/admin/home">Admin Controls</a>
@@ -118,7 +118,7 @@
         </ul>
 
         {{-- @if ($user->status == 'waiting')
-    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
+    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} "
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
         <div class="nav-search pl-2 pull-right">
@@ -146,7 +146,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    
+
     @error('err')
         <div class="alert alert-danger ">
             <p>{{ $message }}</p>
@@ -177,7 +177,7 @@
 
 
 {{-- <div class="input-group mr-auto ">
-  <form action="" method="GET" role="search"> 
+  <form action="" method="GET" role="search">
   <input id="search" type="text" class="form-input" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <a href="" class=" mt-1"></a>
