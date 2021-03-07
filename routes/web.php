@@ -216,7 +216,7 @@ Route::post('/store/profile/addpayment/register',  'CardController@addcard');
 Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
-Route::get('/orders',  'OrderController@index')->name('client.order');
+Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗

@@ -264,8 +264,8 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function index(){
-        $orders = Auth::user()->orders;
+        $orderDetails = Auth::user()->orderDetails;
 
-        return view('customer.order.index', compact('orders'));
+        return view('customer.order.index', compact('orderDetails'));
     }
 }
