@@ -30,14 +30,8 @@ use Luigel\Paymongo\Facades\Paymongo;
 
 
 Route::get('/', 'StorefrontController@front');
+Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
-Route::get('/test2', function () {
-
-    // $cars = array( 'key1' => "Volvo", "BMW", "Toyota");
-    // $cars2 = json_encode($cars);
-    // dd( json_decode($cars2)->key1,  json_encode($cars));
-    dd(uniqid());
-});
 
 Route::get('/test3', function () {
 

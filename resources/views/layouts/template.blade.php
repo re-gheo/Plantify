@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/CSS/plantify_theme.css">
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
+    @yield('styles')
 </head>
 
 <body>
@@ -34,6 +35,10 @@
 
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Messages <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route('store.articles')}}">Articles <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -169,7 +174,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-
+    @yield('scripts')
 
 </body>
 
