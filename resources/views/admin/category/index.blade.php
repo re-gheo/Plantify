@@ -5,10 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mr-auto ml-auto">
-                <div class="pull-right">
+                <button id="sidebarCollapse" type="button"
+                    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
+                        class="text-uppercase font-weight-bold">Toggle</small></button>
 
-                </div>
-
+                <div class="separator"></div>
                 <div class="card-body table-responsive-sm">
 
                     <!--SUCESS MESSAGE-->

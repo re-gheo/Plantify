@@ -370,7 +370,7 @@ class ProductController extends Controller
 
     public function removecartitem($id)
     {
-      
+
 
         $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
         if ($item->user_id ==  Auth::user()->id) {
