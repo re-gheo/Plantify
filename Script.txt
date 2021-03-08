@@ -365,15 +365,13 @@ create table inquiries
 
 create table comments
 (
-	comment_id int primary key auto_increment,
+	id int primary key auto_increment,
     comment_userid int,
     foreign key(comment_userid) references users(id),
-    product_id int,
-    foreign key(product_id) references products(product_id),
     inquiryAnswer boolean null,
-     inquiry_id int null,
+    inquiry_id int null,
     foreign key(inquiry_id) references inquiries(id),
-    user_comment varchar(5000),
+    comment varchar(5000),
     isDeleted boolean null,
     created_at timestamp null,
     updated_at timestamp null

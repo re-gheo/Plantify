@@ -32,6 +32,15 @@ use Luigel\Paymongo\Facades\Paymongo;
 Route::get('/', 'StorefrontController@front');
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
+//RETAILER Comment/Reply
+Route::post('/comment/{id}', 'CommentController@store')->name('retailer.reply.store');
+Route::put('/comment/{id}/update', 'CommentController@update')->name('retailer.reply.update');
+
+//Customer Reply
+Route::post('/product/inquire/{id}', 'InquiryController@store')->name('customer.inquiry.store');
+Route::put('/product/inquire/mark/{id}', 'InquiryController@markAsBest')->name('customer.inquiry.best');
+Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
+
 
 Route::get('/test3', function () {
 
@@ -217,9 +226,7 @@ Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
 Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
-//RETAILER Reply
-Route::post('/product/inquire/{id}', 'InquiryController@store')->name('customer.inquiry.store');
-Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
+
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
@@ -254,11 +261,6 @@ Route::get('/store/products/{id}/edit', 'ProductController@edit');
 Route::put('/store/products/{id}/edit', 'ProductController@update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove');
-
-//RETAILER Reply
-Route::post('/store/reply/{id}', 'InquiryReplyController@store')->name('retailer.reply.store');
-Route::put('/store/reply/{id}/update', 'InquiryReplyController@update')->name('retailer.reply.update');
-
 
 // Articles
 Route::resource('/articles', 'ArticleController');

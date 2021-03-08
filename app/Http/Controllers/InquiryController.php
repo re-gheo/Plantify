@@ -47,5 +47,6 @@ class InquiryController extends Controller
        return redirect()->back();
     }
 
+    
 
 }

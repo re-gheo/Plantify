@@ -12,7 +12,7 @@ class Inquiry extends Model
 
     protected $guarded=[];
 
-    public function reply(){
-        return $this->hasOne(InquiryReply::class);
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }
