@@ -57,7 +57,7 @@ class CommentController extends Controller
         //fix for update
         $comment = Comment::findOrFail($id);
         $comment->update([
-            'comment' => $request->inquiry,
+            'inquiryAnswer' => true,
         ]);
 
         //fix for message based on frontend
