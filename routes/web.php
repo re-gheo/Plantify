@@ -25,10 +25,6 @@ use Luigel\Paymongo\Facades\Paymongo;
 */
 
 
-
-
-
-
 Route::get('/', 'StorefrontController@front');
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
@@ -113,7 +109,7 @@ Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallb
 Route::get('/login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('/login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 //basic login
-Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('admin');
+Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('admin', 'banned');
 Route::get('/customer/home', 'CustomerController@index')->name('customer.home')->middleware('customer');
 Route::get('/retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');
 Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
@@ -169,6 +165,9 @@ Route::get('/admin/commissions/create', 'CommissionsController@create');
 Route::post('/admin/commissions/store', 'CommissionsController@store');
 Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
 Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
+
+Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
+Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
 
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗

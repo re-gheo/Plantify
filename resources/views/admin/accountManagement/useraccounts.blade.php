@@ -38,20 +38,32 @@
                         <!--TABLE-->
 
                         @foreach ($users as $user)
-
-
-
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <form action="#" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger align-center" type="submit">delete </button>
+                                    <div class="row justify-items-center">
+                                        @if (Auth::id() != $user->id)
+                                            @if($user->user_stateid != 2 || $user->user_stateid == null)
+                                            <form action="{{route('admin.user.ban', ['id' => $user->id])}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-warning" type="submit">Ban </button>
+                                            </form>
+                                            @else
+                                            <form action="{{route('admin.user.unban', ['id' => $user->id])}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-success " type="submit">Unban </button>
+                                            </form>
+                                            @endif
+                                            {{-- <form action="#" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-danger " type="submit">Lock </button>
+                                            </form> --}}
+                                        @endif
+                                    </div>
 
-                                    </form>
                                 </td>
                             </tr>
 
