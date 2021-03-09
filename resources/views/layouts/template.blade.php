@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/CSS/plantify_theme.css">
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
+    @yield('styles')
 </head>
 
 <body>
@@ -34,6 +35,10 @@
 
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Messages <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route('store.articles')}}">Articles <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -72,9 +77,8 @@
                 <li class="nav-item dropdown">
 
                     @if (!Auth::user())
+
                     @else
-
-
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
@@ -82,9 +86,10 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
+                            <a class="dropdown-item" href="{{route('client.order')}}">My Orders & Transactions</a>
+
                             {{-- With pages made --}}
                             <a class="dropdown-item" href="/settings/profile">Account Settings</a>
-
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="/admin/home">Admin Controls</a>
@@ -118,7 +123,7 @@
         </ul>
 
         {{-- @if ($user->status == 'waiting')
-    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} " 
+    <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}} "
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
         <div class="nav-search pl-2 pull-right">
@@ -135,6 +140,10 @@
     </nav>
 
 
+
+
+
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -146,7 +155,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    
+
     @error('err')
         <div class="alert alert-danger ">
             <p>{{ $message }}</p>
@@ -169,7 +178,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
-
+    @yield('scripts')
 
 </body>
 
@@ -177,7 +186,7 @@
 
 
 {{-- <div class="input-group mr-auto ">
-  <form action="" method="GET" role="search"> 
+  <form action="" method="GET" role="search">
   <input id="search" type="text" class="form-input" placeholder="Search here" aria-label="search-bar" aria-describedby="basic-addon2">
   <div class="input-group-append">
     <a href="" class=" mt-1"></a>

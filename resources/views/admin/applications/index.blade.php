@@ -7,7 +7,10 @@
 
 
             <div class="container">
-                <h3 class="text-center col-md-4">Applications</h3>
+                <button id="sidebarCollapse" type="button"
+                    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
+                        class="text-uppercase font-weight-bold">Toggle</small></button>
+                <h3 class="text-center col-md-4 ">Applications</h3>
             </div>
             <div class="div class= card-body table-responsive-sm">
                 @if ($message = Session::get('success'))
@@ -15,7 +18,7 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover  table-responsive-lg ml-5">
                     <thead class="thead-dark">
                         <tr>
                             <th>Applications ID</th>

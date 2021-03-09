@@ -15,33 +15,108 @@
 </head>
 
 <body>
+    <!-- Vertical navbar -->
+    <div class="vertical-nav bg-white " id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-dark">
+            <div class="media d-flex align-items-center">
+                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                    style="border: 1px solid #cccccc; border-radius: 5px; width: 40; height: 80; float: left; margin-right: 7px;">
+                <div class="media-body">
+                    <a href="/settings/profile">
+                        <h4 class="m-0 text-white">{{ Auth::user()->name }}</h4>
+                    </a>
+
+                    <p class="font-weight-normal text-muted mb-0"> {{ Auth::user()->user_role }}</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-dark font-weight-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="/admin/home" class="nav-link text-dark bg-light">
+                    <i class="fas fa-leaf mr-3 text-primary fa-fw"></i>
+                    home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/account-management" class="nav-link text-dark">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    manage accounts
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{route('admin.list')}}" class="nav-link text-dark">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    admin accounts
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href="/admin/categories" class="nav-link text-dark">
+                    <i class="far fa-list-alt mr-3 text-primary fa-fw"></i>
+                    categories
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/articles" class="nav-link text-dark">
+                    <i class="fas fa-newspaper mr-3 text-primary fa-fw"></i>
+                    Articles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/customer_application" class="nav-link text-dark">
+                    <i class="fas fa-key mr-3 text-primary fa-fw"></i>
+                    Customer Applications
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/" class="nav-link text-dark">
+                    <i class="fas fa-store  mr-3 text-primary fa-fw"></i>
+                    Storefront
+                </a>
+            </li>
+        </ul>
+
+        <!--CHART DIAGRAMS STUFF !!NO DATA VIZSUALIZATION IN PLANTIFY !!-->
+        {{-- <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark">
+                    <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+                    area charts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark">
+                    <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+                    bar charts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark">
+                    <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+                    pie charts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark">
+                    <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
+                    line charts
+                </a>
+            </li>
+        </ul> --}}
+    </div>
+    <!-- End vertical navbar -->
     <nav id="plantify-navbar" class="navbar bg-dark navbar-expand-lg  ">
 
-        <a class="navbar-brand" href="/admin/home"><i class="fas fa-leaf mr-1"></i>Plantify</a>
-        <!-- Left Side Of Navbar -->
-        {{-- <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"><i id="bars" class="fas fa-bars"></i></span>
-        </button> --}}
-        {{-- <div class="dropdown">
-            <button class="btn dropdown-toggle text-white ml-4" data-toggle="dropdown">
-                Menu
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/admin/plantreference/">Reference List</a></li>
-                <li> <a class="dropdown-item" href="/admin/account-management">User Accounts</a></li>
-                <li> <a class="dropdown-item" href="/admin/categories">Categories</a></li>
-                <li> <a class="dropdown-item" href="/admin/keyword">Keywords List</a></li>
-                <li><a class="dropdown-item" href="/admin/customer_application/">Pending Applications</a></li>
-                <li><a class="dropdown-item" href="/articles">Articles</a></li>
-                <li><a class="dropdown-item" href="/">Storefront</a></li>
-            </ul>
-        </div> --}}
-
-
+        <a class="navbar-brand " href="#"><i class="fas fa-leaf mr-2 "></i>Plantify</a>
         <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto mr-5">
+        <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
             @guest
                 @if (Route::has('login'))
@@ -69,12 +144,14 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/settings/profile">Account Settings</a>
+                        {{-- <a class="dropdown-item" href="/settings/profile">Account Settings</a> --}}
 
-                        <a class="dropdown-item" href="/">Storefront</a>
+                        @if (Auth::user()->user_role == 'retailer')
+                            <a class="dropdown-item" href="/">Storefront</a>
+                        @endif
 
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                               document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -105,6 +182,8 @@
 
     <script src="/js/main.js">
     </script>
+
+    <script src="main.js"></script>
 </body>
 
 </html>

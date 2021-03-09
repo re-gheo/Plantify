@@ -30,10 +30,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = RouteServiceProvider::HOME;  
+    //protected $redirectTo = RouteServiceProvider::HOME;
     protected $redirectTo;
     public function redirectTo()
     {
+        if(Auth::user()->user_stateid == 2){
+            Auth::logout();
+            abort(403, "Cannot access to restricted page");
+        }
+
         //dd(Auth::user()->user_role);
         switch (Auth::user()->user_role) {
             case 'admin':
@@ -57,7 +62,7 @@ class LoginController extends Controller
         // return $next($request);
     }
 
-    
+
     /**
      * Create a new controller instance.
      *
@@ -66,6 +71,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        // $this->middleware('banned', ['only' => ['redirectTo']]);
     }
 
     // facebook
@@ -77,16 +83,16 @@ class LoginController extends Controller
     public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        
+
         if(User::where('email', '=', $user->email)->exists()){
-            
+
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
             return redirect('/');
         }
         else{
-            
+
             $this->_registerFacebookUser($user);
             return redirect('/setup');
         }
@@ -113,9 +119,9 @@ class LoginController extends Controller
             $this->_registerGoogleUser($user);
             return redirect('/setup');
         }
-        
 
-       
+
+
     }
 
     protected function _registerGoogleUser($data)
@@ -133,7 +139,7 @@ class LoginController extends Controller
             $user->save();
         }
         Auth::login($user);
-        
+
     }
     protected function _registerFacebookUser($data)
     {
@@ -148,6 +154,6 @@ class LoginController extends Controller
             $user->save();
         }
         Auth::login($user);
-       
+
     }
 }

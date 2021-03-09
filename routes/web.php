@@ -25,19 +25,18 @@ use Luigel\Paymongo\Facades\Paymongo;
 */
 
 
-
-
-
-
 Route::get('/', 'StorefrontController@front');
+Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
-Route::get('/test2', function () {
+//RETAILER Comment/Reply
+Route::post('/comment/{id}', 'CommentController@store')->name('retailer.reply.store');
+Route::put('/comment/{id}/update', 'CommentController@update')->name('retailer.reply.update');
 
-    // $cars = array( 'key1' => "Volvo", "BMW", "Toyota");
-    // $cars2 = json_encode($cars);
-    // dd( json_decode($cars2)->key1,  json_encode($cars));
-    dd(uniqid());
-});
+//Customer Reply
+Route::post('/product/inquire/{id}', 'InquiryController@store')->name('customer.inquiry.store');
+Route::put('/product/inquire/mark/{id}', 'InquiryController@markAsBest')->name('customer.inquiry.best');
+Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
+
 
 Route::get('/test3', function () {
 
@@ -49,7 +48,7 @@ Route::get('/test3', function () {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
 
-    
+
     $lengthN = 10;
     $characters = '0123456789';
     $charactersLength = strlen($characters);
@@ -59,7 +58,7 @@ Route::get('/test3', function () {
     }
     dd($randomString. $randomString2);
 
-    //usage 
+    //usage
 
 });
 
@@ -68,7 +67,7 @@ Route::get('/test9', function (Request $request) {
 
     $track = new Trackingmore();
 
- 
+
 $data = $track->getSingleTrackingResult("phlpost","RUI1234567");
 
 
@@ -76,14 +75,14 @@ dd($data["data"]);
 
 });
 
-//                                          ██╗       
+//                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
 // ██╔══██╗██║   ██║╚══██╔══╝██║  ██║       ██╗      ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║
 // ███████║██║   ██║   ██║   ███████║       ██╗      ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║
 // ██╔══██║██║   ██║   ██║   ██╔══██║       ██╗      ██║     ██║   ██║██║   ██║██║██║╚██╗██║
 // ██║  ██║╚██████╔╝   ██║   ██║  ██║       ██╗      ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║
 // ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝       ██╗      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
-//                                          ██╗  
+//                                          ██╗
 
 Auth::routes();
 //basic user additiona creds
@@ -110,7 +109,7 @@ Route::get('/login/facebook/callback', 'Auth\LoginController@handleFacebookCallb
 Route::get('/login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
 Route::get('/login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 //basic login
-Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('admin');
+Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('admin', 'banned');
 Route::get('/customer/home', 'CustomerController@index')->name('customer.home')->middleware('customer');
 Route::get('/retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');
 Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
@@ -132,6 +131,16 @@ Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
+Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
+Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
+
+//ADMIN/crud managment
+Route::get('admin/user/admin/list', 'AdminController@index_list')->name('admin.list')/*->middleware('admin')*/;
+Route::get('admin/user/admin/{id}/edit', 'AdminController@edit_admin')->name('admin.user.admin.edit')/*->middleware('admin')*/;
+Route::post('admin/user/admin/{id}/update', 'AdminController@update')->name('admin.user.admin.update')/*->middleware('admin')*/;
+Route::post('admin/user/admin/store', 'AdminController@store')->name('admin.user.admin.store')/*->middleware('admin')*/;
+Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('admin.user.admin.delete')/*->middleware('admin')*/;
+
 
 //ADMIN/ CATEGORY
 Route::get('/admin/categories', 'CategorieController@index');/*->middleware('admin')*/;
@@ -139,7 +148,7 @@ Route::post('/admin/categories/create', 'CategorieController@store');
 Route::put('/admin/categories/update/{id}', 'CategorieController@update');
 Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy');
 
-//ADMIN/ KEYWORD 
+//ADMIN/ KEYWORD
 Route::get('/admin/keyword', 'KeywordController@index');/*->middleware('admin')*/;
 Route::post('/admin/keyword/create', 'KeywordController@store');
 Route::put('/admin/keyword/update/{id}', 'KeywordController@update');
@@ -167,20 +176,12 @@ Route::post('/admin/commissions/store', 'CommissionsController@store');
 Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
 Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
 
-
-// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗ 
+// ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
 // ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
 // ╚██████╗╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗██║  ██║
 //  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
-
-
-
-
-
-
-
 
 //Customer / PRODUCTS
 Route::get('/store/item/{id}', 'ProductController@showCustomer');
@@ -204,7 +205,7 @@ Route::get('/settings/application/form', 'RetailerApplicationController@form');
 Route::post('/settings/application/form', 'RetailerApplicationController@send');
 
 
-//CUSTOMER/ SETTINGS / PROFILE 
+//CUSTOMER/ SETTINGS / PROFILE
 Route::get('/settings/profile', 'UserController@profile');
 
 //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
@@ -222,9 +223,11 @@ Route::post('/store/profile/addpayment/register',  'CardController@addcard');
 Route::get('/store/profile/paymentmethods',  'CardController@mycards');
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
 
+Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
 
 
-// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗ 
+
+// ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
 // ██████╔╝█████╗     ██║   ███████║██║██║     █████╗  ██████╔╝
 // ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║     ██╔══╝  ██╔══██╗
@@ -251,12 +254,11 @@ Route::put('/store/customize', 'StoreController@update');
 Route::get('/store/products', 'ProductController@list');
 Route::get('/store/products/create/{type}', 'ProductController@create');
 Route::post('/store/products/store', 'ProductController@store');
-Route::get('/store/products/{id}', 'ProductController@show');
+Route::get('/store/products/{id}', 'ProductController@show')->name('product_show');
 Route::get('/store/products/{id}/edit', 'ProductController@edit');
 Route::put('/store/products/{id}/edit', 'ProductController@update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove');
-
 
 // Articles
 Route::resource('/articles', 'ArticleController');

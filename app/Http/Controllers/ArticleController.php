@@ -72,7 +72,7 @@ class ArticleController extends Controller
     {
       // $articles = Article::latest()->paginate(5);
       // dd($articles);
-        $article = Article::findOrFail($id); 
+        $article = Article::findOrFail($id);
         // dd($article);
 
         return view('articles.edit',['article' => $article]);
@@ -110,5 +110,12 @@ class ArticleController extends Controller
       Article::find($id)->delete();
 
       return redirect('/articles')->with('success', 'Article has been deleted');
+    }
+
+    public function store_show()
+    {
+      $articles = Article::where('isDeleted',null)->get();
+
+    return view('articles.store_index', compact('articles'));
     }
 }

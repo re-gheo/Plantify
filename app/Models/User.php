@@ -20,10 +20,11 @@ class User extends Authenticatable
         'name',
         'first_name',
         'last_name',
-        'name',
+        'user_stateid',
         'email',
         'password',
         'user_role',
+        'password',
     ];
 
     /**
@@ -44,4 +45,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function orderDetails(){
+        return $this->hasMany(Order_detail::class);
+    }
 }

@@ -10,4 +10,7 @@ class Order_detail extends Model
     use HasFactory;
     protected $primaryKey ='orderdetails_id';
 
+    public function order(){
+        return $this->hasOne(Order::class);
+    }
 }

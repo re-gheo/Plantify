@@ -22,9 +22,6 @@ use Luigel\Paymongo\Exceptions\BadRequestException;
 
 class OrderController extends Controller
 {
-
-
-
     public function addtocheckout(Request $request)
     {
 
@@ -66,15 +63,12 @@ class OrderController extends Controller
         }
     }
 
-
-
-
     public function placeorder(Request $request)
     {
         // $tmore = new Trackingmore();
         // $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   "KUEB4730128991");
 
-        // dd(  $gdata["data"]["id"] );  
+        // dd(  $gdata["data"]["id"] );
         $ses = request()->session()->get('selected_item');
 
         $sel = json_decode($ses);
@@ -89,11 +83,11 @@ class OrderController extends Controller
             $mgsum = number_format($gsum, 2, '.', '');
             $cost = ['subtotal' =>  $msum, 'grandtotal' => $mgsum];
         }
-//         foreach ($items as $i) {
-//         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
-//                 dump($ucustomer->customer_id);
-//         }
-// dd("");
+            //         foreach ($items as $i) {
+            //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
+            //                 dump($ucustomer->customer_id);
+            //         }
+            // dd("");
         // dd(json_decode($request->paytype)[0], $cost ,  $ses,  $sel);
 
         if (json_decode($request->paytype)[0] == 1) {
@@ -157,7 +151,7 @@ class OrderController extends Controller
             $order->order_statusid = 2;
             $order->save();
 
-$detemp = $this->genID();
+            $detemp = $this->genID();
 
             $details =  new Order_detail();
             $details->orderdetails_id = $detemp;
@@ -169,21 +163,21 @@ $detemp = $this->genID();
             $details->user_id = Auth::user()->id;
             $details->save();
 
-           
+
 
             foreach ($items as $i) {
-                // dd("hello1");   
+                // dd("hello1");
                 if (!Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->exists()) {
                     $customer =  new Customer();
                     $customer->user_id = Auth::user()->id;
                     $customer->retailer_id = $i->retailer_id;
                     $customer->save();
-                } 
+                }
 
                 $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
-              
-               
-                // dd("hello1");      
+
+
+                // dd("hello1");
                 $items = Cart_item::find($i->cart_itemid);
                 $items->checked = 1;
                 $items->save();
@@ -208,14 +202,14 @@ $detemp = $this->genID();
 
                 $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
                 $tempdID = $gdata["data"]["id"];
-                
+
                 // dd($data ,  $gdata,  $detemp);
                 $bystore =  new Order_bystoreitem();
                 $bystore->product_id = $i->product_id;
                 $bystore->retailer_id = $i->retailer_id;
                 $bystore->order_customerid = $ucustomer->customer_id;
                 $bystore->order_id  = $order->order_id;
-                
+
                 $bystore->order_quantity = $i->cart_quantity;
                 $bystore->order_unitcost = $i->cart_itemcost;
                 $bystore->order_subtotal = $i->cart_subtotal;
@@ -223,7 +217,7 @@ $detemp = $this->genID();
 
 
 
-               
+
             }
             $request->session()->forget('selected_item');
             return redirect('/')->with('success', 'Successfully created an order');
@@ -237,23 +231,10 @@ $detemp = $this->genID();
                     'failed' => 'http://localhost:8000/failed',
                 ],
             ]);
-        
+
              return redirect($source->redirect['checkout_url']);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     protected function genID()
     {
@@ -274,5 +255,17 @@ $detemp = $this->genID();
             $randomString2 .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString . $randomString2;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+    */
+    public function index(){
+        $orderDetails = Auth::user()->orderDetails;
+
+        return view('customer.order.index', compact('orderDetails'));
     }
 }
