@@ -139,12 +139,12 @@ New Features
 1. Payment Method (CD)
 2. Encryption and Censorship (For payment)
 3. Checkout (Credit cards)
-4. 
 
 To Fix:
 1. Retailer Registration instantly Denied
 2. Remember Me Cookies	
 3. Quantity Edit for Shopping Cart
+4. Prices change to float
 
 Fixed Issues
 1. Shopping Cart Fully Functional
