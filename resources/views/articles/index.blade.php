@@ -34,18 +34,18 @@
                             <td>{{ $article->article_id }}</td>
                             <td>{{ $article->article_topic }}</td>
                             <div>
-                                <td class="float-right">
+                                <td class="d-flex">
                                     <form action="{{ route('articles.destroy', $article->article_id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger m-2">Delete</button>
 
 
                                     </form>
-                                    <a class="btn btn-info"
+                                    <a class="btn btn-info m-2"
                                         href="{{ route('articles.show', $article->article_id) }}">Show</a>
 
-                                    <a class="btn btn-warning"
+                                    <a class="btn btn-secondary m-2"
                                         href="{{ route('articles.edit', $article->article_id) }}">Edit</a>
                                 </td>
                             </div>

@@ -42,13 +42,13 @@
             </li>
             <li class="nav-item">
                 <a href="/admin/account-management" class="nav-link text-dark">
-                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    <i class="fas fa-user-alt mr-3 text-primary fa-fw"></i>
                     manage accounts
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{route('admin.list')}}" class="nav-link text-dark">
+                <a href="{{ route('admin.list') }}" class="nav-link text-dark">
                     <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                     admin accounts
                 </a>

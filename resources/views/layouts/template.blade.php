@@ -38,7 +38,8 @@
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('store.articles')}}">Articles <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('store.articles') }}">Articles <span
+                            class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -86,7 +87,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item" href="{{route('client.order')}}">My Orders & Transactions</a>
+                            <a class="dropdown-item" href="{{ route('client.order') }}">My Orders & Transactions</a>
 
                             {{-- With pages made --}}
                             <a class="dropdown-item" href="/settings/profile">Account Settings</a>
