@@ -1,7 +1,7 @@
 @extends ('layouts/admin-template')
 
 @section('content')
-
+<div class="page-content">
     <div class="row">
         <div class="col-lg-10 mr-auto ml-auto">
 
@@ -74,6 +74,5 @@
             </div>
         </div>
     </div>
-
-
+</div>
 @endsection

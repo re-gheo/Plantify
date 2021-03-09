@@ -46,6 +46,15 @@
                     manage accounts
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{route('admin.list')}}" class="nav-link text-dark">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    admin accounts
+                </a>
+            </li>
+
+
             <li class="nav-item">
                 <a href="/admin/categories" class="nav-link text-dark">
                     <i class="far fa-list-alt mr-3 text-primary fa-fw"></i>

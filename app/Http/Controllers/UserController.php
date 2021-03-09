@@ -13,13 +13,14 @@ use App\Models\Retailer_application;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class UserController extends Controller
-{  
-    
+{
+
     public function index()
     {
-        $user = User::latest()->get();   
-        return view('admin.accountManagement.useraccounts',['users' => $user]);  
+        $user = User::latest()->get();
+        return view('admin.accountManagement.user.index',['users' => $user]);
     }
 
     /**
@@ -51,7 +52,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -89,49 +90,49 @@ class UserController extends Controller
     }
 
     protected function setup(){
-       
-        return view('auth.setup');  
+
+        return view('auth.setup');
     }
     public function setups($email)
     {
-          
+
         request()->session()->put('emailtemp', $email);
         request()->validate([
             'govtid_number' => 'required',
             'address' => 'required',
             'birthday' => 'required'
         ]);
-            
+
        // $data = DB::table('users')->where('email', '=',$email)->get();
         $data = User::where('email',$email )->first();
-       
+
         $data->govtid_number = request('govtid_number');
         $data->region = "National Capital Region (NCR)";
         $data->address = request('address');
-        $data->birthday = request('birthday');    
+        $data->birthday = request('birthday');
 
-        
-        $data->save();   
-       
+
+        $data->save();
+
 
         return redirect ('/verify');
     }
 
     protected function verify(){
-       
-        return view('auth.cpverify');  
+
+        return view('auth.cpverify');
     }
 
     public function getcode()
     {
       // dd(request('cp_number'));
         request()->validate([
-            'cp_number' => 'required',    
+            'cp_number' => 'required',
         ]);
 
     $nexmo = app('Nexmo\Client');
     try{
-        $verification = $nexmo->verify()->start([ 
+        $verification = $nexmo->verify()->start([
             'number' => request('cp_number'),
             'brand'  => 'Plantify',
              'code_length'  => '6'
@@ -144,22 +145,22 @@ class UserController extends Controller
     {
         return redirect('/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
     }
-   
+
         return redirect ('/verify/check');
-        
+
     }
 
     protected function entercode()
     {
-        return view('auth.cpcheck');  
+        return view('auth.cpcheck');
     }
 
 
     public function checkcode()
     {
-        
+
         request()->validate([
-            'code' => 'required',    
+            'code' => 'required',
         ]);
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
@@ -168,27 +169,27 @@ class UserController extends Controller
             $result = $nexmo->verify()->check($verification, request('code'));
             }
          catch (Exception $e)//sadasdasdadsasa
-         
+
             {
             return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
             }
-       
+
         $email = Auth::user()->email;
         $data = User::where('email',$email )->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
-        $data->save();  
+        $data->save();
 
         return redirect ('/')->with('success', 'successfully verified the cell phone number');
-    } 
-    
+    }
+
     public function cancelcode()
     {
-        
-      
+
+
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
-      
+
         try {
             $result = $nexmo->verify()->cancel($request_id);
         }
@@ -201,58 +202,58 @@ class UserController extends Controller
 
     public function profile()
     {
-        
+
             $profile = User::where('email',Auth::user()->email)->first();
            $app = Retailer_application::latest()->where('user_id', Auth::user()->id)->first();
-            
-            return view('customer.settings.profile.profile',['profile' => $profile,'app' => $app]); 
+
+            return view('customer.settings.profile.profile',['profile' => $profile,'app' => $app]);
     }
 
     public function editprofile()
     {
             $profile = User::where('email',Auth::user()->email)->first();
-    
-            return view('customer.settings.profile.edit',['profile' => $profile]); 
+
+            return view('customer.settings.profile.edit',['profile' => $profile]);
     }
 
     public function updateprofile()
     {
 
             $data = User::where('email',Auth::user()->email)->first();
-           
+
             $data->first_name = request('first_name');
             $data->last_name = request('last_name');
             $data->name = request('first_name'). ' ' . request('last_name');;
             $data->govtid_number = request('govtid_number');
             $data->region = "National Capital Region (NCR)";
             $data->address = request('address');
-            $data->birthday = request('birthday');    
+            $data->birthday = request('birthday');
 
-           
+
             $data->save();
 
-    
-            return redirect('/settings/profile')->with('success', 'successfully updated profile'); 
+
+            return redirect('/settings/profile')->with('success', 'successfully updated profile');
     }
 
 // OTP VERSION FOR PROFILE -------------------------------------------------------------------
 
 
     protected function pverify(){
-       
-        return view('customer.settings.profile.cpverify');  
+
+        return view('customer.settings.profile.cpverify');
     }
 
     public function pgetcode(){
-    
-     
+
+
         request()->validate([
-            'cp_number' => 'required'   
+            'cp_number' => 'required'
         ]);
 
     $nexmo = app('Nexmo\Client');
     try{
-        $verification = $nexmo->verify()->start([ 
+        $verification = $nexmo->verify()->start([
             'number' => request('cp_number'),
             'brand'  => 'Plantify',
              'code_length'  => '6'
@@ -265,22 +266,22 @@ class UserController extends Controller
     {
         return redirect('/settings/profile/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
     }
-   
+
         return redirect ('/settings/profile/verify/check');
-        
+
     }
 
     protected function pentercode()
     {
-        return view('customer.settings.profile.cpcheck');  
+        return view('customer.settings.profile.cpcheck');
     }
 
 
     public function pcheckcode()
     {
-        
+
         request()->validate([
-            'code' => 'required',    
+            'code' => 'required',
         ]);
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
@@ -289,27 +290,27 @@ class UserController extends Controller
             $result = $nexmo->verify()->check($verification, request('code'));
             }
          catch (Exception $e)//sadasdasdadsasa
-         
+
             {
             return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
             }
-       
+
         $email = Auth::user()->email;
         $data = User::where('email',$email )->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
-        $data->save();  
+        $data->save();
 
         return redirect ('/settings/profile')->with('success', 'successfully verified the cell phone number');
-    } 
-    
+    }
+
     public function pcancelcode()
     {
-        
-      
+
+
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
-      
+
         try {
             $result = $nexmo->verify()->cancel($request_id);
         }
@@ -320,7 +321,7 @@ class UserController extends Controller
         return redirect ('/settings/profile/verify');
     }
 
-    
+
 
 
 }

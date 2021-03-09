@@ -131,6 +131,16 @@ Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
+Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
+Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
+
+//ADMIN/crud managment
+Route::get('admin/user/admin/list', 'AdminController@index_list')->name('admin.list')/*->middleware('admin')*/;
+Route::get('admin/user/admin/{id}/edit', 'AdminController@edit_admin')->name('admin.user.admin.edit')/*->middleware('admin')*/;
+Route::post('admin/user/admin/{id}/update', 'AdminController@update')->name('admin.user.admin.update')/*->middleware('admin')*/;
+Route::post('admin/user/admin/store', 'AdminController@store')->name('admin.user.admin.store')/*->middleware('admin')*/;
+Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('admin.user.admin.delete')/*->middleware('admin')*/;
+
 
 //ADMIN/ CATEGORY
 Route::get('/admin/categories', 'CategorieController@index');/*->middleware('admin')*/;
@@ -166,23 +176,12 @@ Route::post('/admin/commissions/store', 'CommissionsController@store');
 Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
 Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
 
-Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
-Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
-
-
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
 // ██║     ██║   ██║╚════██║   ██║   ██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
 // ╚██████╗╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚═╝ ██║███████╗██║  ██║
 //  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
-
-
-
-
-
-
-
 
 //Customer / PRODUCTS
 Route::get('/store/item/{id}', 'ProductController@showCustomer');
