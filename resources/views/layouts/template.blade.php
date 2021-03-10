@@ -65,12 +65,6 @@
 
 
                 <div class="d-flex flex-row-reverse">
-                    @if (isset(Auth::user()->avatar))
-                        <img class="avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
-                            onerror="
-                    this.onerror=null;this.src='/css/default-image.svg' ;">
-                    @endif
-
 
                 </div>
                 @if (!Auth::user())
@@ -84,6 +78,13 @@
                     @if (!Auth::user())
 
                     @else
+
+                        <img class="avatar-customer ml-2" src="{{ Auth::user()->avatar }}"
+                            alt="{{ Auth::user()->name }} " onerror="
+                                this.onerror=null;this.src='/css/default-image.svg' ;">
+
+
+
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Profile
@@ -169,7 +170,6 @@
 
 
 
-
     @yield('content')
 
     <!--Bootstrap JS,Cloudflare,Jquery-->
@@ -184,6 +184,69 @@
     </script>
 
     @yield('scripts')
+
+    <br>
+    <br>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">Plantify is an e-commerce platform that will introduce the Philippine
+                        industry to serve and support the vast arrays of horticulture products that meet the sellers and
+                        the consumers into one channel, a centralized market to buy and sell botany products.
+                    </p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Categories</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                        <a href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
 
 </body>
 

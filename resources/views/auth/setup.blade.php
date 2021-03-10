@@ -3,7 +3,16 @@
 @section('content')
 
     <div class="container">
+
+        <div class="container">
+            <ol class="breadcrumb">
+
+            </ol>
+        </div>
+
+
         <div class="row px-2 pt-5">
+
             <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                 <div class="card-body mx-auto  ">
                     <h3 class="card-title text-center pb-3">Fill in some credentials</h3>

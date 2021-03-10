@@ -17,14 +17,11 @@
                 <a href="/store/profile/addpayment"> add a card</a>
                 @forelse ($mycards as $c)
 
-                <script type="text/javascript">
+                    <script type="text/javascript">
+                        var card_number = "{{ Crypt::decryptString($c->card_number) }}";
 
-                    var card_number = "{{ Crypt::decryptString($c->card_number) }}";
-                        
-                        function detectCardType(number) 
-                        {
-                            var re = 
-                            {
+                        function detectCardType(number) {
+                            var re = {
                                 electron: /^(4026|417500|4405|4508|4844|4913|4917)\d+$/,
                                 maestro: /^(5018|5020|5038|5612|5893|6304|6759|6761|6762|6763|0604|6390)\d+$/,
                                 dankort: /^(5019)\d+$/,
@@ -37,18 +34,17 @@
                                 discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
                                 jcb: /^(?:2131|1800|35\d{3})\d{11}$/
                             }
-                
-                            for(var key in re) 
-                            {
-                                if(re[key].test(number)) 
-                                {
+
+                            for (var key in re) {
+                                if (re[key].test(number)) {
                                     return key
                                 }
                             }
-                        
+
                         }
-                        
-                        document.getElementById("detect").innerHTML = detectCardType(card_number); 
+
+                        document.getElementById("detect").innerHTML = detectCardType(card_number);
+
                     </script>
 
                     <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
@@ -57,7 +53,7 @@
 
                             {{-- (lanz i need you to detect the card type via java script) --}}
                             {{-- (done ish - Lanz) --}}
-                            
+
                         </div>
 
                         <div>
@@ -70,10 +66,21 @@
                                 <button type="submit"> Remove card</button>
                             </div>
                         </form>
-                       
+
                     </div>
                 @empty
-                    <h3>You have no Payment Register in our site</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7 col-xl-5 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
+                                <div class="card-body mx-auto">
+                                    <h3>You have no payment methods registered in our site</h3>
+                                    <a href="/store/profile/addpayment"> add a card</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 @endforelse
 
             </div>
