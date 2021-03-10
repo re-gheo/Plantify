@@ -19,8 +19,8 @@
     <div class="vertical-nav bg-white " id="sidebar">
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media d-flex align-items-center">
-                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                    style="border: 1px solid #cccccc; border-radius: 5px; width: 40; height: 80; float: left; margin-right: 7px;">
+                <img class="admin-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
+                    this.onerror=null;this.src='/css/default-image.svg' ;">
                 <div class="media-body">
                     <a href="/settings/profile">
                         <h4 class="m-0 text-white">{{ Auth::user()->name }}</h4>
@@ -71,6 +71,12 @@
                 <a href="/admin/customer_application" class="nav-link text-dark">
                     <i class="fas fa-key mr-3 text-primary fa-fw"></i>
                     Customer Applications
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/plantreference/" class="nav-link text-dark">
+                    <i class="fas fa-seedling mr-3 text-primary fa-fw"></i>
+                    References
                 </a>
             </li>
             <li class="nav-item">
@@ -131,15 +137,15 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    @if (isset(Auth::user()->avatar))
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                            style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
-                    @endif
+                <li class="nav-item dropdown mr-3">
+
+                    <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
+                                                    this.onerror=null;this.src='/css/default-image.svg' ;">
 
 
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" v-pre>
+
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle mr-5" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 

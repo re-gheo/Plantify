@@ -8,13 +8,20 @@
             <div class=" card-row col-md-10 border">
                 {{-- <h1><b>my Profile information</b> </h1> --}}
                 <div class=" row z-depth-3">
-                    <div class="left-div col-sm-4  rounded-left">
+                    <div class="left-div col-sm-4  rounded-left rounded-right ">
                         <div class="card-block text-center text-white">
-                            @if (isset(Auth::user()->avatar))
-                                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                                    style="border-radius: 5px; width: 8rem; height: auto; padding-top:2rem;">
-                            @endif
-                            <h2 class="font-weight-bold mt-4 "> {{ $profile->name }} </h2>
+
+                            <div class="div">
+                                <img class="avatar text-center" src="{{ Auth::user()->avatar }}"
+                                    alt="{{ Auth::user()->name }} "
+                                    onerror="this.onerror=null;this.src='/css/default-image.svg' ;">
+                            </div>
+
+
+                            <div class="text-center">
+                                <h2 class="font-weight-bold mt-4 "> {{ $profile->name }} </h2>
+                            </div>
+
                             <p>{{ $profile->user_role }}</p><a href="/settings/profile/edit"><i
                                     class="far fa-edit fa-2x mb-4 mt-4 text-white"></i> <span class="text-white">Update
                                     Profile</span>
@@ -97,7 +104,7 @@
                         <div class="card-body">
                             @if (!$profile->cp_number || !$profile->govtid_number || !$profile->birthday || !$profile->address)
 
-                                <p><b>To Register as a Retailer in our site please complete my credentials and verify my
+                                <p><b>To Register as a Retailer in our site please complete my credentials and verify your
                                         Cellphone
                                         number</b></p>
                             @else

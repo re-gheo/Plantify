@@ -22,6 +22,7 @@
 
     <!--Navbar-->
 
+
     <nav id="plantify-navbar" class="navbar navbar-expand-lg  ">
         <a class="navbar-brand " href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
         <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
@@ -42,29 +43,32 @@
                             class="sr-only">(current)</span></a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>
-                </li>
+                </li> --}}
 
 
+                <div class="div">
+                    <li class="nav-item">
+                        <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse ">
+                            <ul class="navbar-nav">
 
-                <li class="nav-item">
-                    <form class=" form-inline my-2 my-lg-0 d-flex flex-row-reverse ">
-                        <ul class="navbar-nav">
+                                @if (!Auth::user())
+                                    <a id="cta" class="nav-item" href="/login">Login</a>
+                                    <a id="cta" class="nav-item" href="/register">Register Account</a>
+                                @endif
 
-                            @if (!Auth::user())
-                                <a id="cta" class="nav-item" href="/login">Login</a>
-                                <a id="cta" class="nav-item" href="/register">Register Account</a>
-                            @endif
+                            </ul>
+                        </form>
+                    </li>
+                </div>
 
-                        </ul>
-                    </form>
-                </li>
 
                 <div class="d-flex flex-row-reverse">
                     @if (isset(Auth::user()->avatar))
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                            style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
+                        <img class="avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
+                            onerror="
+                    this.onerror=null;this.src='/css/default-image.svg' ;">
                     @endif
 
 
