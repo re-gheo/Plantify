@@ -52,7 +52,7 @@
                             <h4><strong>card type: </strong><b id="detect"></b></h4>
 
                             {{-- (lanz i need you to detect the card type via java script) --}}
-                            {{-- (done ish - Lanz) --}}
+                            {{-- (only works on the first one, if you remove anything else it breaks - Lanz) --}}
 
                         </div>
 
