@@ -6,6 +6,7 @@ MAIN CRAP
 
 * {
     font-family: Poppins, sans-serif;
+    /* overflow: hidden; */
 }
 
 body {
@@ -535,10 +536,12 @@ FOOTER
 
 .site-footer {
     background-color: #26272b;
-    padding: 45px 0 20px;
+    padding: 40px 0 20px;
     font-size: 15px;
     line-height: 24px;
     color: #737373;
+    overflow: none;
+
 }
 
 .site-footer hr {
@@ -600,7 +603,7 @@ FOOTER
     height: 40px;
     line-height: 40px;
     margin-left: 6px;
-    margin-right: 0;
+    /* margin-right: 0; */
     border-radius: 100%;
     background-color: #33353d
 }
@@ -609,12 +612,13 @@ FOOTER
     margin: 0
 }
 
+/* 
 @media (max-width:991px) {
     .site-footer [class^=col-] {
         margin-bottom: 30px
     }
-}
-
+} */
+/* 
 @media (max-width:767px) {
     .site-footer {
         padding-bottom: 0
@@ -624,7 +628,7 @@ FOOTER
     .site-footer .social-icons {
         text-align: center
     }
-}
+} */
 
 .social-icons {
     padding-left: 0;

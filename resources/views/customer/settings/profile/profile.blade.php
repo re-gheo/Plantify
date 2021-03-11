@@ -111,7 +111,7 @@
 
                                 @if (!$profile->retailer_approvalstateid)
                                     <a href="/settings/application/form"> Regsiter as a Retailer </a>
-                                @elseif($profile->retailer_approvalstateid == 3)
+                                @elseif($profile->retailer_approvalstateid == 2)
                                     <a href="/settings/application/form"> Regsiter as a Retailer</a>
                                     <div>
                                         <b>
@@ -127,7 +127,7 @@
                                             </ol>
                                         @endif
                                     </div>
-                                @elseif($profile->retailer_approvalstateid == 2)
+                                @elseif($profile->retailer_approvalstateid == 1)
                                     <div>
                                         <p>You are registered as retailer</p>
                                     </div>

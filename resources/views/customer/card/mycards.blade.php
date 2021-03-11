@@ -13,8 +13,8 @@
     <div class="row">
         <div class="col-lg-10 mr-auto ml-auto">
             <div class="div class= card-body table-responsive-sm">
-                <h1>My Payment Methods</h1>
-                <a href="/store/profile/addpayment"> add a card</a>
+                <h1 class="text-center">My Payment Methods</h1>
+                {{-- <a href="/store/profile/addpayment"> add a card</a> --}}
                 @forelse ($mycards as $c)
 
                     <script type="text/javascript">
@@ -47,7 +47,7 @@
 
                     </script>
 
-                    <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
+                    <div class="col-lg-6 col-xl-5 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                         <div>
                             <h4><strong>card type: </strong><b id="detect"></b></h4>
 
@@ -57,15 +57,20 @@
                         </div>
 
                         <div>
-                            <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
+
+                            <form action="/store/profile/paymentmethods/{{ $c->card_id }}/delete" method="POST">
+                                @csrf
+                                <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}
+                                    @method('DELETE')
+
+                                    <button class="btn btn-danger float-right mb-4" type=" submit"> Remove card</button>
+
+                                </b>
+
+                            </form>
+
                         </div>
-                        <form action="/store/profile/paymentmethods/{{ $c->card_id }}/delete" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <div>
-                                <button type="submit"> Remove card</button>
-                            </div>
-                        </form>
+
 
                     </div>
                 @empty
@@ -74,7 +79,10 @@
                             <div class="col-lg-7 col-xl-5 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
                                 <div class="card-body mx-auto">
                                     <h3>You have no payment methods registered in our site</h3>
-                                    <a href="/store/profile/addpayment"> add a card</a>
+                                    <button class="btn btn-success btn-block">
+                                        <a class="text-dark" href="/store/profile/addpayment"> Add a card </a>
+                                    </button>
+
                                 </div>
                             </div>
 

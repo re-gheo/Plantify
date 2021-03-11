@@ -6,32 +6,6 @@
         <div class="row">
 
             <div class="col-lg-8 col-xl-6 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3 mr-5">
-
-                <div class="card-body ">
-                    <h3 class="text-center">Add your ID photos here</h3>
-                    <hr>
-                    <div class=" mt-3">
-                        <label for="retailer_officialidfront">An Official ID card picture of the card [Front Scan]</label>
-                        <div>
-                            <input class="btn btn-success  mt-2 " type="file" name="retailer_officialidfront"
-                                id="retailer_officialidfront" required accept="image/x-png ,image/jpeg">
-                        </div>
-                    </div>
-
-                    <div class="mt-5">
-                        <label for="retailer_officialidback">An Official ID card picture of the card [Back Scan]</label>
-                        <div>
-                            <input class="btn btn-success mt-2 " type="file" name="retailer_officialidback"
-                                id="retailer_officialidback" required accept="image/x-png ,image/jpeg">
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-            <div class="col-lg-8 col-xl-6 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3 mr-5">
                 <div class="card-body">
                     <h3 class="text-center">Provide further details here</h3>
                     <hr>
@@ -83,6 +57,23 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class=" mt-2">
+                            <label for="retailer_officialidfront">An Official ID card picture of the card [Front
+                                Scan]</label>
+                            <div>
+                                <input class="btn btn-success  mt-2 " type="file" name="retailer_officialidfront"
+                                    id="retailer_officialidfront" required accept="image/x-png ,image/jpeg">
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <label for="retailer_officialidback">An Official ID card picture of the card [Back Scan]</label>
+                            <div>
+                                <input class="btn btn-success mt-2 " type="file" name="retailer_officialidback"
+                                    id="retailer_officialidback" required accept="image/x-png ,image/jpeg">
                             </div>
                         </div>
 
