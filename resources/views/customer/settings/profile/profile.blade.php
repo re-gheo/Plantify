@@ -12,7 +12,7 @@
                         <div class="card-block text-center text-white">
 
                             <div class="div">
-                                <img class="avatar text-center" src="{{ Auth::user()->avatar }}"
+                                <img class="avatar text-center mt-4" src="{{ Auth::user()->avatar }}"
                                     alt="{{ Auth::user()->name }} "
                                     onerror="this.onerror=null;this.src='/css/default-image.svg' ;">
                             </div>
@@ -22,21 +22,39 @@
                                 <h2 class="font-weight-bold mt-4 "> {{ $profile->name }} </h2>
                             </div>
 
-                            <p>{{ $profile->user_role }}</p><a href="/settings/profile/edit"><i
-                                    class="far fa-edit fa-2x mb-4 mt-4 text-white"></i> <span class="text-white">Update
+                            <p>{{ $profile->user_role }}</p><a href="/settings/profile/edit">
+                                <i class="far fa-edit  mb-4 mt-4 text-white"></i> <span class="text-white">Update
                                     Profile</span>
-                                <p></p>
+
                                 <a href="/settings/profile/verify">
                                     <span class="text-white">
                                         @if (!$profile->cp_number)
-                                            <p class="font-weight-bold">Register my Phone Number Via SMS</p>
+
+                                            <span class="font-weight">Register my Phone
+                                                Number Via SMS</span>
+
                                         @else
-                                            <p>Update My Phone Number</p>
+
+                                            <div class="">
+
+                                                <i class="fas fa-phone"></i> <span>Update My Phone Number</span>
+
+                                            </div>
                                         @endif
+                                        <br>
                                     </span>
 
+
+
+                                </a>
+
+                                <div class="div">
+                                    <i class="fas fa-credit-card text-white"> </i><a class="text-white"
+                                        href="/store/profile/paymentmethods"> My payment methods</a>
+                                </div>
+
                         </div>
-                        </a>
+
                     </div>
                     <div class="col-sm-8 bg-white rounded-right">
                         <h3 class="mt-3 text-center">My Profile</h3>
@@ -147,13 +165,6 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class=" card-row col-md-10 mt-5 pt-5 border">
-                <a href="/store/profile/paymentmethods"> my payment methods</a>
-            </div>
-        </div>
-    </div>
 
 
     <br>

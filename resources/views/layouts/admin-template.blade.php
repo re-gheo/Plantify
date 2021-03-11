@@ -19,7 +19,7 @@
     <div class="vertical-nav bg-white " id="sidebar">
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media d-flex align-items-center">
-                <img class="admin-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
+                <img class="admin-avatar " src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
                     this.onerror=null;this.src='/css/default-image.svg' ;">
                 <div class="media-body">
                     <a href="/settings/profile">
@@ -139,8 +139,9 @@
             @else
                 <li class="nav-item dropdown mr-3">
 
-                    <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
-                                                                this.onerror=null;this.src='/css/default-image.svg' ;">
+                    <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
+                        onerror="
+                                                                        this.onerror=null;this.src='/css/default-image.svg' ;">
 
 
 
