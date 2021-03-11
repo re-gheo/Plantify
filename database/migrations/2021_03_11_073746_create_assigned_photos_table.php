@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInquiryRepliesTable extends Migration
+class CreateAssignedPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateInquiryRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inquiry_replies', function (Blueprint $table) {
-            $table->id();
-            $table->integer('inquiry_id')->unsigned();
-            $table->text('reply')->nullable();
+        Schema::create('assigned_photos', function (Blueprint $table) {
+            $table->integer('assigned_photoid', true);
+            $table->integer('product_id')->nullable()->index('product_id');
+            $table->string('product_photo', 300)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateInquiryRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inquiry_replies');
+        Schema::dropIfExists('assigned_photos');
     }
 }
