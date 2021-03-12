@@ -15,8 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            RetailerApprovalStatesTableSeeder::class,
+            UserStatesTableSeeder::class,
             UserTableSeeder::class,
-
+            KeywordsTableSeeder::class,
+            CardTypesTableSeeder::class,
+            PaymentTypesTableSeeder::class,
+            OrderStatusTableSeeder::class,
         ]);
     }
 }
