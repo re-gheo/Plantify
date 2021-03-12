@@ -79,6 +79,12 @@
                     References
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="/admin/keyword/" class="nav-link text-dark">
+                    <i class="fas fa-building mr-3 text-primary fa-fw"></i>
+                    Keywords
+                </a>
+            </li>
             {{-- <li class="nav-item">
                 <a href="/" class="nav-link text-dark">
                     <i class="fas fa-store  mr-3 text-primary fa-fw"></i>
@@ -141,7 +147,7 @@
 
                     <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
                         onerror="
-                                                                        this.onerror=null;this.src='/css/default-image.svg' ;">
+                                                                                    this.onerror=null;this.src='/css/default-image.svg' ;">
 
 
 
