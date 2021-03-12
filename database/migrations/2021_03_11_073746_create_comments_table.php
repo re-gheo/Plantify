@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->tinyInteger('inquiryAnswer')->nullable();
             $table->integer('inquiry_id')->nullable()->index('inquiry_id');
             $table->string('user_comment', 5000)->nullable();
-            $table->tinyInteger('isDeleted')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
