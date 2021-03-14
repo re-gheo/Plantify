@@ -10,4 +10,10 @@ class Store extends Model
     use HasFactory;
 
      protected $primaryKey ='store_id';
+
+     public function products(){
+        return $this->hasManyThrough(Product::class,Retailer::class,'store_id','retailer_id');
+    }
+
+
 }

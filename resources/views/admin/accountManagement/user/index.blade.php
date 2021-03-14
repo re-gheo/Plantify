@@ -50,13 +50,13 @@
                                                     <form action="{{ route('admin.user.ban', ['id' => $user->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button class="btn btn-danger" type="submit">Ban </button>
+                                                        <button class="btn btn-danger" type="submit">Block </button>
                                                     </form>
                                                 @else
                                                     <form action="{{ route('admin.user.unban', ['id' => $user->id]) }}"
                                                         method="POST">
                                                         @csrf
-                                                        <button class="btn btn-success " type="submit">Unban </button>
+                                                        <button class="btn btn-success " type="submit">Unblock</button>
                                                     </form>
                                                 @endif
                                                 {{-- <form action="#" method="POST">

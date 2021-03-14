@@ -86,6 +86,10 @@ class LoginController extends Controller
 
         if(User::where('email', '=', $user->email)->exists()){
 
+            if(Auth::user()->user_stateid == 2){
+                Auth::logout();
+                abort(403, "Cannot access to restricted page");
+            }
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
@@ -111,6 +115,11 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->stateless()->user();
 
         if(User::where('email', '=', $user->email)->exists()){
+            if(Auth::user()->user_stateid == 2){
+                Auth::logout();
+                abort(403, "Cannot access to restricted page");
+            }
+
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);

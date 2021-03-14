@@ -11,10 +11,6 @@ class StoreController extends Controller
 {
     public function front()
     {
-
-
-
-
         $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
 
         if (!$store->store_name || !$store->store_description) {
@@ -27,6 +23,7 @@ class StoreController extends Controller
     {
         return view('retailer.store.setup');
     }
+
     public function setupstore()
     {
 
@@ -38,9 +35,6 @@ class StoreController extends Controller
 
         return redirect('/store')->with('success', 'Successfully Registered Your Store!');
     }
-
-
-
 
     public function edit()
     {
@@ -55,8 +49,6 @@ class StoreController extends Controller
 
     public function update()
     {
-
-
         request()->validate([
             'store_description' => ['required']
         ]);
@@ -80,12 +72,13 @@ class StoreController extends Controller
         return redirect('/store')->with('success', 'Successfully Updated Your Store!');
     }
 
-
+    public function show($id){
+        return view('retailer.store.showProducts', ['store' => Store::findOrFail($id)]);
+    }
 
     public function setGcash()
     {
     }
-
 
     public function setPayoutCard()
     {

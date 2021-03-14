@@ -249,6 +249,7 @@ Route::get('/store', 'StoreController@front');
 Route::put('/store/setup', 'StoreController@setupstore');
 Route::get('/store/customize', 'StoreController@edit');
 Route::put('/store/customize', 'StoreController@update');
+Route::get('/store/show/{id}', 'StoreController@show')->name('store.show.products');
 
 // RETAILER/ Products
 Route::get('/store/products', 'ProductController@list');

@@ -14,4 +14,9 @@ class Product extends Model
     public function inquiry(){
         return $this->hasMany(Inquiry::class, 'product_id');
     }
+
+    public function retailer(){
+        return $this->belongsTo(Retailer::class, 'retailer_id');
+    }
 }
+

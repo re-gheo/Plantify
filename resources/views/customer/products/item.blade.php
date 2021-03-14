@@ -60,6 +60,11 @@
         <h3><b>Product Name</b></h3><br>
         <h4>{{ $product->product_name }}</h4><br> <br>
 
+        <h3><b>Store</b></h3><br>
+        <h4>
+            <a href="{{route('store.show.products'), ['id' => $product->retailer->store->id]}}">{{$product->retailer->store->store_name }}</a>
+        </h4><br> <br>
+
         <h3><b>Product Description</b></h3><br>
         <p>{{ $product->product_description }}</p><br> <br>
 
