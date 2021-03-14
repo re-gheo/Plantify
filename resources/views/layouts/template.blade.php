@@ -8,7 +8,7 @@
     <title>Plantify | Official</title>
 
     <!--CSS Preamble-->
-    <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
