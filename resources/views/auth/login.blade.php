@@ -8,6 +8,7 @@
                     <div class="col-lg-10 col-xl-10 card flex-row mx-auto px-0 shadow ">
                         <div class="img-left d-none d-md-flex"></div>   
                             <div class="login-card"> 
+                                
                                 <form class="p-3 pl-5 pr-5  " method="POST" action="{{ route('login') }}">
                                     @csrf
 
@@ -74,10 +75,10 @@
                                             <button id="plantify-button" class="btn btn-block btn-success text-uppercase" type="submit" class="">
                                                 {{ __('Login') }}
                                             </button>
-                                            <a class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold" href="{{url('/login/google')}}" class="">   <i class="fab fa-google"></i> Login with Google</a>
+                                            <a class="btn btn-block btn-social btn-google btn-danger text-uppercase font-weight-bold" href="{{ route('login.google') }}" class="">   <i class="fab fa-google"></i> Login with Google</a>
 
 
-                                            <a class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2" href="{{url('/login/facebook')}}" class="">  <i class="fab fa-facebook-square"></i> Login with Facebook</a>
+                                            <a class="btn btn-block btn-social btn-facebook btn-primary text-uppercase font-weight-bold my-2" href="{{ route('login.facebook') }}" class="">  <i class="fab fa-facebook-square"></i> Login with Facebook</a>
                                         </div>
 
                                         <div class="text-center">

@@ -26,8 +26,8 @@ use Luigel\Paymongo\Facades\Paymongo;
 */
 
 Auth::routes();
- URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
- URL::forceScheme('https');
+//  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
+//  URL::forceScheme('https');
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
      Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
      Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
@@ -99,17 +99,15 @@ Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name(
 
 
 //basic user additiona creds
-Route::get('/homes', 'HomeController@index');
-Route::get('/setup', 'UserController@setup');
-Route::put('/setup/{email}', 'UserController@setups');
-Route::get('/verify', 'UserController@verify');
-Route::put('/verify', 'UserController@getcode');
+Route::get('/homes', 'HomeController@index')->name('addc.homes');
+Route::get('/setup', 'UserController@setup')->name('addc.setup');
+Route::put('/setup/{email}', 'UserController@setups')->name('addc.setupput');
 // OTP
-Route::get('/verify', 'UserController@verify');
-Route::put('/verify', 'UserController@getcode');
-Route::get('/verify/check', 'UserController@entercode');
-Route::put('/verify/check', 'UserController@checkcode');
-Route::post('/verify/cancel', 'UserController@cancelcode');
+Route::get('/verify', 'UserController@verify')->name('OTP.verify');
+Route::put('/verify', 'UserController@getcode')->name('OTP.verifyput');
+Route::get('/verify/check', 'UserController@entercode')->name('OTP.verifycheck');
+Route::put('/verify/check', 'UserController@checkcode')->name('OTP.verifycheckput');
+Route::post('/verify/cancel', 'UserController@cancelcode')->name('OTP.verifycancel');
 
 
 
@@ -125,7 +123,7 @@ Route::get('/login/google/callback', 'Auth\LoginController@handleGoogleCallback'
 Route::get('/admin/home', 'AdminController@index')->name('admin.home')->middleware('admin', 'banned');
 Route::get('/customer/home', 'CustomerController@index')->name('customer.home')->middleware('customer');
 Route::get('/retailer/home', 'RetailerController@index')->name('retailer.home')->middleware('retailer');
-Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
+Route::get('/restricted', 'HomeController@restricted')->name('restricted')->middleware(['role']);
 
 
 
@@ -143,7 +141,7 @@ Route::get('/restricted', 'HomeController@restricted')->middleware(['role']);
 
 
 //ADMIN/user managment
-Route::get('admin/account-management', 'UserController@index');/*->middleware('admin')*/;
+Route::get('admin/account-management', 'UserController@index')->name('admin.user.ban');/*->middleware('admin')*/;
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
@@ -156,31 +154,31 @@ Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('a
 
 
 //ADMIN/ CATEGORY
-Route::get('/admin/categories', 'CategorieController@index');/*->middleware('admin')*/;
-Route::post('/admin/categories/create', 'CategorieController@store');
-Route::put('/admin/categories/update/{id}', 'CategorieController@update');
-Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy');
+Route::get('/admin/categories', 'CategorieController@index')->name('admin.category.get');/*->middleware('admin')*/;
+Route::post('/admin/categories/create', 'CategorieController@store')->name('admin.category.create');
+Route::put('/admin/categories/update/{id}', 'CategorieController@update')->name('admin.category.update');
+Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy')->name('admin.category.delete');
 
 //ADMIN/ KEYWORD
-Route::get('/admin/keyword', 'KeywordController@index');/*->middleware('admin')*/;
-Route::post('/admin/keyword/create', 'KeywordController@store');
-Route::put('/admin/keyword/update/{id}', 'KeywordController@update');
-Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy');
+Route::get('/admin/keyword', 'KeywordController@index')->name('admin.keyword.get');/*->middleware('admin')*/
+Route::post('/admin/keyword/create', 'KeywordController@store')->name('admin.keyword.create');
+Route::put('/admin/keyword/update/{id}', 'KeywordController@update')->name('admin.keyword.update');
+Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy')->name('admin.keyword.delete');
 
 //ADMIN/ reference page
-Route::get('/admin/plantreference', 'PlantReferencepageController@index');
-Route::get('/admin/plantreference/create', 'PlantReferencepageController@create');
-Route::post('/admin/plantreference/store', 'PlantReferencepageController@store');
-Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit');
-Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update');
-Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy');
-Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic');
+Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.referece.get');
+Route::get('/admin/plantreference/create', 'PlantReferencepageController@create')->name('admin.referece.create');
+Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')->name('admin.referece.store');
+Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.referece.show');
+Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.referece.edit');
+Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.referece.delete');
+Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.referece.removepic');
 
 //ADMIN/ APPLICATIONS CHECKING
-Route::get('/admin/customer_application/', 'RetailerApplicationController@index');
-Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show');
-Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve');
-Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny');
+Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.referece.get');
+Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show')->name('admin.referece.show');
+Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve')->name('admin.referece.approve');
+Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny')->name('admin.referece.deny');
 
 //ADMIN/ COMMISSIONS
 Route::get('/admin/commissions', 'CommissionController@index');
