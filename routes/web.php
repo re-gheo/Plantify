@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Classes\Trackingmore;
+use Illuminate\Support\Facades\URL;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,17 @@ use Luigel\Paymongo\Facades\Paymongo;
 |
 */
 
+Auth::routes();
+ URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
+ URL::forceScheme('https');
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
+     Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
+     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
+    Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
 
-Route::get('/', 'StorefrontController@front');
+
+
+Route::get('/', 'StorefrontController@front')->name("store");
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
 //RETAILER Comment/Reply
@@ -38,42 +48,42 @@ Route::put('/product/inquire/mark/{id}', 'InquiryController@markAsBest')->name('
 Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
 
 
-Route::get('/test3', function () {
+// Route::get('/test3', function () {
 
-    $length = 4 ;
-    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-
-
-    $lengthN = 10;
-    $characters = '0123456789';
-    $charactersLength = strlen($characters);
-    $randomString2 = '';
-    for ($i = 0; $i < $lengthN; $i++) {
-        $randomString2 .= $characters[rand(0, $charactersLength - 1)];
-    }
-    dd($randomString. $randomString2);
-
-    //usage
-
-});
+//     $length = 4 ;
+//     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//     $charactersLength = strlen($characters);
+//     $randomString = '';
+//     for ($i = 0; $i < $length; $i++) {
+//         $randomString .= $characters[rand(0, $charactersLength - 1)];
+//     }
 
 
-Route::get('/test9', function (Request $request) {
+//     $lengthN = 10;
+//     $characters = '0123456789';
+//     $charactersLength = strlen($characters);
+//     $randomString2 = '';
+//     for ($i = 0; $i < $lengthN; $i++) {
+//         $randomString2 .= $characters[rand(0, $charactersLength - 1)];
+//     }
+//     dd($randomString. $randomString2);
 
-    $track = new Trackingmore();
+//     //usage
+
+// });
 
 
-$data = $track->getSingleTrackingResult("phlpost","RUI1234567");
+// Route::get('/test9', function (Request $request) {
+
+//     $track = new Trackingmore();
 
 
-dd($data["data"]);
+// $data = $track->getSingleTrackingResult("phlpost","RUI1234567");
 
-});
+
+// dd($data["data"]);
+
+// });
 
 //                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
@@ -84,7 +94,10 @@ dd($data["data"]);
 // ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝       ██╗      ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝
 //                                          ██╗
 
-Auth::routes();
+
+
+
+
 //basic user additiona creds
 Route::get('/homes', 'HomeController@index');
 Route::get('/setup', 'UserController@setup');
@@ -170,11 +183,11 @@ Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationContr
 Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny');
 
 //ADMIN/ COMMISSIONS
-Route::get('/admin/commissions', 'CommissionsController@index');
-Route::get('/admin/commissions/create', 'CommissionsController@create');
-Route::post('/admin/commissions/store', 'CommissionsController@store');
-Route::put('/admin/commissions/{id}/edit', 'CommissionsController@update');
-Route::put('/admin/commissions/{id}/put', 'CommissionsController@destroy');
+Route::get('/admin/commissions', 'CommissionController@index');
+Route::get('/admin/commissions/create', 'CommissionController@create');
+Route::post('/admin/commissions/store', 'CommissionController@store');
+Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
+Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
 
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
@@ -234,11 +247,11 @@ Route::get('/orders',  'OrderController@index')->middleware('auth')->name('clien
 // ██║  ██║███████╗   ██║   ██║  ██║██║███████╗███████╗██║  ██║
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
 
-Route::get('/test7', function (Request $request) {
+// Route::get('/test7', function (Request $request) {
 
-    $retrievedsource = Paymongo::paymentIntent()->find('pi_deUPJz3ni8HbwRQfFw5SoQMU');
-    dd($retrievedsource);
-});
+//     $retrievedsource = Paymongo::paymentIntent()->find('pi_deUPJz3ni8HbwRQfFw5SoQMU');
+//     dd($retrievedsource);
+// });
 
 
 
@@ -249,7 +262,6 @@ Route::get('/store', 'StoreController@front');
 Route::put('/store/setup', 'StoreController@setupstore');
 Route::get('/store/customize', 'StoreController@edit');
 Route::put('/store/customize', 'StoreController@update');
-Route::get('/store/show/{id}', 'StoreController@show')->name('store.show.products');
 
 // RETAILER/ Products
 Route::get('/store/products', 'ProductController@list');

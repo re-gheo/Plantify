@@ -201,7 +201,7 @@ class OrderController extends Controller
                 );
 
                 $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
-                $tempdID = $gdata["data"]["id"];
+              
 
                 // dd($data ,  $gdata,  $detemp);
                 $bystore =  new Order_bystoreitem();
