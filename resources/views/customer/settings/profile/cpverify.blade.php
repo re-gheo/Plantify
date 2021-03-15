@@ -7,7 +7,7 @@
             <div class="card-body mx-auto ">
                 <h2 class="card-title text-center pb-3">Cellphone number for SMS verification</h2>
                 <div class="card-body">
-                    <form method="POST" action="/settings/profile/verify">
+                    <form method="POST" action="{{ route('customer.profile.pverify') }}">
                         @csrf
                         @method('PUT')
 

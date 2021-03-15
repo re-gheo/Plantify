@@ -11,7 +11,7 @@
 <p>please wait at least 1 minute for you to recieve your code via sms </p>
 
                 <div class="card-body">
-                    <form method="POST" action="/verify/check">
+                    <form method="POST" action="{{ route('OTP.verifycheck') }}">
                         @csrf
                         @method('PUT')
 
@@ -44,7 +44,7 @@
                 @enderror
                 
                 <div>
-                    <form method="POST" action="/verify/cancel">
+                    <form method="POST" action="{{ route('OTP.verifycancel') }}">
                         @csrf
                         <button class="button is-link" type="submit">cancel</button>
                     </form>

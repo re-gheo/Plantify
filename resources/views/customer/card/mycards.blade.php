@@ -57,8 +57,8 @@
                         </div>
 
                         <div>
-
-                            <form action="/store/profile/paymentmethods/{{ $c->card_id }}/delete" method="POST">
+                            <form action="{{ route('customer.payment.remove', ['id' => $c->card_id]) }}" method="POST">
+                            
                                 @csrf
                                 <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}
                                     @method('DELETE')

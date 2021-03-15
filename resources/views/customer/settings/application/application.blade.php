@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h3 class="text-center">Provide further details here</h3>
                 <hr>
-                <form action="/settings/application/form" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('customer.application.post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-input">

@@ -25,13 +25,14 @@ use Luigel\Paymongo\Facades\Paymongo;
 |
 */
 
+
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
 //  URL::forceScheme('https');
-    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
-     Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
-     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
-    Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
+Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
+Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
 
 
 

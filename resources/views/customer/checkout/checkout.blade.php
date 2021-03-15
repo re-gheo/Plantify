@@ -66,7 +66,7 @@
         @endphp
 
 
-        <form action="/store/itemcheckout/order" method="POST">
+        <form action="{{ route('customer.checkout.order') }}" method="POST">
             <div class="div class= card-body">
                 <h1>Choose Payment Methods</h1>
                 <a href="/store/profile/addpayment"> add a card</a>
@@ -83,7 +83,7 @@
                             <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
 
                         </div>
-                        select <input type="radio" name="paytype" id="paytype" value="[1,{{$c->card_id}}]">
+                        select <input type="radio" name="paytype" id="paytype" value="[1,{{ $c->card_id }}]">
 
 
                     </div>
@@ -99,7 +99,7 @@
                         <b>Gcash</b>
 
                     </div>
-                    select <input type="radio" name="paytype" id="paytype"  value="[0,0]">
+                    select <input type="radio" name="paytype" id="paytype" value="[0,0]">
                     <div>
 
                     </div>

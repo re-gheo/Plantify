@@ -4,7 +4,9 @@
 <div class="col-lg-10 mr-auto ml-auto">
 <h1> Edit this product</h1>
 
-    <form action="/store/products/{{ $product->product_id}}/edit" method="POST" enctype="multipart/form-data">
+    
+        <form action="{{ route('retailer.products.update', ['id' =>$product->product_id ]) }}" method="POST" enctype="multipart/form-data">
+
         @csrf
         @method('put')
         <div>

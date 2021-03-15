@@ -25,7 +25,7 @@
 
                     <table class="table table-bordered table-striped table-hover table-responsive-sm">
 
-                        <form action="/admin/categories/create" method="POST">
+                        <form action="{{ route('admin.category.create') }}" method="POST">
                             @csrf
 
                             <div class="row">
@@ -64,7 +64,8 @@
                         @forelse ($categories as $category)
 
                             <tr>
-                                <form action="/admin/categories/update/{{ $category->product_categoryid }}" method="POST">
+                                <form action="{{ route('admin.category.update', ['id' => $category->product_categoryid]) }}"
+                                    method="POST">
                                     @csrf
                                     @method('put')
 
@@ -85,8 +86,8 @@
                                         <div class="form-inline">
                                             <button class="btn btn-success pl-auto" type="submit">Edit</button>
                                 </form>
-                                <form action="/admin/categories/delete/{{ $category->product_categoryid }}" method="POST">
-                                    @csrf
+                                <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
+                                    method="POST"> @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger pl-auto" type="submit">delete </button>
                                 </form>

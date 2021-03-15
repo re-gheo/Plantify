@@ -164,8 +164,7 @@
                         <h3> APROVE/DENY USER</h3>
 
                         <br>
-
-                        <form action="/admin/customer_application/approve/{{ $app->retailer_applicationid }}"
+                        <form action="{{route('admin.customer_application.approve', ['id' =>$app->retailer_applicationid]) }}"   
                             method="POST">
                             @csrf
                             @method('put')
@@ -175,7 +174,7 @@
 
                         <br>
 
-                        <form action="/admin/customer_application/deny/{{ $app->retailer_applicationid }}" method="POST">
+                        <form action="{{route('admin.customer_application.deny', ['id' =>$app->retailer_applicationid]) }}" method="POST">
                             @csrf
                             @method('put')
                             <h3><label for="">Reason to deny application</label></h3>
@@ -195,9 +194,8 @@
                                 Submitted</label><br>
                             <label onClick="otherReason()">
                                 <input type="checkbox" name="deny_reason[]" id="other" value="other">OTHERS:
-                                <br><textarea class="txtarea" name="other" id="inputother" onchange="checkother ()"
+                                <br><textarea class="txtarea" name="other" id="inputother" onchange="checkother()"
                                     cols="50" rows="5"></textarea>
-
                                 <br>
 
 
@@ -206,35 +204,9 @@
                         </form>
 
 
-
-
-
-                        {{-- END OF CARD DIV --}}
-
                     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-                    {{-- <div>
-                        <div>
-                            <label for=""><b>City</b></label>
-                            <div>
-
-                                <p>{{ $app->retailer_city }}</p>
-                            </div>
-                        </div>
-
-                    </div> --}}
 
 
                 </div>

@@ -24,7 +24,7 @@
 
                     <table class="table table-bordered table-striped table-hover table-responsive-sm">
 
-                        <form action="/admin/keyword/create" method="POST">
+                        <form action="{{ route('admin.keyword.create') }}" method="POST">
                             @csrf
 
                             <div class="row">
@@ -67,14 +67,16 @@
                         @foreach ($keywords as $k)
 
                             <tr>
-                                <form action="/admin/keyword/update/{{ $k->keyword_id }}" method="POST">
+
+                                <form action="{{ route('admin.keyword.update', ['id' => $k->keyword_id]) }}"
+                                    method="POST">
                                     @csrf
                                     @method('put')
 
                                     <td>{{ $k->keyword_id }}</td>
 
                                     <td> <input id="categorieedit" type="text" class=" 
-                      @error('categorieedit') is-invalid @enderror" name="keywordedit" required
+                              @error('categorieedit') is-invalid @enderror" name="keywordedit" required
                                             autocomplete="categorieedit" value="{{ $k->keyword_name }}">
 
                                         @error('keywordedit')
@@ -88,7 +90,8 @@
                                         <div class="form-inline">
                                             <button class="btn btn-success pl-auto" type="submit">Edit</button>
                                 </form>
-                                <form action="/admin/keyword/delete/{{ $k->keyword_id }}" method="POST">
+                                <form action="{{ route('admin.keyword.delete', ['id' => $k->keyword_id]) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger pl-auto" type="submit">delete </button>
