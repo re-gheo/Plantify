@@ -201,7 +201,7 @@ class OrderController extends Controller
                 );
 
                 $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
-              
+
 
                 // dd($data ,  $gdata,  $detemp);
                 $bystore =  new Order_bystoreitem();
@@ -227,13 +227,21 @@ class OrderController extends Controller
                 'amount' => $gsum,
                 'currency' => 'PHP',
                 'redirect' => [
-                    'success' => 'http://localhost:8000/success',
-                    'failed' => 'http://localhost:8000/failed',
+                    'success' => route('customer.checkout.success'),
+                    'failed' => route('customer.checkout.failed'),
                 ],
             ]);
 
              return redirect($source->redirect['checkout_url']);
         }
+    }
+
+    public function redirectPaymongoSuccess(){
+        dd('Hellow');
+    }
+
+    public function redirectPaymongoFailed(){
+        dd('Failed');
     }
 
     protected function genID()

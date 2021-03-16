@@ -179,6 +179,9 @@ Route::get('/store/checkout', 'OrderController@checkoutpage')->name('customer.ch
 Route::post('/store/itemcheckout', 'OrderController@addtocheckout')->name('customer.checkout.add');
 Route::post('/store/itemcheckout/order', 'OrderController@placeorder')->name('customer.checkout.order');
 
+Route::get('/store/checkout/success', 'OrderController@redirectPaymongoSuccess')->name('customer.checkout.success');
+Route::get('/store/checkout/failed', 'OrderController@redirectPaymongoFailed')->name('customer.checkout.failed');
+
 //CUSTOMER/ SETTINGS / APPLICATIONS
 Route::get('/settings/application/form', 'RetailerApplicationController@form')->name('customer.application.show');
 Route::post('/settings/application/form', 'RetailerApplicationController@send')->name('customer.application.post');

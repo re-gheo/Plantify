@@ -36,7 +36,7 @@
                                     </div>
                                     {{--  --}}
                                     <label for="">Quantity</label>
-                                    <form action="{{ route('customer.cart.quantity ', ['id' => $i->cart_itemid]) }}" method="POST">
+                                    <form action="{{ route('customer.cart.quantity', ['id' => $i->cart_itemid]) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <input type="number" name="quantity" id="" value="{{ $i->cart_quantity }}" required>
@@ -50,7 +50,7 @@
 
                                     <input type="checkbox" name="checkoutid" id="checkout" value="{{ $i->cart_itemid }}"
                                         onclick="GetSelected()">
-                                        <form action="{{ route('customer.cart.remove ', ['id' => $i->cart_itemid]) }}" method="POST">
+                                        <form action="{{ route('customer.cart.remove', ['id' => $i->cart_itemid]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-dark"> Remove Item</button>
