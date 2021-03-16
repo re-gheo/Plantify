@@ -59,7 +59,21 @@
                         <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}"
                             alt="some_image">
                         <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
+<<<<<<< Updated upstream
                             <h5>{{ $product->product_name }}</h5>
+=======
+                            <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
+                                <img class="img-fluid" src="{{ asset('/storage/' . $product->product_mainphoto) }}"
+                                    alt="some_image">
+                                <h5>{{ $product->product_name }}</h5>
+                                <p>Lorem ipsum dolor si amet</p>
+                                <div class="row">
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+
+>>>>>>> Stashed changes
                         </a>
 
                         <p>Lorem ipsum dolor si amet</p>
