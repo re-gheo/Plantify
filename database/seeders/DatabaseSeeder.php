@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Assigned_keywords;
 use Illuminate\Database\Seeder;
 
 
@@ -24,6 +25,10 @@ class DatabaseSeeder extends Seeder
             CardTypesTableSeeder::class,
             PaymentTypesTableSeeder::class,
             OrderStatusTableSeeder::class,
+            StoreTableSeeder::class,
+            RetailerTableSeeder::class,
+            ProductTableSeeder::class,
+            AssignedKeywordsTableSeeder::class,
         ]);
     }
 }

@@ -141,7 +141,7 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 
 //ADMIN/user managment
-Route::get('admin/account-management', 'UserController@index')->name('admin.user.ban');/*->middleware('admin')*/;
+Route::get('admin/account-management', 'UserController@index')->name('admin.account.management');/*->middleware('admin')*/;
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
@@ -169,13 +169,13 @@ Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy')->name('
 Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.referece.get');
 Route::get('/admin/plantreference/create', 'PlantReferencepageController@create')->name('admin.referece.create');
 Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')->name('admin.referece.store');
-Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.referece.show');
-Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.referece.edit');
+Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.referece.edit');
+Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.referece.update');
 Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.referece.delete');
 Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.referece.removepic');
 
 //ADMIN/ APPLICATIONS CHECKING
-Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.referece.get');
+Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.customer.application');
 Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show')->name('admin.referece.show');
 Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve')->name('admin.referece.approve');
 Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny')->name('admin.referece.deny');

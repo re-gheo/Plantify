@@ -8,10 +8,42 @@
             <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
                     class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
+            <h2 class="display-4 tex-dark">Welcome to the Admin Dashboard</h2>
+            {{-- <p class="lead text-dark mb-0">Choose </p> --}}
+
+            <div class="row">
+                <div class="col m-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Customers</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Number of registered customers</h6>
+                        <div class="text-center">
+                            <b>10</b>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col m-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Retailers</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Number of retailers & stores</h6>
+                        <div class="text-center">
+                            <b>10</b>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col m-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Administration</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Number of active admin</h6>
+                        <div class="text-center">
+                            <b>10</b>
+                        </div>
+                      </div>
+                </div>
+            </div>
             <!-- Demo content -->
-            <h2 class="display-4 tex-dark">Bootstrap vertical nav</h2>
-            <p class="lead text-dark mb-0">Build a fixed sidebar using Bootstrap 4 vertical navigation and media objects.
-            </p>
+
             <div class="separator"></div>
             <div class="row tex-dark">
                 <div class="col-lg-7">
