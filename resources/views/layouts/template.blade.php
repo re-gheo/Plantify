@@ -12,12 +12,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/CSS/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{!! secure_asset('/css/main.css') !!}">
     <link rel="stylesheet" href="/CSS/plantify_theme.css">
-    <link rel="stylesheet" href="{{ asset('/CSS/plantify_theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('/CSS/plantify_theme.css') }}">
     <link rel="stylesheet" href="{!! secure_asset('/css/plantify_theme.css') !!}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    
+
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
     @yield('styles')
@@ -48,7 +48,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
 
-             
+
 
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>
@@ -225,7 +225,7 @@
                         <li><a href="http://scanfcode.com/about/">About Us</a></li>
                         <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
                         <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/resources/views/customer/other/tos.html">Privacy Policy</a></li>
                         <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
                     </ul>
                 </div>

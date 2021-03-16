@@ -64,9 +64,10 @@
                             </td>
                             <td>
                                 <div class="row ">
-                                    <a href="{{ route(admin.reference.show, ['id' => $reference->plant_referenceid]) }}"
+                                    <a href="{{ route(admin . reference . show, ['id' => $reference->plant_referenceid]) }}"
                                         class="btn btn-dark">EDIT</a>
-                                    <form action="{{ route(admin.reference.delete, ['id' => $reference->plant_referenceid]) }}/delete"
+                                    <form
+                                        action="{{ route(admin . reference . delete, ['id' => $reference->plant_referenceid]) }}/delete"
                                         method="POST">
                                         @csrf
                                         @method('delete')

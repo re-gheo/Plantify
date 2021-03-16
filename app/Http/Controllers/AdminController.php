@@ -26,7 +26,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $users = User::get();
+
+        $admins = $users->where('user_role','admin');
+
+        $retailers = $users->where('user_role','retailer');
+
+        $customers = $users->where('user_role','customer');
+
+        return view('admin.index', compact('admins','retailers', 'customers'));
     }
 
     public function index_list()

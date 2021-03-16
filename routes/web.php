@@ -29,8 +29,7 @@ use PHPUnit\Framework\Test;
 Route::get('/test22', function (Request $request) {
 
     dd(route('store'));
-return redirect()->route('store')->with('success', 'redirect from test22');
-   
+    return redirect()->route('store')->with('success', 'redirect from test22');
 });
 
 Auth::routes();
@@ -205,6 +204,7 @@ Route::get('/orders',  'OrderController@index')->middleware('auth')->name('clien
 
 
 
+
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
 // ██████╔╝█████╗     ██║   ███████║██║██║     █████╗  ██████╔╝
@@ -227,6 +227,8 @@ Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retaile
 Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
+
+Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
 
 // Articles
 Route::resource('/articles', 'ArticleController');

@@ -21,6 +21,12 @@
 <body>
     <!-- Vertical navbar -->
     <div class="vertical-nav bg-white " id="sidebar">
+
+        <div class="px-3 bg-dark "> <a class="navbar-brand  " href="#"><i
+                    class="fas fa-leaf small mr-2 "></i>Plantify</a>
+        </div>
+
+        <!-- START OF SIDEBAR CONTENT -->
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media d-flex align-items-center">
                 <img class="admin-avatar " src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
@@ -151,7 +157,7 @@
 
                     <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
                         onerror="
-                                                                                    this.onerror=null;this.src='/css/default-image.svg' ;">
+                                                                                                                                                this.onerror=null;this.src='/css/default-image.svg' ;">
 
 
 

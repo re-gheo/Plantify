@@ -9,8 +9,8 @@
                     class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
                         class="text-uppercase font-weight-bold">Toggle</small></button>
 
-                <div class="separator"></div>
-                <div class="card-body table-responsive-sm">
+
+                <div class="">
 
                     <!--SUCESS MESSAGE-->
 
@@ -23,7 +23,7 @@
 
 
 
-                    <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <table class="table table-bordered table-striped table-hover   card-body table-responsive-sm">
 
                         <form action="{{ route('admin.category.create') }}" method="POST">
                             @csrf
@@ -35,7 +35,7 @@
 
                             <div class="row">
                                 <label class="pr-3" for="categories">Category Name</label>
-                                <input class="form-input" id="categories" type="text"
+                                <input class="cat-input" id="categories" type="text"
                                     class=" @error('categories') is-invalid @enderror" name="categories" required
                                     autocomplete="categories">
                                 <button class="btn btn-success ml-auto " type="submit"> create category</button>
@@ -71,7 +71,7 @@
 
                                     <td>{{ $category->product_categoryid }}</td>
 
-                                    <td> <input id="categorieedit" type="text"
+                                    <td> <input class="cat-input" id="categorieedit" type="text"
                                             class=" @error('categorieedit') is-invalid @enderror" name="categorieedit" required
                                             autocomplete="categorieedit" value="{{ $category->categories }}">
 
@@ -84,7 +84,7 @@
 
                                     <td>
                                         <div class="form-inline">
-                                            <button class="btn btn-success pl-auto" type="submit">Edit</button>
+                                            <button class="btn btn-success m-1" type="submit">Edit</button>
                                 </form>
                                 <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
                                     method="POST"> @csrf
