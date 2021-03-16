@@ -7,7 +7,7 @@
             <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                 <div class="card-body mx-auto  ">
                     <h3 class="card-title text-center pb-3">Let's Set up Your Store</h3>
-                    <form method="POST" action="/store/setup">
+                    <form method="POST" action="{{ route('retailer.store.setupstore') }}">
                         @csrf
                         @method('PUT')
 

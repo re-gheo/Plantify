@@ -93,12 +93,12 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
-            return redirect('/');
+            return redirect->route('home');
         }
         else{
 
             $this->_registerFacebookUser($user);
-            return redirect('/setup');
+            return redirect()->route('addc.setup');
         }
     }
 
@@ -123,10 +123,10 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
-            return redirect('/');
+            return redirect->route('home');
         }else{
             $this->_registerGoogleUser($user);
-            return redirect('/setup');
+            return redirect()->route('addc.setup');
         }
 
 

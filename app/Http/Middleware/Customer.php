@@ -22,6 +22,6 @@ class Customer
                 return $next($request);
             }
         } else
-            return redirect('/login')->with('success', 'you need to login first as a customer.');
+            return redirect()->route('loginf')->with('success', 'you need to login first as a customer.');
     }
 }

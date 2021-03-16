@@ -33,7 +33,7 @@ class StoreController extends Controller
         $store->store_description = request('store_description');
         $store->save();
 
-        return redirect('/store')->with('success', 'Successfully Registered Your Store!');
+        return redirect()->route('retailer.store.front')->with('success', 'Successfully Registered Your Store!');
     }
 
     public function edit()
@@ -69,7 +69,7 @@ class StoreController extends Controller
 
         $store->save();
 
-        return redirect('/store')->with('success', 'Successfully Updated Your Store!');
+        return redirect()->route('retailer.store.front')->with('success', 'Successfully Updated Your Store!');
     }
 
     public function show($id){

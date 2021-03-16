@@ -677,7 +677,7 @@
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
         <div class="nav-search pl-2 pull-right">
-            <form action="" class="" method="GET" role="search">
+            <form action="" class="" method="POST" role="search">
                 <input id="search" type="text" class="" placeholder="   Search here" aria-label="search-bar"
                     aria-describedby="basic-addon2">
                 <button class="search-button btn btn-outline-success text-white"><i

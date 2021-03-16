@@ -35,7 +35,7 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e->getPrevious() instanceof \Illuminate\Session\TokenMismatchException) {
-                return redirect('/')->with('success', 'your session has already expired');
+                return redirect()->route('store')->with('success', 'your session has already expired');
             }
         });
     }

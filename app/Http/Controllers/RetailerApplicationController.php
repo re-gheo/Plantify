@@ -58,7 +58,7 @@ class RetailerApplicationController extends Controller
         $user->save();
 
 
-        return redirect('/settings/profile')->with('success', 'Successfully sent an application and pending approval.'); 
+        return redirect()->route('customer.profile.show')->with('success', 'Successfully sent an application and pending approval.'); 
     
 
     }
@@ -127,7 +127,7 @@ class RetailerApplicationController extends Controller
         $retailer->retailer_region  =  $form->retailer_region;
         $retailer->save();
 
-        return redirect("/admin/customer_application")->with('success',  'an application for '. $user->email .' has been approved'); 
+        return redirect()->route('admin.customer_application.get')->with('success',  'an application for '. $user->email .' has been approved'); 
     }
 
     public function deny(Request $request, $id)
@@ -151,7 +151,7 @@ class RetailerApplicationController extends Controller
         $user->retailer_approvalstateid = 2;
         $user->save(); 
 
-        return redirect("/admin/customer_application")->with('success',  'an application form has been denied'); 
+        return redirect()->route('admin.customer_application.get')->with('success',  'an application form has been denied'); 
     }
 
    
