@@ -17,7 +17,7 @@
                         <h5 class="card-title">Customers</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Number of registered customers</h6>
                         <div class="text-center">
-                            <b>10</b>
+                            <b>{{$customers->count()}}</b>
                         </div>
                       </div>
                 </div>
@@ -27,7 +27,7 @@
                         <h5 class="card-title">Retailers</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Number of retailers & stores</h6>
                         <div class="text-center">
-                            <b>10</b>
+                            <b>{{$retailers->count()}}</b>
                         </div>
                       </div>
                 </div>
@@ -37,7 +37,7 @@
                         <h5 class="card-title">Administration</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Number of active admin</h6>
                         <div class="text-center">
-                            <b>10</b>
+                            <b>{{$admins->count()}}</b>
                         </div>
                       </div>
                 </div>
