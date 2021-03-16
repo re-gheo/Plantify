@@ -2,23 +2,19 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-10 mr-auto ml-auto">
+    <div class="page-content p-5" id="content">
+        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+                class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
-
-            <div class="container">
-                <button id="sidebarCollapse" type="button"
-                    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
-                        class="text-uppercase font-weight-bold">Toggle</small></button>
-                <h3 class="text-center col-md-4 ">Applications</h3>
-            </div>
-            <div class="div class= card-body table-responsive-sm">
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                @endif
-                <table class="table table-bordered table-striped table-hover  table-responsive-lg ml-5">
+        <h3 class=" ">Applications</h3>
+        <div class="row">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped table-hover ">
                     <thead class="thead-dark">
                         <tr>
                             <th>Applications ID</th>
@@ -36,17 +32,19 @@
                             <td>{{ $app->email }}</td>
                             <td>{{ $app->retailer_approvalstate }}</td>
                             <td>
-                                <a href="{{ route('admin.customer_application.show', [ 'id' => $app->retailer_applicationid]) }}"
+                                <a href="{{ route('admin.customer_application.show', ['id' => $app->retailer_applicationid]) }}"
                                     class="btn btn-dark">Check</a>
                             </td>
                         </tr>
                     @endforeach
                 </table>
             </div>
-
         </div>
 
-    </div>
+
+
+        {{-- END OF NEW CONTENT --}}
+
 
     </div>
     <div>

@@ -9,7 +9,7 @@
                 <div class="card-body mx-auto">
                     <h3 class="text-center">EDIT PROFILE</h3>
 
-                    <<form method="POST" action="{{ route('customer.profile.update') }}">
+                    <form method="POST" action="{{ route('customer.profile.update') }}">
                         @csrf
                         @method('PUT')
 

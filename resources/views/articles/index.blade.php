@@ -2,17 +2,25 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-10 mr-auto ml-auto">
 
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('articles.create') }}"> Create new article</a>
+        <div class="container ">
+
+            {{-- START OF TOGGLE BUTTON --}}
+            <div class="">
+                <div class="pull-right"> <button id="sidebarCollapse" type="button"
+                        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+                            class="fa fa-bars mr-2"></i><small
+                            class="text-uppercase font-weight-bold">Toggle</small></button></div>
+
             </div>
 
-        </div>
-        <div class="container ">
-            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                    class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-            <h2>Check all Articles</h2>
+
+            {{-- END OF TOGGLE BUTTON --}}
+
+            {{-- START OF CONTENT --}}
+
+            <h2 class="ml-3">Check all Articles</h2>
+            <a class="btn btn-success mt-2 ml-3" href="{{ route('articles.create') }}"> Create new article</a>
             <div class="card-body table-responsive-sm">
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">

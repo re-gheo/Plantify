@@ -23,15 +23,18 @@
                             </div>
 
                             <p>{{ $profile->user_role }}</p><a href="{{ route('customer.profile.edit') }}">
-                                <i class="far fa-edit  mb-4 mt-4 text-white"></i> <span class="text-white">Update
+                                <i class="far fa-edit  mb-4 mt-4 text-white mr-1"></i> <span class="text-white">Update
                                     Profile</span>
 
-                                <a href="{{route('customer.profile.pverify')}}">
+                                <a href="{{ route('customer.profile.pverify') }}">
                                     <span class="text-white">
                                         @if (!$profile->cp_number)
 
-                                            <span class="font-weight">Register my Phone
-                                                Number Via SMS</span>
+                                            <div class="div">
+                                                <span class="mt-1">Register my Phone
+                                                    Number Via SMS</span>
+                                            </div>
+
 
                                         @else
 
@@ -48,9 +51,14 @@
 
                                 </a>
 
-                                <div class="div">
-                                    <i class="fas fa-credit-card text-white"> </i><a class="text-white"
-                                        href="{{ route('customer.payment.register') }}"> My payment methods</a>
+                                <div class="div ">
+                                    <i class="fas fa-credit-card text-white mr-1 "> </i><a class="text-white"
+                                        href="{{ route('customer.payment.register') }}">Add Payment Method</a>
+                                </div>
+
+                                <div class="div mt-3">
+                                    <i class="fas fa-wallet text-white mr-1"></i> </i><a class="text-white"
+                                        href="{{ route('customer.payment.mycards') }}"> My payment methods</a>
                                 </div>
 
                         </div>

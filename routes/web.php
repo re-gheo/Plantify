@@ -29,8 +29,7 @@ use PHPUnit\Framework\Test;
 Route::get('/test22', function (Request $request) {
 
     dd(route('store'));
-return redirect()->route('store')->with('success', 'redirect from test22');
-
+    return redirect()->route('store')->with('success', 'redirect from test22');
 });
 
 Auth::routes();
@@ -202,6 +201,7 @@ Route::get('/store/profile/paymentmethods',  'CardController@mycards')->name('cu
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove')->name('customer.payment.remove');
 
 Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
+
 
 
 

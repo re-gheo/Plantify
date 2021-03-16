@@ -14,7 +14,15 @@
         <div class="col-lg-10 mr-auto ml-auto">
             <div class="div class= card-body table-responsive-sm">
                 <h1 class="text-center">My Payment Methods</h1>
-                <a href="{{ route('customer.payment.register') }}"> add a card</a>
+                <div class="container">
+
+                    <div class="text-center mt-3">
+                        <a class="btn btn-dark" href="{{ route('customer.payment.register') }}">
+                            <i class="fas fa-credit-card text-white mr-1 "> </i> Add a card</a>
+                    </div>
+
+
+                </div>
                 @forelse ($mycards as $c)
 
                     {{-- <script type="text/javascript">
@@ -58,7 +66,7 @@
 
                         <div>
                             <form action="{{ route('customer.payment.remove', ['id' => $c->card_id]) }}" method="POST">
-                            
+
                                 @csrf
                                 <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}
                                     @method('DELETE')
@@ -79,9 +87,7 @@
                             <div class="col-lg-7 col-xl-5 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
                                 <div class="card-body mx-auto">
                                     <h3>You have no payment methods registered in our site</h3>
-                                    <button class="btn btn-success btn-block">
-                                        <a class="text-dark" href="{{ route('customer.payment.register') }}"> Add a card </a>
-                                    </button>
+
 
                                 </div>
                             </div>

@@ -6,10 +6,13 @@
         <div class="row">
             <div class="col-lg-10 mr-auto ml-auto">
                 <div class="pull-right">
-
+                    <button id="sidebarCollapse" type="button"
+                        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
+                            class="fa fa-bars mr-2"></i><small
+                            class="text-uppercase font-weight-bold">Toggle</small></button>
                 </div>
 
-                <div class="card-body table-responsive-sm">
+                <div class="card-body ">
 
                     <!--SUCESS MESSAGE-->
 
@@ -27,8 +30,8 @@
                         <form action="{{ route('admin.keyword.create') }}" method="POST">
                             @csrf
 
-                            <div class="row">
-                                <h2><strong>KEYWORD</strong></h2>
+                            <div class="">
+                                <h2><strong>KEYWORDS</strong></h2>
                             </div>
                             <div>
                                 <p><strong>Description:</strong> keyword are essentially tag that assist its users to define
@@ -38,7 +41,7 @@
 
                             <div class="row">
                                 <label class="pr-3" for="keywords"><b>Create NEW Keyword</b></label>
-                                <input class="form-input" id="keywords" type="text"
+                                <input class="cat-input" id="keywords" type="text"
                                     class=" @error('keywords') is-invalid @enderror" name="keywords" required
                                     autocomplete="keywords">
                                 <button class="btn btn-success ml-auto " type="submit"> create category</button>
@@ -75,9 +78,10 @@
 
                                     <td>{{ $k->keyword_id }}</td>
 
-                                    <td> <input id="categorieedit" type="text" class=" 
-                              @error('categorieedit') is-invalid @enderror" name="keywordedit" required
-                                            autocomplete="categorieedit" value="{{ $k->keyword_name }}">
+                                    <td> <input class="cat-input" id="categorieedit" type="text" class=" 
+                                                                  @error('categorieedit') is-invalid @enderror"
+                                            name="keywordedit" required autocomplete="categorieedit"
+                                            value="{{ $k->keyword_name }}">
 
                                         @error('keywordedit')
                                             <span class="" role="alert">
@@ -88,7 +92,7 @@
 
                                     <td>
                                         <div class="form-inline">
-                                            <button class="btn btn-success pl-auto" type="submit">Edit</button>
+                                            <button class="btn btn-success m-1" type="submit">Edit</button>
                                 </form>
                                 <form action="{{ route('admin.keyword.delete', ['id' => $k->keyword_id]) }}"
                                     method="POST">
