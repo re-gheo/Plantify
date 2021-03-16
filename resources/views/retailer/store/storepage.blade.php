@@ -15,7 +15,7 @@
     {{-- PROFILE IMAGE --}}
     <div class="card-container mt-4 ml-5">
         <img class="store-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
-            onerror="this.onerror=null;this.src='/css/default-image.svg' ;">
+            onerror="this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
         <hr>
         <div class="card-body">
             <div class="title-div">

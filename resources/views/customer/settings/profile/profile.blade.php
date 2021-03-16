@@ -14,7 +14,7 @@
                             <div class="div">
                                 <img class="avatar text-center mt-4" src="{{ Auth::user()->avatar }}"
                                     alt="{{ Auth::user()->name }} "
-                                    onerror="this.onerror=null;this.src='/css/default-image.svg' ;">
+                                    onerror="this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
                             </div>
 
 

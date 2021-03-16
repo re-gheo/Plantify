@@ -11,13 +11,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/css/ad1.png" alt="">
+                    <img src="{{ asset('/css/ad1.png') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="/css/ad1.png" alt="">
+                    <img src="{{ asset('/css/ad1.png') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="/css/ad1.png" alt="">
+                    <img src="{{ asset('/css/ad1.png') }}" alt="">
                 </div>
             </div>
 

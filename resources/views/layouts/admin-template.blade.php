@@ -157,7 +157,7 @@
 
                     <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
                         onerror="
-                                                                                                                                                this.onerror=null;this.src='/css/default-image.svg' ;">
+                        this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
 
 
 
