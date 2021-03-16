@@ -13,7 +13,7 @@
 
 
     {{-- PROFILE IMAGE --}}
-    <div class="card-container mt-4 ml-5" style="width: 20rem; ">
+    <div class="card-container mt-4 ml-5">
         <img class="store-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
             onerror="this.onerror=null;this.src='/css/default-image.svg' ;">
         <hr>
@@ -27,9 +27,11 @@
             {{-- <br>
             <a href="#" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Go somewhere</a> --}}
             <br>
-            <a href="{{ route('retailer.store.edit') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Update Store Page</a>
+            <a href="{{ route('retailer.store.edit') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Update
+                Store Page</a>
             <br>
-            <a href="{{  route('retailer.products.front')}}" class="btn btn-block btn-dark text-uppercase my-2 mx-a"> My product</a>
+            <a href="{{ route('retailer.products.front') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a"> My
+                product</a>
         </div>
     </div>
 
