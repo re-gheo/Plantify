@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
+<a href="{{ route('admin.reference.get') }}" class="btn btn-dark"> Back to Reference list</a>
 
 <div class = "card-body">
 
@@ -80,6 +80,7 @@
             <div>
                 <img src="{{url('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="2nd">
                 <a href="/admin/plantreference/{{ $reference->plant_referenceid }}/removepic/two" class="btn btn-dark"> remove picture</a>
+                <a href="{{ route('admin.reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'two']) }}" class="btn btn-dark"> remove picture</a>
             </div>
             @endif
             <div>
