@@ -59,10 +59,10 @@
                 </div>
                 <div class="row">
 
-
+                    
                     @foreach ($products as $product)
 
-                        <a href="/store/item/{{ $product->product_id }}">
+                        <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
                             <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
                                 <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}"
                                     alt="some_image">

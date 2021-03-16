@@ -36,7 +36,7 @@
                             <td>{{ $app->email }}</td>
                             <td>{{ $app->retailer_approvalstate }}</td>
                             <td>
-                                <a href="/admin/customer_application/{{ $app->retailer_applicationid }}"
+                                <a href="{{ route('admin.customer_application.show', [ 'id' => $app->retailer_applicationid]) }}"
                                     class="btn btn-dark">Check</a>
                             </td>
                         </tr>

@@ -93,7 +93,7 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
-            return redirect->route('home');
+            return redirect()->route('home');
         }
         else{
 
@@ -123,7 +123,7 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
-            return redirect->route('home');
+            return redirect()->route('home');
         }else{
             $this->_registerGoogleUser($user);
             return redirect()->route('addc.setup');
