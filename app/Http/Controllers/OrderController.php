@@ -34,7 +34,7 @@ class OrderController extends Controller
         }
         $ses = request()->session()->get('selected_item');
 
-        return redirect('/store/checkout');
+        return redirect()->route('customer.checkout.show');
     }
 
     public function checkoutpage(Request $request)
@@ -59,7 +59,7 @@ class OrderController extends Controller
 
             return view('customer.checkout.checkout', ['items' =>  $items, "mycards" => $mycards, 'cost' => $cost]);
         } else {
-            return redirect('/store/cart')->with('success',  'no products where select in the checkout');
+            return redirect()->route('customer.cart.show')->with('success',  'no products where select in the checkout');
         }
     }
 
@@ -220,7 +220,7 @@ class OrderController extends Controller
 
             }
             $request->session()->forget('selected_item');
-            return redirect('/')->with('success', 'Successfully created an order');
+            return redirect()->route('store')->with('success', 'Successfully created an order');
         } elseif (json_decode($request->paytype)[0] == 0) {
             $source = Paymongo::source()->create([
                 'type' => 'gcash',

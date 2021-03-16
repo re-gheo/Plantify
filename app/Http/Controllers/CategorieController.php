@@ -25,7 +25,7 @@ class CategorieController extends Controller
         $categorie->categories = request('categories');
         $categorie->isDeleted = FALSE;
         $categorie->save();
-        return redirect('/admin/categories')->with('success', 'created new category ' . $categorie->product_categoryid. ' '. $categorie->categories );
+        return redirect()->route('admin.category.get')->with('success', 'created new category ' . $categorie->product_categoryid. ' '. $categorie->categories );
     }
 
 
@@ -35,7 +35,7 @@ class CategorieController extends Controller
         $temp = $categorie->categories;
         $categorie->categories = request('categorieedit');
         $categorie->save();
-        return redirect('/admin/categories')->with('success', 'successfully edit catergory ' . $id . '. ' . $temp . ' to ' . request('categorieedit'));
+        return redirect()->route('admin.category.get')->with('success', 'successfully edit catergory ' . $id . '. ' . $temp . ' to ' . request('categorieedit'));
     }
 
     public function destroy($id)
@@ -43,6 +43,6 @@ class CategorieController extends Controller
         $set = Categorie::find($id);
         $set->isDeleted = TRUE;
         $set->save();
-        return redirect('/admin/categories')->with('success', 'Removed catergory ' . $id . '. ' . $set->categories);
+        return redirect()->route('admin.category.get')->with('success', 'Removed catergory ' . $id . '. ' . $set->categories);
     }
 }

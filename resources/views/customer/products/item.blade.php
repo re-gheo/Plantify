@@ -5,7 +5,7 @@
     @else
         @if ($product->product_id == Auth::user()->id)
             <b>I own this Product</p>
-                <a href="/store/products" class="btn btn-dark"> Go to my product list</a>
+                <a href="{{ route('retailer.products.front') }}" class="btn btn-dark"> Go to my product list</a>
         @endif
     @endif
 
@@ -13,7 +13,7 @@
     @else
         @if ($product->retailer_id == Auth::user()->id)
 
-            <a class="btn btn-dark" href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
+            <a class="btn btn-dark" href=" {{ route('retailer.products.edit', ['id' => $product->product_id]) }}"> edit products</a>
         @endif
     @endif
 

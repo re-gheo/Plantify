@@ -1,7 +1,7 @@
 @extends ('layouts/template')
 
 @section('content')
-    <form method="POST" action="/store/customize" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('retailer.store.update') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="container">

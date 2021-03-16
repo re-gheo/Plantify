@@ -27,9 +27,9 @@
             {{-- <br>
             <a href="#" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Go somewhere</a> --}}
             <br>
-            <a href="/store/customize" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Update Store Page</a>
+            <a href="{{ route('retailer.store.edit') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a">Update Store Page</a>
             <br>
-            <a href="/store/products" class="btn btn-block btn-dark text-uppercase my-2 mx-a"> My product</a>
+            <a href="{{  route('retailer.products.front')}}" class="btn btn-block btn-dark text-uppercase my-2 mx-a"> My product</a>
         </div>
     </div>
 

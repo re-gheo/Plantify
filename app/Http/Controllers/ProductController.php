@@ -139,7 +139,8 @@ class ProductController extends Controller
 
 
         }
-        return redirect('/store/products/' . $product->product_id);
+        
+        return redirect()->route('product_show', ['id'=>$product->product_id]);
     }
 
 
@@ -229,7 +230,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect('/store/products/' . $product->product_id);
+        return redirect()->route('product_show', ['id'=>$product->product_id]);
     }
 
     public function remove(Request $request, $id)
@@ -237,7 +238,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->isDeleted = 1;
         $product->save();
-        return redirect('/store/products/')->with('success', 'a product was deleted');
+        return redirect()->route('retailer.products.front')->with('success', 'a product was deleted');
     }
 
 
@@ -248,7 +249,7 @@ class ProductController extends Controller
     {
 
         $asphotos = Assigned_photos::where('assigned_photoid', '=', $picid)->where('product_id', '=', $id)->delete();
-        return redirect('/store/products/' . $id . '/edit');
+        return redirect()->route('product_show', ['id'=>$id]);
     }
 
 
@@ -302,7 +303,7 @@ class ProductController extends Controller
             ->exists();
         if ($existItem) {
 
-            return redirect('/store/cart')->with('success', 'this item ' . $product->product_name . ' is already listed in your cart');
+            return redirect()->route('customer.cart.show')->with('success', 'this item ' . $product->product_name . ' is already listed in your cart');
         } else {
             $checks = Shopping_cart::where('user_id', Auth::user()->id)->get();
             if (!count($checks) == 0) {
@@ -347,7 +348,7 @@ class ProductController extends Controller
             $items->cart_subtotal = $product->product_price;
             $items->save();
 
-            return redirect('/store/cart')->with('success',  'added ' . $product->product_name . ' to cart');
+            return redirect()->route('customer.cart.show')->with('success',  'added ' . $product->product_name . ' to cart');
         }
     }
 
@@ -361,9 +362,9 @@ class ProductController extends Controller
             $item->cart_quantity = request()->quantity;
             $item->cart_subtotal = $item->cart_itemcost * request()->quantity;
             $item->save();
-            return redirect('/store/cart')->with('success', 'updared quantity for ' . $item->cart_itemname . 'from cart.');
+            return redirect()->route('customer.cart.show')->with('success', 'updared quantity for ' . $item->cart_itemname . 'from cart.');
         } else {
-            return redirect('/');
+            return redirect()->route('store');
         }
     }
 
@@ -375,9 +376,9 @@ class ProductController extends Controller
         $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
         if ($item->user_id ==  Auth::user()->id) {
             Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
-            return redirect('/store/cart')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
+            return redirect()->route('customer.cart.show')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
         } else {
-            return redirect('/');
+            return redirect()->route('store');
         }
     }
 }

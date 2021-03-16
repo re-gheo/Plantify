@@ -13,6 +13,7 @@ use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
+use PHPUnit\Framework\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,20 @@ use Luigel\Paymongo\Facades\Paymongo;
 |
 */
 
+Route::get('/test22', function (Request $request) {
+
+    dd(route('store'));
+return redirect()->route('store')->with('success', 'redirect from test22');
+
+});
+
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
 //  URL::forceScheme('https');
-    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
-     Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
-     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
-    Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
+Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
+Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
 
 
 
@@ -47,43 +55,6 @@ Route::post('/product/inquire/{id}', 'InquiryController@store')->name('customer.
 Route::put('/product/inquire/mark/{id}', 'InquiryController@markAsBest')->name('customer.inquiry.best');
 Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
 
-
-// Route::get('/test3', function () {
-
-//     $length = 4 ;
-//     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-//     $charactersLength = strlen($characters);
-//     $randomString = '';
-//     for ($i = 0; $i < $length; $i++) {
-//         $randomString .= $characters[rand(0, $charactersLength - 1)];
-//     }
-
-
-//     $lengthN = 10;
-//     $characters = '0123456789';
-//     $charactersLength = strlen($characters);
-//     $randomString2 = '';
-//     for ($i = 0; $i < $lengthN; $i++) {
-//         $randomString2 .= $characters[rand(0, $charactersLength - 1)];
-//     }
-//     dd($randomString. $randomString2);
-
-//     //usage
-
-// });
-
-
-// Route::get('/test9', function (Request $request) {
-
-//     $track = new Trackingmore();
-
-
-// $data = $track->getSingleTrackingResult("phlpost","RUI1234567");
-
-
-// dd($data["data"]);
-
-// });
 
 //                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
@@ -141,7 +112,7 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 
 //ADMIN/user managment
-Route::get('admin/account-management', 'UserController@index')->name('admin.account.management');/*->middleware('admin')*/;
+Route::get('admin/account-management', 'UserController@index')->name('admin.user.index');/*->middleware('admin')*/;
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
@@ -166,26 +137,26 @@ Route::put('/admin/keyword/update/{id}', 'KeywordController@update')->name('admi
 Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy')->name('admin.keyword.delete');
 
 //ADMIN/ reference page
-Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.referece.get');
-Route::get('/admin/plantreference/create', 'PlantReferencepageController@create')->name('admin.referece.create');
-Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')->name('admin.referece.store');
-Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.referece.edit');
-Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.referece.update');
-Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.referece.delete');
-Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.referece.removepic');
+Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.reference.get');
+Route::get('/admin/plantreference/create', 'PlantReferencepageController@create')->name('admin.reference.create');
+Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')->name('admin.reference.store');
+Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.reference.show');
+Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.reference.edit');
+Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.reference.delete');
+Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.reference.removepic');
 
 //ADMIN/ APPLICATIONS CHECKING
-Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.customer.application');
-Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show')->name('admin.referece.show');
-Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve')->name('admin.referece.approve');
-Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny')->name('admin.referece.deny');
+Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.customer_application.get');
+Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@show')->name('admin.customer_application.show');
+Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve')->name('admin.customer_application.approve');
+Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny')->name('admin.customer_application.deny');
 
 //ADMIN/ COMMISSIONS
-Route::get('/admin/commissions', 'CommissionController@index');
-Route::get('/admin/commissions/create', 'CommissionController@create');
-Route::post('/admin/commissions/store', 'CommissionController@store');
-Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
-Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
+// Route::get('/admin/commissions', 'CommissionController@index');
+// Route::get('/admin/commissions/create', 'CommissionController@create');
+// Route::post('/admin/commissions/store', 'CommissionController@store');
+// Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
+// Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
 
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
@@ -195,44 +166,40 @@ Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
 //  ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
 
 //Customer / PRODUCTS
-Route::get('/store/item/{id}', 'ProductController@showCustomer');
+Route::get('/store/item/{id}', 'ProductController@showCustomer')->name('customer.product.show');
 
 // CUSTOMER / CART
-Route::get('/store/cart', 'ProductController@getmycart');
-Route::post('/store/cart/addtocart/{id}', 'ProductController@addtocart1');
-Route::delete('/store/cart/remove/{id}', 'ProductController@removecartitem');
-Route::put('/store/cart/quantity/{id}', 'ProductController@updatequantity');
-
+Route::get('/store/cart', 'ProductController@getmycart')->name('customer.cart.show');
+Route::post('/store/cart/addtocart/{id}', 'ProductController@addtocart1')->name('customer.cart.add');
+Route::delete('/store/cart/remove/{id}', 'ProductController@removecartitem')->name('customer.cart.remove');
+Route::put('/store/cart/quantity/{id}', 'ProductController@updatequantity')->name('customer.cart.quantity');
 
 // CUSTOMER / CART / CHECKOUT
-Route::get('/store/checkout', 'OrderController@checkoutpage');
-Route::post('/store/itemcheckout', 'OrderController@addtocheckout');
-Route::post('/store/itemcheckout/order', 'OrderController@placeorder');
-
-
+Route::get('/store/checkout', 'OrderController@checkoutpage')->name('customer.checkout.show');
+Route::post('/store/itemcheckout', 'OrderController@addtocheckout')->name('customer.checkout.add');
+Route::post('/store/itemcheckout/order', 'OrderController@placeorder')->name('customer.checkout.order');
 
 //CUSTOMER/ SETTINGS / APPLICATIONS
-Route::get('/settings/application/form', 'RetailerApplicationController@form');
-Route::post('/settings/application/form', 'RetailerApplicationController@send');
-
+Route::get('/settings/application/form', 'RetailerApplicationController@form')->name('customer.application.show');
+Route::post('/settings/application/form', 'RetailerApplicationController@send')->name('customer.application.post');
 
 //CUSTOMER/ SETTINGS / PROFILE
-Route::get('/settings/profile', 'UserController@profile');
+Route::get('/settings/profile', 'UserController@profile')->name('customer.profile.show');
 
 //CUSTOMER/ SETTINGS / PROFILE / SETUP  if user skip register setUp
-Route::get('/settings/profile/edit', 'UserController@editprofile');
-Route::put('/settings/profile/update', 'UserController@updateprofile');
+Route::get('/settings/profile/edit', 'UserController@editprofile')->name('customer.profile.edit');
+Route::put('/settings/profile/update', 'UserController@updateprofile')->name('customer.profile.update');
 //CUSTOMER/ SETTINGS / PROFILE / VERIFY - OTP if user skip OTP
-Route::get('/settings/profile/verify', 'UserController@pverify');
-Route::put('/settings/profile/verify', 'UserController@pgetcode');
-Route::get('/settings/profile/verify/check', 'UserController@pentercode');
-Route::put('/settings/profile/verify/check', 'UserController@pcheckcode');
-Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode');
+Route::get('/settings/profile/verify', 'UserController@pverify')->name('customer.profile.pverify');
+Route::put('/settings/profile/verify', 'UserController@pgetcode')->name('customer.profile.pgetcode');
+Route::get('/settings/profile/verify/check', 'UserController@pentercode')->name('customer.profile.pentercode');
+Route::put('/settings/profile/verify/check', 'UserController@pcheckcode')->name('customer.profile.pcheckcode');
+Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode')->name('customer.profile.pcancelcode');
 //CUSTOMER/ SETTINGS / PROFILE / add payment method
-Route::get('/store/profile/addpayment',  'CardController@register');
-Route::post('/store/profile/addpayment/register',  'CardController@addcard');
-Route::get('/store/profile/paymentmethods',  'CardController@mycards');
-Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove');
+Route::get('/store/profile/addpayment',  'CardController@register')->name('customer.payment.register');
+Route::post('/store/profile/addpayment/register',  'CardController@addcard')->name('customer.payment.addcard');
+Route::get('/store/profile/paymentmethods',  'CardController@mycards')->name('customer.payment.mycards');
+Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove')->name('customer.payment.remove');
 
 Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
 
@@ -245,31 +212,21 @@ Route::get('/orders',  'OrderController@index')->middleware('auth')->name('clien
 // ██║  ██║███████╗   ██║   ██║  ██║██║███████╗███████╗██║  ██║
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
 
-// Route::get('/test7', function (Request $request) {
-
-//     $retrievedsource = Paymongo::paymentIntent()->find('pi_deUPJz3ni8HbwRQfFw5SoQMU');
-//     dd($retrievedsource);
-// });
-
-
-
-
-
 // RETAILER/ STORE
-Route::get('/store', 'StoreController@front');
-Route::put('/store/setup', 'StoreController@setupstore');
-Route::get('/store/customize', 'StoreController@edit');
-Route::put('/store/customize', 'StoreController@update');
+Route::get('/store', 'StoreController@front')->name('retailer.store.front');
+Route::put('/store/setup', 'StoreController@setupstore')->name('retailer.store.setupstore');
+Route::get('/store/customize', 'StoreController@edit')->name('retailer.store.edit');
+Route::put('/store/customize', 'StoreController@update')->name('retailer.store.update');
 
 // RETAILER/ Products
-Route::get('/store/products', 'ProductController@list');
-Route::get('/store/products/create/{type}', 'ProductController@create');
-Route::post('/store/products/store', 'ProductController@store');
+Route::get('/store/products', 'ProductController@list')->name('retailer.products.front');
+Route::get('/store/products/create/{type}', 'ProductController@create')->name('retailer.products.create');
+Route::post('/store/products/store', 'ProductController@store')->name('retailer.products.store');
 Route::get('/store/products/{id}', 'ProductController@show')->name('product_show');
-Route::get('/store/products/{id}/edit', 'ProductController@edit');
-Route::put('/store/products/{id}/edit', 'ProductController@update');
-Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture');
-Route::get('/store/products/{id}/remove', 'ProductController@remove');
+Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retailer.products.edit');
+Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
+Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
+Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
 
 // Articles
 Route::resource('/articles', 'ArticleController');

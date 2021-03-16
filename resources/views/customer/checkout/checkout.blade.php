@@ -66,10 +66,10 @@
         @endphp
 
 
-        <form action="/store/itemcheckout/order" method="POST">
+        <form action="{{ route('customer.checkout.order') }}" method="POST">
             <div class="div class= card-body">
                 <h1>Choose Payment Methods</h1>
-                <a href="/store/profile/addpayment"> add a card</a>
+                <a href="{{ route('customer.payment.register') }}"> add a card</a>
                 @forelse ($mycards as $c)
 
                     <div class="col-lg-8 col-xl-6 card mt-5 shadow p-3border-3 ">
@@ -83,12 +83,12 @@
                             <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
 
                         </div>
-                        select <input type="radio" name="paytype" id="paytype" value="[1,{{$c->card_id}}]">
+                        select <input type="radio" name="paytype" id="paytype" value="[1,{{ $c->card_id }}]">
 
 
                     </div>
                 @empty
-                    <h3>You have no Payment method Registerd, <a href="/store/profile/addpayment"> add a card</a></h3>
+                    <h3>You have no Payment method Registerd, <a href="{{ route('customer.payment.register') }}"> add a card</a></h3>
                 @endforelse
 
                 <div class="col-lg-8 col-xl-6 card  mt-5 shadow p-3border-3 ">
@@ -99,7 +99,7 @@
                         <b>Gcash</b>
 
                     </div>
-                    select <input type="radio" name="paytype" id="paytype"  value="[0,0]">
+                    select <input type="radio" name="paytype" id="paytype" value="[0,0]">
                     <div>
 
                     </div>

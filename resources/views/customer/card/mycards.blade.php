@@ -14,10 +14,10 @@
         <div class="col-lg-10 mr-auto ml-auto">
             <div class="div class= card-body table-responsive-sm">
                 <h1 class="text-center">My Payment Methods</h1>
-                {{-- <a href="/store/profile/addpayment"> add a card</a> --}}
+                <a href="{{ route('customer.payment.register') }}"> add a card</a>
                 @forelse ($mycards as $c)
 
-                    <script type="text/javascript">
+                    {{-- <script type="text/javascript">
                         var card_number = "{{ Crypt::decryptString($c->card_number) }}";
 
                         function detectCardType(number) {
@@ -45,7 +45,7 @@
 
                         document.getElementById("detect").innerHTML = detectCardType(card_number);
 
-                    </script>
+                    </script> --}}
 
                     <div class="col-lg-6 col-xl-5 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                         <div>
@@ -57,8 +57,8 @@
                         </div>
 
                         <div>
-
-                            <form action="/store/profile/paymentmethods/{{ $c->card_id }}/delete" method="POST">
+                            <form action="{{ route('customer.payment.remove', ['id' => $c->card_id]) }}" method="POST">
+                            
                                 @csrf
                                 <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}
                                     @method('DELETE')
@@ -80,7 +80,7 @@
                                 <div class="card-body mx-auto">
                                     <h3>You have no payment methods registered in our site</h3>
                                     <button class="btn btn-success btn-block">
-                                        <a class="text-dark" href="/store/profile/addpayment"> Add a card </a>
+                                        <a class="text-dark" href="{{ route('customer.payment.register') }}"> Add a card </a>
                                     </button>
 
                                 </div>

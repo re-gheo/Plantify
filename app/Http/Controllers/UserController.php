@@ -115,7 +115,7 @@ class UserController extends Controller
         $data->save();
 
 
-        return redirect ('/verify');
+        return redirect()->route('OTP.verify');
     }
 
     protected function verify(){
@@ -143,10 +143,10 @@ class UserController extends Controller
     } catch (Exception $e)
 
     {
-        return redirect('/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+        return redirect()->route('OTP.verifycheck')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
     }
 
-        return redirect ('/verify/check');
+        return redirect()->route('OTP.verifycheck');
 
     }
 
@@ -180,7 +180,7 @@ class UserController extends Controller
         $data->otp_verified = 1;
         $data->save();
 
-        return redirect ('/')->with('success', 'successfully verified the cell phone number');
+        return redirect()->route('store')->with('success', 'successfully verified the cell phone number');
     }
 
     public function cancelcode()
@@ -194,10 +194,10 @@ class UserController extends Controller
             $result = $nexmo->verify()->cancel($request_id);
         }
         catch(Exception $e) {
-            return redirect('/verify')->withErrors(['mes' => ' your code has expired or cancelled']);
+            return redirect()->route('OTP.verify')->withErrors(['mes' => ' your code has expired or cancelled']);
         }
 
-        return redirect ('/verify');
+        return redirect()->route('OTP.verify');
     }
 
     public function profile()
@@ -233,7 +233,7 @@ class UserController extends Controller
             $data->save();
 
 
-            return redirect('/settings/profile')->with('success', 'successfully updated profile');
+            return redirect()->route('customer.profile.show')->with('success', 'successfully updated profile');
     }
 
 // OTP VERSION FOR PROFILE -------------------------------------------------------------------
@@ -264,11 +264,9 @@ class UserController extends Controller
     } catch (Exception $e)
 
     {
-        return redirect('/settings/profile/verify/check')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+        return redirect()->route('customer.profile.pentercode')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
     }
-
-        return redirect ('/settings/profile/verify/check');
-
+        return redirect ()->route('customer.profile.pentercode');
     }
 
     protected function pentercode()
@@ -301,7 +299,7 @@ class UserController extends Controller
         $data->otp_verified = 1;
         $data->save();
 
-        return redirect ('/settings/profile')->with('success', 'successfully verified the cell phone number');
+        return redirect ()->route('customer.profile.show')->with('success', 'successfully verified the cell phone number');
     }
 
     public function pcancelcode()
@@ -315,10 +313,10 @@ class UserController extends Controller
             $result = $nexmo->verify()->cancel($request_id);
         }
         catch(Exception $e) {
-            return redirect('/settings/profile/verify')->withErrors(['mes' => ' your code has expired or cancelled']);
+            return redirect()->route('customer.profile.pverify')->withErrors(['mes' => ' your code has expired or cancelled']);
         }
 
-        return redirect ('/settings/profile/verify');
+        return redirect ()->route('customer.profile.pverify');
     }
 
 

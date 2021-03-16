@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{!! secure_asset('/css/main.css') !!}">
+<link rel="stylesheet" href="{!! secure_asset('/css/plantify_theme.css') !!}">
+<link rel="stylesheet" type="text/css" href="{!! asset('/css/main.css') !!}">
+    <link rel="stylesheet" href="{!! asset('/css/plantify_theme.css') !!}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/CSS/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">

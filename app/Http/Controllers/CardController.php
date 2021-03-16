@@ -22,7 +22,7 @@ class CardController extends Controller
 
             return view('customer.card.mycards', ['mycards' => $mycards]);
         } else {
-            return redirect('/settings/profile')->with("success", "Please complete Your credentials Before adding your card as a payment method");
+            return redirect()->route('customer.profile.show')->with("success", "Please complete Your credentials Before adding your card as a payment method");
         }
     }
 
@@ -31,7 +31,7 @@ class CardController extends Controller
         if (Auth::user()->addres != null || Auth::user()->govtid_numbe != null || Auth::user()->cp_number != null ||  Auth::user()->birthday != null) {
             return view('customer.card.register');
         } else {
-            return redirect('/settings/profile')->with("success", "Please complete Your credentials Before adding your card as a payment method");
+            return redirect()->route('customer.profile.show')->with("success", "Please complete Your credentials Before adding your card as a payment method");
         }
     }
 
@@ -39,7 +39,7 @@ class CardController extends Controller
     {
         Card::find($id)->delete();
 
-      return redirect('/store/profile/paymentmethods')->with('success', 'Payment method has been removed');
+      return redirect()->route('customer.payment.mycards')->with('success', 'Payment method has been removed');
     }
 
 
@@ -102,7 +102,7 @@ class CardController extends Controller
         }
 
 
-        return redirect('/settings/profile');
+        return redirect()->route('customer.profile.show');
     }
 
 

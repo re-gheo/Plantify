@@ -16,7 +16,7 @@
             <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                 <div class="card-body mx-auto  ">
                     <h3 class="card-title text-center pb-3">Fill in some credentials</h3>
-                    <form method="POST" action="setup/{{ Auth::user()->email }}">
+                    <form method="POST" action="{{ route('addc.setupput', ['email' => Auth::user()->email]) }}">
                         @csrf
                         @method('PUT')
 
@@ -74,7 +74,7 @@
                         <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
 
                         <div class="pt-2">
-                            <a href="/verify">skip for now</a>
+                            <a href="{{ route('OTP.verify') }}">skip for now</a>
                         </div>
                     </form>
                 </div>

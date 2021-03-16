@@ -22,11 +22,11 @@
                                 <h2 class="font-weight-bold mt-4 "> {{ $profile->name }} </h2>
                             </div>
 
-                            <p>{{ $profile->user_role }}</p><a href="/settings/profile/edit">
+                            <p>{{ $profile->user_role }}</p><a href="{{ route('customer.profile.edit') }}">
                                 <i class="far fa-edit  mb-4 mt-4 text-white"></i> <span class="text-white">Update
                                     Profile</span>
 
-                                <a href="/settings/profile/verify">
+                                <a href="{{route('customer.profile.pverify')}}">
                                     <span class="text-white">
                                         @if (!$profile->cp_number)
 
@@ -50,7 +50,7 @@
 
                                 <div class="div">
                                     <i class="fas fa-credit-card text-white"> </i><a class="text-white"
-                                        href="/store/profile/paymentmethods"> My payment methods</a>
+                                        href="{{ route('customer.payment.register') }}"> My payment methods</a>
                                 </div>
 
                         </div>
@@ -128,9 +128,9 @@
                             @else
 
                                 @if (!$profile->retailer_approvalstateid)
-                                    <a href="/settings/application/form"> Regsiter as a Retailer </a>
+                                    <a href="{{ route('customer.application.show') }}"> Regsiter as a Retailer </a>
                                 @elseif($profile->retailer_approvalstateid == 2)
-                                    <a href="/settings/application/form"> Regsiter as a Retailer</a>
+                                    <a href="{{ route('customer.application.show') }}"> Regsiter as a Retailer</a>
                                     <div>
                                         <b>
                                             <p>my last application was denied!, you may try again.</p>

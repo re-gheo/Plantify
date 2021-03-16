@@ -27,7 +27,7 @@ class KeywordController extends Controller
        $keyword->keyword_name = request('keywords');
        $keyword->isDeleted = FALSE;
        $keyword->save();
-        return redirect('/admin/keyword')->with('success', 'created new keyword ' .$keyword->product_categoryid. ' '.$keyword->keyword_name );
+       return redirect()->route('admin.keyword.get')->with('success', 'created new keyword ' .$keyword->product_categoryid. ' '.$keyword->keyword_name );
     }
 
 
@@ -41,7 +41,7 @@ class KeywordController extends Controller
         $temp =$keyword->keyword_name;
        $keyword->keyword_name = request('keywordedit');
        $keyword->save();
-        return redirect('/admin/keyword')->with('success', 'successfully edit keyword ' . $id . '. ' . $temp . ' to ' . request('keywordedit'));
+       return redirect()->route('admin.keyword.get')->with('success', 'successfully edit keyword ' . $id . '. ' . $temp . ' to ' . request('keywordedit'));
     }
 
     public function destroy($id)
@@ -49,6 +49,6 @@ class KeywordController extends Controller
         $set = Keyword::find($id);
         $set->isDeleted = TRUE;
         $set->save();
-        return redirect('/admin/keyword')->with('success', 'Removed keyword ' . $id . '. ' . $set->keyword_name);
+       return redirect()->route('admin.keyword.get')->with('success', 'Removed keyword ' . $id . '. ' . $set->keyword_name);
     }
 }

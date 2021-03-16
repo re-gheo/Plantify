@@ -8,7 +8,7 @@
                 <div class="card-body mx-auto">
                     <h1> Add Product</h1>
 
-                    <form action="/store/products/store" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('retailer.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-input">
                             <label for="product_name"> Name of the Product </label>

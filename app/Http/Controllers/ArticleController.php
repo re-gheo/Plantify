@@ -46,7 +46,7 @@ class ArticleController extends Controller
       $article->article_description = request('article_description');
         $article->save();
       //dd($article); (test)
-       return redirect('/articles')->with('success', 'Article has been added');
+       return redirect()->route('articles.index')->with('success', 'Article has been added');
        //->route('articles.index')
     }
 
@@ -96,7 +96,7 @@ class ArticleController extends Controller
        $article->article_topic = request('article_topic');
        $article->article_description = request('article_description');
        $article->save();
-             return redirect('/articles')->with('success', 'Article has been updated');
+             return redirect()->route('articles.index')->with('success', 'Article has been updated');
     }
 
     /**
@@ -109,7 +109,7 @@ class ArticleController extends Controller
     {
       Article::find($id)->delete();
 
-      return redirect('/articles')->with('success', 'Article has been deleted');
+      return redirect()->route('articles.index')->with('success', 'Article has been deleted');
     }
 
     public function store_show()

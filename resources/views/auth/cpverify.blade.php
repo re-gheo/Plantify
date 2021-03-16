@@ -7,7 +7,7 @@
             <div class="card-body mx-auto ">
                 <h2 class="card-title text-center pb-3">Cellphone number for SMS verification</h2>
                 <div class="card-body">
-                    <form method="POST" action="/verify">
+                    <form method="POST" action="{{ route('OTP.verifyput') }}">
                         @csrf
                         @method('PUT')
 
@@ -40,7 +40,7 @@
                     </span>
                     @enderror
                     <div>
-                        <a   href="/">skip for now</a>
+                        <a   href="{{ route('store') }}">skip for now</a>
                     </div>
                    
                  

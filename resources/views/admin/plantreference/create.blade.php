@@ -2,9 +2,6 @@
 
 @section ('content')
 
-{{-- <div class="div text-right mt-2">
-    <a href="/admin/plantreference/" class="btn btn-dark"> Back to Reference list</a>
-</div> --}}
 
 
         <div class="container">
