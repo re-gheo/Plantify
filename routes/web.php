@@ -228,6 +228,8 @@ Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retai
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
 
+Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
+
 // Articles
 Route::resource('/articles', 'ArticleController');
 

@@ -1,7 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-
     <!--CAROUSEL-->
     <div class="container mt-2">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -53,45 +52,36 @@
             <div class="col-lg-10">
                 <div class="featured d-flex align-items-left justify-content-left">
                     <h1><strong>Featured Items!</strong></h1>
-
-
-
                 </div>
                 <div class="row">
-
-                    
                     @foreach ($products as $product)
-
+                    <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
+                        <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}"
+                            alt="some_image">
                         <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
-                            <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
-                                <img class="img-fluid" src="{{ url('/storage/' . $product->product_mainphoto) }}"
-                                    alt="some_image">
-                                <h5>{{ $product->product_name }}</h5>
-                                <p>Lorem ipsum dolor si amet</p>
-                                <div class="row">
-                                    <div class="star"></div>
-                                    <div class="star"></div>
-                                    <div class="star"></div>
-                                </div>
-
+                            <h5>{{ $product->product_name }}</h5>
                         </a>
-                        
+
+                        <p>Lorem ipsum dolor si amet</p>
+                        <div class="row">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+
                         <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}" method="POST">
                             @csrf
                             {{ $product->product_id }}
                             <button class="btn btn-success btn-sm" type="submit">Add to cart</button>
                         </form>
+                    </div>
+                    @endforeach
                 </div>
 
-                @endforeach
-            </div>
 
+
+            </div>
 
         </div>
     </div>
-    </div>
-
- 
-
-
 @endsection

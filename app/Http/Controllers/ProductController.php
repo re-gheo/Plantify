@@ -34,7 +34,9 @@ class ProductController extends Controller
 
     public function showCustomer($id)
     {
+
         $product = Product::findOrFail($id);
+
         if ($product->isPlant == 1) {
             $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
         }
@@ -139,7 +141,7 @@ class ProductController extends Controller
 
 
         }
-        
+
         return redirect()->route('product_show', ['id'=>$product->product_id]);
     }
 

@@ -47,7 +47,7 @@ class ProductTableSeeder extends Seeder
             "product_quantity" => 123,
             "retailer_id" => 2,
             "isDeleted" => 0,
-            "isPlant" => 1,
+            "isPlant" => 0,
             "created_at" => "2021-02-26 07:12:57",
             "updated_at" => "2021-02-26 07:12:57",
         ]);
