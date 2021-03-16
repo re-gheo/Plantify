@@ -53,20 +53,21 @@
                             <td>{{ $reference->categories }}</td>
                             <td>
                                 <div class="row">
-                                    <img src="{{ url('/storage/' . $reference->plant_photo) }}" width="150" height="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_photo) }}" width="150" height="150"
                                         alt="main">
-                                    <img src="{{ url('/storage/' . $reference->plant_phototwo) }}" width="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_phototwo) }}" width="150"
                                         height="150" alt="None">
-                                    <img src="{{ url('/storage/' . $reference->plant_photothree) }}" width="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_photothree) }}" width="150"
                                         height="150" alt="None">
                                 </div>
 
                             </td>
                             <td>
                                 <div class="row ">
-                                    <a href="{{ route(admin.reference.show, ['id' => $reference->plant_referenceid]) }}"
+                                    <a href="{{ route('admin.reference.show', ['id' => $reference->plant_referenceid]) }}"
                                         class="btn btn-dark">EDIT</a>
-                                    <form action="{{ route(admin.reference.delete, ['id' => $reference->plant_referenceid]) }}/delete"
+                                    <form
+                                        action="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}/delete"
                                         method="POST">
                                         @csrf
                                         @method('delete')

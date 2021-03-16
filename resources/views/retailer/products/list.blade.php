@@ -18,7 +18,7 @@
 
                     <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                         <a href="{{ route('product_show', ['id'=>$product->product_id]) }}">
-                            <img src="{{ url('/storage/' . $product->product_mainphoto) }}" height="490" alt="background">
+                            <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" height="490" alt="background">
                             <br>
 
                             <h4>{{ $product->product_name }}</h4> <br>

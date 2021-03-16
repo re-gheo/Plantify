@@ -22,7 +22,7 @@
 
                             <div>
                                 <div style="width: 120px; float: left;">
-                                    <img src="{{ url('/storage/' . $i->product_mainphoto) }}" height="100" alt="background">
+                                    <img src="{{ asset('/storage/' . $i->product_mainphoto) }}" height="100" alt="background">
                                 </div>
                                 <div style="margin-left: 6px;">
                                     <div>
@@ -62,7 +62,11 @@
                     </div>
                 @empty
                     <h3>Oh! your cart is empty </h3>
-                    <a href="{{ route('store') }}">add an item</a>
+                    <div class="pull-left mt-3">
+                        <a class="btn btn-dark" href="{{ route('store') }}">Add an item</a>
+
+                    </div>
+
                 @endforelse
                 @if (isset($carts))
                 @endif

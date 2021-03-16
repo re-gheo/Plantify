@@ -59,7 +59,7 @@
                         <label for=""><b>Image of ID - FRONT:</b></label>
 
                         <div>
-                            <img class="mx-auto d-block" src="{{ url('/storage/' . $app->retailer_officialidfront) }}"
+                            <img class="mx-auto d-block" src="{{ asset('/storage/' . $app->retailer_officialidfront) }}"
                                 height="250" width="250" alt="main">
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         <div>
                             <label for=""><b>Image of ID - Back: </b></label>
                             <div>
-                                <img class="mx-auto d-block" src="{{ url('/storage/' . $app->retailer_officialidback) }}"
+                                <img class="mx-auto d-block" src="{{ asset('/storage/' . $app->retailer_officialidback) }}"
                                     height="250" width="250" alt="main">
                             </div>
                         </div>

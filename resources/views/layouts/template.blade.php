@@ -12,12 +12,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/CSS/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{!! secure_asset('/css/main.css') !!}">
     <link rel="stylesheet" href="/CSS/plantify_theme.css">
-    <link rel="stylesheet" href="{{ asset('/CSS/plantify_theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('/CSS/plantify_theme.css') }}">
     <link rel="stylesheet" href="{!! secure_asset('/css/plantify_theme.css') !!}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    
+
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
     @yield('styles')
@@ -29,7 +29,7 @@
 
 
     <nav id="plantify-navbar" class="navbar navbar-expand-lg  ">
-        <a class="navbar-brand " href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+        <a class="navbar-brand " href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
         <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
 
-             
+
 
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>
@@ -77,7 +77,7 @@
                 @if (!Auth::user())
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="/store/cart">My Cart</a>
+                        <a class="nav-link" href="{{ route('customer.cart.show') }}">My Cart</a>
                     </li>
                 @endif
                 <li class="nav-item dropdown">
@@ -88,7 +88,7 @@
 
                         <img class="avatar-customer ml-2" src="{{ Auth::user()->avatar }}"
                             alt="{{ Auth::user()->name }} " onerror="
-                                this.onerror=null;this.src='/css/default-image.svg' ;">
+                                this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
 
 
 
@@ -102,14 +102,14 @@
                             <a class="dropdown-item" href="{{ route('client.order') }}">My Orders & Transactions</a>
 
                             {{-- With pages made --}}
-                            <a class="dropdown-item" href="/settings/profile">Account Settings</a>
+                            <a class="dropdown-item" href="{{ route('customer.profile.show') }}">Account Settings</a>
 
                             @if (Auth::user()->user_role == 'admin')
-                                <a class="dropdown-item" href="/admin/home">Admin Controls</a>
+                                <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>
 
 
                             @elseif(Auth::user()->user_role == 'retailer')
-                                <a class="dropdown-item" href="/store">Store Page</a>
+                                <a class="dropdown-item" href="{{ route('retailer.store.front') }}">Store Page</a>
                             @endif
 
                             {{-- With no pages made
@@ -225,7 +225,7 @@
                         <li><a href="http://scanfcode.com/about/">About Us</a></li>
                         <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
                         <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/resources/views/customer/other/tos.html">Privacy Policy</a></li>
                         <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
                     </ul>
                 </div>
@@ -236,7 +236,7 @@
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                        <a href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
                     </p>
                 </div>
 
