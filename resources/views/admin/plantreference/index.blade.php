@@ -67,7 +67,7 @@
                                     <a href="{{ route('admin.reference.show', ['id' => $reference->plant_referenceid]) }}"
                                         class="btn btn-dark">EDIT</a>
                                     <form
-                                        action="{{ route(admin . reference . delete, ['id' => $reference->plant_referenceid]) }}/delete"
+                                        action="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}/delete"
                                         method="POST">
                                         @csrf
                                         @method('delete')
