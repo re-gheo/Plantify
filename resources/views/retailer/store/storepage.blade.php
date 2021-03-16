@@ -5,7 +5,7 @@
     {{-- BANNER IMAGE --}}
 
     <div class="card">
-        <img class=" card-image" src="{{ url('/storage/' . $store->store_backgroundimage) }}" alt="cover photo "
+        <img class=" card-image" src="{{ asset('/storage/' . $store->store_backgroundimage) }}" alt="cover photo "
             onerror=" this.onerror=null;this.src='/css/default-cover.jpg' ;">
     </div>
 

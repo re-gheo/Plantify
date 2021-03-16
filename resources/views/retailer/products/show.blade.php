@@ -13,7 +13,7 @@
                     <article class="gallery-wrap">
                         <div class="img-big-wrap">
                             <div>
-                                <a href="#"> <img src="{{ url('/storage/' . $product->product_mainphoto) }}" alt=""></a>
+                                <a href="#"> <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" alt=""></a>
                             </div>
                         </div> <!-- slider-product.// -->
                         <div class="img-small-wrap">
@@ -130,12 +130,12 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active ">
-                    <img src="{{ url('/storage/' . $product->product_mainphoto) }}" alt="">
+                    <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" alt="">
                 </div>
 
                 @foreach ($asphotos as $asp)
                     <div class="carousel-item">
-                        <img src="{{ url('/storage/' . $asp->product_photo) }}" alt="">
+                        <img src="{{ asset('/storage/' . $asp->product_photo) }}" alt="">
                     </div>
                 @endforeach
 

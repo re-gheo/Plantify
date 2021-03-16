@@ -16,7 +16,7 @@
 
 
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_backgroundimage) }}" width="50%" height="50%" alt="">
+                            <img src="{{ asset('/storage/' . $store->store_backgroundimage) }}" width="50%" height="50%" alt="">
                         </div>
 
                         <div>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div>
-                            <img src="{{ url('/storage/' . $store->store_profileimage) }}"  width="50%" height="50%" alt="">
+                            <img src="{{ asset('/storage/' . $store->store_profileimage) }}"  width="50%" height="50%" alt="">
                         </div>
                         <div>
                             <label for="store_profileimage">Profile photo for your Store</label>
