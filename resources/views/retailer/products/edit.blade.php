@@ -118,7 +118,7 @@ is-invalid @enderror" name="product_sizes" value="{{ $product->product_sizes }}"
                     
                 </div>
 
-                <img src="{{url('/storage/'. $product->product_mainphoto)  }}" alt="">
+                <img src="{{asset('/storage/'. $product->product_mainphoto)  }}" alt="">
         </div>
 
         @error('product_mainphoto')
@@ -138,7 +138,7 @@ is-invalid @enderror" name="product_sizes" value="{{ $product->product_sizes }}"
 
         @foreach($asphotos as $asp)
         <div>
-            <img src="{{url('/storage/'. $asp->product_photo)  }}" height="120" alt="">
+            <img src="{{asset('/storage/'. $asp->product_photo)  }}" height="120" alt="">
             <a href="{{ route('retailer.products.removepicture', ['id' =>$product->product_id , 'pic' => $asp->assigned_photoid]) }}" > remove pic</a>
            </div>
         @endforeach 

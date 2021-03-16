@@ -28,7 +28,7 @@
                         <td>{{ $item->cart_itemcost }} php</td>
                         <td>{{ $item->cart_quantity }} x </td>
                         <td>{{ $item->cart_subtotal }} php</td>
-                        <th> <img class="img-fluid" src="{{ url('/storage/' . $item->product_mainphoto) }}"
+                        <th> <img class="img-fluid" src="{{ asset('/storage/' . $item->product_mainphoto) }}"
                                 alt="some_image" width="120" height="120"></th>
                     </tr>
                 @endforeach

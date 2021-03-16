@@ -6,7 +6,7 @@
 
 <div class = "card-body">
 
-  <form action="/admin/plantreference/{{ $reference->plant_referenceid }}/edit" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('admin/plantreference/{id}/edit', ['id' => $reference->plant_referenceid]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('put')
 <h2>create a plant reference page</h2>
@@ -61,7 +61,7 @@
     <div>
         <label for="plant_photo">main photo for this plant</label>
         <div>
-            <img src="{{url('/storage/'. $reference->plant_photo)  }}" width="300" height="300" alt="main">
+            <img src="{{asset('/storage/'. $reference->plant_photo)  }}" width="300" height="300" alt="main">
         </div>
             <div>
                 <input type="file" name="plant_photo" id="plant_photo" > 
@@ -78,7 +78,7 @@
         <label for="plant_phototwo">2nd photo for this plant</label>
         @if(isset($reference->plant_phototwo))
             <div>
-                <img src="{{url('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="2nd">
+                <img src="{{asset('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="2nd">
                 <a href="{{ route('admin.reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'two']) }}" class="btn btn-dark"> remove picture</a>
             </div>
             @endif
@@ -93,7 +93,7 @@
         <label for="plant_photothree">3rd photo for this plant</label>
         @if(isset($reference->plant_photothree))
         <div>
-            <img src="{{url('/storage/'. $reference->plant_photothree)  }}" width="300" height="300" alt="3rd">
+            <img src="{{asset('/storage/'. $reference->plant_photothree)  }}" width="300" height="300" alt="3rd">
             <a href="{{ route('admin.reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'three']) }}" class="btn btn-dark"> remove picture</a>
         </div>
         @endif

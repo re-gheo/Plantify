@@ -77,7 +77,7 @@
                 @if (!Auth::user())
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="/store/cart">My Cart</a>
+                        <a class="nav-link" href="{{ route('customer.cart.show') }}">My Cart</a>
                     </li>
                 @endif
                 <li class="nav-item dropdown">
@@ -102,7 +102,7 @@
                             <a class="dropdown-item" href="{{ route('client.order') }}">My Orders & Transactions</a>
 
                             {{-- With pages made --}}
-                            <a class="dropdown-item" href="{{ rotue('customer.profile.show') }}">Account Settings</a>
+                            <a class="dropdown-item" href="{{ route('customer.profile.show') }}">Account Settings</a>
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>

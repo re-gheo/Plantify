@@ -22,7 +22,7 @@
 
                             <div>
                                 <div style="width: 120px; float: left;">
-                                    <img src="{{ url('/storage/' . $i->product_mainphoto) }}" height="100" alt="background">
+                                    <img src="{{ asset('/storage/' . $i->product_mainphoto) }}" height="100" alt="background">
                                 </div>
                                 <div style="margin-left: 6px;">
                                     <div>

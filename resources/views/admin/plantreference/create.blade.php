@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     
-  <form action="/admin/plantreference/store" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('admin.reference.create ') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div>

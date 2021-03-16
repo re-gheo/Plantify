@@ -53,11 +53,11 @@
                             <td>{{ $reference->categories }}</td>
                             <td>
                                 <div class="row">
-                                    <img src="{{ url('/storage/' . $reference->plant_photo) }}" width="150" height="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_photo) }}" width="150" height="150"
                                         alt="main">
-                                    <img src="{{ url('/storage/' . $reference->plant_phototwo) }}" width="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_phototwo) }}" width="150"
                                         height="150" alt="None">
-                                    <img src="{{ url('/storage/' . $reference->plant_photothree) }}" width="150"
+                                    <img src="{{ asset('/storage/' . $reference->plant_photothree) }}" width="150"
                                         height="150" alt="None">
                                 </div>
 

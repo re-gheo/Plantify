@@ -30,12 +30,12 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active ">
-                    <img src="{{ url('/storage/' . $product->product_mainphoto) }}" alt="">
+                    <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" alt="">
                 </div>
 
                 @foreach ($asphotos as $asp)
                     <div class="carousel-item">
-                        <img src="{{ url('/storage/' . $asp->product_photo) }}" alt="">
+                        <img src="{{ asset('/storage/' . $asp->product_photo) }}" alt="">
                     </div>
                 @endforeach
 
