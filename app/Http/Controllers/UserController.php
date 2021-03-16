@@ -180,7 +180,7 @@ class UserController extends Controller
         $data->otp_verified = 1;
         $data->save();
 
-        return redirect()->route('home')->with('success', 'successfully verified the cell phone number');
+        return redirect()->route('store')->with('success', 'successfully verified the cell phone number');
     }
 
     public function cancelcode()

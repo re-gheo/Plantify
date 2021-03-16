@@ -5,7 +5,7 @@
         <div class="row px-2">
             <div class="col-lg-8 col-xl-6 card flex-row mx-auto px-4 shadow p-3 mb-5 border-3">
                 <div class="card-body mx-auto">
-                    <form action="{{ route('customer.payment.register')}}" method="POST">
+                    <form action="{{ route('customer.payment.addcard')}}" method="POST">
 
                         @csrf
                         <div class="text-center">

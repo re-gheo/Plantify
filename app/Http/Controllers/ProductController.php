@@ -364,7 +364,7 @@ class ProductController extends Controller
             $item->save();
             return redirect()->route('customer.cart.show')->with('success', 'updared quantity for ' . $item->cart_itemname . 'from cart.');
         } else {
-            return redirect()->route('home');
+            return redirect()->route('store');
         }
     }
 
@@ -378,7 +378,7 @@ class ProductController extends Controller
             Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
             return redirect()->route('customer.cart.show')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
         } else {
-            return redirect()->route('home');
+            return redirect()->route('store');
         }
     }
 }

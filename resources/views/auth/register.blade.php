@@ -101,7 +101,7 @@
                         </div>
                         &nbsp;
                         <div class="text-center">
-                            <span>Already have an account? go back to the <a href="/login">Login Page</a> </span>
+                            <span>Already have an account? go back to the <a href="{{ route('loginf') }}">Login Page</a> </span>
                         </div>
 
                     </form>

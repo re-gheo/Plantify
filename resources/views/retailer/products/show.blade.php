@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <a href="/store/products" class="btn btn-dark"> back to my profuct list</a>
+    <a href="{{  route('retailer.products.front')}}" class="btn btn-dark"> back to my profuct list</a>
     <div class="container mt-2">
         <div id="pic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -73,7 +73,7 @@
 
 
 
-        <a href="/store/products/{{ $product->product_id }}/edit"> edit products</a>
+        <a href="{{ route('retailer.products.edit', ['id' => $product->product_id ]) }}"> edit products</a>
 
     </div>
 

@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            don't have an account? <a href="/register">Register here</a>
+                                            don't have an account? <a href="{{ route('registerf') }}">Register here</a>
                                         </div>
                                     </div>
             

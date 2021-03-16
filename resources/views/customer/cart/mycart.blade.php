@@ -61,7 +61,8 @@
                         @endforelse
                     </div>
                 @empty
-                    <h3>Oh! your cart is empty </h3><a href="/">add an item</a>
+                    <h3>Oh! your cart is empty </h3>
+                    <a href="{{ route('store') }}">add an item</a>
                 @endforelse
                 @if (isset($carts))
                 @endif

@@ -40,7 +40,7 @@
                     </span>
                     @enderror
                     <div>
-                        <a   href="/">skip for now</a>
+                        <a   href="{{ route('store') }}">skip for now</a>
                     </div>
                    
                  

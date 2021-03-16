@@ -139,7 +139,7 @@ is-invalid @enderror" name="product_sizes" value="{{ $product->product_sizes }}"
         @foreach($asphotos as $asp)
         <div>
             <img src="{{url('/storage/'. $asp->product_photo)  }}" height="120" alt="">
-            <a href="/store/products/{{$product->product_id}}/removepic/{{ $asp->assigned_photoid }}". > remove pic</a>
+            <a href="{{ route('retailer.products.removepicture', ['id' =>$product->product_id , 'pic' => $asp->assigned_photoid]) }}" > remove pic</a>
            </div>
         @endforeach 
 

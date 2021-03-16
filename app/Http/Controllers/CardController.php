@@ -102,7 +102,7 @@ class CardController extends Controller
         }
 
 
-        return redirect('/settings/profile');
+        return redirect()->route('customer.profile.show');
     }
 
 
