@@ -29,7 +29,7 @@
 
 
     <nav id="plantify-navbar" class="navbar navbar-expand-lg  ">
-        <a class="navbar-brand " href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+        <a class="navbar-brand " href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
         <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -102,14 +102,14 @@
                             <a class="dropdown-item" href="{{ route('client.order') }}">My Orders & Transactions</a>
 
                             {{-- With pages made --}}
-                            <a class="dropdown-item" href="/settings/profile">Account Settings</a>
+                            <a class="dropdown-item" href="{{ rotue('customer.profile.show') }}">Account Settings</a>
 
                             @if (Auth::user()->user_role == 'admin')
-                                <a class="dropdown-item" href="/admin/home">Admin Controls</a>
+                                <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>
 
 
                             @elseif(Auth::user()->user_role == 'retailer')
-                                <a class="dropdown-item" href="/store">Store Page</a>
+                                <a class="dropdown-item" href="{{ route('retailer.store.front') }}">Store Page</a>
                             @endif
 
                             {{-- With no pages made
@@ -236,7 +236,7 @@
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                        <a href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
                     </p>
                 </div>
 

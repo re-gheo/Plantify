@@ -26,7 +26,7 @@
                 <img class="admin-avatar " src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
                     this.onerror=null;this.src='/css/default-image.svg' ;">
                 <div class="media-body">
-                    <a href="/settings/profile">
+                    <a href="{{ route('customer.profile.show') }}">
                         <h4 class="m-0 text-white">{{ Auth::user()->name }}</h4>
                     </a>
 
@@ -39,13 +39,13 @@
 
         <ul class="nav flex-column bg-white mb-0">
             <li class="nav-item">
-                <a href="/admin/home" class="nav-link text-dark bg-light">
+                <a href="{{ route('admin.home') }}" class="nav-link text-dark bg-light">
                     <i class="fas fa-leaf mr-3 text-primary fa-fw"></i>
                     home
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/account-management" class="nav-link text-dark">
+                <a href="{{ route('admin.user.index') }}" class="nav-link text-dark">
                     <i class="fas fa-user-alt mr-3 text-primary fa-fw"></i>
                     manage accounts
                 </a>
@@ -60,31 +60,31 @@
 
 
             <li class="nav-item">
-                <a href="/admin/categories" class="nav-link text-dark">
+                <a href="{{ route('admin.category.get') }}" class="nav-link text-dark">
                     <i class="far fa-list-alt mr-3 text-primary fa-fw"></i>
                     categories
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/articles" class="nav-link text-dark">
+                <a href="{{ route('articles.index') }}" class="nav-link text-dark">
                     <i class="fas fa-newspaper mr-3 text-primary fa-fw"></i>
                     Articles
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/customer_application" class="nav-link text-dark">
+                <a href="{{ route('admin.customer_application.get')}}" class="nav-link text-dark">
                     <i class="fas fa-key mr-3 text-primary fa-fw"></i>
                     Customer Applications
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/plantreference/" class="nav-link text-dark">
+                <a href="{{ route('admin.reference.get') }}" class="nav-link text-dark">
                     <i class="fas fa-seedling mr-3 text-primary fa-fw"></i>
                     References
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/admin/keyword/" class="nav-link text-dark">
+                <a href="{{ route('admin.keyword.get') }}" class="nav-link text-dark">
                     <i class="fas fa-building mr-3 text-primary fa-fw"></i>
                     Keywords
                 </a>
@@ -164,7 +164,7 @@
                         {{-- <a class="dropdown-item" href="/settings/profile">Account Settings</a> --}}
 
                         @if (Auth::user()->user_role == 'retailer')
-                            <a class="dropdown-item" href="/">Storefront</a>
+                            <a class="dropdown-item" href="{{ route('store') }}">Storefront</a>
                         @endif
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -248,7 +248,7 @@
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                        <a href="{{ route('store')  }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
                     </p>
                 </div>
 
