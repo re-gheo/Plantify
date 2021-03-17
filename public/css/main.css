@@ -475,6 +475,16 @@ Shopping Cart
     border: none
 }
 
+.cart-input input {
+    width: 90%;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #00000020;
+    border-radius: 5px;
+    outline: none;
+
+    border: none
+}
 
 .param {
     margin-bottom: 7px;

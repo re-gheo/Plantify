@@ -9,28 +9,32 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive ">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col" class="text-center">Price</th>
-                                    <th scope="col" class="text-right">Quantity</th>
-                                    <th scope="col" class="text-right">Action</th>
-                                    <th scope="col" class="text-right">Subtotal Price</th>
-                                </tr>
-                            </thead>
 
-                            @forelse($carts as $key => $c1)
 
-                                @if (date($key) == Carbon\Carbon::today('Asia/Manila')->toDateString())
-                                    <h1><b> Today's Cart </b></h1>
-                                    <p><b>Date of Cart: {{ date($key) }}</b></p>
-                                @else
-                                    <h1>{{ date($key) }}</h1>
-                                @endif
+                        @forelse($carts as $key => $c1)
+
+                            @if (date($key) == Carbon\Carbon::today('Asia/Manila')->toDateString())
+                                <h1><b> Today's Cart </b></h1>
+                                <p><b>Date of Cart: {{ date($key) }}</b></p>
+                            @else
+                                <h1>{{ date($key) }}</h1>
+                            @endif
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Photo</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col" class="text-center">Price</th>
+                                        <th scope="col" class="text-right">Quantity</th>
+                                        <th scope="col" class="text-right">Action</th>
+                                        <th scope="col" class="text-right">Subtotal Price</th>
+                                    </tr>
+                                </thead>
 
                                 @forelse ($c1 as $i)
+
+
 
                                     <tr>
                                         <td>
@@ -100,21 +104,21 @@
                                 @empty
                                 @endforelse
 
+                            </table>
+
+                        @empty
+                            <h3>Oh! your cart is empty </h3>
+                            <div class="pull-left mt-3">
+                                <a class="btn btn-dark" href="{{ route('store') }}">Add an item</a>
+
+                            </div>
+
+                        @endforelse
+                        @if (isset($carts))
+                        @endif
 
 
-                            @empty
-                                <h3>Oh! your cart is empty </h3>
-                                <div class="pull-left mt-3">
-                                    <a class="btn btn-dark" href="{{ route('store') }}">Add an item</a>
 
-                                </div>
-
-                            @endforelse
-                            @if (isset($carts))
-                            @endif
-
-
-                        </table>
                         <hr>
 
                         {{-- TOTAL AMOUNT --}}
@@ -198,8 +202,7 @@
     </div>
 
 
-
-    @forelse($carts as $key => $c1)
+    {{-- @forelse($carts as $key => $c1)
 
         @if (date($key) == Carbon\Carbon::today('Asia/Manila')->toDateString())
 
@@ -232,7 +235,7 @@
 
         </div>
 
-    @endforelse
+    @endforelse --}}
 
 
 
