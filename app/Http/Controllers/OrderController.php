@@ -226,10 +226,7 @@ class OrderController extends Controller
                 $bystore->order_unitcost = $i->cart_itemcost;
                 $bystore->order_subtotal = $i->cart_subtotal;
                 $bystore->save();
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
             }
             $request->session()->forget('selected_item');
             return redirect()->route('store')->with('success', 'Successfully created an order');
@@ -248,7 +245,7 @@ class OrderController extends Controller
         }
     }
 
-<<<<<<< Updated upstream
+
     public function redirectPaymongoSuccess(Request $request){
         $cart_items = $request->id;
 
@@ -289,17 +286,9 @@ class OrderController extends Controller
     public function redirectPaymongoFailed(){
         Session::flash('err', 'Payment Failed! Please try again.');
         return redirect()->route('customer.checkout.show');
-=======
-    public function redirectPaymongoSuccess()
-    {
-        dd('Hellow');
     }
 
-    public function redirectPaymongoFailed()
-    {
-        dd('Failed');
->>>>>>> Stashed changes
-    }
+    
 
     protected function genID()
     {
@@ -363,7 +352,7 @@ class OrderController extends Controller
 
         dd($olist, $iarray2);
 
-        return view()
+        return view();
     }
 
     public function detail(Request $request)
