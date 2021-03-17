@@ -95,11 +95,11 @@ class OrderController extends Controller
                 $item->id = array_push($items_id, $item->cart_itemid);
             }
         }
-            //         foreach ($items as $i) {
-            //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
-            //                 dump($ucustomer->customer_id);
-            //         }
-            // dd("");
+        //         foreach ($items as $i) {
+        //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
+        //                 dump($ucustomer->customer_id);
+        //         }
+        // dd("");
         // dd(json_decode($request->paytype)[0], $cost ,  $ses,  $sel);
 
         if (json_decode($request->paytype)[0] == 1) {
@@ -178,7 +178,7 @@ class OrderController extends Controller
 
 
             foreach ($items as $i) {
-                // dd("hello1");
+
                 if (!Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->exists()) {
                     $customer =  new Customer();
                     $customer->user_id = Auth::user()->id;
@@ -189,7 +189,7 @@ class OrderController extends Controller
                 $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
 
 
-                // dd("hello1");
+
                 $items = Cart_item::find($i->cart_itemid);
                 $items->checked = 1;
                 $items->save();
@@ -198,7 +198,7 @@ class OrderController extends Controller
                 $tmore = new Trackingmore();
                 $data =  $tmore->createTracking(
                     "ninjavan-ph",
-                     $detemp,
+                    $detemp,
                     [
 
                         'title' => $i->product_name . ' by ' .  $i->store_name,
@@ -226,7 +226,10 @@ class OrderController extends Controller
                 $bystore->order_unitcost = $i->cart_itemcost;
                 $bystore->order_subtotal = $i->cart_subtotal;
                 $bystore->save();
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             }
             $request->session()->forget('selected_item');
             return redirect()->route('store')->with('success', 'Successfully created an order');
@@ -241,10 +244,11 @@ class OrderController extends Controller
                 ],
             ]);
 
-             return redirect($source->redirect['checkout_url']);
+            return redirect($source->redirect['checkout_url']);
         }
     }
 
+<<<<<<< Updated upstream
     public function redirectPaymongoSuccess(Request $request){
         $cart_items = $request->id;
 
@@ -285,6 +289,16 @@ class OrderController extends Controller
     public function redirectPaymongoFailed(){
         Session::flash('err', 'Payment Failed! Please try again.');
         return redirect()->route('customer.checkout.show');
+=======
+    public function redirectPaymongoSuccess()
+    {
+        dd('Hellow');
+    }
+
+    public function redirectPaymongoFailed()
+    {
+        dd('Failed');
+>>>>>>> Stashed changes
     }
 
     protected function genID()
@@ -313,10 +327,68 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-    */
-    public function index(){
+     */
+    public function index()
+    {
         $orderDetails = Auth::user()->orderDetails;
 
         return view('customer.order.index', compact('orderDetails'));
+    }
+
+    //Order_bystoreitem, Order_detail, Order , Customer
+    //customer
+    public function list(Request $request)
+    { //get
+        $olist = Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')->where('order_details.user_id', Auth::user()->id)->get();
+
+        $iarray = array();
+        foreach ($olist as $ol) {
+            $item = json_decode($ol->products);
+            $iarray2[$ol->orderdetails_id] = array();
+            
+            foreach ($item as $i) {
+                $items = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
+                    ->join('products', 'cart_items.product_id', '=', 'products.product_id')
+                    ->where('cart_items.user_id',  Auth::user()->id)
+                    ->where('cart_items.cart_itemid',  $i)->get();
+                //  dump( $items);
+               
+               $iarray2[$ol->orderdetails_id][] = $i;
+
+            }
+        }
+
+     
+
+
+        dd($olist, $iarray2);
+
+        return view()
+    }
+
+    public function detail(Request $request)
+    { //get
+
+    }
+
+    public function cancel(Request $request)
+    { //put/delete
+
+    }
+
+    public function recieve(Request $request)
+    { //put
+
+    }
+
+
+    //retailer
+
+    public function updateorder(Request $request)
+    {
+    }
+
+    public function ordercancel(Request $request)
+    {
     }
 }
