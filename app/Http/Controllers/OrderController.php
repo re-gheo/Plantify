@@ -339,7 +339,7 @@ class OrderController extends Controller
                     ->where('cart_items.cart_itemid',  $i)->get();
             }
         }
-        dd($olist);
+       
         return view('customer.order.orderlist', ['olist' => $olist,  'items' => $iarray2]);
 
     }
