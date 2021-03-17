@@ -20,6 +20,8 @@ use Luigel\Paymongo\Models\BaseModel;
 use Luigel\Paymongo\Models\PaymentMethod;
 use Luigel\Paymongo\Exceptions\BadRequestException;
 
+use Session;
+
 class OrderController extends Controller
 {
     public function addtocheckout(Request $request)
@@ -48,6 +50,10 @@ class OrderController extends Controller
                 ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
                 ->where('cart_items.checked',  null)
                 ->get()->find($sel);
+
+
+
+
             $sum = collect($items)->sum('cart_subtotal');
             $msum = number_format($sum, 2, '.', '');
             $gsum = $sum + 50;
@@ -69,6 +75,7 @@ class OrderController extends Controller
         // $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   "KUEB4730128991");
 
         // dd(  $gdata["data"]["id"] );
+        $items_id=[];
         $ses = request()->session()->get('selected_item');
 
         $sel = json_decode($ses);
@@ -82,6 +89,11 @@ class OrderController extends Controller
             $gsum = $sum + 50;
             $mgsum = number_format($gsum, 2, '.', '');
             $cost = ['subtotal' =>  $msum, 'grandtotal' => $mgsum];
+
+
+            foreach($items as $item){
+                $item->id = array_push($items_id, $item->cart_itemid);
+            }
         }
             //         foreach ($items as $i) {
             //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
@@ -215,9 +227,6 @@ class OrderController extends Controller
                 $bystore->order_subtotal = $i->cart_subtotal;
                 $bystore->save();
 
-
-
-
             }
             $request->session()->forget('selected_item');
             return redirect()->route('store')->with('success', 'Successfully created an order');
@@ -227,7 +236,7 @@ class OrderController extends Controller
                 'amount' => $gsum,
                 'currency' => 'PHP',
                 'redirect' => [
-                    'success' => route('customer.checkout.success'),
+                    'success' => route('customer.checkout.success', ['id' => $items_id]),
                     'failed' => route('customer.checkout.failed'),
                 ],
             ]);
@@ -236,12 +245,46 @@ class OrderController extends Controller
         }
     }
 
-    public function redirectPaymongoSuccess(){
-        dd('Hellow');
+    public function redirectPaymongoSuccess(Request $request){
+        $cart_items = $request->id;
+
+        foreach($cart_items as $items){
+
+            $order = Order::create([
+                'payment_type' => 2,
+                'order_datecreated' => Carbon::now('Asia/Manila'),
+                'order_dateshipped' => Carbon::now('Asia/Manila')->addDay(3),
+                'order_statusid' => 3,
+            ]);
+
+            $cart_item = Cart_item::find($items);
+
+            $order->details()->create([
+                'payment_type' => 2,
+                'order_datecreated' => Carbon::now('Asia/Manila'),
+                'order_dateshipped' => Carbon::now('Asia/Manila')->addDay(3),
+                'user_id' => Auth::user()->id,
+            ]);
+
+            // $details =  new Order_detail();
+            // $details->orderdetails_id = $detemp;
+            // $details->products = $ses;
+            // $details->order_id =  $order->order_id;
+            // $details->paymentintentid = $attachedPaymentIntent->id;
+            // $details->order_unitcost = $sum;
+            // $details->order_subtotal = $gsum;
+            // $details->user_id = Auth::user()->id;
+            // $details->save();
+        }
+
+        Session::flash('err', 'Payment Failed! Please try again.');
+
+        return redirect()->route('customer.checkout.show');
     }
 
     public function redirectPaymongoFailed(){
-        dd('Failed');
+        Session::flash('err', 'Payment Failed! Please try again.');
+        return redirect()->route('customer.checkout.show');
     }
 
     protected function genID()
