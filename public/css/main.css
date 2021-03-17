@@ -20,10 +20,16 @@ body {
 .img-left {
     height: 100%;
     width: 50%;
-    background-image: url('/css/plantify.png');
+    /* background-image: url('/css/plantify.png'); */
     background-size: cover;
-    border-radius: 2px !important;
+    border-radius: 5px !important;
+    border: none;
 
+}
+
+.img-left img {
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -349,6 +355,11 @@ STOREPAGE
 -----------------
 */
 
+.main-photo {
+    height: 20rem;
+    justify-content: center;
+}
+
 .gallery-pic img {
     width: 10rem;
     height: 10rem;
@@ -448,6 +459,52 @@ Profile Page
 Shopping Cart
 -----------------
 */
+.param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+
+.param-inline dt {
+    display: inline-block;
+}
+
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+}
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+
+var {
+    font-style: normal;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+
+.img-sm {
+    width: 90px;
+    max-height: 75px;
+    object-fit: cover;
+}
 
 /* 
 ------------------

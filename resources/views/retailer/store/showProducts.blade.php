@@ -7,7 +7,7 @@
 
 
             <div class="container">
-                <h3 class="text-center">{{$store->store_name}}</h3>
+                <h3 class="text-center">{{ $store->store_name }}</h3>
                 <h6 class="text-center">Products List</h3>
             </div>
             <div class="div class= card-body table-responsive-sm">
@@ -15,7 +15,7 @@
                 @forelse ($store->products as $product)
 
                     <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
-                        <a href="{{ route('product_show', ['id'=>$product->product_id]) }}">
+                        <a href="{{ route('product_show', ['id' => $product->product_id]) }}">
                             <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" height="490" alt="background">
                             <br>
 
