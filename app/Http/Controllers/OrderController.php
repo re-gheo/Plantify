@@ -336,23 +336,23 @@ class OrderController extends Controller
             $iarray2[$ol->orderdetails_id] = array();
             
             foreach ($item as $i) {
-                $items = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
+                $iarray2[$ol->orderdetails_id][] = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
                     ->join('products', 'cart_items.product_id', '=', 'products.product_id')
                     ->where('cart_items.user_id',  Auth::user()->id)
                     ->where('cart_items.cart_itemid',  $i)->get();
                 //  dump( $items);
                
-               $iarray2[$ol->orderdetails_id][] = $i;
+            //    $iarray2[$ol->orderdetails_id][] =  $items;
 
             }
         }
 
-     
+        
 
 
-        dd($olist, $iarray2);
+        //  dd($olist, $iarray2);
 
-        return view();
+        return view('customer.order.orderlist', ['olist' => $olist]);
     }
 
     public function detail(Request $request)
