@@ -205,11 +205,12 @@ Route::get('/store/profile/paymentmethods',  'CardController@mycards')->name('cu
 Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remove')->name('customer.payment.remove');
 
 Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
+//CUSTOMER/ SETTINGS / PROFILE / ORDERS
 
-Route::get('/my-order',  'OrderController@list')->name('client.order.list');
-Route::get('/order-details/{id}',  'OrderController@detail')->name('client.order.detail');
-Route::put('/orders',  'OrderController@cancel')->name('client.order.cancel');
-Route::put('/orders',  'OrderController@recieve')->name('client.order.recieve');
+Route::get('/store/my-order',  'OrderController@list')->name('client.order.list');
+Route::get('/store/order-details/{id}',  'OrderController@detail')->name('client.order.detail');
+Route::put('/store/orders/{id}/cancel',  'OrderController@cancel')->name('client.order.cancel');
+Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('client.order.recieve');
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
