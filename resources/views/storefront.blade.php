@@ -71,7 +71,7 @@
 
                         <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}" method="POST">
                             @csrf
-                            {{ $product->product_id }}
+                            {{-- {{ $product->product_id }} --}}
                             <button class="btn btn-success btn-sm" type="submit">Add to cart</button>
                         </form>
                 </div>
