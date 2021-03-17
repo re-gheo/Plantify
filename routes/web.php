@@ -178,6 +178,7 @@ Route::get('/store/checkout', 'OrderController@checkoutpage')->name('customer.ch
 Route::post('/store/itemcheckout', 'OrderController@addtocheckout')->name('customer.checkout.add');
 Route::post('/store/itemcheckout/order', 'OrderController@placeorder')->name('customer.checkout.order');
 
+
 Route::get('/store/checkout/success', 'OrderController@redirectPaymongoSuccess')->name('customer.checkout.success');
 Route::get('/store/checkout/failed', 'OrderController@redirectPaymongoFailed')->name('customer.checkout.failed');
 
@@ -205,7 +206,10 @@ Route::delete('/store/profile/paymentmethods/{id}/delete',  'CardController@remo
 
 Route::get('/orders',  'OrderController@index')->middleware('auth')->name('client.order');
 
-
+Route::get('/my-order',  'OrderController@list')->name('client.order.list');
+Route::get('/order-details/{id}',  'OrderController@detail')->name('client.order.detail');
+Route::put('/orders',  'OrderController@cancel')->name('client.order.cancel');
+Route::put('/orders',  'OrderController@recieve')->name('client.order.recieve');
 
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗

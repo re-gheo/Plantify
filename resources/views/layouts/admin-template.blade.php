@@ -30,7 +30,7 @@
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media d-flex align-items-center">
                 <img class="admin-avatar " src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
-                    this.onerror=null;this.src='/css/default-image.svg' ;">
+                    this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
                 <div class="media-body">
                     <a href="{{ route('customer.profile.show') }}">
                         <h4 class="m-0 text-white">{{ Auth::user()->name }}</h4>
