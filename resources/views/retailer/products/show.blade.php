@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+    {{-- {{ dd($product) }} --}}
     <div class="container">
 
         <br>
@@ -46,6 +48,7 @@
                             {{-- @if (isset($product->product_sizes)) --}}
                             <dt><b>Size of the plant</b></dt><br>
                             <p>{{ $product->product_sizes }}</p><br> <br>
+
                             {{-- @endif --}}
                         </dl> <!-- item-property-hor .// -->
                         <dl class="param param-feature">
