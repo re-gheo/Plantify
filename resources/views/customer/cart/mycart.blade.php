@@ -21,7 +21,7 @@
                             @endif
 
                             <table class="table table-striped">
-                                <thead>
+                                <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Photo</th>
                                         <th scope="col">Product</th>

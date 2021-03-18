@@ -2,7 +2,70 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="container">
+        <div class="container mb-4" id="selecitem">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        @forelse ($products as $product)
+
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Photo</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+
+                                </thead>
+
+
+
+                                <tr>
+                                    {{-- PRODUCT PHOTO --}}
+
+                                    <td>
+                                        <img class="thumb-photo " src="{{ asset('/storage/' . $product->product_mainphoto) }}"
+                                            alt="background">
+                                    </td>
+
+                                    {{-- PRODUCT NAME --}}
+                                    <td>
+                                        <h4>{{ $product->product_name }}</h4> <br>
+                                    </td>
+                                    {{-- PRODUCT PRICE --}}
+                                    <td>
+                                        <b>{{ $product->product_price }} PHP</b>
+                                    </td>
+                                    {{-- PRODUCT QUANTITY --}}
+                                    <td>
+                                        <b>Stocks ({{ $product->product_quantity }} X) </b>
+                                    </td>
+                                    {{-- ACTIONS --}}
+                                    <td>
+                                        <a href="{{ route('retailer.products.remove', ['id' => $product->product_id]) }}"
+                                            class="btn btn-danger btn-small">
+                                            <i class="fas fa-trash"></i>
+                                            remove Product</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        @empty
+                            <div class="col-lg-8 col-xl-6   mx-auto mt-5  p-3border-3 ">
+                                <h1>OH! Seems empty try to add a Products</h1>
+                            </div>
+                        @endforelse
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="row">
         <div class="col-lg-10 mr-auto ml-auto">
 
 
@@ -52,7 +115,7 @@
 
         </div>
 
-    </div>
+    </div> --}}
 
     </div>
     <div>

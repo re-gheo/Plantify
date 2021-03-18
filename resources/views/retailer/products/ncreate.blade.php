@@ -15,7 +15,7 @@
                             <br>
                             <input id="product_name" type="text"
                                 class=" @error('product_name') 
-                                                                                                        is-invalid @enderror" name="product_name"
+                                                                                                            is-invalid @enderror" name="product_name"
                                 autocomplete="product_name">
 
                             @error('product_name')
@@ -31,7 +31,7 @@
                             <br>
                             <textarea id="product_description"
                                 class="txtarea @error('product_description') 
-                                                                                                                is-invalid @enderror"
+                                                                                                                    is-invalid @enderror"
                                 name="product_description" autocomplete="product_description" cols="30"
                                 rows="10"></textarea>
 
@@ -85,7 +85,7 @@
                             <br>
                             <input id="product_price" type="number"
                                 class=" @error('product_price') 
-                                                                                                        is-invalid @enderror" name="product_price"
+                                                                                                            is-invalid @enderror" name="product_price"
                                 autocomplete="product_price">
 
                             @error('product_price')
@@ -100,7 +100,7 @@
                             <br>
                             <input id="product_quantity" type="number"
                                 class=" @error('product_quantity') 
-                                                                                                        is-invalid @enderror" name="product_quantity"
+                                                                                                            is-invalid @enderror" name="product_quantity"
                                 autocomplete="product_quantity">
 
                             @error('product_quantity')

@@ -331,6 +331,9 @@ SPECIAL INPUTS
 STOREFRONT
 -----------------
 */
+.container-sm {
+    width: 100px;
+}
 
 .title-div {
     background-color: #343a40;
@@ -355,8 +358,18 @@ STOREPAGE
 -----------------
 */
 
+.img-small {
+    width: 20%;
+    height: auto;
+}
+
 .main-photo {
     height: 20rem;
+    justify-content: center;
+}
+
+.thumb-photo {
+    height: 8rem;
     justify-content: center;
 }
 

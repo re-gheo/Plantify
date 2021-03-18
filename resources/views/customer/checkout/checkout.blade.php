@@ -7,6 +7,11 @@
     @endphp
     <br>
 
+
+    <div class="container">
+
+    </div>
+
     <div class="col-lg-10 mr-auto ml-auto">
         <h1> Checkout</h1>
         <div class="col-lg-8 col-xl-6 card ">
@@ -60,17 +65,17 @@
             function maskNumber($number)
             {
                 $mask_num = str_repeat('*', strlen($number) - 4) . substr($number, -4);
-
+            
                 return $mask_num;
             }
         @endphp
 
 
 
-            <div class="div class= card-body">
-                <h1>Choose Payment Methods</h1>
+        <div class="div class= card-body">
+            <h1>Choose Payment Methods</h1>
 
-                @forelse ($mycards as $c)
+            @forelse ($mycards as $c)
                 <form action="{{ route('customer.pay.card') }}" method="POST">
                     @csrf
                     <div class="col-lg-8 col-xl-6 card mt-5 shadow p-3border-3 ">
@@ -80,7 +85,7 @@
                         </div>
 
                         <div class="form-check">
-                            <input type="hidden" name="paytype" id="paytype" value="{{$c->card_id}}">
+                            <input type="hidden" name="paytype" id="paytype" value="{{ $c->card_id }}">
                             <label for="chooseCard">
                                 <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
                             </label>
@@ -88,34 +93,34 @@
                         <button type="submit" class="btn btn-success "> Use this option and Checkout</button>
                     </div>
                 </form>
-                @empty
-                    <h3>You have no Card Registerd, <a href="{{ route('customer.payment.register') }}"> add a card</a></h3>
-                @endforelse
-                <form id="ewallet" action="{{ route('customer.pay.ewallet') }}" method="POST">
-                    @csrf
-                    <div class="col-lg-8 col-xl-6 card  mt-5 shadow p-3 border-3 ">
-                        <div>
-                            <h4>E-Wallet</h4>
-                        </div>
-
-                        <div class="form-check">
-                            <input form="ewallet" type="hidden" name="paytype" id="paytype" value=true>
-                            <label for="exampleRadios2">
-                                Gcash
-                            </label>
-                        </div>
-
-
-                        <div>
-
-                        </div>
-                        <button form="ewallet" type="submit" class="btn btn-success "> Use this option and Checkout</button>
+            @empty
+                <h3>You have no Card Registerd, <a href="{{ route('customer.payment.register') }}"> add a card</a></h3>
+            @endforelse
+            <form id="ewallet" action="{{ route('customer.pay.ewallet') }}" method="POST">
+                @csrf
+                <div class="col-lg-8 col-xl-6 card  mt-5 shadow p-3 border-3 ">
+                    <div>
+                        <h4>E-Wallet</h4>
                     </div>
-                </form>
 
-            </div>
+                    <div class="form-check">
+                        <input form="ewallet" type="hidden" name="paytype" id="paytype" value=true>
+                        <label for="exampleRadios2">
+                            Gcash
+                        </label>
+                    </div>
 
-            @csrf
+
+                    <div>
+
+                    </div>
+                    <button form="ewallet" type="submit" class="btn btn-success "> Use this option and Checkout</button>
+                </div>
+            </form>
+
+        </div>
+
+        @csrf
 
         </form>
 
