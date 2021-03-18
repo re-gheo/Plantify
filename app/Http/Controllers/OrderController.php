@@ -52,8 +52,6 @@ class OrderController extends Controller
                 ->get()->find($sel);
 
 
-
-
             $sum = collect($items)->sum('cart_subtotal');
             $msum = number_format($sum, 2, '.', '');
             $gsum = $sum + 50;
@@ -61,7 +59,6 @@ class OrderController extends Controller
             $cost = ['subtotal' =>  $msum, 'grandtotal' => $mgsum];
 
             $mycards = Card::latest()->where('user_id', Auth::user()->id)->get();
-
 
             return view('customer.checkout.checkout', ['items' =>  $items, "mycards" => $mycards, 'cost' => $cost]);
         } else {
@@ -75,7 +72,21 @@ class OrderController extends Controller
         // $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   "KUEB4730128991");
 
         // dd(  $gdata["data"]["id"] );
+
+
+        //         foreach ($items as $i) {
+        //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
+        //                 dump($ucustomer->customer_id);
+        //         }
+        // dd("");
+        // dd(json_decode($request->paytype)[0], $cost ,  $ses,  $sel);
+
+
+    }
+
+    public function payWithEWallet(){
         $items_id=[];
+
         $ses = request()->session()->get('selected_item');
 
         $sel = json_decode($ses);
@@ -95,15 +106,46 @@ class OrderController extends Controller
                 $item->id = array_push($items_id, $item->cart_itemid);
             }
         }
-        //         foreach ($items as $i) {
-        //         $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
-        //                 dump($ucustomer->customer_id);
-        //         }
-        // dd("");
-        // dd(json_decode($request->paytype)[0], $cost ,  $ses,  $sel);
 
-        if (json_decode($request->paytype)[0] == 1) {
-            $mycards = Card::where('user_id', Auth::user()->id)->get()->find(json_decode($request->paytype)[1]);
+        $source = Paymongo::source()->create([
+            'type' => 'gcash',
+            'amount' => $gsum,
+            'currency' => 'PHP',
+            'redirect' => [
+                'success' => route('customer.checkout.success', [
+                    'id' => $items_id,
+                    'sum' => $sum,
+                    'gsum' => $gsum]),
+                'failed' => route('customer.checkout.failed'),
+            ],
+        ]);
+
+        request()->session()->forget('selected_item');
+        return redirect($source->redirect['checkout_url']);
+    }
+
+    public function payWithCard(Request $request){
+        $ses = request()->session()->get('selected_item');
+
+        $sel = json_decode($ses);
+        if ($ses != null) {
+            $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+                ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+                ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+                ->get()->find($sel);
+            $sum = collect($items)->sum('cart_subtotal');
+            $msum = number_format($sum, 2, '.', '');
+            $gsum = $sum + 50;
+            $mgsum = number_format($gsum, 2, '.', '');
+            $cost = ['subtotal' =>  $msum, 'grandtotal' => $mgsum];
+
+
+            foreach($items as $item){
+                $item->id = array_push($items_id, $item->cart_itemid);
+            }
+        }
+
+        $mycards = Card::where('user_id', Auth::user()->id)->get()->find($request->paytype);
             // dd($mycards);
             $paymentIntent = Paymongo::paymentIntent()->create([
                 'amount' =>  $cost['grandtotal'],
@@ -156,6 +198,8 @@ class OrderController extends Controller
             //     $attachedPaymentIntent,
             //     $attachedPaymentIntent->status
             // );
+
+
             $order = new Order();
             $order->payment_type = 1;
             $order->order_datecreated = Carbon::now('Asia/Manila');
@@ -230,57 +274,88 @@ class OrderController extends Controller
             }
             $request->session()->forget('selected_item');
             return redirect()->route('store')->with('success', 'Successfully created an order');
-        } elseif (json_decode($request->paytype)[0] == 0) {
-            $source = Paymongo::source()->create([
-                'type' => 'gcash',
-                'amount' => $gsum,
-                'currency' => 'PHP',
-                'redirect' => [
-                    'success' => route('customer.checkout.success', ['id' => $items_id]),
-                    'failed' => route('customer.checkout.failed'),
-                ],
-            ]);
 
-            return redirect($source->redirect['checkout_url']);
-        }
+
     }
 
 
     public function redirectPaymongoSuccess(Request $request){
         $cart_items = $request->id;
 
-        foreach($cart_items as $items){
+            $order = new Order();
+            $order->payment_type = 2;
+            $order->order_datecreated = Carbon::now('Asia/Manila');
+            $order->order_dateshipped = Carbon::now('Asia/Manila')->addDay(3);
+            $order->order_statusid = 2;
+            $order->save();
 
-            $order = Order::create([
-                'payment_type' => 2,
-                'order_datecreated' => Carbon::now('Asia/Manila'),
-                'order_dateshipped' => Carbon::now('Asia/Manila')->addDay(3),
-                'order_statusid' => 3,
-            ]);
+            $detemp = $this->genID();
 
-            $cart_item = Cart_item::find($items);
+            $details =  new Order_detail();
+            $details->orderdetails_id = $detemp;
+            $details->products = json_encode( $request->id);
+            $details->order_id =  $order->order_id;
+            $details->paymentintentid = null;
+            $details->order_unitcost = $request->sum;
+            $details->order_subtotal = $request->gsum;
+            $details->user_id = Auth::user()->id;
+            $details->save();
 
-            $order->details()->create([
-                'payment_type' => 2,
-                'order_datecreated' => Carbon::now('Asia/Manila'),
-                'order_dateshipped' => Carbon::now('Asia/Manila')->addDay(3),
-                'user_id' => Auth::user()->id,
-            ]);
+        foreach($cart_items as $item){
 
-            // $details =  new Order_detail();
-            // $details->orderdetails_id = $detemp;
-            // $details->products = $ses;
-            // $details->order_id =  $order->order_id;
-            // $details->paymentintentid = $attachedPaymentIntent->id;
-            // $details->order_unitcost = $sum;
-            // $details->order_subtotal = $gsum;
-            // $details->user_id = Auth::user()->id;
-            // $details->save();
+            $i = Cart_item::find($item);
+
+            if (!Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->exists()) {
+                $customer =  new Customer();
+                $customer->user_id = Auth::user()->id;
+                $customer->retailer_id = $i->retailer_id;
+                $customer->save();
+            }
+
+            $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
+
+
+
+            $items = Cart_item::find($i->cart_itemid);
+            $items->checked = 1;
+            $items->save();
+
+            // dd("hello2");
+            $tmore = new Trackingmore();
+            $data =  $tmore->createTracking(
+                "ninjavan-ph",
+                $detemp,
+                [
+
+                    'title' => $i->product_name . ' by ' .  $i->store_name,
+                    'logistics_channel' => "",
+                    'customer_name' => Auth::user()->name,
+                    'customer_email' => Auth::user()->email,
+                    'order_id' =>  $order->order_id,
+                    'customer_phone' => Auth::user()->cp_number,
+                    'order_create_time' => Carbon::now('Asia/Manila')->addDay(3),
+                    'tracking_postal_code' => "1105"
+                ]
+            );
+
+            $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
+
+
+            // dd($data ,  $gdata,  $detemp);
+            $bystore =  new Order_bystoreitem();
+            $bystore->product_id = $i->product_id;
+            $bystore->retailer_id = $i->retailer_id;
+            $bystore->order_customerid = $ucustomer->customer_id;
+            $bystore->order_id  = $order->order_id;
+
+            $bystore->order_quantity = $i->cart_quantity;
+            $bystore->order_unitcost = $i->cart_itemcost;
+            $bystore->order_subtotal = $i->cart_subtotal;
+            $bystore->save();
+
         }
 
-        Session::flash('err', 'Payment Failed! Please try again.');
-
-        return redirect()->route('customer.checkout.show');
+        return redirect()->route('store')->with('success', 'Successfully created an order');
     }
 
     public function redirectPaymongoFailed(){
@@ -288,7 +363,6 @@ class OrderController extends Controller
         return redirect()->route('customer.checkout.show');
     }
 
-    
 
     protected function genID()
     {
@@ -334,20 +408,20 @@ class OrderController extends Controller
         foreach ($olist as $ol) {
             $item = json_decode($ol->products);
             $iarray2[$ol->orderdetails_id] = array();
-            
+
             foreach ($item as $i) {
                 $iarray2[$ol->orderdetails_id][] = Cart_item::join('shopping_carts', 'cart_items.cart_id', '=', 'shopping_carts.cart_id')
                     ->join('products', 'cart_items.product_id', '=', 'products.product_id')
                     ->where('cart_items.user_id',  Auth::user()->id)
                     ->where('cart_items.cart_itemid',  $i)->get();
                 //  dump( $items);
-               
+
             //    $iarray2[$ol->orderdetails_id][] =  $items;
 
             }
         }
 
-        
+
 
 
         //  dd($olist, $iarray2);

@@ -6,9 +6,9 @@ use App\Models\Card;
 use  App\Models\Card_type;
 
 use Illuminate\Http\Request;
-use MarvinLabs\Luhn\Facades\Luhn;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use MarvinLabs\Luhn\Facades\Luhn;
 
 class CardController extends Controller
 {
@@ -65,7 +65,7 @@ class CardController extends Controller
             'card_state' => 'required',
             'card_postal_code' => 'required'
         ]);
-       
+
 
 
 
@@ -85,7 +85,7 @@ class CardController extends Controller
                 return redirect(url()->previous())
                 ->with('err', 'This payment method already exist within our system');
             }
-           
+
             $card =  new Card();
             $card->card_number = Crypt::encryptString(request('card_number'));
             $card->card_holdername = Crypt::encryptString(request('card_holdername'));

@@ -60,57 +60,63 @@
             function maskNumber($number)
             {
                 $mask_num = str_repeat('*', strlen($number) - 4) . substr($number, -4);
-            
+
                 return $mask_num;
             }
         @endphp
 
 
-        <form action="{{ route('customer.checkout.order') }}" method="POST">
+
             <div class="div class= card-body">
                 <h1>Choose Payment Methods</h1>
-                <a href="{{ route('customer.payment.register') }}"> add a card</a>
-                @forelse ($mycards as $c)
 
+                @forelse ($mycards as $c)
+                <form action="{{ route('customer.pay.card') }}" method="POST">
+                    @csrf
                     <div class="col-lg-8 col-xl-6 card mt-5 shadow p-3border-3 ">
                         <div>
-                            <h4>card type: ????</h4>
-
+                            <h4>Card Type: MasterCard/Visa</h4>
                             {{-- (lanz i need you to detect the card type via java script) --}}
                         </div>
 
+                        <div class="form-check">
+                            <input type="hidden" name="paytype" id="paytype" value="{{$c->card_id}}">
+                            <label for="chooseCard">
+                                <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success "> Use this option and Checkout</button>
+                    </div>
+                </form>
+                @empty
+                    <h3>You have no Card Registerd, <a href="{{ route('customer.payment.register') }}"> add a card</a></h3>
+                @endforelse
+                <form id="ewallet" action="{{ route('customer.pay.ewallet') }}" method="POST">
+                    @csrf
+                    <div class="col-lg-8 col-xl-6 card  mt-5 shadow p-3 border-3 ">
                         <div>
-                            <b>{{ maskNumber(Crypt::decryptString($c->card_number)) }}</b>
+                            <h4>E-Wallet</h4>
+                        </div>
+
+                        <div class="form-check">
+                            <input form="ewallet" type="hidden" name="paytype" id="paytype" value=true>
+                            <label for="exampleRadios2">
+                                Gcash
+                            </label>
+                        </div>
+
+
+                        <div>
 
                         </div>
-                        select <input type="radio" name="paytype" id="paytype" value="[1,{{ $c->card_id }}]">
-
-
+                        <button form="ewallet" type="submit" class="btn btn-success "> Use this option and Checkout</button>
                     </div>
-                @empty
-                    <h3>You have no Payment method Registerd, <a href="{{ route('customer.payment.register') }}"> add a card</a></h3>
-                @endforelse
-
-                <div class="col-lg-8 col-xl-6 card  mt-5 shadow p-3border-3 ">
-                    <div>
-                        <h4>E-Wallet</h4>
-                    </div>
-                    <div>
-                        <b>Gcash</b>
-
-                    </div>
-                    select <input type="radio" name="paytype" id="paytype" value="[0,0]">
-                    <div>
-
-                    </div>
-
-
-                </div>
+                </form>
 
             </div>
 
             @csrf
-            <button type="submit" class="btn btn-success "> PLACE ORDER</button>
+
         </form>
 
     </div>

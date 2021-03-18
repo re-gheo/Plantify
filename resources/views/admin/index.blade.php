@@ -42,9 +42,91 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-5 m-3 card-admin">
+                    <div class="card-body">
+                        <h5 class="card-title"> <i class="fas fa-user-alt mr-2"></i>Commission</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Total Commsion Earned</h6>
+                        <div class="text-center">
+                            <b>PHP</b> 150,000.00
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-5 m-3 card-admin">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-store mr-2"></i>Orders</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Total Number of Orders </h6>
+                        <div class="text-center">
+                            <b>2</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Demo content -->
 
             <div class="separator"></div>
+
+            <h3>Orders</h3>
+            <div class="card-body table-responsive-sm">
+
+
+                <!--TABLE-->
+                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>options</th>
+                        </tr>
+                    </thead>
+
+                    <!--TABLE-->
+                    <tr>
+                        <td>140</td>
+                        <td>Order 1</td>
+                        <td> Shipped</td>
+                        <td>
+                            <div class="row justify-items-center">
+                                <a class="btn btn-success" href="">View More</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <h3>Commission</h3>
+            <div class="card-body table-responsive-sm">
+
+
+                <!--TABLE-->
+                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>options</th>
+                        </tr>
+                    </thead>
+
+                    <!--TABLE-->
+                    <tr>
+                        <td>140</td>
+                        <td>Order 1</td>
+                        <td> Shipped</td>
+                        <td>
+                            <div class="row justify-items-center">
+                                <a class="btn btn-success" href="">View More</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
 
         </div>
 
