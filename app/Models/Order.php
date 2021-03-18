@@ -18,8 +18,12 @@ class Order extends Model
         return $this->hasOne(Order::class, 'order_customerid');
     }
 
+    public function status(){
+        return $this->belongsTo(OrderStatus::class, 'order_statusid');
+    }
+
     public function paymentType(){
-        return $this->hasOne(Order::class, 'order_customerid');
+        return $this->belongsTo(PaymentType::class, 'payment_type');
     }
 
 }

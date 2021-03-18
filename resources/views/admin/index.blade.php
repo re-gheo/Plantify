@@ -49,7 +49,7 @@
                         <h5 class="card-title"> <i class="fas fa-user-alt mr-2"></i>Commission</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Total Commsion Earned</h6>
                         <div class="text-center">
-                            <b>PHP</b> 150,000.00
+                            <b>PHP</b> {{$commission}}
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <h5 class="card-title"><i class="fas fa-store mr-2"></i>Orders</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Total Number of Orders </h6>
                         <div class="text-center">
-                            <b>2</b>
+                            <b>{{$orders->count()}}</b>
                         </div>
                     </div>
                 </div>
@@ -70,60 +70,56 @@
 
             <h3>Orders</h3>
             <div class="card-body table-responsive-sm">
-
-
                 <!--TABLE-->
                 <table class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>options</th>
+                            <th>Order ID</th>
+                            <th>Status</th>
+                            <th>Method</th>
+                            <th>Shipping Date</th>
                         </tr>
                     </thead>
 
                     <!--TABLE-->
+                    @foreach ($orders as $order)
                     <tr>
-                        <td>140</td>
-                        <td>Order 1</td>
-                        <td> Shipped</td>
-                        <td>
-                            <div class="row justify-items-center">
-                                <a class="btn btn-success" href="">View More</a>
-                            </div>
-                        </td>
+                        <td>{{$order->order_id}}</td>
+                        <td>{{$order->status->order_status}}</td>
+                        <td>{{$order->paymentType->payment_type}}</td>
+                        <td>{{$order->order_dateshipped}}</td>
                     </tr>
+                    @endforeach
 
                 </table>
             </div>
 
             <h3>Commission</h3>
             <div class="card-body table-responsive-sm">
-
-
                 <!--TABLE-->
                 <table class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>options</th>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Retailer</th>
+                            <th>Quantity</th>
+                            <th>Total Cost</th>
+                            <th>Commission</th>
                         </tr>
                     </thead>
 
                     <!--TABLE-->
+                    @foreach ($orders_bystore as $order)
                     <tr>
-                        <td>140</td>
-                        <td>Order 1</td>
-                        <td> Shipped</td>
-                        <td>
-                            <div class="row justify-items-center">
-                                <a class="btn btn-success" href="">View More</a>
-                            </div>
-                        </td>
+                        <td>{{$order->product_id}}</td>
+                        <td>{{$order->product->product_name}}</td>
+                        <td>{{$order->retailer->store->store_name}}</td>
+                        <td>{{$order->order_quantity}}</td>
+                        <td>{{$order->order_unitcost}}</td>
+                        <td>{{$order->product->commissionearned * $order->order_quantity}}</td>
                     </tr>
+                    @endforeach
 
                 </table>
             </div>

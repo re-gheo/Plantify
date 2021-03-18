@@ -18,5 +18,15 @@ class Product extends Model
     public function retailer(){
         return $this->belongsTo(Retailer::class, 'retailer_id');
     }
+
+    public function commission(){
+        return $this->belongsTo(Commission::class, 'commission_id');
+    }
+
+    public function getCommissionEarnedAttribute(){
+        return $this->commission->commissions_max_percentage * $this->product_price;
+    }
+
+
 }
 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
+use App\Models\Commission;
+use App\Models\Order;
+use App\Models\Order_bystoreitem;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -28,13 +31,31 @@ class AdminController extends Controller
     {
         $users = User::get();
 
+        $orders_bystore = Order_bystoreitem::get();
+
+        $orders = Order::get();
+
         $admins = $users->where('user_role','admin');
 
         $retailers = $users->where('user_role','retailer');
 
         $customers = $users->where('user_role','customer');
 
-        return view('admin.index', compact('admins','retailers', 'customers'));
+        $commission = $this->computeCommissionEarned($orders_bystore);
+
+
+        return view('admin.index', compact('admins','retailers', 'customers', 'commission', 'orders', 'orders_bystore'));
+    }
+
+    public function computeCommissionEarned($orders){
+
+        $total = 0;
+
+        foreach ($orders as $order){
+            $total += $order->product->commissionEarned * $order->order_quantity;
+        }
+
+        return $total;
     }
 
     public function index_list()
