@@ -8,17 +8,23 @@
 
             <div class="container">
                 <h3 class="text-center">My Products</h3>
-               
-                <a href=" {{ route('retailer.products.create', [ 'type'=>'plant']) }}" class="btn btn-dark"> Add a Plant Product</a> <br>
-                <a href="{{ route('retailer.products.create', [ 'type'=>'product']) }}" class="btn btn-dark"> Add a Product</a>
+
+                <a href=" {{ route('retailer.products.create', ['type' => 'plant']) }}" class="btn btn-dark"> Add a Plant
+                    Product</a> <br>
+                <a href="{{ route('retailer.products.create', ['type' => 'product']) }}" class="btn btn-dark"> Add a
+                    Product</a>
             </div>
             <div class="div class= card-body table-responsive-sm">
 
                 @forelse ($products as $product)
 
                     <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
-                        <a href="{{ route('product_show', ['id'=>$product->product_id]) }}">
-                            <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" height="490" alt="background">
+                        <a href="{{ route('product_show', ['id' => $product->product_id]) }}">
+                            <div class="container text-center">
+                                <img class="main-photo " src="{{ asset('/storage/' . $product->product_mainphoto) }}"
+                                    alt="background">
+                            </div>
+
                             <br>
 
                             <h4>{{ $product->product_name }}</h4> <br>
@@ -27,7 +33,9 @@
                             <b>Stocks ({{ $product->product_quantity }} X) </b>
 
                         </a>
-                        <a href="{{ route('retailer.products.remove', ['id'=>$product->product_id]) }}" class="btn btn-dark"> remove Product</a>
+                        <a href="{{ route('retailer.products.remove', ['id' => $product->product_id]) }}"
+                            class="btn btn-dark">
+                            remove Product</a>
                     </div>
                 @empty
                     <div class="col-lg-8 col-xl-6   mx-auto mt-5  p-3border-3 ">

@@ -13,9 +13,10 @@
                         <div class="form-input">
                             <label for="product_name"> Name of the Product </label>
                             <br>
-                            <input id="product_name" type="text" class=" @error('product_name') 
-                                                                                                    is-invalid @enderror"
-                                name="product_name" autocomplete="product_name">
+                            <input id="product_name" type="text"
+                                class=" @error('product_name') 
+                                                                                                        is-invalid @enderror" name="product_name"
+                                autocomplete="product_name">
 
                             @error('product_name')
                                 <span class="" role="alert">
@@ -30,7 +31,7 @@
                             <br>
                             <textarea id="product_description"
                                 class="txtarea @error('product_description') 
-                                                                                                            is-invalid @enderror"
+                                                                                                                is-invalid @enderror"
                                 name="product_description" autocomplete="product_description" cols="30"
                                 rows="10"></textarea>
 
@@ -82,9 +83,10 @@
                         <div class="form-input">
                             <label for="product_price"> Price </label>
                             <br>
-                            <input id="product_price" type="number" class=" @error('product_price') 
-                                                                                                    is-invalid @enderror"
-                                name="product_price" autocomplete="product_price">
+                            <input id="product_price" type="number"
+                                class=" @error('product_price') 
+                                                                                                        is-invalid @enderror" name="product_price"
+                                autocomplete="product_price">
 
                             @error('product_price')
                                 <span class="" role="alert">
@@ -96,9 +98,10 @@
                         <div class="form-input">
                             <label for="product_quantity"> Quantity </label>
                             <br>
-                            <input id="product_quantity" type="number" class=" @error('product_quantity') 
-                                                                                                    is-invalid @enderror"
-                                name="product_quantity" autocomplete="product_quantity">
+                            <input id="product_quantity" type="number"
+                                class=" @error('product_quantity') 
+                                                                                                        is-invalid @enderror" name="product_quantity"
+                                autocomplete="product_quantity">
 
                             @error('product_quantity')
                                 <span class="" role="alert">
