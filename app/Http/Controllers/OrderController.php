@@ -405,7 +405,7 @@ class OrderController extends Controller
     {
         $olist = Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')->where('order_details.user_id', Auth::user()->id)->get();
 
-        $iarray = array();
+        $iarray2 = array();
         foreach ($olist as $ol) {
             $item = json_decode($ol->products);
 
@@ -451,6 +451,32 @@ class OrderController extends Controller
 
 
     //retailer
+
+    public function myroders(Request $request)
+    {
+        $olist = Order::join('order_bystoreitems', 'orders.order_id', '=', 'order_bystoreitems.order_id')->join('products', 'order_bystoreitems.product_id', '=', 'products.product_id')->join('users',  'order_bystoreitems.order_customerid', '=', 'users.id')->where('order_bystoreitems.retailer_id', Auth::user()->id)->get();
+      
+      
+        return view('retailer.store.myorder', ['olist' => $olist]);
+    }
+
+    public function orderdetail(Request $request, $id)
+    {
+
+
+        $olist = Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')->where('order_details.user_id', Auth::user()->id)->where('order_details.orderdetails_id', $id)->first();
+
+
+
+            $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+                ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+                ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+                ->get()->find( json_decode($olist->products));
+
+
+        return view('customer.order.orderdetails', ['olist' => $olist,  'items' =>  $items]);
+
+    }
 
     public function updateorder(Request $request)
     {

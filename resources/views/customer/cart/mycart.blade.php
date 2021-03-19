@@ -55,8 +55,8 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('PUT')
-                                                    <input class="cart-input mb-2" type="number" name="quantity" id=""
-                                                        value="{{ $i->cart_quantity }}" required>
+                                                    <input class="cart-input mb-2" type="number" name="quantity" id="quantity"
+                                                        value="{{ $i->cart_quantity }}" required min="1">
                                                     <button class="btn btn-primary btn-sm" type="submit"> Edit Quantity</button>
                                                 </form>
                                             </div>

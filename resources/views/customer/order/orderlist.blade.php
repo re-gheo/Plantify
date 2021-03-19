@@ -53,7 +53,7 @@
                                                 <th>Quantity</th>
                                                 <th>Amount</th>
                                             </tr>
-                                            @foreach ($items[$ol->orderdetails_id] as $key => $V1)
+                                            @forelse ($items[$ol->orderdetails_id] as $key => $V1)
                                                 @foreach ($items[$ol->orderdetails_id][$key] as $V2)
                                                     <tr>
                                                         <td> <img src="{{ asset('/storage/' . $V2->product_mainphoto) }}" height="100" alt="background"></td>
@@ -62,9 +62,8 @@
                                                         <td> {{ $V2->cart_subtotal }}</td>
                                                     </tr>
                                                 @endforeach
-
-                                               
-                                            @endforeach
+                                            @empty    
+                                            @endforelse
                                         </table>
                                     </div>
                                 </div>

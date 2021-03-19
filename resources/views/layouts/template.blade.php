@@ -79,6 +79,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customer.cart.show') }}">My Cart</a>
                     </li>
+                    
                 @endif
                 <li class="nav-item dropdown">
 
@@ -99,10 +100,10 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item" href="{{ route('client.order') }}">My Orders & Transactions</a>
+                            <a class="dropdown-item" href="{{ route('client.order.list') }}">My Orders</a>
 
                             {{-- With pages made --}}
-                            <a class="dropdown-item" href="{{ route('customer.profile.show') }}">Account Settings</a>
+                            <a class="dropdown-item" href="{{ route('customer.profile.show') }}">User Settings</a>
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>

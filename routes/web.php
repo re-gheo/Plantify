@@ -26,11 +26,7 @@ use PHPUnit\Framework\Test;
 |
 */
 
-Route::get('/test22', function (Request $request) {
 
-    dd(route('store'));
-    return redirect()->route('store')->with('success', 'redirect from test22');
-});
 
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
@@ -242,6 +238,12 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 // Articles
 Route::resource('/articles', 'ArticleController');
+
+// Order Management
+Route::get('/store/retailer/my-order',  'OrderController@myroders')->name('retailer.order.list');
+Route::get('/store/retailer/order-details/{id}',  'OrderController@orderdetail')->name('retailer.order.detail');
+Route::put('/store/retailer/orders/{id}/cancel',  'OrderController@updateorder')->name('retailer.order.cancel');
+Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')->name('retailer.order.recieve');
 
 // Notifications
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
