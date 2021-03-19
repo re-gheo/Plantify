@@ -302,6 +302,7 @@ class ProductController extends Controller
 
         $existItem = Cart_item::where('product_id', $product->product_id)
             ->where('user_id', Auth::user()->id)
+            ->where('checked', null)
             ->exists();
         if ($existItem) {
 
