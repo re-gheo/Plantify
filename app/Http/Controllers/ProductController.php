@@ -357,14 +357,16 @@ class ProductController extends Controller
     public function updatequantity($id)
     {
         request()->validate([
-            'keywords' => 'required|min:1'
+            'quantity' => 'required|min:1'
         ]);
         $item = Cart_item::find($id)->where('user_id',  Auth::user()->id)->first();
+
+     
         if ($item->user_id ==  Auth::user()->id) {
             $item->cart_quantity = request()->quantity;
             $item->cart_subtotal = $item->cart_itemcost * request()->quantity;
             $item->save();
-            return redirect()->route('customer.cart.show')->with('success', 'updared quantity for ' . $item->cart_itemname . 'from cart.');
+            return redirect()->route('customer.cart.show')->with('success', 'updated quantity for ' . $item->cart_itemname . ' from cart to  X'. request()->quantity . '.' );
         } else {
             return redirect()->route('store');
         }
