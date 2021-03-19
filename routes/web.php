@@ -26,11 +26,7 @@ use PHPUnit\Framework\Test;
 |
 */
 
-Route::get('/test22', function (Request $request) {
 
-    dd(route('store'));
-    return redirect()->route('store')->with('success', 'redirect from test22');
-});
 
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');

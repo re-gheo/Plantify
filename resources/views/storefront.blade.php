@@ -60,7 +60,7 @@
                                 <img class="img-fluid" src="{{ asset('/storage/' . $product->product_mainphoto) }}"
                                     alt="some_image">
                                 <h5>{{ $product->product_name }}</h5>
-                                <p>Lorem ipsum dolor si amet</p>
+                              
                                 <div class="row">
                                     <div class="star"></div>
                                     <div class="star"></div>
