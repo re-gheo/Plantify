@@ -84,8 +84,9 @@ class OrderController extends Controller
 
     }
 
-    public function payWithEWallet(){
-        $items_id=[];
+    public function payWithEWallet()
+    {
+        $items_id = [];
 
         $ses = request()->session()->get('selected_item');
 
@@ -102,7 +103,7 @@ class OrderController extends Controller
             $cost = ['subtotal' =>  $msum, 'grandtotal' => $mgsum];
 
 
-            foreach($items as $item){
+            foreach ($items as $item) {
                 $item->id = array_push($items_id, $item->cart_itemid);
             }
         }
@@ -115,7 +116,8 @@ class OrderController extends Controller
                 'success' => route('customer.checkout.success', [
                     'id' => $items_id,
                     'sum' => $sum,
-                    'gsum' => $gsum]),
+                    'gsum' => $gsum
+                ]),
                 'failed' => route('customer.checkout.failed'),
             ],
         ]);
@@ -124,7 +126,17 @@ class OrderController extends Controller
         return redirect($source->redirect['checkout_url']);
     }
 
-    public function payWithCard(Request $request){
+
+
+
+//-------------------------------------------------------------CARD
+
+    public function payWithCard(Request $request)
+    {
+
+
+        $cost =[];
+        $items_id = [];
         $ses = request()->session()->get('selected_item');
 
         $sel = json_decode($ses);
@@ -146,135 +158,146 @@ class OrderController extends Controller
         }
 
         $mycards = Card::where('user_id', Auth::user()->id)->get()->find($request->paytype);
-            // dd($mycards);
-            $paymentIntent = Paymongo::paymentIntent()->create([
-                'amount' =>  $cost['grandtotal'],
-                'payment_method_allowed' => [
-                    'card'
+        // dd($mycards);
+        $paymentIntent = Paymongo::paymentIntent()->create([
+            'amount' =>  $cost['grandtotal'],
+            'payment_method_allowed' => [
+                'card'
+            ],
+            'payment_method_options' => [
+                'card' => [
+                    'request_three_d_secure' => 'automatic'
+                ]
+            ],
+            'description' => 'This is a test payment intent',
+            'statement_descriptor' => 'PLANTIFY STORE ORDER PRODUCT',
+            'currency' => "PHP",
+        ]);
+
+        try {
+            $paymentMethod = Paymongo::paymentMethod()->create([
+                'type' => 'card',
+                'details' => [
+                    'card_number' => Crypt::decryptString($mycards->card_number),
+                    'exp_month' => (int)json_decode(Crypt::decryptString($mycards->card_exp))->month,
+                    'exp_year' => (int)json_decode(Crypt::decryptString($mycards->card_exp))->year,
+                    'cvc' => Crypt::decryptString($mycards->card_cvv),
                 ],
-                'payment_method_options' => [
-                    'card' => [
-                        'request_three_d_secure' => 'automatic'
-                    ]
+                'billing' => [
+                    'address' => [
+                        'line1' => Crypt::decryptString($mycards->card_line1),
+                        'city' => $mycards->card_city,
+                        'state' => $mycards->card_state,
+                        'country' => 'PH',
+                        'postal_code' => Crypt::decryptString($mycards->card_postal_code),
+                    ],
+                    'name' => Crypt::decryptString($mycards->card_holdername),
+                    'email' => Auth::user()->email,
+                    'phone' => Auth::user()->cp_number,
                 ],
-                'description' => 'This is a test payment intent',
-                'statement_descriptor' => 'PLANTIFY STORE ORDER PRODUCT',
-                'currency' => "PHP",
             ]);
 
-            try {
-                $paymentMethod = Paymongo::paymentMethod()->create([
-                    'type' => 'card',
-                    'details' => [
-                        'card_number' => Crypt::decryptString($mycards->card_number),
-                        'exp_month' => (int)json_decode(Crypt::decryptString($mycards->card_exp))->month,
-                        'exp_year' => (int)json_decode(Crypt::decryptString($mycards->card_exp))->year,
-                        'cvc' => Crypt::decryptString($mycards->card_cvv),
-                    ],
-                    'billing' => [
-                        'address' => [
-                            'line1' => Crypt::decryptString($mycards->card_line1),
-                            'city' => $mycards->card_city,
-                            'state' => $mycards->card_state,
-                            'country' => 'PH',
-                            'postal_code' => Crypt::decryptString($mycards->card_postal_code),
-                        ],
-                        'name' => Crypt::decryptString($mycards->card_holdername),
-                        'email' => Auth::user()->email,
-                        'phone' => Auth::user()->cp_number,
-                    ],
-                ]);
+            $attachedPaymentIntent = $paymentIntent->attach($paymentMethod->id);
+        } catch (BadRequestException $e) {
+            dd(json_decode($e->getMessage(), true)['errors'][0]["sub_code"]);
+        }
 
-                $attachedPaymentIntent = $paymentIntent->attach($paymentMethod->id);
-            } catch (BadRequestException $e) {
-                dd(json_decode($e->getMessage(), true)['errors'][0]["sub_code"]);
+        // dd("hello",
+        //     $paymentIntent->id,
+        //     $paymentIntent,
+        //     $paymentMethod->id,
+        //     $paymentMethod,
+        //     $attachedPaymentIntent,
+        //     $attachedPaymentIntent->status
+        // );
+
+
+        $order = new Order();
+        $order->payment_type = 1;
+        $order->order_datecreated = Carbon::now('Asia/Manila');
+        $order->order_dateshipped = Carbon::now('Asia/Manila')->addDay(3);
+        $order->order_statusid = 2;
+        $order->save();
+
+        $detemp = $this->genID();
+
+        $details =  new Order_detail();
+        $details->orderdetails_id = $detemp;
+        $details->products = $ses;
+        $details->order_id =  $order->order_id;
+        $details->paymentintentid = $attachedPaymentIntent->id;
+        $details->order_unitcost = $sum;
+        $details->order_subtotal = $gsum;
+        $details->user_id = Auth::user()->id;
+        $details->save();
+
+
+
+        foreach ($items as $i) {
+
+            if (!Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->exists()) {
+                $customer =  new Customer();
+                $customer->user_id = Auth::user()->id;
+                $customer->retailer_id = $i->retailer_id;
+                $customer->save();
             }
 
-            // dd("hello",
-            //     $paymentIntent->id,
-            //     $paymentIntent,
-            //     $paymentMethod->id,
-            //     $paymentMethod,
-            //     $attachedPaymentIntent,
-            //     $attachedPaymentIntent->status
-            // );
-
-
-            $order = new Order();
-            $order->payment_type = 1;
-            $order->order_datecreated = Carbon::now('Asia/Manila');
-            $order->order_dateshipped = Carbon::now('Asia/Manila')->addDay(3);
-            $order->order_statusid = 2;
-            $order->save();
-
-            $detemp = $this->genID();
-
-            $details =  new Order_detail();
-            $details->orderdetails_id = $detemp;
-            $details->products = $ses;
-            $details->order_id =  $order->order_id;
-            $details->paymentintentid = $attachedPaymentIntent->id;
-            $details->order_unitcost = $sum;
-            $details->order_subtotal = $gsum;
-            $details->user_id = Auth::user()->id;
-            $details->save();
+            $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
 
 
 
-            foreach ($items as $i) {
+            $items = Cart_item::find($i->cart_itemid);
+            $items->checked = 1;
+            $items->save();
 
-                if (!Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->exists()) {
-                    $customer =  new Customer();
-                    $customer->user_id = Auth::user()->id;
-                    $customer->retailer_id = $i->retailer_id;
-                    $customer->save();
-                }
+            // dd("hello2");
+            $tmore = new Trackingmore();
+            $data =  $tmore->createTracking(
+                "ninjavan-ph",
+                $detemp,
+                [
 
-                $ucustomer = Customer::where('user_id', '=', Auth::user()->id)->where('retailer_id', $i->retailer_id)->first();
+                    'title' => $i->product_name . ' by ' .  $i->store_name,
+                    'logistics_channel' => "",
+                    'customer_name' => Auth::user()->name,
+                    'customer_email' => Auth::user()->email,
+                    'order_id' =>  $order->order_id,
+                    'customer_phone' => Auth::user()->cp_number,
+                    'order_create_time' => Carbon::now('Asia/Manila')->addDay(3),
+                    'tracking_postal_code' => "1105"
+                ]
+            );
 
-
-
-                $items = Cart_item::find($i->cart_itemid);
-                $items->checked = 1;
-                $items->save();
-
-                // dd("hello2");
-                $tmore = new Trackingmore();
-                $data =  $tmore->createTracking(
-                    "ninjavan-ph",
-                    $detemp,
-                    [
-
-                        'title' => $i->product_name . ' by ' .  $i->store_name,
-                        'logistics_channel' => "",
-                        'customer_name' => Auth::user()->name,
-                        'customer_email' => Auth::user()->email,
-                        'order_id' =>  $order->order_id,
-                        'customer_phone' => Auth::user()->cp_number,
-                        'order_create_time' => Carbon::now('Asia/Manila')->addDay(3),
-                        'tracking_postal_code' => "1105"
-                    ]
-                );
-
-                $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
+            $gdata = $tmore->getSingleTrackingResult("ninjavan-ph",   $detemp);
 
 
-                // dd($data ,  $gdata,  $detemp);
-                $bystore =  new Order_bystoreitem();
-                $bystore->product_id = $i->product_id;
-                $bystore->retailer_id = $i->retailer_id;
-                $bystore->order_customerid = $ucustomer->customer_id;
-                $bystore->order_id  = $order->order_id;
+            // dd($data ,  $gdata,  $detemp);
+            $bystore =  new Order_bystoreitem();
+            $bystore->product_id = $i->product_id;
+            $bystore->retailer_id = $i->retailer_id;
+            $bystore->order_customerid = $ucustomer->customer_id;
+            $bystore->order_id  = $order->order_id;
 
-                $bystore->order_quantity = $i->cart_quantity;
-                $bystore->order_unitcost = $i->cart_itemcost;
-                $bystore->order_subtotal = $i->cart_subtotal;
-                $bystore->save();
-            }
-            $request->session()->forget('selected_item');
-            return redirect()->route('store')->with('success', 'Successfully created an order');
+            $bystore->order_quantity = $i->cart_quantity;
+            $bystore->order_unitcost = $i->cart_itemcost;
+            $bystore->order_subtotal = $i->cart_subtotal;
+            $bystore->save();
+        }
+        $request->session()->forget('selected_item');
 
 
+
+        $olist = Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')->where('order_details.user_id', Auth::user()->id)->where('order_details.orderdetails_id', $detemp)->first();
+
+
+
+        $itemss = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+            ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+            ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+            ->get()->find(json_decode($olist->products));
+
+
+        return view('customer.order.orderdetails', ['olist' => $olist,  'items' =>  $itemss]);
     }
 
 
@@ -282,26 +305,26 @@ class OrderController extends Controller
     {
         $cart_items = $request->id;
 
-            $order = new Order();
-            $order->payment_type = 2;
-            $order->order_datecreated = Carbon::now('Asia/Manila');
-            $order->order_dateshipped = Carbon::now('Asia/Manila')->addDay(3);
-            $order->order_statusid = 2;
-            $order->save();
+        $order = new Order();
+        $order->payment_type = 2;
+        $order->order_datecreated = Carbon::now('Asia/Manila');
+        $order->order_dateshipped = Carbon::now('Asia/Manila')->addDay(3);
+        $order->order_statusid = 2;
+        $order->save();
 
-            $detemp = $this->genID();
+        $detemp = $this->genID();
 
-            $details =  new Order_detail();
-            $details->orderdetails_id = $detemp;
-            $details->products = json_encode( $request->id);
-            $details->order_id =  $order->order_id;
-            $details->paymentintentid = null;
-            $details->order_unitcost = $request->sum;
-            $details->order_subtotal = $request->gsum;
-            $details->user_id = Auth::user()->id;
-            $details->save();
+        $details =  new Order_detail();
+        $details->orderdetails_id = $detemp;
+        $details->products = json_encode($request->id);
+        $details->order_id =  $order->order_id;
+        $details->paymentintentid = null;
+        $details->order_unitcost = $request->sum;
+        $details->order_subtotal = $request->gsum;
+        $details->user_id = Auth::user()->id;
+        $details->save();
 
-        foreach($cart_items as $item){
+        foreach ($cart_items as $item) {
 
             $i = Cart_item::find($item);
 
@@ -352,10 +375,19 @@ class OrderController extends Controller
             $bystore->order_unitcost = $i->cart_itemcost;
             $bystore->order_subtotal = $i->cart_subtotal;
             $bystore->save();
-
         }
 
-        return redirect()->route('store')->with('success', 'Successfully created an order');
+        $olist = Order::join('order_details', 'orders.order_id', '=', 'order_details.order_id')->where('order_details.user_id', Auth::user()->id)->where('order_details.orderdetails_id', $detemp)->first();
+
+
+
+        $itemss = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+            ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+            ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+            ->get()->find(json_decode($olist->products));
+
+
+        return view('customer.order.orderdetails', ['olist' => $olist,  'items' =>  $itemss]);
     }
 
     public function redirectPaymongoFailed()
@@ -418,7 +450,6 @@ class OrderController extends Controller
         }
 
         return view('customer.order.orderlist', ['olist' => $olist,  'items' => $iarray2]);
-
     }
 
     public function detail(Request $request, $id)
@@ -429,14 +460,13 @@ class OrderController extends Controller
 
 
 
-            $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
-                ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
-                ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
-                ->get()->find( json_decode($olist->products));
+        $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+            ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+            ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+            ->get()->find(json_decode($olist->products));
 
 
         return view('customer.order.orderdetails', ['olist' => $olist,  'items' =>  $items]);
-
     }
 
     public function cancel(Request $request)
@@ -455,8 +485,8 @@ class OrderController extends Controller
     public function myroders(Request $request)
     {
         $olist = Order::join('order_bystoreitems', 'orders.order_id', '=', 'order_bystoreitems.order_id')->join('products', 'order_bystoreitems.product_id', '=', 'products.product_id')->join('users',  'order_bystoreitems.order_customerid', '=', 'users.id')->where('order_bystoreitems.retailer_id', Auth::user()->id)->get();
-      
-      
+
+
         return view('retailer.store.myorder', ['olist' => $olist]);
     }
 
@@ -468,14 +498,13 @@ class OrderController extends Controller
 
 
 
-            $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
-                ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
-                ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
-                ->get()->find( json_decode($olist->products));
+        $items = Cart_item::join('products', 'cart_items.product_id', '=', 'products.product_id')
+            ->join('retailers', 'cart_items.retailer_id', '=', 'retailers.retailer_id')
+            ->join('stores', 'retailers.store_id', '=', 'stores.store_id')
+            ->get()->find(json_decode($olist->products));
 
 
         return view('customer.order.orderdetails', ['olist' => $olist,  'items' =>  $items]);
-
     }
 
     public function updateorder(Request $request)

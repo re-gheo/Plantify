@@ -70,7 +70,7 @@
                                                 <div class="btn-group">
                                                     <label for="">include in check out</label>
 
-                                                    <input class="m-2" type="checkbox" name="checkoutid" id="checkout"
+                                                    <input class="m-2" type="checkbox" name="checkoutid[]" id="checkout"
                                                         value="{{ $i->cart_itemid }}" onclick="GetSelected()">
 
                                                     <form class="m-1"
