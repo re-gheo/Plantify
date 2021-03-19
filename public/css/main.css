@@ -91,7 +91,7 @@ CARDS
 .login-card,
 .register-card .setup-card {
     display: flex;
-    margin: .5rem .5rem;
+    margin: 1rem 1rem;
     overflow: hidden;
     border: 0 !important;
     border-radius: 10px !important;
