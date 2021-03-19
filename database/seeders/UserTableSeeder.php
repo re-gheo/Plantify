@@ -42,7 +42,7 @@ class UserTableSeeder extends Seeder
                 'cp_number' => '639165149430',
                 'region' => 'National Capital Region (NCR)',
                 'birthday' => '1998-10-20',
-                'retailer_approvalstateid'=> '1'
+                'retailer_approvalstateid'=> null
             ],
         );
 
@@ -60,7 +60,7 @@ class UserTableSeeder extends Seeder
                 'cp_number' => '639165149430',
                 'region' => 'National Capital Region (NCR)',
                 'birthday' => '1998-10-20',
-                'retailer_approvalstateid'=> '1'
+                'retailer_approvalstateid'=> null
             ],
 
         );
