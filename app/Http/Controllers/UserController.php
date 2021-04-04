@@ -98,6 +98,7 @@ class UserController extends Controller
 
         request()->session()->put('emailtemp', $email);
         request()->validate([
+            'govtid_type' => 'required',
             'govtid_number' => 'required',
             'address' => 'required',
             'birthday' => 'required'
@@ -106,7 +107,11 @@ class UserController extends Controller
        // $data = DB::table('users')->where('email', '=',$email)->get();
         $data = User::where('email',$email )->first();
 
-        $data->govtid_number = request('govtid_number');
+        $data->govtid_number = json_encode(array(
+            'type' => request('govtid_type'),
+            'no' => request('govtid_number')
+        ));
+
         $data->region = "National Capital Region (NCR)";
         $data->address = request('address');
         $data->birthday = request('birthday');
@@ -224,7 +229,10 @@ class UserController extends Controller
             $data->first_name = request('first_name');
             $data->last_name = request('last_name');
             $data->name = request('first_name'). ' ' . request('last_name');;
-            $data->govtid_number = request('govtid_number');
+            $data->govtid_number =json_encode(array(
+                'type' => request('govtid_type'),
+                'no' => request('govtid_number')
+             ));
             $data->region = "National Capital Region (NCR)";
             $data->address = request('address');
             $data->birthday = request('birthday');

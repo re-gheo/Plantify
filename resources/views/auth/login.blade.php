@@ -23,7 +23,7 @@
                             <div class="form-input">
 
                                 <input id="email" type="email" @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    value="{{ old('email') }}" required autofocus>
                                 <br>
                                 @error('email')
                                     <span class="error-message pt-2" role="alert">
@@ -38,8 +38,7 @@
 
                             <div class="form-input">
                                 <input class="" id="password" type="password"
-                                    class=" @error('password') is-invalid @enderror" name="password" required
-                                    autocomplete="current-password">
+                                    class=" @error('password') is-invalid @enderror" name="password" required>
                                 <br>
                                 @error('password')
                                     <span class="error-message pt-2" role="alert">
@@ -48,6 +47,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        @include('auth.recaptcha')
 
                         <div class="d-flex">
                             <div class="">

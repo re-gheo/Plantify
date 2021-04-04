@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Rules\AuthenticateRecaptcha;
+use Illuminate\Http\Request;
 
 use App\Models\User;
 use Socialite;
@@ -163,6 +165,16 @@ class LoginController extends Controller
             $user->save();
         }
         Auth::login($user);
+
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required' , new AuthenticateRecaptcha
+        ]);
 
     }
 }

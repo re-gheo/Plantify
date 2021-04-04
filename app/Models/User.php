@@ -46,6 +46,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getGovIDAttribute(){
+        return json_decode($this->govtid_number);
+    }
+
     public function orderDetails(){
         return $this->hasMany(Order_detail::class);
     }

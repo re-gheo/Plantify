@@ -101,13 +101,14 @@
                                     @endif
                                 </h6>
                             </div>
+
                             <div class="col-sm-6">
                                 <p class="font-weight-bold">Govt ID</p>
                                 <h6 class="text-muted">
                                     @if (!$profile->govtid_number)
                                         <p>Please register Government id here</p>
                                     @else
-                                        <p>{{ $profile->govtid_number }}</p>
+                                        <p>{{ $profile->govID->type."-".$profile->govID->no}}</p>
                                     @endif
                                 </h6>
                             </div>

@@ -33,7 +33,7 @@
                             <div class="">
                                 <input id="last_name" type="text" pattern="[^()/><\][\\\x22,;|]+"
                                     class=" @error('last_name') is-invalid @enderror" name="last_name"
-                                    value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                    value="{{ old('last_name') }}" required autofocus>
 
                                 @error('last_name')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
 
                             <div class="">
                                 <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required autocomplete="email">
+                                    value="{{ old('email') }}" required >
 
                                 @error('email')
                                     <span class="error-message pt-2" role="alert">
@@ -63,7 +63,7 @@
 
                             <div class="">
                                 <input id="password" type="password" class=" @error('password') is-invalid @enderror"
-                                    name="password" required autocomplete="new-password">
+                                    name="password" required >
 
                                 @error('password')
                                     <span class="error-message pt-2" role="alert">
@@ -77,8 +77,7 @@
                             <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
 
                             <div class="">
-                                <input id="password-confirm" type="password" class="" name="password_confirmation" required
-                                    autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="" name="password_confirmation" required>
                             </div>
                         </div>
 

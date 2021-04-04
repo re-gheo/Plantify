@@ -46,6 +46,33 @@
                         </div>
 
                         <div>
+                            <label for="govtid_type"> Government ID Type</label>
+
+                            <div class="form-input">
+                                <select id="govtid_type" type="text" class="@error('govtid_number') is-invalid @enderror"
+                                name="govtid_type" value="{{ old('govtid_type') }}" required>
+
+                                <option value="SSS">Social Security System</option>
+                                <option value="GSIS">Government Service Insurance System</option>
+                                <option value="UMI">Unified Multi-Purpose Identification</option>
+                                <option value="LTO">LTO Driver’s License</option>
+                                <option value="PRC">Professional Regulatory Commission</option>
+                                <option value="OWWA">OWWA E-Card</option>
+                                <option value="COE">Commission on Elections (COMELEC) Voter's ID</option>
+                                <option value="SC">Senior Citizen ID</option>
+                                <option value="PASS">Passport</option>
+
+                                </select>
+
+                                @error('govtid_type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div>
                             <label for="govtid_number"> Government Number</label>
 
                             <div class="form-input">

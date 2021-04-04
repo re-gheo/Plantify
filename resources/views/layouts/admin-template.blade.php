@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plantify Admin</title>
+    <link rel="icon" href="{{asset('icon.ico')}}"/>
 </head>
 
 <body>

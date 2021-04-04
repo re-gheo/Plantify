@@ -8,15 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Plantify</title>
+    <link rel="icon" href="{{asset('icon.ico')}}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/CSS/main.css">
     <link rel="stylesheet" href="/CSS/plantify_theme.css">
@@ -26,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{route('store')  }}">
-                    <i class="fas fa-leaf mr-1"></i>Plantify 
+                    <i class="fas fa-leaf mr-1"></i>Plantify
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -37,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-                        
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -47,7 +45,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -55,7 +53,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                             <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}" 
+                             <img src="{{Auth::user()->avatar}}" alt="{{Auth::user()->name}}"
                                 style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
