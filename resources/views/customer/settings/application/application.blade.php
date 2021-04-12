@@ -118,7 +118,7 @@
                     <label for="retailer_city">City</label>
                     <div>
                         <input id="retailer_city" type="text" class=" @error('retailer_city') is-invalid @enderror" name="retailer_city" required autocomplete="retailer_city">
-            
+
                             @error('retailer_city')
                                 <span class="" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -163,7 +163,7 @@
                                 only</span>
                         </label>
 
-                        <div class="input-select">
+                        <div class="input-select select-dropdown">
                             <select id="retailer_city" required name="retailer_city">
                                 <option value="Manila">Manila</option>
                                 <option value="Mandaluyong">Mandaluyong</option>

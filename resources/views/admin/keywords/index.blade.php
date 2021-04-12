@@ -2,16 +2,9 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="page-content">
         <div class="row">
             <div class="col-lg-10 mr-auto ml-auto">
-                <div class="pull-right">
-                    <button id="sidebarCollapse" type="button"
-                        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                            class="fa fa-bars mr-2"></i><small
-                            class="text-uppercase font-weight-bold">Toggle</small></button>
-                </div>
-
                 <div class="card-body ">
 
                     <!--SUCESS MESSAGE-->
@@ -78,7 +71,7 @@
 
                                     <td>{{ $k->keyword_id }}</td>
 
-                                    <td> <input class="cat-input" id="categorieedit" type="text" class=" 
+                                    <td> <input class="cat-input" id="categorieedit" type="text" class="
                                                                   @error('categorieedit') is-invalid @enderror"
                                             name="keywordedit" required autocomplete="categorieedit"
                                             value="{{ $k->keyword_name }}">

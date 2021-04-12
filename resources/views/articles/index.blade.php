@@ -1,20 +1,9 @@
 @extends('layouts.admin-template')
 @section('content')
-
+<div class="page-content">
     <div class="row">
 
         <div class="container ">
-
-            {{-- START OF TOGGLE BUTTON --}}
-            <div class="">
-                <div class="pull-right"> <button id="sidebarCollapse" type="button"
-                        class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                            class="fa fa-bars mr-2"></i><small
-                            class="text-uppercase font-weight-bold">Toggle</small></button></div>
-
-            </div>
-
-
             {{-- END OF TOGGLE BUTTON --}}
 
             {{-- START OF CONTENT --}}
@@ -31,7 +20,6 @@
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>No</th>
                             <th>Title</th>
                             <th width="250px">Action</th>
                         </tr>
@@ -39,7 +27,6 @@
 
                     @foreach ($articles as $article)
                         <tr>
-                            <td>{{ $article->article_id }}</td>
                             <td>{{ $article->article_topic }}</td>
                             <div>
                                 <td class="d-flex">
@@ -67,7 +54,7 @@
         </div>
     </div>
 
-
+</div>
 
 
 

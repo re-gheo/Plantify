@@ -37,8 +37,9 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if(Auth::user()->user_stateid == 2){
+            $remarks = Auth::user()->remarks;
             Auth::logout();
-            abort(403, "Cannot access to restricted page");
+            abort(403, $remarks);
         }
 
         //dd(Auth::user()->user_role);
@@ -89,8 +90,9 @@ class LoginController extends Controller
         if(User::where('email', '=', $user->email)->exists()){
 
             if(Auth::user()->user_stateid == 2){
-                Auth::logout();
-                abort(403, "Cannot access to restricted page");
+                $remarks = Auth::user()->remarks;
+            Auth::logout();
+            abort(403, $remarks);
             }
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
@@ -118,8 +120,9 @@ class LoginController extends Controller
 
         if(User::where('email', '=', $user->email)->exists()){
             if(Auth::user()->user_stateid == 2){
-                Auth::logout();
-                abort(403, "Cannot access to restricted page");
+                $remarks = Auth::user()->remarks;
+            Auth::logout();
+            abort(403, $remarks);
             }
 
             request()->session()->put('emailtemp', $user->email);

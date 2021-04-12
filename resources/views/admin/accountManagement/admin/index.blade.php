@@ -7,78 +7,96 @@
 
             <div class="container">
 
-                <div class="container">
-                    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-                        <i lass="fa fa-bars mr-2"></i>
-                        <small class="text-uppercase font-weight-bold">Toggle</small>
+
+                <h3>Manage Admin Accounts</h3>
+                <div class="text-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAdminModal">
+                        Create New Admin Account
                     </button>
-
-                    <h3>Manage Admin Accounts</h3>
-                    <div class="text-right">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAdminModal">
-                            Create New Admin Account
-                        </button>
-                    </div>
                 </div>
-                <div class="card-body table-responsive-sm">
+            </div>
+            <div class="card-body table-responsive-sm">
 
-                    <!--SUCESS MESSAGE-->
+                <!--SUCESS MESSAGE-->
 
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
+
+                <!--TABLE-->
+                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>options</th>
+                        </tr>
+                    </thead>
 
                     <!--TABLE-->
-                    <table class="table table-bordered table-striped table-hover table-responsive-sm">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>options</th>
-                            </tr>
-                        </thead>
 
-                        <!--TABLE-->
+                    @foreach ($admins as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <div class="row justify-items-center">
+                                    @if (Auth::id() != $user->id)
+                                        @if($user->user_stateid != 2 || $user->user_stateid == null)
+                                        <form  id="banForm" action="{{route('admin.user.ban', ['id' => $user->id])}}" method="POST">
+                                            @csrf
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                Block
+                                             </button>
 
-                        @foreach ($admins as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <div class="row justify-items-center">
-                                        @if (Auth::id() != $user->id)
-                                            @if($user->user_stateid != 2 || $user->user_stateid == null)
-                                            <form action="{{route('admin.user.ban', ['id' => $user->id])}}" method="POST">
-                                                @csrf
-                                                <button class="btn btn-warning" type="submit">Ban </button>
-                                            </form>
-                                            @else
-                                            <form action="{{route('admin.user.unban', ['id' => $user->id])}}" method="POST">
-                                                @csrf
-                                                <button class="btn btn-success " type="submit">Unban </button>
-                                            </form>
-                                            @endif
-                                            <form action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger" type="submit">Delete </button>
-                                            </form>
+                                               <!-- Modal -->
+                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                 <div class="modal-dialog" role="document">
+                                                   <div class="modal-content">
+                                                     <div class="modal-header">
+                                                       <h5 class="modal-title" id="exampleModalLabel">Block {{$user->name}}</h5>
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                                       </button>
+                                                     </div>
+                                                     <div class="modal-body">
+                                                         <div class="form-group">
+                                                             <label for="exampleFormControlTextarea1">Remarks</label>
+                                                             <textarea class="form-control" name="remarks" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                           </div>
+                                                     </div>
+                                                     <div class="modal-footer">
+                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                       <button  form="banForm" type="submit" class="btn btn-primary">Confirm Block</button>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                             </div>
+                                        </form>
+                                        @else
+                                        <form action="{{route('admin.user.unban', ['id' => $user->id])}}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-success " type="submit">Unblock </button>
+                                        </form>
                                         @endif
+                                        <form action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger" type="submit">Delete </button>
+                                        </form>
+                                    @endif
 
-                                        <a class="btn btn-success" href="{{route('admin.user.admin.edit', ['id' => $user->id])}}">Edit</a>
-                                    </div>
+                                    <a class="btn btn-success" href="{{route('admin.user.admin.edit', ['id' => $user->id])}}">Edit</a>
+                                </div>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
 
-                        @endforeach
-                    </table>
-                </div>
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>
@@ -116,18 +134,7 @@
 
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-
-                @error('password')
-                <span class="error-message pt-2" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-              </div>
-
-              <div class="form-group">
-                <label for="password">Confirm Password</label>
-                <input type="password" class="form-control" id="password" name="password_confirmation" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="plantifyadminpassword" disabled>
               </div>
           </form>
         </div>

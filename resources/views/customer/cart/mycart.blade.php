@@ -45,7 +45,7 @@
                                             <b>{{ $i->product_name }}</b>
                                         </td>
                                         <td>
-                                            <b>{{ $i->product_price }} PHP</b>
+                                            <b>{{ $i->price }} PHP</b>
                                         </td>
                                         <td style="width:20%">
 
@@ -70,7 +70,7 @@
                                                 <div class="btn-group">
                                                     <label for="">include in check out</label>
 
-                                                    <input class="m-2" type="checkbox" name="checkoutid[]" id="checkout"
+                                                    <input class="m-2 checkout-select" type="checkbox" name="checkoutid[]" id="checkout"
                                                         value="{{ $i->cart_itemid }}" onclick="GetSelected()">
 
                                                     <form class="m-1"
@@ -136,8 +136,17 @@
                                                 </button>
                                             </div>
 
+
+
+
                                         </form>
 
+                                        <div class="btn-group text-center">
+                                            <button class="btn btn-success text-uppercase my-2 mx-a" onclick="selectAllItems()">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Select All
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -166,6 +175,10 @@
             if (selected.length == 0) {
                 document.getElementById("mysel").value = null;
             }
+        };
+
+        function selectAllItems() {
+            $(".checkout-select").attr("checked", "true");
         };
 
     </script>

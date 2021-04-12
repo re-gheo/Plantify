@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Order_bystoreitem;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 
 use Session;
@@ -69,7 +70,7 @@ class AdminController extends Controller
 
         User::create([
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make("plantifyadminpassword"),
             'user_role' => 'admin',
             'first_name' => $request->fn,
             'last_name' => $request->ln,
@@ -108,12 +109,12 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function ban($id){
-
+    public function ban(Request $request, $id){
         $user= User::findOrFail($id);
 
         $user->update([
-            'user_stateid' => 2
+            'user_stateid' => 2,
+            'remarks' => $request->remarks
         ]);
 
         Session::flash('success', 'Succesfully Banned User');
@@ -122,7 +123,8 @@ class AdminController extends Controller
 
     public function unban($id){
         User::findOrFail($id)->update([
-            'user_stateid' => 1
+            'user_stateid' => 1,
+            'remarks' => ""
         ]);
 
         Session::flash('success', 'Succesfully Unbanned User');

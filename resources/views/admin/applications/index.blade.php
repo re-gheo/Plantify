@@ -3,9 +3,6 @@
 @section('content')
 
     <div class="page-content p-5" id="content">
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-
         <h3 class=" ">Applications</h3>
         <div class="row">
             @if ($message = Session::get('success'))

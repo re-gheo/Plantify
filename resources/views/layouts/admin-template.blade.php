@@ -17,6 +17,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plantify Admin</title>
     <link rel="icon" href="{{asset('icon.ico')}}"/>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -30,8 +33,7 @@
         <!-- START OF SIDEBAR CONTENT -->
         <div class="py-4 px-3 mb-4 bg-dark">
             <div class="media d-flex align-items-center">
-                <img class="admin-avatar " src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} " onerror="
-                    this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
+                <img class="admin-avatar " src="{{ Auth::user()->profile_picture }}" alt="{{ Auth::user()->name }}">
                 <div class="media-body">
                     <a href="{{ route('customer.profile.show') }}">
                         <h4 class="m-0 text-white">{{ Auth::user()->name }}</h4>
@@ -156,9 +158,7 @@
             @else
                 <li class="nav-item dropdown mr-3">
 
-                    <img class="nav-avatar" src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }} "
-                        onerror="
-                        this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
+                    <img class="nav-avatar" src="{{ Auth::user()->profile_picture }}" alt="{{ Auth::user()->name }} ">
 
 
 
@@ -224,29 +224,6 @@
                         industry to serve and support the vast arrays of horticulture products that meet the sellers and
                         the consumers into one channel, a centralized market to buy and sell botany products.
                     </p>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-                    </ul>
                 </div>
             </div>
             <hr>

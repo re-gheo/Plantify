@@ -13,6 +13,22 @@
                         </div>
 
                         <div class="form-input">
+                            <p>Card Type</p>
+                            <select class="form-select select-dropdown" name="card_type" aria-label="Default select example">
+                                <option value="" selected disabled>Choose Card Type</option>
+                                @foreach($types as $type)
+                                    <option value={{$type->card_typeid}}>{{$type->card_type}}</option>
+                                @endforeach
+                              </select>
+
+                            @error('card_type')
+                                <div>
+                                   Invalid Card Type
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-input">
                             <p>Number</p>
                             <input type="text" name="card_number" required id="card_number"
                                 value="{{ old('card_number') }}">

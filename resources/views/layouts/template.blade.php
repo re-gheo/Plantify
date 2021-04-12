@@ -18,10 +18,13 @@
     <link rel="stylesheet" href="{!! secure_asset('/css/plantify_theme.css') !!}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
+
+
     @yield('styles')
 </head>
 
@@ -89,9 +92,8 @@
 
                     @else
 
-                        <img class="avatar-customer ml-2" src="{{ Auth::user()->avatar }}"
-                            alt="{{ Auth::user()->name }} " onerror="
-                                this.onerror=null;this.src={{ asset('/css/logo.svg') }} ;">
+                        <img class="avatar-customer ml-2" src="{{ Auth::user()->profile_picture }}"
+                            alt="{{ Auth::user()->name }}">
 
 
 
@@ -194,6 +196,13 @@
     </script>
 
     @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select-dropdown').select2();
+        });
+    </script>
 
     <br>
     <br>
@@ -210,7 +219,7 @@
                     </p>
                 </div>
 
-                <div class="col-xs-6 col-md-3">
+                {{-- <div class="col-xs-6 col-md-3">
                     <h6>Categories</h6>
                     <ul class="footer-links">
                         <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
@@ -231,7 +240,7 @@
                         <li><a href="/resources/views/customer/other/tos.html">Privacy Policy</a></li>
                         <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
             <hr>
         </div>

@@ -31,12 +31,6 @@
                         <h1>OH! Seems to be empty.</h1>
                     </div>
                 @endforelse
-
-
-
-
-
-
             </div>
 
         </div>

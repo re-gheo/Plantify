@@ -50,6 +50,10 @@ class User extends Authenticatable
         return json_decode($this->govtid_number);
     }
 
+    public function getProfilePictureAttribute(){
+        return ($this->avatar)? $this->avatar : asset('/css/default-image.svg');
+    }
+
     public function orderDetails(){
         return $this->hasMany(Order_detail::class);
     }

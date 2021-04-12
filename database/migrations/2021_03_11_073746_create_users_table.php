@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->integer('user_stateid')->nullable()->index('user_stateid');
             $table->integer('retailer_approvalstateid')->nullable()->index('retailer_approvalstateid');
             $table->string('user_role', 300)->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }

@@ -2,4 +2,6 @@
 
 @section('title', __('Service Unavailable'))
 @section('code', '503')
-@section('message', __('Service Unavailable'))
+@section('message')
+<a href="{{route('store')}}">RETURN TO HOME</a>
+@endsection

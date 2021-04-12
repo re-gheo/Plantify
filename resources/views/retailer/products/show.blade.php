@@ -62,7 +62,7 @@
 
                         <div class="conatiner">
                             <div class="row">
-                                <a href="{{ route('retailer.products.front') }}" class="btn btn-dark mb-2 mt-2 m-1">
+                                <a href="{{ route('retailer.store.front') }}" class="btn btn-dark mb-2 mt-2 m-1">
                                     <i class="fas fa-list"></i> Back to my product list</a>
 
                                 <a class="btn btn-success mb-2 mt-2 m-1"

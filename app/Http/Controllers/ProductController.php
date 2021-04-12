@@ -60,7 +60,6 @@ class ProductController extends Controller
 
     public function create($type)
     {
-
         if ($type == "plant") {
             $refs = Plant_referencepage::latest()->where('isDeleted', FALSE)->get();
             $keys = Keyword::all()->where('isDeleted', 0);
@@ -362,7 +361,7 @@ class ProductController extends Controller
         ]);
         $item = Cart_item::find($id)->where('user_id',  Auth::user()->id)->first();
 
-     
+
         if ($item->user_id ==  Auth::user()->id) {
             $item->cart_quantity = request()->quantity;
             $item->cart_subtotal = $item->cart_itemcost * request()->quantity;

@@ -2,15 +2,13 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="page-content">
         <div class="row">
             <div class="col-lg-10 mr-auto ml-auto">
-                <button id="sidebarCollapse" type="button"
-                    class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small
-                        class="text-uppercase font-weight-bold">Toggle</small></button>
 
 
-                <div class="">
+
+                <div class="container">
 
                     <!--SUCESS MESSAGE-->
 
@@ -55,7 +53,6 @@
 
                         <thead class="thead-dark">
                             <tr>
-                                <th>ID</th>
                                 <th>Category name</th>
                                 <th>options</th>
                             </tr>
@@ -68,8 +65,6 @@
                                     method="POST">
                                     @csrf
                                     @method('put')
-
-                                    <td>{{ $category->product_categoryid }}</td>
 
                                     <td> <input class="cat-input" id="categorieedit" type="text"
                                             class=" @error('categorieedit') is-invalid @enderror" name="categorieedit" required
@@ -93,10 +88,6 @@
                                 </form>
                     </div>
                     </td>
-
-
-
-
                     </tr>
                 @empty
                     <p>There are no record <a href="">Add</a></p>

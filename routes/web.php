@@ -219,7 +219,7 @@ Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('cli
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
 
 // RETAILER/ STORE
-Route::get('/store', 'StoreController@front')->name('retailer.store.front');
+Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 Route::put('/store/setup', 'StoreController@setupstore')->name('retailer.store.setupstore');
 Route::get('/store/customize', 'StoreController@edit')->name('retailer.store.edit');
 Route::put('/store/customize', 'StoreController@update')->name('retailer.store.update');

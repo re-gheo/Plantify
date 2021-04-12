@@ -29,7 +29,9 @@ class CardController extends Controller
     public function register()
     {
         if (Auth::user()->addres != null || Auth::user()->govtid_numbe != null || Auth::user()->cp_number != null ||  Auth::user()->birthday != null) {
-            return view('customer.card.register');
+            return view('customer.card.register', [
+                'types' => Card_type::get(),
+            ]);
         } else {
             return redirect()->route('customer.profile.show')->with("success", "Please complete Your credentials Before adding your card as a payment method");
         }
@@ -91,6 +93,7 @@ class CardController extends Controller
             $card->card_holdername = Crypt::encryptString(request('card_holdername'));
             $card->card_cvv = Crypt::encryptString(request('card_cvv'));
             $card->card_exp = $ejso;
+            $card->card_typeid = request("card_type");
             $card->user_id = Auth::user()->id;
             $card->card_line1 = Crypt::encryptString(request("card_line1"));
             $card->card_city = request("card_city");

@@ -12,9 +12,8 @@
                         <div class="card-block text-center text-white">
 
                             <div class="div">
-                                <img class="avatar text-center mt-4" src="{{ Auth::user()->avatar }}"
-                                    alt="{{ Auth::user()->name }} "
-                                    onerror="this.onerror=null;this.src={{ asset('/css/default-image.svg') }} ;">
+                                <img class="avatar text-center mt-4" src="{{ Auth::user()->profile_picture }}"
+                                    alt="{{ Auth::user()->name }}">
                             </div>
 
 

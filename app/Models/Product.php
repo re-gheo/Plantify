@@ -24,7 +24,11 @@ class Product extends Model
     }
 
     public function getCommissionEarnedAttribute(){
-        return $this->commission->commissions_max_percentage * $this->product_price;
+        return number_format((double)$this->commission->commissions_max_percentage * $this->product_price, 2, '.', ',') ;
+    }
+
+    public function getPriceAttribute(){
+        return number_format((double)$this->product_price, 2, '.', ',');
     }
 
 

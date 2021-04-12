@@ -49,8 +49,8 @@
                             <label for="govtid_type"> Government ID Type</label>
 
                             <div class="form-input">
-                                <select id="govtid_type" type="text" class="@error('govtid_number') is-invalid @enderror"
-                                name="govtid_type" value="{{ old('govtid_type') }}" required>
+                                <select id="govtid_type" type="text" class="@error('govtid_number') is-invalid @enderror select-dropdown"
+                                name="govtid_type" value="{{ $profile->govID->type }}" required>
 
                                 <option value="SSS">Social Security System</option>
                                 <option value="GSIS">Government Service Insurance System</option>
@@ -77,7 +77,7 @@
 
                             <div class="form-input">
                                 <input id="govtid_number" type="text" class=" @error('govtid_number') is-invalid @enderror"
-                                    name="govtid_number" value="{{ $profile->govtid_number }}"
+                                    name="govtid_number" value="{{ $profile->govID->no }}"
                                     autocomplete="govtid_number" autofocus>
 
                                 @error('govtid_number')
@@ -114,12 +114,17 @@
 
 
                         <div class="form-input">
-                            <label for="birthday">Birthday</label>
+                            <label for="birthday">Birthday
+                                @error('birthday')
+                                    <strong class="text-danger"> *{{ $message }} </strong>
+                                @enderror
+                            </label>
 
                             <div>
                                 <input type="date" id="birthday" name="birthday" value="{{ $profile->birthday }}"
-                                    max="{{ Carbon\Carbon::today('Asia/Manila')->subYear(10)->toDateString() }}">
+                                    max="{{ Carbon\Carbon::today('Asia/Manila')->subYear(10)->toDateString() }}" required>
                             </div>
+
                         </div>
 
 

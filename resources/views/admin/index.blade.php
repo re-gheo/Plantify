@@ -4,9 +4,6 @@
     <div id="wrapper">
         <!-- Page content holder -->
         <div class="page-content p-5" id="content">
-            <!-- Toggle button -->
-            <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                    class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
             <h2 class="display-4 text-dark">Welcome to the Admin Dashboard</h2>
             {{-- <p class="lead text-dark mb-0">Choose </p> --}}
@@ -100,7 +97,6 @@
                 <table class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Product ID</th>
                             <th>Product Name</th>
                             <th>Retailer</th>
                             <th>Quantity</th>
@@ -112,7 +108,6 @@
                     <!--TABLE-->
                     @foreach ($orders_bystore as $order)
                     <tr>
-                        <td>{{$order->product_id}}</td>
                         <td>{{$order->product->product_name}}</td>
                         <td>{{$order->retailer->store->store_name}}</td>
                         <td>{{$order->order_quantity}}</td>

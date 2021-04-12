@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 // use DB;
+
+use App\Http\Requests\UserRequest;
 use Exception;
 use App\Models\User;
 use Vonage\Verify\Client;
@@ -221,21 +223,21 @@ class UserController extends Controller
             return view('customer.settings.profile.edit',['profile' => $profile]);
     }
 
-    public function updateprofile()
+    public function updateprofile(UserRequest $request)
     {
 
             $data = User::where('email',Auth::user()->email)->first();
 
-            $data->first_name = request('first_name');
-            $data->last_name = request('last_name');
-            $data->name = request('first_name'). ' ' . request('last_name');;
+            $data->first_name = $request->first_name;
+            $data->last_name = $request->last_name;
+            $data->name = request('first_name'). ' ' .request('last_name');
             $data->govtid_number =json_encode(array(
                 'type' => request('govtid_type'),
                 'no' => request('govtid_number')
              ));
             $data->region = "National Capital Region (NCR)";
             $data->address = request('address');
-            $data->birthday = request('birthday');
+            $data->birthday = $request->birthday;
 
 
             $data->save();

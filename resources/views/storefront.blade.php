@@ -60,14 +60,13 @@
                                 <img class="img-fluid" src="{{ asset('/storage/' . $product->product_mainphoto) }}"
                                     alt="some_image">
                                 <h5>{{ $product->product_name }}</h5>
-                              
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="star"></div>
                                     <div class="star"></div>
                                     <div class="star"></div>
-                                </div>
-
+                                </div> --}}
                         </a>
+                        <small> By: <a href="{{route('retailer.store.front', ['id' => $product->retailer->retailer_id])}}">{{ $product->retailer->store->store_name }}</a></small>
 
                         <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}" method="POST">
                             @csrf

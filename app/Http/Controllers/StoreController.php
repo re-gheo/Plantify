@@ -9,14 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
-    public function front()
+    public function front($id = null)
     {
-        $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+        if($id){
+            $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail($id);
+            return view('retailer.store.storepage', ['store' => $store]);
+        }else{
+            $store =  Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
+            if (!$store->store_name || !$store->store_description) {
+                return view('retailer.store.setup');
+            }
 
-        if (!$store->store_name || !$store->store_description) {
-            return view('retailer.store.setup');
+            return view('retailer.store.storepage', ['store' => $store]);
+
         }
-        return view('retailer.store.storepage', ['store' => $store]);
+
+
     }
 
     public function setup()

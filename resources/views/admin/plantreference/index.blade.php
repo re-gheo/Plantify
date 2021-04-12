@@ -3,16 +3,6 @@
 @section('content')
 
     <div class="page-content p-5">
-        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i
-                class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
-        <div class="row">
-
-
-
-
-
-        </div>
-
         <div class="pull-right">
             <a href="{{ route('admin.reference.create') }}" class="btn btn-dark"> create a reference</a>
         </div>
@@ -30,13 +20,12 @@
                 <thead class="thead-dark">
 
                     <tr>
-                        <th>ID</th>
-                        <th>scientificname</th>
+                        <th>Scientific Name</th>
                         {{-- <th>description</th>
                                 <th>maintenance</th> --}}
-                        <th>category</th>
-                        <th>Photos</th>
-                        <th>options</th>
+                        <th>Category</th>
+                        <th>Preview</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
 
@@ -45,7 +34,6 @@
 
 
                     <tr>
-                        <td>{{ $reference->plant_referenceid }}</td>
                         <td>{{ $reference->plant_scientificname }}</td>
                         {{-- <td>{{ $reference->plant_description }}</td>
                               <td>{{ $reference->plant_maintenance }}</td> --}}
