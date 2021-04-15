@@ -19,7 +19,6 @@ class CreateAuditLogsTable extends Migration
             $table->string('table_changed', 300)->nullable();
             $table->string('activity', 300)->nullable();
             $table->dateTime('date_created')->nullable();
-            $table->timestamps();
         });
     }
 

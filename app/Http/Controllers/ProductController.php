@@ -12,6 +12,7 @@ use App\Models\Shopping_cart;
 use App\Models\Assigned_photos;
 use App\Models\Assigned_keywords;
 use App\Models\Plant_referencepage;
+use App\Services\LogServices;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -141,6 +142,9 @@ class ProductController extends Controller
 
         }
 
+        $log = 'Created Product ID: '.$product->id;
+        LogServices::log($log);
+
         return redirect()->route('product_show', ['id'=>$product->product_id]);
     }
 
@@ -230,6 +234,8 @@ class ProductController extends Controller
 
         }
 
+        $log = 'Update Product ID: '.$product->id;
+        LogServices::log($log);
 
         return redirect()->route('product_show', ['id'=>$product->product_id]);
     }

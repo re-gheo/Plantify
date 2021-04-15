@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
 use App\Models\Retailer_application;
+use App\Services\LogServices;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -226,24 +227,24 @@ class UserController extends Controller
     public function updateprofile(UserRequest $request)
     {
 
-            $data = User::where('email',Auth::user()->email)->first();
+        $data = User::where('email',Auth::user()->email)->first();
 
-            $data->first_name = $request->first_name;
-            $data->last_name = $request->last_name;
-            $data->name = request('first_name'). ' ' .request('last_name');
-            $data->govtid_number =json_encode(array(
-                'type' => request('govtid_type'),
-                'no' => request('govtid_number')
-             ));
-            $data->region = "National Capital Region (NCR)";
-            $data->address = request('address');
-            $data->birthday = $request->birthday;
+        $data->first_name = $request->first_name;
+        $data->last_name = $request->last_name;
+        $data->name = request('first_name'). ' ' .request('last_name');
+        $data->govtid_number =json_encode(array(
+            'type' => request('govtid_type'),
+            'no' => request('govtid_number')
+         ));
+        $data->region = "National Capital Region (NCR)";
+        $data->address = request('address');
+        $data->birthday = $request->birthday;
 
+        $data->save();
 
-            $data->save();
+        LogServices::log('update user profile');
 
-
-            return redirect()->route('customer.profile.show')->with('success', 'successfully updated profile');
+        return redirect()->route('customer.profile.show')->with('success', 'successfully updated profile');
     }
 
 // OTP VERSION FOR PROFILE -------------------------------------------------------------------

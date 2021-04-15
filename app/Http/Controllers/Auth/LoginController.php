@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Services\LogServices;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Rules\AuthenticateRecaptcha;
 use Illuminate\Http\Request;
@@ -43,6 +43,7 @@ class LoginController extends Controller
         }
 
         //dd(Auth::user()->user_role);
+        LogServices::log('login');
         switch (Auth::user()->user_role) {
             case 'admin':
                 $this->redirectTo = ('admin/home');
@@ -97,6 +98,7 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
+            LogServices::log('login');
             return redirect()->route('store');
         }
         else{
@@ -128,6 +130,7 @@ class LoginController extends Controller
             request()->session()->put('emailtemp', $user->email);
             $user = User::where('email', '=', $user->email)->first();
             Auth::login($user);
+            LogServices::log('login');
             return redirect()->route('store');
         }else{
             $this->_registerGoogleUser($user);

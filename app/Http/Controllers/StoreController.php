@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use App\Models\Retailer;
+use App\Services\LogServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,12 +35,13 @@ class StoreController extends Controller
 
     public function setupstore()
     {
-
         $ret = Retailer::leftJoin('stores', 'retailers.store_id', '=', 'stores.store_id')->findOrFail(Auth::user()->id);
         $store = Store::findOrFail($ret->store_id);
         $store->store_name = request('store_name');
         $store->store_description = request('store_description');
         $store->save();
+
+        LogServices::log('setup store');
 
         return redirect()->route('retailer.store.front')->with('success', 'Successfully Registered Your Store!');
     }
@@ -76,6 +78,8 @@ class StoreController extends Controller
         }
 
         $store->save();
+
+        LogServices::log('update store');
 
         return redirect()->route('retailer.store.front')->with('success', 'Successfully Updated Your Store!');
     }

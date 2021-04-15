@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Plant_referencepage;
+use App\Services\LogServices;
 
 class PlantReferencepageController extends Controller
 {
@@ -59,6 +60,9 @@ class PlantReferencepageController extends Controller
         }
         $ref->save();
 
+        $log = 'Created Plant Reference ID: '.$ref->id;
+        LogServices::log($log);
+
         return redirect()->route('admin.reference.get')->with('success', 'created reference ' .  request('plant_scientificname'));
     }
 
@@ -101,6 +105,9 @@ class PlantReferencepageController extends Controller
             $ref->plant_photothree = request('plant_photothree')->store('referecnce_page', 'public');
         }
         $ref->save();
+
+        $log = 'Updated Plant Reference ID: '.$ref->id;
+        LogServices::log($log);
 
         return redirect()->route('admin.reference.show', ['id'=>$id])->with('success', 'Edited the reference page.');
     }
