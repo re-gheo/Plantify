@@ -68,6 +68,8 @@
                         </a>
                         <small> By: <a href="{{route('retailer.store.front', ['id' => $product->retailer->retailer_id])}}">{{ $product->retailer->store->store_name }}</a></small>
 
+                        @include('includes.rating', ['product' => $product])
+
                         <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}" method="POST">
                             @csrf
                             {{-- {{ $product->product_id }} --}}

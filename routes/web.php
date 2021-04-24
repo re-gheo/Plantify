@@ -51,6 +51,8 @@ Route::put('/product/inquire/mark/{id}', 'InquiryController@markAsBest')->name('
 Route::delete('/product/inquire/{id}/delete', 'InquiryController@delete')->name('customer.inquiry.delete');
 
 
+Route::post('/product/rate/{id}', 'ProductRatingController@rate')->name('product.rating.customer');
+
 //                                          ██╗
 //  █████╗ ██╗   ██╗████████╗██╗  ██╗       ██╗      ██╗      ██████╗  ██████╗ ██╗███╗   ██╗
 // ██╔══██╗██║   ██║╚══██╔══╝██║  ██║       ██╗      ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║

@@ -100,56 +100,11 @@
         <br>
         <br>
         <br>
-        <h2><b>COMMENTS</b></h2>
-        <br>
-        <br>
+        <h2><b>RATINGS</b></h2>
+        @include('includes.ratingProductCustomer', ['product' => $product])
+
         <h2><b>QUESTIONS</b></h2>
-
-        @if(Auth::check())
-            <form method="POST" action="{{route('customer.inquiry.store', ['id' => $product->product_id] )}}">
-                @csrf
-                <input type="text" name="inquiry" placeholder="Ask A Question">
-            </form>
-        @else
-            <a href="">
-                Sign In or Register
-            </a>
-        @endif
-
-        @if($product->inquiry->count() > 0)
-            @foreach($product->inquiry as $inquiry)
-                <div class="card">
-                    @if(!$inquiry->trashed())
-                        <p>{{$inquiry->inquiry}}</p>
-                        @if($inquiry->rater_id == Auth::id())
-                            <form method="POST" action="{{route('customer.inquiry.delete', ['id' => $inquiry->id] )}}">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" class="btn-danger"> Delete</button>
-                            </form>
-                        @endif
-                    @else
-                        User Deleted This Inquiry
-                    @endif
-                </div>
-
-                <ul class="ml-5 list-group">
-                    @foreach ($inquiry->comments as $comment)
-                        <li class="list-group-item">{{$comment->comment}}</li>
-                        @if($comment->inquiry->rater_id == Auth::id())
-                            <form method="POST" action="{{route('customer.inquiry.best', ['id' => $comment->id] )}}">
-                                @method('PUT')
-                                @csrf
-                                <button type="submit" class="btn-success">Mark As Best Answer</button>
-                            </form>
-                         @endif
-                    @endforeach
-                </ul>
-            @endforeach
-        @else
-            <h6>No Inquires! Ask Now!</h6>
-        @endif
-
+        @include('includes.questionProductCustomer', ['product' => $product])
 
         <br>
         <br>

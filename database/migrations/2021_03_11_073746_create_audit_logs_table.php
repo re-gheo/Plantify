@@ -14,11 +14,11 @@ class CreateAuditLogsTable extends Migration
     public function up()
     {
         Schema::create('audit_logs', function (Blueprint $table) {
-            $table->integer('audit_id', true);
+            $table->bigIncrements('audit_id');
             $table->integer('audit_userid')->nullable()->unique('audit_userid');
             $table->string('table_changed', 300)->nullable();
             $table->string('activity', 300)->nullable();
-            $table->dateTime('date_created')->nullable();
+            $table->timestamps();
         });
     }
 
