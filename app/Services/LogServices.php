@@ -12,8 +12,7 @@ class LogServices{
         $log = AuditLog::create([
             'audit_userid' => Auth::id(),
             'table_changed' => $table,
-            'activity' => $activity,
-            'date_created' => Carbon::now()
+            'activity' => $activity
         ]);
     }
 }
