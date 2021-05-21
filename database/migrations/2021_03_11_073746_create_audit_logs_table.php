@@ -15,7 +15,7 @@ class CreateAuditLogsTable extends Migration
     {
         Schema::create('audit_logs', function (Blueprint $table) {
             $table->bigIncrements('audit_id');
-            $table->integer('audit_userid')->nullable()->unique('audit_userid');
+            $table->integer('audit_userid')->nullable();
             $table->string('table_changed', 300)->nullable();
             $table->string('activity', 300)->nullable();
             $table->timestamps();

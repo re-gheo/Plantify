@@ -68,7 +68,7 @@
             <h3>Orders</h3>
             <div class="card-body table-responsive-sm">
                 <!--TABLE-->
-                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                <table id="order-table" class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
                             <th>Order ID</th>
@@ -94,7 +94,7 @@
             <h3>Commission</h3>
             <div class="card-body table-responsive-sm">
                 <!--TABLE-->
-                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                <table  id="commission-table" class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
                             <th>Product Name</th>
@@ -126,4 +126,13 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready( function () {
+        $('#commission-table').DataTable();
+        $('#order-table').DataTable();
+    } );
+</script>
 @endsection
