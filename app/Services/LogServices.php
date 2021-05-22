@@ -14,5 +14,7 @@ class LogServices{
             'table_changed' => $table,
             'activity' => $activity
         ]);
+
+        // this service layer pattern
     }
 }
