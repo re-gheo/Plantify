@@ -148,3 +148,12 @@ To Fix:
 
 Fixed Issues
 1. Shopping Cart Fully Functional
+
+Black Box Testing Heroku (March 12, 2021)
+1. Photo storage not working for categories
+2. Banning function still in Progress
+	- works for normal plantify customers
+		- not working for google and pressumably fb login
+3. No UI for sms otp
+4. Product type for none plant products
+5. No store page link on product page
