@@ -7,10 +7,15 @@ MAIN CRAP
 * {
     font-family: Poppins, sans-serif;
     /* overflow: hidden; */
+
 }
+
+
 
 body {
     height: 100vh;
+    height: 100%;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -82,7 +87,8 @@ CARDS
 #login-hero,
 #register-hero {
     border-radius: 10px !important;
-    margin-top: 8rem;
+    margin-top: 4rem;
+    justify-content: center;
 
 }
 
@@ -741,6 +747,11 @@ FOOTER
 
 
 .site-footer {
+    position: fixed;
+    left: 0;
+    bottom: 1;
+    height: 40%;
+    width: 100%;
     background-color: #26272b;
     padding: 40px 0 20px;
     font-size: 15px;
