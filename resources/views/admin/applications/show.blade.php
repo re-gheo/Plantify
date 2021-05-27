@@ -169,7 +169,7 @@
                             @csrf
                             @method('put')
 
-                            <button type="submit" class="btn btn-success text-center">APPROVE APPLICATION</button>
+                            <button type="submit" class="btn btn-success text-center serviapprovebtn">APPROVE APPLICATION</button>
                         </form>
 
                         <br>
@@ -200,7 +200,7 @@
 
 
                                 <br>
-                                <button type="submit" class="btn btn-danger text-center"> DENY APPLICATION </button>
+                                <button type="submit" class="btn btn-danger text-center servidenybtn"> DENY APPLICATION </button>
                         </form>
 
 
@@ -249,3 +249,55 @@
 
 
     @endsection
+
+    @section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $('.servidenybtn').click(function (e) 
+        {
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to deny this application?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Application denied successfully!", {
+                        icon: "success",
+                        });
+                    }
+                });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function ()
+    {
+        $('.serviapprovebtn').click(function (e) 
+        {
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this entry?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: false,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Application approved successfully!", {
+                        icon: "success",
+                        });
+                    }
+                });
+        });
+    });
+</script>
+
+@endsection

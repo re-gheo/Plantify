@@ -60,8 +60,7 @@
                                     method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger m-1"> Delete </button>
-                                    {{-- Kenneth Put a warning box here --}}
+                                    <button type="submit" class="btn btn-danger m-1 servideletebtn"> Delete </button>
 
                                 </form>
                             </div>
@@ -82,5 +81,33 @@
     </div>
 
 
+
+@endsection
+
+@section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $('.servideletebtn').click(function (e) 
+        {
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this entry?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Entry deleted successfully!", {
+                        icon: "success",
+                        });
+                    }
+                });
+        });
+    });
+</script>
 
 @endsection

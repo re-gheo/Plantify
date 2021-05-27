@@ -84,7 +84,7 @@
                                 <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
                                     method="POST"> @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger pl-auto" type="submit">delete </button>
+                                    <button class="btn btn-danger pl-auto servideletebtn" type="submit">delete </button>
                                 </form>
                     </div>
                     </td>
@@ -99,5 +99,33 @@
     </div>
     </div>
 
+
+@endsection
+
+@section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $('.servideletebtn').click(function (e) 
+        {
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this entry?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Entry deleted successfully!", {
+                        icon: "success",
+                        });
+                    }
+                });
+        });
+    });
+</script>
 
 @endsection

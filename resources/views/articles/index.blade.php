@@ -33,7 +33,7 @@
                                     <form action="{{ route('articles.destroy', $article->article_id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger m-2">Delete</button>
+                                        <button type="submit" class="btn btn-danger m-2 servideletebtn">Delete</button>
 
 
                                     </form>
@@ -56,10 +56,32 @@
 
 </div>
 
+@endsection
 
-
-
-
-
+@section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function ()
+    {
+        $('.servideletebtn').click(function (e) 
+        {
+            e.preventDefault();
+            swal({
+                    title: "Are you sure?",
+                    text: "Are you sure you want to delete this entry?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Entry deleted successfully!", {
+                        icon: "success",
+                        });
+                    }
+                });
+        });
+    });
+</script>
 
 @endsection
