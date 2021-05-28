@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReviewPosted;
+use App\Models\Product;
 use App\Models\ProductRating;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProductRatingController extends Controller
 {
@@ -16,6 +20,10 @@ class ProductRatingController extends Controller
             'rating' => $request->ratingType,
             'comment' => $request->comment,
         ]);
+
+        $product = Product::find($id);
+
+        Mail::to(User::find($product->retailer->store->store_id))->send(new ReviewPosted($product));
 
         return redirect()->back();
     }
