@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -30,12 +34,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
- 
+
     // protected $redirectTo = RouteServiceProvider::HOME;
     // protected $redirectTo =  route('addc.setup');
-    protected function redirectTo() 
+    protected function redirectTo()
     {
-        return route('addc.setup');
+
+        //return route('addc.setup');
+
+        Session::flash('success', 'Your Registration Has Been Succesful. Please wait while we verify your account.');
+        return route('store');
     }
 
     /**
@@ -76,7 +84,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        request()->session()->put('emailtemp',$data['email']);
+        // request()->session()->put('emailtemp',$data['email']);
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -87,7 +95,30 @@ class RegisterController extends Controller
             'region' => "National Capital Region (NCR)",
             'otp_verified' => 0,
             'password' => Hash::make($data['password']),
+            'user_stateid' => 4,
+            'remarks' => "Your account is being verified. ",
 
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
     }
 }

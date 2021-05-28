@@ -36,7 +36,7 @@ class LoginController extends Controller
     protected $redirectTo;
     public function redirectTo()
     {
-        if(Auth::user()->user_stateid == 2){
+        if(Auth::user()->user_stateid == 4){
             $remarks = Auth::user()->remarks;
             Auth::logout();
             abort(403, $remarks);

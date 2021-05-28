@@ -26,5 +26,9 @@ class UserStatesTableSeeder extends Seeder
         DB::table('user_states')->insert([
             'user_state' => 'Locked',
         ]);
+
+        DB::table('user_states')->insert([
+            'user_state' => 'On Hold',
+        ]);
     }
 }
