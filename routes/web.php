@@ -259,9 +259,6 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 
 
 
-
-
-
 // Route::get('/test', function () {
 //     $mytime = Carbon::now();
 //     echo $mytime->toDateString();

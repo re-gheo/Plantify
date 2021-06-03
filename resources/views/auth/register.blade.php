@@ -48,7 +48,7 @@
 
                             <div class="">
                                 <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" required >
+                                    value="{{ old('email') }}" required>
 
                                 @error('email')
                                     <span class="error-message pt-2" role="alert">
@@ -63,7 +63,7 @@
 
                             <div class="">
                                 <input id="password" type="password" class=" @error('password') is-invalid @enderror"
-                                    name="password" required >
+                                    name="password" required>
 
                                 @error('password')
                                     <span class="error-message pt-2" role="alert">
@@ -103,26 +103,16 @@
                         <div class="text-center mt-4">
                             <span>
                                 <span> <input required type="checkbox" data-toggle="modal" data-target="#exampleModal">
-                                    by checking, you agree to
+                                    By checking, you agree to
                                     Plantify's terms and conditions
-
                                 </span>
-
-
                         </div>
-
-
-
                         <div class="text-center mt-1">
                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalLong">
                                 View terms and conditions
                             </button>
                         </div>
-
-
                         <br>
-
-
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLongTitle" aria-hidden="true">

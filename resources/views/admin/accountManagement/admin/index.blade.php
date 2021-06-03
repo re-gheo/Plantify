@@ -44,7 +44,7 @@
                             <td>
                                 <div class="row justify-items-center">
                                     @if (Auth::id() != $user->id)
-                                        @if($user->user_stateid != 2 || $user->user_stateid == null)
+                                        @if($user->user_stateid != 2 || $user->user_stateid == null || $user->user_stateid != 4)
                                         <form  id="banForm" action="{{route('admin.user.ban', ['id' => $user->id])}}" method="POST">
                                             @csrf
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -78,7 +78,7 @@
                                         @else
                                         <form action="{{route('admin.user.unban', ['id' => $user->id])}}" method="POST">
                                             @csrf
-                                            <button class="btn btn-success " type="submit">Unblock </button>
+                                            <button class="btn btn-success " type="submit">Unblock | Set To Active</button>
                                         </form>
                                         @endif
                                         <form action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">

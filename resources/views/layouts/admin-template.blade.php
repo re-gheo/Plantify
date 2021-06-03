@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/7026e01adc.js" crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Plantify Admin</title>
-    <link rel="icon" href="{{asset('icon.ico')}}"/>
+    <link rel="icon" href="{{ asset('icon.ico') }}" />
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -82,7 +82,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.customer_application.get')}}" class="nav-link text-dark">
+                <a href="{{ route('admin.customer_application.get') }}" class="nav-link text-dark">
                     <i class="fas fa-key mr-3 text-primary fa-fw"></i>
                     Customer Applications
                 </a>
@@ -200,7 +200,7 @@
     <br>
 
     <!-- Site footer -->
-    <footer class="site-footer">
+    {{-- <footer class="site-footer">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -217,7 +217,7 @@
             <div class="row">
                 <div class="col-md-8 col-sm-6 col-xs-12">
                     <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="{{ route('store')  }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                        <a href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
                     </p>
                 </div>
 
@@ -231,13 +231,14 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
     <!--Bootstrap JS,Cloudflare,Jquery-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>

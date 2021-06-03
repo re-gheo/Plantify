@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'mail_address' => env('APP_EMAIL', 'admin@plantify.com'),
 
     /*
     |--------------------------------------------------------------------------

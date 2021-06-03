@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Plantify | Official</title>
-    <link rel="icon" href="{{asset('icon.ico')}}"/>
+    <link rel="icon" href="{{ asset('icon.ico') }}" />
 
     <!--CSS Preamble-->
     <link rel="stylesheet" type="text/css" href="/CSS/main.css'">
@@ -34,7 +34,8 @@
 
 
     <nav id="plantify-navbar" class="navbar navbar-expand-lg  ">
-        <a class="navbar-brand " href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+        <div class="px-3  "> <a class="navbar-brand  " href="#"><i class="fas fa-leaf small mr-2 "></i>Plantify</a>
+        </div>
         <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -202,13 +203,14 @@
         $(document).ready(function() {
             $('.select-dropdown').select2();
         });
+
     </script>
 
     <br>
     <br>
 
     <!-- Site footer -->
-    <footer class="site-footer mt-4 overflow-hidden">
+    {{-- <footer class="site-footer mt-4 overflow-hidden fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -218,29 +220,6 @@
                         the consumers into one channel, a centralized market to buy and sell botany products.
                     </p>
                 </div>
-
-                {{-- <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-6 col-md-3">
-                    <h6>Quick Links</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                        <li><a href="/resources/views/customer/other/tos.html">Privacy Policy</a></li>
-                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-                    </ul>
-                </div> --}}
             </div>
             <hr>
         </div>
@@ -262,7 +241,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 
 
