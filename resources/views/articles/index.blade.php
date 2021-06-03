@@ -27,16 +27,19 @@
 
                     @foreach ($articles as $article)
                         <tr>
+                            <input type="hidden" class="servdelete_val_id" value="{{ $article->article_id }}">
                             <td>{{ $article->article_topic }}</td>
                             <div>
                                 <td class="d-flex">
-                                    <form action="{{ route('articles.destroy', $article->article_id) }}" method="POST">
+                                    {{-- <form action="{{ route('articles.destroy', $article->article_id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger m-2 servideletebtn">Delete</button>
 
 
-                                    </form>
+                                    </form> --}}
+                                    <button type="submit" class="btn btn-danger m-2 servideletebtn">Delete</button>
+                                    
                                     <a class="btn btn-info m-2"
                                         href="{{ route('articles.show', $article->article_id) }}">Show</a>
 
@@ -65,7 +68,16 @@
     {
         $('.servideletebtn').click(function (e) 
         {
+            $.ajaxSetup({
+                headers: {
+                    'X-CRSF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
             e.preventDefault();
+
+            var delete_id = $(this).closest("tr").find(".servdelete_val_id").val();
+            // alert(delete_id);
+
             swal({
                     title: "Are you sure?",
                     text: "Are you sure you want to delete this entry?",
@@ -75,9 +87,24 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        swal("Entry deleted successfully!", {
-                        icon: "success",
-                        });
+
+                        var data = {
+                            "_token": $('input[name="csrf-token"]').val(),
+                            "id": delete_id,
+                        }
+                        $.ajax({
+                            type: "DELETE",
+                            url: "/service-cate-delete/"+delete_id,
+                            data: data,
+                            success: function (respone) {
+                                swal(response.status, {
+                                    icon: "success",
+                                    })
+                                    .then((willDelete) => {
+                                        location.reload();
+                            });
+
+                        })
                     }
                 });
         });

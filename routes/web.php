@@ -240,6 +240,7 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 // Articles
 Route::resource('/articles', 'ArticleController');
+Route::delete('/service-cate-delete/{article_id}','ArticleController@delete');
 
 // Order Management
 Route::get('/store/retailer/my-order',  'OrderController@myroders')->name('retailer.order.list');
@@ -249,9 +250,6 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 
 // Notifications
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
-
-
-
 
 
 
