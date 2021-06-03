@@ -294,3 +294,11 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 //     var_dump($immutable->isImmutable());                 // bool(true)
 
 // });
+
+
+// Route::get('/testroutes', function () 
+// {
+//     dd(route('retailer.order.detail') , );
+
+
+// });
