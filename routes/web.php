@@ -240,6 +240,7 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 // Articles
 Route::resource('/articles', 'ArticleController');
+Route::delete('/service-cate-delete/{article_id}','ArticleController@delete');
 
 // Order Management
 Route::get('/store/retailer/my-order',  'OrderController@myroders')->name('retailer.order.list');
@@ -256,59 +257,43 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 
 
 
+// Route::get('/test', function () {
+//     $mytime = Carbon::now();
+//     echo $mytime->toDateString();
+//     $date = CarbonImmutable::now();
+//     //dd('time is '  .$date);
+//     //dd(User::where('email',Auth::user()->email)->first());
+
+//     $mutable = Carbon::now();
+//     $immutable = CarbonImmutable::now();
+//     $modifiedMutable = $mutable->add(1, 'day');
+//     $modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
+//     dd('time im ' .  $immutable);
+//     var_dump($modifiedMutable === $mutable);             // bool(true)
+//     var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
+//     var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
+//     // So it means $mutable and $modifiedMutable are the same object
+//     // both set to now + 1 day.
+//     var_dump($modifiedImmutable === $immutable);         // bool(false)
+//     var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
+//     var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
+//     // While $immutable is still set to now and cannot be changed and
+//     // $modifiedImmutable is a new instance created from $immutable
+//     // set to now + 1 day.
+
+//     $mutable = CarbonImmutable::now()->toMutable();
+//     var_dump($mutable->isMutable());                     // bool(true)
+//     var_dump($mutable->isImmutable());                   // bool(false)
+//     $immutable = Carbon::now()->toImmutable();
+//     var_dump($immutable->isMutable());                   // bool(false)
+//     var_dump($immutable->isImmutable());                 // bool(true)
+
+// });
 
 
+// Route::get('/testroutes', function () 
+// {
+//     dd(route('retailer.order.detail') , );
 
-Route::get('/testdate', function () {
-    $length = 4;
-    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    $dateString = Carbon::now('Asia/Manila')->format("mdY");
 
-    $lengthN = 3;
-    $characters = '0123456789';
-    $charactersLength = strlen($characters);
-    $randomString2 = '';
-    for ($i = 0; $i < $lengthN; $i++) {
-        $randomString2 .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $dateString . $randomString . $randomString2;
-
-    $date2 = $mytime = Carbon::now('Asia/Manila')->toString();
-    $date = $mytime = Carbon::now('Asia/Manila')->format("Ymd");
-    $date3 = $mytime = Carbon::now('Asia/Manila')->format("Y-m-d");
-    $mytime = Carbon::now();
-    echo $mytime->toDateString();
-    // $date = CarbonImmutable::now();
-    dd($date2,$date3, $date);
-    //dd(User::where('email',Auth::user()->email)->first());
-
-    $mutable = Carbon::now();
-    $immutable = CarbonImmutable::now();
-    $modifiedMutable = $mutable->add(1, 'day');
-    $modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
-    dd('time im ' .  $immutable);
-    var_dump($modifiedMutable === $mutable);             // bool(true)
-    var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
-    var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
-    // So it means $mutable and $modifiedMutable are the same object
-    // both set to now + 1 day.
-    var_dump($modifiedImmutable === $immutable);         // bool(false)
-    var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
-    var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
-    // While $immutable is still set to now and cannot be changed and
-    // $modifiedImmutable is a new instance created from $immutable
-    // set to now + 1 day.
-
-    $mutable = CarbonImmutable::now()->toMutable();
-    var_dump($mutable->isMutable());                     // bool(true)
-    var_dump($mutable->isImmutable());                   // bool(false)
-    $immutable = Carbon::now()->toImmutable();
-    var_dump($immutable->isMutable());                   // bool(false)
-    var_dump($immutable->isImmutable());                 // bool(true)
-
-});
+// });
