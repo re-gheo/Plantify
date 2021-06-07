@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CommissionsTableSeeder::class,
             KeywordsTableSeeder::class,
             CardTypesTableSeeder::class,
+            CategorySeeder::class,
             PaymentTypesTableSeeder::class,
             OrderStatusTableSeeder::class,
             StoreTableSeeder::class,
