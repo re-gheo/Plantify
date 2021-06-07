@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Store;
+use App\Models\Retailer_application;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -33,6 +35,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -46,6 +50,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function store(){
+        return $this->has(Store::class);
+    }
+
+    public function retailer_application(){
+        return $this->hasmany(Retailer_application::class);
+    }
 
     public function getGovIDAttribute(){
         return json_decode($this->govtid_number);

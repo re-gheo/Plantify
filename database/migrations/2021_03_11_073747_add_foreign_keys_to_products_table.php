@@ -16,7 +16,7 @@ class AddForeignKeysToProductsTable extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('product_referenceid', 'products_ibfk_1')->references('plant_referenceid')->on('plant_referencepages')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('product_categoryid', 'products_ibfk_2')->references('product_categoryid')->on('categories')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('retailer_id', 'products_ibfk_3')->references('retailer_id')->on('retailers')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('retailer_id', 'products_ibfk_3')->references('retailer_id')->on('retailers');
         });
     }
 

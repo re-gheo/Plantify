@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             RetailerTableSeeder::class,
             ProductTableSeeder::class,
             AssignedKeywordsTableSeeder::class,
+            UserSeeder::class,
         ]);
+
+
     }
 }
