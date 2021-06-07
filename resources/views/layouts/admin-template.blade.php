@@ -27,7 +27,7 @@
     <!-- Vertical navbar -->
     <div class="vertical-nav bg-white " id="sidebar">
 
-        <div class="px-3 bg-dark "> <a class="navbar-brand  " href="#"><i
+        <div class="px-3 bg-dark "> <a class="navbar-brand  " href="{{ route('store') }}"><i
                     class="fas fa-leaf small mr-2 "></i>Plantify</a>
         </div>
 
