@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Retailer_application;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Store extends Model
 {
@@ -16,4 +18,12 @@ class Store extends Model
     }
 
 
+
+    public function user(){
+        return $this->has(User::class);
+    }
+
+    // public function retailer_application(){
+    //     return $this->hasmany(Retailer_application::class);
+    // } 
 }
