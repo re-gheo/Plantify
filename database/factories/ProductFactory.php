@@ -21,9 +21,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        // Tools
         $normal = [
             "product_name" => $d = ucfirst($this->faker->unique()->word) . ' TOOL',
-            "product_description" => "this the description for this ". $d ." tool/something",
+            "product_description" => "this the description for this " . $d . " tool/something",
             "commission_id" => 3,
             "product_sizes" => null,
             "product_varieties" => null,
@@ -40,12 +41,12 @@ class ProductFactory extends Factory
 
         $plant = [
             "product_name" => $d = ucfirst($this->faker->unique()->word) . ' PLANT',
-            "product_description" => "this the description for this  ". $d ." plant",
+            "product_description" => "this the description for this  " . $d . " plant",
             "commission_id" => 1,
             "product_sizes" => 12.0,
             "product_varieties" => null,
             "product_referencep" => null,
-            "product_mainphoto" => "product_photo/Nz236qySSeLb5iTJBXtKrcdF4ABZcA6bcWcrCk9Y.jpg",
+            "product_mainphoto" => 'default-plant.png',
             "product_referenceid" => null,
             "product_categoryid" => null,
             "product_price" => 200.50,
