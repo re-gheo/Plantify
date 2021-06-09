@@ -406,16 +406,16 @@ class OrderController extends Controller
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+        $dateString = Carbon::now('Asia/Manila')->format("mdY");
 
-
-        $lengthN = 10;
+        $lengthN = 3;
         $characters = '0123456789';
         $charactersLength = strlen($characters);
         $randomString2 = '';
         for ($i = 0; $i < $lengthN; $i++) {
             $randomString2 .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString . $randomString2;
+        return $dateString . $randomString . $randomString2;
     }
 
     /**

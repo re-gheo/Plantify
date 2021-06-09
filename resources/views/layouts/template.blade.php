@@ -34,7 +34,8 @@
 
 
     <nav id="plantify-navbar" class="navbar navbar-expand-lg  ">
-        <div class="px-3  "> <a class="navbar-brand  " href="#"><i class="fas fa-leaf small mr-2 "></i>Plantify</a>
+        <div class="px-3  "> <a class="navbar-brand  " href="{{ route('store') }}"><i
+                    class="fas fa-leaf small mr-2 "></i>Plantify</a>
         </div>
         <button class="navbar-toggler " id="toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

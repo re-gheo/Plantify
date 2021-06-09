@@ -2,7 +2,7 @@
 
 @section('content')
     <!--CAROUSEL-->
-    <div class="container mt-2">
+    <div class="container mt-5">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -11,13 +11,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('/css/ad1.png') }}" alt="">
+                    <img src="{{ asset('/img/ad1.png') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('/css/ad1.png') }}" alt="">
+                    <img src="{{ asset('/css/default-cover.jpg') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('/css/ad1.png') }}" alt="">
+                    <img src="{{ asset('/css/default-cover.jpg') }}" alt="">
                 </div>
             </div>
 
@@ -36,53 +36,52 @@
 
     <!--CAROUSEL-->
 
-    <div class="container mt-2 ">
+    <div class="container">
         <div class="row">
-
-            <div class="categories col-lg-2 pb-2 border-1">
-                <h4><strong>Categories</strong></h4>
+            <div class="col-lg-2 pb-2">
+                <h4>Categories</h4>
                 <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
-                    <a href="#" class="link">Herbs</a>
-                    <a href="#" class="link">Flowers</a>
-                    <a href="#" class="link">Trees</a>
-
+                    <a href="#" class="link">Flowering Plant (1 seed leaf)</a>
+                    <a href="#" class="link">Flowering Plant (2 seed leaf)</a>
+                    <a href="#" class="link">Non Flowering Plant (Ginkgo)</a>
+                    <a href="#" class="link">Non Flowering Plant (Cycads)</a>
                 </div>
             </div>
-
             <div class="col-lg-10">
                 <div class="featured d-flex align-items-left justify-content-left">
                     <h1><strong>Featured Items!</strong></h1>
                 </div>
                 <div class="row">
                     @foreach ($products as $product)
-                        <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
-                            <div class="product col-lg-3 col-md-6 col-xs-12 mb-1">
-                                <img class="img-fluid" src="{{ asset('/storage/' . $product->product_mainphoto) }}"
-                                    alt="some_image">
-                                <h5>{{ $product->product_name }}</h5>
-                                {{-- <div class="row">
-                                    <div class="star"></div>
-                                    <div class="star"></div>
-                                    <div class="star"></div>
-                                </div> --}}
-                        </a>
-                        <small> By: <a href="{{route('retailer.store.front', ['id' => $product->retailer->retailer_id])}}">{{ $product->retailer->store->store_name }}</a></small>
+                        <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}"></a>
+                        <div class="product col-lg-4 col-md-6 col-xs-12 mb-1">
+                            <div class="card">
+                                @if ($product->product_mainphoto)
+                                    <img class="" width="150" height="150"
+                                        src="{{ asset('/storage/' . $product->product_mainphoto) }}"
+                                        alt="no_image_available">
+                                @else
+                                    <img class="" width="150" height="150"
+                                        src="{{ asset('/img/' . 'default-photo.png') }}" alt="default_photo">
 
-                        @include('includes.rating', ['product' => $product])
+                                @endif
+                                <h5 class="text-center">{{ $product->product_name }}</h5>
+                                <small> By: <a
+                                        href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a></small>
+                                @include('includes.rating', ['product' => $product])
+                                <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    {{-- {{ $product->product_id }} --}}
+                                    <button class="btn btn-success btn-sm" type="submit">Add to cart</button>
+                                </form>
+                            </div>
 
-                        <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}" method="POST">
-                            @csrf
-                            {{-- {{ $product->product_id }} --}}
-                            <button class="btn btn-success btn-sm" type="submit">Add to cart</button>
-                        </form>
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-
-
-
         </div>
+    </div>
 
-    </div>
-    </div>
 @endsection

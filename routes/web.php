@@ -140,6 +140,7 @@ Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')
 Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.reference.show');
 Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.reference.edit');
 Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.reference.delete');
+// Route::resource('/admin/plantreference', 'PlantReferencepageController');
 Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.reference.removepic');
 
 //ADMIN/ APPLICATIONS CHECKING

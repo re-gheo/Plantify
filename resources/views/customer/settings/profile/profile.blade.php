@@ -107,7 +107,7 @@
                                     @if (!$profile->govtid_number)
                                         <p>Please register Government id here</p>
                                     @else
-                                        <p>{{ $profile->govID->type."-".$profile->govID->no}}</p>
+                                        <p>{{ $profile->govID->type . '-' . $profile->govID->no }}</p>
                                     @endif
                                 </h6>
                             </div>
