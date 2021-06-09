@@ -81,11 +81,47 @@
                                         <div class="form-inline">
                                             <button class="btn btn-success m-1" type="submit">Edit</button>
                                 </form>
-                                <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
+                                
+                                <!-- Delete -->
+
+                                <form  id="deleteForm" action="{{route('admin.category.delete', ['id' => $category->product_categoryid])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                                        Delete
+                                     </button>
+
+                                       <!-- Modal -->
+                                       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <p class="text-center text-black">
+                                                      Are you sure you want to delete category: {{$category->categories}}?
+                                                    </p>
+                                                  </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button  form="deleteForm" type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </form>
+
+                                {{-- <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
                                     method="POST"> @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger pl-auto servideletebtn" type="submit">delete </button>
-                                </form>
+                                </form> --}}
                     </div>
                     </td>
                     </tr>

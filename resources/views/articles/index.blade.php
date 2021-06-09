@@ -27,10 +27,44 @@
 
                     @foreach ($articles as $article)
                         <tr>
-                            <input type="hidden" class="servdelete_val_id" value="{{ $article->article_id }}">
+                            {{-- <input type="hidden" class="servdelete_val_id" value="{{ $article->article_id }}"> --}}
                             <td>{{ $article->article_topic }}</td>
                             <div>
                                 <td class="d-flex">
+                                    <!-- Delete -->
+
+                                    <form  id="deleteForm" action="{{route('articles.destroy', ['article' => $article->article_id])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                                            Delete
+                                         </button>
+
+                                           <!-- Modal -->
+                                           <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <p class="text-center text-black">
+                                                          Are you sure you want to delete Article: {{$article->article_topic}}?
+                                                        </p>
+                                                      </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button  form="deleteForm" type="submit" class="btn btn-danger">Delete</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </form>
                                     {{-- <form action="{{ route('articles.destroy', $article->article_id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -38,7 +72,8 @@
 
 
                                     </form> --}}
-                                    <button type="submit" class="btn btn-danger m-2 servideletebtn">Delete</button>
+                                    
+                                    {{-- <button type="submit" class="btn btn-danger m-2 servideletebtn">Delete</button> --}}
                                     
                                     <a class="btn btn-info m-2"
                                         href="{{ route('articles.show', $article->article_id) }}">Show</a>
@@ -61,7 +96,8 @@
 
 @endsection
 
-@section('scripts')
+{{-- Sweet Alert AJAX --}}
+{{-- @section('scripts')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function ()
@@ -111,4 +147,4 @@
     });
 </script>
 
-@endsection
+@endsection --}}

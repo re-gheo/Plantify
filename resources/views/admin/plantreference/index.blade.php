@@ -53,16 +53,52 @@
                         </td>
                         <td>
                             <div class="row ">
-                                <a href="{{ route('admin.reference.show', ['id' => $reference->plant_referenceid]) }}"
+                                <a href="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}"
                                     class="btn btn-dark m-1">EDIT</a>
-                                <form
+
+                                <!-- Delete -->
+
+                                <form  id="deleteForm" action="{{route('admin.keyword.delete', ['id' => $reference->plant_referenceid])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                                        Delete
+                                     </button>
+
+                                       <!-- Modal -->
+                                       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                              </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <p class="text-center text-black">
+                                                      Are you sure you want to delete reference: {{$reference->plant_scientificname}}?
+                                                    </p>
+                                                  </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button  form="deleteForm" type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </form>
+
+                                {{-- <form
                                     action="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}/delete"
                                     method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger m-1 servideletebtn"> Delete </button>
 
-                                </form>
+                                </form> --}}
                             </div>
                             <div>
 
@@ -81,33 +117,5 @@
     </div>
 
 
-
-@endsection
-
-@section('scripts')
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $(document).ready(function ()
-    {
-        $('.servideletebtn').click(function (e) 
-        {
-            e.preventDefault();
-            swal({
-                    title: "Are you sure?",
-                    text: "Are you sure you want to delete this entry?",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("Entry deleted successfully!", {
-                        icon: "success",
-                        });
-                    }
-                });
-        });
-    });
-</script>
 
 @endsection

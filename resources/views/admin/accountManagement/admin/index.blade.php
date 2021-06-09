@@ -56,7 +56,7 @@
                                                  <div class="modal-dialog" role="document">
                                                    <div class="modal-content">
                                                      <div class="modal-header">
-                                                       <h5 class="modal-title" id="exampleModalLabel">Block {{$user->name}}</h5>
+                                                       <h5 class="modal-title" id="exampleModalLabel">Block {{$user->name}}?</h5>
                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                                                        </button>
@@ -80,12 +80,49 @@
                                             @csrf
                                             <button class="btn btn-success " type="submit">Unblock | Set To Active</button>
                                         </form>
+                                        
                                         @endif
-                                        <form action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">
+
+                                        <!-- Delete -->
+
+                                        <form  id="deleteForm" action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">
+                                          @csrf
+                                          @method('delete')
+                                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                                              Delete
+                                           </button>
+
+                                             <!-- Modal -->
+                                             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <div class="form-group">
+                                                          <p class="text-center text-black">
+                                                            Are you sure you want to delete admin: {{$user->name}}?
+                                                          </p>
+                                                        </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button  form="deleteForm" type="submit" class="btn btn-danger">Delete</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                        </form>
+
+                                        {{-- <form action="{{route('admin.user.admin.delete', ['id' => $user->id])}}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" type="submit">Delete </button>
-                                        </form>
+                                        </form> --}}
                                     @endif
 
                                     <a class="btn btn-success" href="{{route('admin.user.admin.edit', ['id' => $user->id])}}">Edit</a>

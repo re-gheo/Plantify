@@ -119,12 +119,11 @@ class ArticleController extends Controller
     return view('articles.store_index', compact('articles'));
     }
 
-     //Arthur paayos please
-     //Your code still tries to find destroy instead of this function
-    public function delete($article_id)
-    {
-      $serv_cate = Article::findOrfail($article_id);
-      $serv_cate->delete();
-      return response()->json(['status','Entry deleted successfully!']);
-    }
+     //Sweet Alert AJAX
+    // public function delete($article_id)
+    // {
+    //   $serv_cate = Article::findOrfail($article_id);
+    //   $serv_cate->delete();
+    //   return response()->json(['status','Entry deleted successfully!']);
+    // }
 }
