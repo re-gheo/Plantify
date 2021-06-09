@@ -117,6 +117,8 @@
                                     </div>
                                   </form>
 
+                                  
+                                {{-- Old Delete Code --}}
                                 {{-- <form action="{{ route('admin.category.delete', ['id' => $category->product_categoryid]) }}"
                                     method="POST"> @csrf
                                     @method('DELETE')
