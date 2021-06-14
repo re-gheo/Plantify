@@ -57,23 +57,29 @@
                         <div class="product col-lg-4 col-md-6 col-xs-12 mb-1">
                             <div class="card">
                                 @if ($product->product_mainphoto)
-                                    <img class="" width="150" height="150"
+                                    <div class="items"></div>
+                                    <img class="rounded mx-auto d-block" width="150" height="150"
                                         src="{{ asset('/storage/' . $product->product_mainphoto) }}"
                                         alt="no_image_available">
                                 @else
-                                    <img class="" width="150" height="150"
+                                    <img class="rounded mx-auto d-block" width="150" height="150"
                                         src="{{ asset('/img/' . 'default-photo.png') }}" alt="default_photo">
 
                                 @endif
                                 <h5 class="text-center">{{ $product->product_name }}</h5>
-                                <small> By: <a
-                                        href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a></small>
+                                <h6 class="text-center mt-2"> By: <a
+                                        href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
+                                </h6>
                                 @include('includes.rating', ['product' => $product])
                                 <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
                                     method="POST">
                                     @csrf
                                     {{-- {{ $product->product_id }} --}}
-                                    <button class="btn btn-success btn-sm" type="submit">Add to cart</button>
+                                    <div class="text-center mb-2">
+                                        <button class="btn btn-success btn-sm" type="submit">
+                                            <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
+                                    </div>
+
                                 </form>
                             </div>
 
