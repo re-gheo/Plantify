@@ -210,41 +210,12 @@
     <br>
     <br>
 
-    <!-- Site footer -->
-    {{-- <footer class="site-footer mt-4 overflow-hidden fixed-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h6>About</h6>
-                    <p class="text-justify">Plantify is an e-commerce platform that will introduce the Philippine
-                        industry to serve and support the vast arrays of horticulture products that meet the sellers and
-                        the consumers into one channel, a centralized market to buy and sell botany products.
-                    </p>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="{{ route('store') }}"><i class="fas fa-leaf mr-1"></i>Plantify</a>
-                    </p>
-                </div>
 
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer> --}}
-
-
+    {{-- <div class="footer-margin">
+        <footer class="card-footer bg-dark footer-font-style text-muted fixed-bottom">
+            <p>© 2021 Team Olverd</p>
+        </footer>
+    </div> --}}
 
 
 </body>
