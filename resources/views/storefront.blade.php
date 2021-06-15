@@ -54,15 +54,15 @@
                 <div class="row">
                     @foreach ($products as $product)
                         <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}"></a>
-                        <div class="product col-lg-4 col-md-6 col-xs-12 mb-1">
+                        <div class="col-lg-3 mb-1">
                             <div class="card">
                                 @if ($product->product_mainphoto)
                                     <div class="items"></div>
-                                    <img class="rounded mx-auto d-block" width="150" height="150"
+                                    <img class="rounded mx-auto d-block" width="100" height="100"
                                         src="{{ asset('/storage/' . $product->product_mainphoto) }}"
                                         alt="no_image_available">
                                 @else
-                                    <img class="rounded mx-auto d-block" width="150" height="150"
+                                    <img class="rounded mx-auto d-block" width="100" height="100"
                                         src="{{ asset('/img/' . 'default-photo.png') }}" alt="default_photo">
 
                                 @endif
@@ -71,16 +71,16 @@
                                         href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
                                 </h6>
                                 @include('includes.rating', ['product' => $product])
-                                <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
+                                {{-- <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
                                     method="POST">
                                     @csrf
-                                    {{-- {{ $product->product_id }} --}}
+                                   
                                     <div class="text-center mb-2">
                                         <button class="btn btn-success btn-sm" type="submit">
                                             <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
                                     </div>
 
-                                </form>
+                                </form> --}}
                             </div>
 
                         </div>

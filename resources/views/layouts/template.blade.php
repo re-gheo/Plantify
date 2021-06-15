@@ -211,11 +211,11 @@
     <br>
 
 
-    <div class="footer-margin">
+    {{-- <div class="footer-margin">
         <footer class="card-footer bg-dark footer-font-style text-muted fixed-bottom">
             <p>© 2021 Team Olverd</p>
         </footer>
-    </div>
+    </div> --}}
 
 
 </body>
