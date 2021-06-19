@@ -20,7 +20,7 @@
 
                     <table class="table table-bordered table-striped table-hover table-responsive-sm">
 
-                        <form action="{{ route('admin.keyword.create') }}" method="POST">
+                        <form action="{{ route('keyword.store') }}" method="POST">
                             @csrf
 
                             <div class="">
@@ -64,7 +64,7 @@
 
                             <tr>
 
-                                <form action="{{ route('admin.keyword.update', ['id' => $k->keyword_id]) }}"
+                                <form action="{{ route('keyword.update', $k->keyword_id) }}"
                                     method="POST">
                                     @csrf
                                     @method('put')
@@ -90,7 +90,7 @@
 
                                 <!-- Delete -->
 
-                                <form  id="deleteForm" action="{{route('admin.keyword.delete', ['id' => $k->keyword_id])}}" method="POST">
+                                <form  id="deleteForm" action="{{route('keyword.destroy', $k->keyword_id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
@@ -123,7 +123,7 @@
                                     </div>
                                   </form>
                                 
-                                {{-- <form action="{{ route('admin.keyword.delete', ['id' => $k->keyword_id]) }}"
+                                {{-- <form action="{{ route('keyword.destroy', ['id' => $k->keyword_id]) }}"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')

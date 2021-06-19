@@ -53,7 +53,7 @@
                 </div>
                 <div class="row">
                     @foreach ($products as $product)
-                        <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}"></a>
+                        <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
                         <div class="col-lg-3 mb-1">
                             <div class="card">
                                 @if ($product->product_mainphoto)
@@ -66,7 +66,8 @@
                                         src="{{ asset('/img/' . 'default-photo.png') }}" alt="default_photo">
 
                                 @endif
-                                <h5 class="text-center">{{ $product->product_name }}</h5>
+                           
+                                <h5 class="text-center">{{ $product->product_name }}</h5> </a>  
                                 <h6 class="text-center mt-2"> By: <a
                                         href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
                                 </h6>

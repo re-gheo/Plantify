@@ -238,7 +238,6 @@ class ProductController extends Controller
 
         $log = 'Update Product ID: '.$product->id;
         LogServices::log($log);
-
         return redirect()->route('retailer.products.show', ['id'=>$product->product_id]);
     }
 
@@ -247,7 +246,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->isDeleted = 1;
         $product->save();
-        return redirect()->route('retailer.products.front')->with('success', 'a product was deleted');
+        return redirect()->route('retailer.products.index')->with('success', 'a product was deleted');
     }
 
 

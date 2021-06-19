@@ -138,28 +138,14 @@ Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('a
 
 
 //ADMIN/ CATEGORY
-Route::get('/admin/categories', 'CategorieController@index')->name('admin.category.get');/*->middleware('admin')*/;
-Route::post('/admin/categories/create', 'CategorieController@store')->name('admin.category.create');
-Route::put('/admin/categories/update/{id}', 'CategorieController@update')->name('admin.category.update');
-Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy')->name('admin.category.delete');
-// Route::resource('/admin/categories', 'CategorieController');
+Route::resource('/admin/categories', 'CategorieController');
 
 //ADMIN/ KEYWORD
-Route::get('/admin/keyword', 'KeywordController@index')->name('admin.keyword.get');/*->middleware('admin')*/
-Route::post('/admin/keyword/create', 'KeywordController@store')->name('admin.keyword.create');
-Route::put('/admin/keyword/update/{id}', 'KeywordController@update')->name('admin.keyword.update');
-Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy')->name('admin.keyword.delete');
-// Route::resource('/admin/keyword', 'KeywordController');
+Route::resource('/admin/keyword', 'KeywordController');
 
 //ADMIN/ reference page
-Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.reference.get');
-Route::get('/admin/plantreference/create', 'PlantReferencepageController@create')->name('admin.reference.create');
-Route::post('/admin/plantreference/store', 'PlantReferencepageController@store')->name('admin.reference.store');
-Route::get('/admin/plantreference/{id}', 'PlantReferencepageController@edit')->name('admin.reference.show');
-Route::put('/admin/plantreference/{id}/edit', 'PlantReferencepageController@update')->name('admin.reference.edit');
-Route::delete('/admin/plantreference/{id}/delete', 'PlantReferencepageController@destroy')->name('admin.reference.delete');
-// Route::resource('/admin/plantreference', 'PlantReferencepageController');
-Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('admin.reference.removepic');
+Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('reference.removepic');
+Route::resource('/admin/plantreference', 'PlantReferencepageController');
 
 //ADMIN/ APPLICATIONS CHECKING
 Route::get('/admin/customer_application/', 'RetailerApplicationController@index')->name('admin.customer_application.get');
@@ -245,12 +231,8 @@ Route::get('/store/customize', 'StoreController@edit')->name('retailer.store.edi
 Route::put('/store/customize', 'StoreController@update')->name('retailer.store.update');
 
 // RETAILER/ Products
-// Route::get('/store/products', 'ProductController@index')->name('retailer.products.front');
 Route::get('/store/products/create/{type}', 'ProductController@create')->name('retailer.products.create');
-// Route::post('/store/products/store', 'ProductController@store')->name('retailer.products.store');
 Route::get('/store/products/{id}', 'ProductController@show')->name('retailer.products.show');
-// Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retailer.products.edit');
-// Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
 Route::resource('/store/products', 'ProductController')->names([

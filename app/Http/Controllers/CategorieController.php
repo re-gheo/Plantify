@@ -25,24 +25,22 @@ class CategorieController extends Controller
         $categorie->categories = request('categories');
         $categorie->isDeleted = FALSE;
         $categorie->save();
-        return redirect()->route('admin.category.get')->with('success', 'created new category ' . $categorie->product_categoryid. ' '. $categorie->categories );
+        return redirect()->route('categories.index')->with('success', 'created new category ' . $categorie->product_categoryid. ' '. $categorie->categories );
     }
 
 
-    public function update($id)
+    public function update(Categorie  $category)
     {
-        $categorie = Categorie::find($id);
-        $temp = $categorie->categories;
-        $categorie->categories = request('categorieedit');
-        $categorie->save();
-        return redirect()->route('admin.category.get')->with('success', 'successfully edit catergory ' . $id . '. ' . $temp . ' to ' . request('categorieedit'));
+        $temp = $category->categories;
+        $category->categories = request('categorieedit');
+        $category->save();
+        return redirect()->route('categories.index')->with('success', 'successfully edit catergory ' . $category->product_categoryid . '. ' . $temp . ' to ' . request('categorieedit'));
     }
 
-    public function destroy($id)
+    public function destroy(Categorie  $category)
     {
-        $set = Categorie::find($id);
-        $set->isDeleted = TRUE;
-        $set->save();
-        return redirect()->route('admin.category.get')->with('success', 'Removed catergory ' . $id . '. ' . $set->categories);
+        $category->isDeleted = TRUE;
+        $category->save();
+        return redirect()->route('categories.index')->with('success', 'Removed catergory ' . $category->product_categoryid . '. ' . $category->categories);
     }
 }

@@ -70,7 +70,7 @@
 
 
             <li class="nav-item">
-                <a href="{{ route('admin.category.get') }}" class="nav-link text-dark">
+                <a href="{{ route('categories.index') }}" class="nav-link text-dark">
                     <i class="far fa-list-alt mr-3 text-primary fa-fw"></i>
                     categories
                 </a>
@@ -88,13 +88,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.reference.get') }}" class="nav-link text-dark">
+                <a href="{{ route('plantreference.index') }}" class="nav-link text-dark">
                     <i class="fas fa-seedling mr-3 text-primary fa-fw"></i>
                     References
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.keyword.get') }}" class="nav-link text-dark">
+                <a href="{{ route('keyword.index') }}" class="nav-link text-dark">
                     <i class="fas fa-building mr-3 text-primary fa-fw"></i>
                     Keywords
                 </a>

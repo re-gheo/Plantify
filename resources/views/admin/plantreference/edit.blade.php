@@ -2,7 +2,7 @@
 
 @section ('content')
 
-<a href="{{ route('admin.reference.get') }}" class="btn btn-dark"> Back to Reference list</a>
+<a href="{{ route('plantreference.index') }}" class="btn btn-dark"> Back to Reference list</a>
 
 <div class = "card-body">
 
@@ -79,7 +79,7 @@
         @if(isset($reference->plant_phototwo))
             <div>
                 <img src="{{asset('/storage/'. $reference->plant_phototwo)  }}" width="300" height="300" alt="2nd">
-                <a href="{{ route('admin.reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'two']) }}" class="btn btn-dark"> remove picture</a>
+                <a href="{{ route('reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'two']) }}" class="btn btn-dark"> remove picture</a>
             </div>
             @endif
             <div>
@@ -94,7 +94,7 @@
         @if(isset($reference->plant_photothree))
         <div>
             <img src="{{asset('/storage/'. $reference->plant_photothree)  }}" width="300" height="300" alt="3rd">
-            <a href="{{ route('admin.reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'three']) }}" class="btn btn-dark"> remove picture</a>
+            <a href="{{ route('reference.removepic',['id' => $reference->plant_referenceid , 'num'=> 'three']) }}" class="btn btn-dark"> remove picture</a>
         </div>
         @endif
             <div>

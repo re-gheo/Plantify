@@ -4,7 +4,7 @@
 
     <div class="page-content p-5">
         <div class="pull-right">
-            <a href="{{ route('admin.reference.create') }}" class="btn btn-dark"> create a reference</a>
+            <a href="{{ route('plantreference.create') }}" class="btn btn-dark"> create a reference</a>
         </div>
 
         <div class="thead-text">
@@ -53,12 +53,12 @@
                         </td>
                         <td>
                             <div class="row ">
-                                <a href="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}"
+                                <a href="{{ route('plantreference.destroy',  $reference->plant_referenceid) }}"
                                     class="btn btn-dark m-1">EDIT</a>
 
                                 <!-- Delete -->
 
-                                <form  id="deleteForm" action="{{route('admin.keyword.delete', ['id' => $reference->plant_referenceid])}}" method="POST">
+                                <form  id="deleteForm" action="{{route('keyword.destroy',  $reference->plant_referenceid)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
@@ -92,7 +92,7 @@
                                   </form>
 
                                 {{-- <form
-                                    action="{{ route('admin.reference.delete', ['id' => $reference->plant_referenceid]) }}/delete"
+                                    action="{{ route('plantreference.destroy', ['id' => $reference->plant_referenceid]) }}/delete"
                                     method="POST">
                                     @csrf
                                     @method('delete')

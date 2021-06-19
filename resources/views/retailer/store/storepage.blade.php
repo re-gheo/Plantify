@@ -38,7 +38,7 @@ onerror=" this.onerror=null;this.src='{{ asset('/css/default-cover.jpg') }}' ;">
                     Update Store Page
                 </a>
                 <br>
-                <a href="{{ route('retailer.products.front') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a">
+                <a href="{{ route('retailer.products.index') }}" class="btn btn-block btn-dark text-uppercase my-2 mx-a">
                     My product
                 </a>
                 @endif
@@ -72,9 +72,9 @@ onerror=" this.onerror=null;this.src='{{ asset('/css/default-cover.jpg') }}' ;">
                 <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
                     <a href="
                     @if($store->store_id == Auth::id())
-                        {{ route('retailer.products.show', ['id' => $product->product_id]) }}
+                        {{ route('retailer.products.show',  $product->product_id) }}
                     @else
-                        {{ route('customer.product.show', ['id' => $product->product_id]) }}
+                        {{ route('customer.product.show',  $product->product_id) }}
                     @endif
                     ">
                         <img src="{{ asset('/storage/' . $product->product_mainphoto) }}" height="490" alt="background">

@@ -63,7 +63,7 @@ class PlantReferencepageController extends Controller
         $log = 'Created Plant Reference ID: '.$ref->id;
         LogServices::log($log);
 
-        return redirect()->route('admin.reference.get')->with('success', 'created reference ' .  request('plant_scientificname'));
+        return redirect()->route('plantreference.index')->with('success', 'created reference ' .  request('plant_scientificname'));
     }
 
 
@@ -109,7 +109,7 @@ class PlantReferencepageController extends Controller
         $log = 'Updated Plant Reference ID: '.$ref->id;
         LogServices::log($log);
 
-        return redirect()->route('admin.reference.show', ['id'=>$id])->with('success', 'Edited the reference page.');
+        return redirect()->route('plantreference.show ', ['id'=>$id])->with('success', 'Edited the reference page.');
     }
 
     public function removepic($id, $num)
@@ -125,7 +125,7 @@ class PlantReferencepageController extends Controller
         }
         $ref->save();
 
-        return redirect()->route('admin.reference.show', ['id'=>$id])->with('success', 'Successfully removed a picture.');
+        return redirect()->route('plantreference.show ', ['id'=>$id])->with('success', 'Successfully removed a picture.');
     }
 
 
@@ -137,6 +137,6 @@ class PlantReferencepageController extends Controller
         $set->isDeleted = TRUE;
         $set->save();
 
-        return redirect()->route('admin.reference.get')->with('success', ' removed ID [' .$set->plant_referenceid . '] ' . $set->plant_scientificname);
+        return redirect()->route('plantreference.index')->with('success', ' removed ID [' .$set->plant_referenceid . '] ' . $set->plant_scientificname);
     }
 }
