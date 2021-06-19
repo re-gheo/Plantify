@@ -53,7 +53,7 @@ class ProductController extends Controller
 
 
 
-    public function list()
+    public function index()
     {
         $products = Product::latest()->where('retailer_id', Auth::user()->id)->where('isDeleted', FALSE)->get();
 
@@ -147,7 +147,7 @@ class ProductController extends Controller
         $log = 'Created Product ID: '.$product->id;
         LogServices::log($log);
 
-        return redirect()->route('product_show', ['id'=>$product->product_id]);
+        return redirect()->route('retailer.products.show', ['id'=>$product->product_id]);
     }
 
 
@@ -239,7 +239,7 @@ class ProductController extends Controller
         $log = 'Update Product ID: '.$product->id;
         LogServices::log($log);
 
-        return redirect()->route('product_show', ['id'=>$product->product_id]);
+        return redirect()->route('retailer.products.show', ['id'=>$product->product_id]);
     }
 
     public function remove(Request $request, $id)
@@ -258,7 +258,7 @@ class ProductController extends Controller
     {
 
         $asphotos = Assigned_photos::where('assigned_photoid', '=', $picid)->where('product_id', '=', $id)->delete();
-        return redirect()->route('product_show', ['id'=>$id]);
+        return redirect()->route('retailer.products.show', ['id'=>$id]);
     }
 
 

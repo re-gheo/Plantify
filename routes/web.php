@@ -245,14 +245,23 @@ Route::get('/store/customize', 'StoreController@edit')->name('retailer.store.edi
 Route::put('/store/customize', 'StoreController@update')->name('retailer.store.update');
 
 // RETAILER/ Products
-Route::get('/store/products', 'ProductController@list')->name('retailer.products.front');
+// Route::get('/store/products', 'ProductController@index')->name('retailer.products.front');
 Route::get('/store/products/create/{type}', 'ProductController@create')->name('retailer.products.create');
-Route::post('/store/products/store', 'ProductController@store')->name('retailer.products.store');
-Route::get('/store/products/{id}', 'ProductController@show')->name('product_show');
-Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retailer.products.edit');
-Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
+// Route::post('/store/products/store', 'ProductController@store')->name('retailer.products.store');
+Route::get('/store/products/{id}', 'ProductController@show')->name('retailer.products.show');
+// Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retailer.products.edit');
+// Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
+Route::resource('/store/products', 'ProductController')->names([
+     'index' => 'retailer.products.index',
+     'store' => 'retailer.products.store',
+     'show' => 'retailer.products.show',
+     'edit' => 'retailer.products.edit',
+     'update' => 'retailer.products.update',
+]);
+
+
 Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 
 Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');

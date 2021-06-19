@@ -82,7 +82,7 @@
                 @forelse ($products as $product)
 
                     <div class="col-lg-8 col-xl-6 card flex-column mx-auto mt-5 shadow p-3border-3 ">
-                        <a href="{{ route('product_show', ['id' => $product->product_id]) }}">
+                        <a href="{{ route('retailer.products.show', ['id' => $product->product_id]) }}">
                             <div class="container text-center">
                                 <img class="main-photo " src="{{ asset('/storage/' . $product->product_mainphoto) }}"
                                     alt="background">
