@@ -71,7 +71,7 @@
                                         href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
                                 </h6>
                                 @include('includes.rating', ['product' => $product])
-                                {{-- <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
+                                <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
                                     method="POST">
                                     @csrf
                                    
@@ -80,7 +80,7 @@
                                             <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
                                     </div>
 
-                                </form> --}}
+                                </form>
                             </div>
 
                         </div>
