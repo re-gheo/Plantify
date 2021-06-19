@@ -199,7 +199,7 @@ class OrderController extends Controller
 
             $attachedPaymentIntent = $paymentIntent->attach($paymentMethod->id);
         } catch (BadRequestException $e) {
-            dd(json_decode($e->getMessage(), true)['errors'][0]["sub_code"]);
+            dd(json_decode($e->getMessage(), true)['errors'][0]);
         }
 
         // dd("hello",
