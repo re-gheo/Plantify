@@ -5,15 +5,16 @@
 use Carbon\Carbon;
 use App\Models\User;
 use Carbon\CarbonImmutable;
+use PHPUnit\Framework\Test;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Classes\Trackingmore;
+use App\Services\AdminDataService;
 use Illuminate\Support\Facades\URL;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
-use PHPUnit\Framework\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,19 @@ use PHPUnit\Framework\Test;
 |
 */
 
+Route::get('/mail', function () {
+  
+ 
+});
+
+Route::get('/exp2', function () {
+  
+    $data = new AdminDataService;
+
+    
+    dd($data->getDataAdmin());
+    return $data->getDataAdmin();
+});
 
 
 Auth::routes();
@@ -35,6 +49,8 @@ Route::get('/login', 'Auth\LoginController@showLoginForm')->name('loginf');
 Route::post('/loginsub', 'Auth\LoginController@login')->name('login');
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('registerf');
 Route::post('/registersub', 'Auth\RegisterController@register')->name('register');
+
+Route::get('/exp');
 
 
 
@@ -126,12 +142,14 @@ Route::get('/admin/categories', 'CategorieController@index')->name('admin.catego
 Route::post('/admin/categories/create', 'CategorieController@store')->name('admin.category.create');
 Route::put('/admin/categories/update/{id}', 'CategorieController@update')->name('admin.category.update');
 Route::delete('/admin/categories/delete/{id}', 'CategorieController@destroy')->name('admin.category.delete');
+// Route::resource('/admin/categories', 'CategorieController');
 
 //ADMIN/ KEYWORD
 Route::get('/admin/keyword', 'KeywordController@index')->name('admin.keyword.get');/*->middleware('admin')*/
 Route::post('/admin/keyword/create', 'KeywordController@store')->name('admin.keyword.create');
 Route::put('/admin/keyword/update/{id}', 'KeywordController@update')->name('admin.keyword.update');
 Route::delete('/admin/keyword/delete/{id}', 'KeywordController@destroy')->name('admin.keyword.delete');
+// Route::resource('/admin/keyword', 'KeywordController');
 
 //ADMIN/ reference page
 Route::get('/admin/plantreference', 'PlantReferencepageController@index')->name('admin.reference.get');
@@ -222,7 +240,6 @@ Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('cli
 // ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
 
 // RETAILER/ STORE
-Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 Route::put('/store/setup', 'StoreController@setupstore')->name('retailer.store.setupstore');
 Route::get('/store/customize', 'StoreController@edit')->name('retailer.store.edit');
 Route::put('/store/customize', 'StoreController@update')->name('retailer.store.update');
@@ -236,12 +253,13 @@ Route::get('/store/products/{id}/edit', 'ProductController@edit')->name('retaile
 Route::put('/store/products/{id}/edit', 'ProductController@update')->name('retailer.products.update');
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
+Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 
 Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
 
 // Articles
 Route::resource('/articles', 'ArticleController');
-Route::delete('/service-cate-delete/{article_id}','ArticleController@delete');
+Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
 
 // Order Management
 Route::get('/store/retailer/my-order',  'OrderController@myroders')->name('retailer.order.list');

@@ -21,6 +21,8 @@ class ProductController extends Controller
     //CUSTOMER
     public function show($id)
     {
+
+        // dd("hi");
         $product = Product::findOrFail($id);
         if ($product->isPlant == 1) {
             $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
