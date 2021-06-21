@@ -108,8 +108,10 @@
 
                             <a class="dropdown-item" href="{{ route('client.order.list') }}">My Orders</a>
 
-                            {{-- With pages made --}}
+
                             <a class="dropdown-item" href="{{ route('customer.profile.show') }}">User Settings</a>
+
+                            <a class="dropdown-item" href="{{ url('subscription') }}">Subscription</a>
 
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>
@@ -194,7 +196,6 @@
         $(document).ready(function() {
             $('.select-dropdown').select2();
         });
-
     </script>
 
     <br>
@@ -211,17 +212,7 @@
                         the consumers into one channel, a centralized market to buy and sell botany products.
                     </p>
                 </div>
-                <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                    </ul>
-                </div>
+
                 <div class="col-xs-6 col-md-3">
                     <h6>Quick Links</h6>
                     <ul class="footer-links">

@@ -198,26 +198,16 @@
 
     <!-- Site footer -->
     <footer class="site-footer mt-4 overflow-hidden">
-        <div class="container">
+        <div class="container ml-auto">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-6 ">
                     <h6>About</h6>
                     <p class="text-justify">Plantify is an e-commerce platform that will introduce the Philippine
                         industry to serve and support the vast arrays of horticulture products that meet the sellers and
                         the consumers into one channel, a centralized market to buy and sell botany products.
                     </p>
                 </div>
-                <div class="col-xs-6 col-md-3">
-                    <h6>Categories</h6>
-                    <ul class="footer-links">
-                        <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                        <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                        <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                        <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                        <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                        <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                    </ul>
-                </div>
+
                 <div class="col-xs-6 col-md-3">
                     <h6>Quick Links</h6>
                     <ul class="footer-links">
