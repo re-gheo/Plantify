@@ -111,14 +111,13 @@
 
                             <a class="dropdown-item" href="{{ route('customer.profile.show') }}">User Settings</a>
 
-                            <a class="dropdown-item" href="{{ url('subscription') }}">Subscription</a>
-
                             @if (Auth::user()->user_role == 'admin')
                                 <a class="dropdown-item" href="{{ route('admin.home') }}">Admin Controls</a>
 
 
                             @elseif(Auth::user()->user_role == 'retailer')
                                 <a class="dropdown-item" href="{{ route('retailer.store.front') }}">Store Page</a>
+                                <a class="dropdown-item" href="{{ url('subscription') }}">Subscription</a>
                             @endif
 
                             <form method="POST" action="{{ route('logout') }}">
