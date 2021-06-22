@@ -108,7 +108,7 @@
 
                             <a class="dropdown-item" href="{{ route('client.order.list') }}">My Orders</a>
 
-                            {{-- With pages made --}}
+
                             <a class="dropdown-item" href="{{ route('customer.profile.show') }}">User Settings</a>
 
                             @if (Auth::user()->user_role == 'admin')
@@ -117,17 +117,8 @@
 
                             @elseif(Auth::user()->user_role == 'retailer')
                                 <a class="dropdown-item" href="{{ route('retailer.store.front') }}">Store Page</a>
+                                <a class="dropdown-item" href="{{ url('subscription') }}">Subscription</a>
                             @endif
-
-                            {{-- With no pages made
-            <a class="dropdown-item" href="">Account Settings</a>
-
-            <a class="dropdown-item" href="">Customization Settings</a>
-            <a class="dropdown-item" href="">Preference Settings</a>
-            <a class="dropdown-item" href="">Order History</a> --}}
-
-
-
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -204,18 +195,54 @@
         $(document).ready(function() {
             $('.select-dropdown').select2();
         });
-
     </script>
 
     <br>
     <br>
 
+    <!-- START OF FOOTER -->
+    <footer class="site-footer mt-4 overflow-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">Plantify is an e-commerce platform that will introduce the Philippine
+                        industry to serve and support the vast arrays of horticulture products that meet the sellers and
+                        the consumers into one channel, a centralized market to buy and sell botany products.
+                    </p>
+                </div>
 
-    {{-- <div class="footer-margin">
-        <footer class="card-footer bg-dark footer-font-style text-muted fixed-bottom">
-            <p>© 2021 Team Olverd</p>
-        </footer>
-    </div> --}}
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">About Us</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+                        <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+                        <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
+                        <a href="/"><i class="fas fa-leaf mr-1"></i>Plantify</a>
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 </body>

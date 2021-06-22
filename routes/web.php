@@ -28,17 +28,15 @@ use Luigel\Paymongo\Facades\Paymongo;
 */
 
 Route::get('/mail', function () {
-  
- 
 });
 
 Route::get('/exp2', function () {
-  
-    $data = new AdminDataService;
 
-    
-    dd($data->getDataAdmin());
-    return $data->getDataAdmin();
+  $data = new AdminDataService;
+
+
+  dd($data->getDataAdmin());
+  return $data->getDataAdmin();
 });
 
 
@@ -217,6 +215,10 @@ Route::get('/store/order-details/{id}',  'OrderController@detail')->name('client
 Route::put('/store/orders/{id}/cancel',  'OrderController@cancel')->name('client.order.cancel');
 Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('client.order.recieve');
 
+//CUSTOMER/ SETTINGS / PROFILE
+Route::get('/subscription', function () {
+  return view('subscription.index');
+});
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
@@ -236,11 +238,11 @@ Route::get('/store/products/{id}', 'ProductController@show')->name('retailer.pro
 Route::get('/store/products/{id}/removepic/{pic}', 'ProductController@removepicture')->name('retailer.products.removepicture');
 Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('retailer.products.remove');
 Route::resource('/store/products', 'ProductController')->names([
-     'index' => 'retailer.products.index',
-     'store' => 'retailer.products.store',
-     'show' => 'retailer.products.show',
-     'edit' => 'retailer.products.edit',
-     'update' => 'retailer.products.update',
+  'index' => 'retailer.products.index',
+  'store' => 'retailer.products.store',
+  'show' => 'retailer.products.show',
+  'edit' => 'retailer.products.edit',
+  'update' => 'retailer.products.update',
 ]);
 
 
@@ -250,7 +252,7 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 // Articles
 Route::resource('/articles', 'ArticleController');
-// Route::delete('/service-cate-delete/{article_id}','ArticleController@delete');
+Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
 
 // Order Management
 Route::get('/store/retailer/my-order',  'OrderController@myroders')->name('retailer.order.list');
