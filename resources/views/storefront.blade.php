@@ -34,17 +34,54 @@
         </div>
     </div>
 
-    <!--CAROUSEL-->
+    <!--Categories -->
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-2 pb-2">
-                <h4>Categories</h4>
+            <div class="col-lg-2 pb-2 card">
+                <br>
+                <h4 class="text-center"><b>CATEGORIES</b></h4>
+                <br>
                 <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
-                    <a href="#" class="link">Flowering Plant (1 seed leaf)</a>
-                    <a href="#" class="link">Flowering Plant (2 seed leaf)</a>
-                    <a href="#" class="link">Non Flowering Plant (Ginkgo)</a>
-                    <a href="#" class="link">Non Flowering Plant (Cycads)</a>
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 1<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 2<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 3<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+                    
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 4<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+                    
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 5<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 6<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
+
+                    <br>
+
+                    <button class="btn btn-success btn-sm">
+                        <a href="#" class="text-white ml-3">Category 7<i class="fas fa-chevron-right ml-3"></i></a>
+                    </button>
                 </div>
             </div>
             <div class="col-lg-10">
