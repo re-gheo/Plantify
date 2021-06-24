@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             "product_referencep" => null,
             "product_mainphoto" => Null,
             "product_referenceid" => null,
-            "product_categoryid" => null,
+            "product_categoryid" => rand(1, 11),
             "product_price" => 150.50,
             "product_quantity" => 12,
             // "retailer_id" => 2,

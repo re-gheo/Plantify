@@ -151,6 +151,9 @@ Route::get('/admin/customer_application/{id}', 'RetailerApplicationController@sh
 Route::put('/admin/customer_application/approve/{id}', 'RetailerApplicationController@approve')->name('admin.customer_application.approve');
 Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationController@deny')->name('admin.customer_application.deny');
 
+// Route::resource('/admin/cssustomer_to_retailer_application', 'RetailerApplicationController');
+
+
 //ADMIN/ COMMISSIONS
 // Route::get('/admin/commissions', 'CommissionController@index');
 // Route::get('/admin/commissions/create', 'CommissionController@create');
@@ -221,33 +224,33 @@ Route::get('/subscription', function () {
 });
 
 //CATEGORIES
-Route::get('/category1', function () {
-  return view('categories.category1');
-});
+// Route::get('/category1', function () {
+//   return view('categories.category1');
+// });
 
-Route::get('/category2', function () {
-  return view('categories.category2');
-});
+// Route::get('/category2', function () {
+//   return view('categories.category2');
+// });
 
-Route::get('/category3', function () {
-  return view('categories.category3');
-});
+// Route::get('/category3', function () {
+//   return view('categories.category3');
+// });
 
-Route::get('/category4', function () {
-  return view('categories.category4');
-});
+// Route::get('/category4', function () {
+//   return view('categories.category4');
+// });
 
-Route::get('/category5', function () {
-  return view('categories.category5');
-});
+// Route::get('/category5', function () {
+//   return view('categories.category5');
+// });
 
-Route::get('/category6', function () {
-  return view('categories.category6');
-});
+// Route::get('/category6', function () {
+//   return view('categories.category6');
+// });
 
-Route::get('/category7', function () {
-  return view('categories.category7');
-});
+// Route::get('/category7', function () {
+//   return view('categories.category7');
+// });
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
@@ -274,6 +277,10 @@ Route::resource('/store/products', 'ProductController')->names([
   'update' => 'retailer.products.update',
 ]);
 
+
+Route::get('/store/search/', 'ProductLookController@search')->name('products.search');
+Route::get('/store/search/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
+Route::get('/store/advance-search/', 'ProductLookController@searchFilter')->name('products.searchfilter');
 
 Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 

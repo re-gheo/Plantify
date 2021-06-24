@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Shopping_cart;
 use App\Models\Assigned_photos;
 use App\Models\Assigned_keywords;
+use App\Models\Categorie;
 use App\Models\Plant_referencepage;
 use App\Services\LogServices;
 use Illuminate\Support\Facades\Auth;
@@ -144,10 +145,10 @@ class ProductController extends Controller
 
         }
 
-        $log = 'Created Product ID: '.$product->id;
+        $log = 'Created Product ID: ' . $product->id;
         LogServices::log($log);
 
-        return redirect()->route('retailer.products.show', ['id'=>$product->product_id]);
+        return redirect()->route('retailer.products.show', ['id' => $product->product_id]);
     }
 
 
@@ -236,9 +237,9 @@ class ProductController extends Controller
 
         }
 
-        $log = 'Update Product ID: '.$product->id;
+        $log = 'Update Product ID: ' . $product->id;
         LogServices::log($log);
-        return redirect()->route('retailer.products.show', ['id'=>$product->product_id]);
+        return redirect()->route('retailer.products.show', ['id' => $product->product_id]);
     }
 
     public function remove(Request $request, $id)
@@ -257,7 +258,7 @@ class ProductController extends Controller
     {
 
         $asphotos = Assigned_photos::where('assigned_photoid', '=', $picid)->where('product_id', '=', $id)->delete();
-        return redirect()->route('retailer.products.show', ['id'=>$id]);
+        return redirect()->route('retailer.products.show', ['id' => $id]);
     }
 
 
@@ -373,7 +374,7 @@ class ProductController extends Controller
             $item->cart_quantity = request()->quantity;
             $item->cart_subtotal = $item->cart_itemcost * request()->quantity;
             $item->save();
-            return redirect()->route('customer.cart.show')->with('success', 'updated quantity for ' . $item->cart_itemname . ' from cart to  X'. request()->quantity . '.' );
+            return redirect()->route('customer.cart.show')->with('success', 'updated quantity for ' . $item->cart_itemname . ' from cart to  X' . request()->quantity . '.');
         } else {
             return redirect()->route('store');
         }
@@ -392,4 +393,8 @@ class ProductController extends Controller
             return redirect()->route('store');
         }
     }
+
+
+
+    
 }

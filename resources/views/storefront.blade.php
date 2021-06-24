@@ -39,49 +39,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2 pb-2 card">
-                <br>
+                
                 <h4 class="text-center"><b>CATEGORIES</b></h4>
-                <br>
                 <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category1')}}" class="text-white ml-3">Category 1<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
+             @foreach($categories as $c)
+                <button class="btn btn-success btn-sm">
+                    <a href="{{ route('products.category', $c->product_categoryid)}}" class="text-white ml-3"><h6>{{ $c->categories }}</h6><i class="fas fa-chevron-right ml-3"></i></a>
+                </button>
+             @endforeach
 
-                    <br>
+                
 
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category2')}}" class="text-white ml-3">Category 2<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
-
-                    <br>
-
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category3')}}" class="text-white ml-3">Category 3<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
-                    
-                    <br>
-
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category4')}}" class="text-white ml-3">Category 4<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
-                    
-                    <br>
-
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category5')}}" class="text-white ml-3">Category 5<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
-
-                    <br>
-
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category6')}}" class="text-white ml-3">Category 6<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
-
-                    <br>
-
-                    <button class="btn btn-success btn-sm">
-                        <a href="{{ url('category7')}}" class="text-white ml-3">Category 7<i class="fas fa-chevron-right ml-3"></i></a>
-                    </button>
+                  
                 </div>
             </div>
 

@@ -46,7 +46,7 @@
                         <h5 class="card-title"> <i class="fas fa-user-alt mr-2"></i>Commission</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Total Commsion Earned</h6>
                         <div class="text-center">
-                            <b>PHP</b> {{$commission}}
+                            <b>PHP</b> {{ $commission }}
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         <h5 class="card-title"><i class="fas fa-store mr-2"></i>Orders</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Total Number of Orders </h6>
                         <div class="text-center">
-                            <b>{{$orders->count()}}</b>
+                            <b>{{ $orders->count() }}</b>
                         </div>
                     </div>
                 </div>
@@ -80,12 +80,12 @@
 
                     <!--TABLE-->
                     @foreach ($orders as $order)
-                    <tr>
-                        <td>{{$order->order_id}}</td>
-                        <td>{{$order->status->order_status}}</td>
-                        <td>{{$order->paymentType->payment_type}}</td>
-                        <td>{{$order->order_dateshipped}}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $order->order_id }}</td>
+                            <td>{{ $order->status->order_status }}</td>
+                            <td>{{ $order->paymentType->payment_type }}</td>
+                            <td>{{ $order->order_dateshipped }}</td>
+                        </tr>
                     @endforeach
 
                 </table>
@@ -94,7 +94,7 @@
             <h3>Commission</h3>
             <div class="card-body table-responsive-sm">
                 <!--TABLE-->
-                <table  id="commission-table" class="table table-bordered table-striped table-hover table-responsive-sm">
+                <table id="commission-table" class="table table-bordered table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                         <tr>
                             <th>Product Name</th>
@@ -107,13 +107,13 @@
 
                     <!--TABLE-->
                     @foreach ($orders_bystore as $order)
-                    <tr>
-                        <td>{{$order->product->product_name}}</td>
-                        <td>{{$order->retailer->store->store_name}}</td>
-                        <td>{{$order->order_quantity}}</td>
-                        <td>{{$order->order_unitcost}}</td>
-                        <td>{{$order->product->commissionearned * $order->order_quantity}}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $order->product->product_name }}</td>
+                            <td>{{ $order->retailer->store->store_name }}</td>
+                            <td>{{ $order->order_quantity }}</td>
+                            <td>{{ $order->order_unitcost }}</td>
+                            <td>{{ $order->product->commissionearned * $order->order_quantity }}</td>
+                        </tr>
                     @endforeach
 
                 </table>
@@ -129,10 +129,10 @@
 @endsection
 
 @section('scripts')
-<script>
-    $(document).ready( function () {
-        $('#commission-table').DataTable();
-        $('#order-table').DataTable();
-    } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#commission-table').DataTable();
+            $('#order-table').DataTable();
+        });
+    </script>
 @endsection
