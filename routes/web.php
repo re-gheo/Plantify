@@ -282,6 +282,10 @@ Route::get('/store/search/', 'ProductLookController@search')->name('products.sea
 Route::get('/store/search/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
 Route::get('/store/advance-search/', 'ProductLookController@searchFilter')->name('products.searchfilter');
 
+
+
+
+
 Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front');
 
 Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
