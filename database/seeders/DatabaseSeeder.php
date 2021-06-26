@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             OrderStatusTableSeeder::class,
             StoreTableSeeder::class,
             RetailerTableSeeder::class,
+            PlantReferenceSeeder::class,
             ProductTableSeeder::class,
             AssignedKeywordsTableSeeder::class,
             UserSeeder::class,

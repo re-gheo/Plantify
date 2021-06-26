@@ -89,4 +89,18 @@ class UserSeeder extends Seeder
 
         return $products;
     }
+
+    public function createPlantReference($user)
+    {
+        $application = Retailer_application::factory()->create(
+            [
+                'retailer_personincharge' => $user->first_name . ' ' . $user->last_name,
+                'retailer_birthdate' => $user->birthday,
+                'user_id' => $user->id,
+                'retailer_idnumber' => $user->govtid_number,
+            ]
+        );
+
+        return   $application;
+    }
 }
