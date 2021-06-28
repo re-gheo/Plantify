@@ -39,13 +39,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2 pb-2 card">
-                
+                <br>
                 <h4 class="text-center"><b>CATEGORIES</b></h4>
+                <hr>
                 <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
              @foreach($categories as $c)
                 <button class="btn btn-success btn-sm">
-                    <a href="{{ route('products.category', $c->product_categoryid)}}" class="text-white ml-3"><h6>{{ $c->categories }}</h6><i class="fas fa-chevron-right ml-3"></i></a>
+                    <a href="{{ route('products.category', $c->product_categoryid)}}" class="text-white ml-3">
+                        <h6>{{ $c->categories }}</h6>
+                        {{-- <i class="fas fa-chevron-right ml-5"></i> --}}
+                    </a>
                 </button>
+                <br>
              @endforeach
 
                 

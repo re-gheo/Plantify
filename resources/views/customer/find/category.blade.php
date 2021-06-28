@@ -42,14 +42,15 @@
             <div class="col-lg-2 pb-2 card">
                 <br>
                 <h4 class="text-center"><b>CATEGORIES</b></h4>
-                <br>
+                <hr>
                 <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
                     @foreach ($categories as $c)
                         <button class="btn btn-success btn-sm">
                             <a href="{{ route('products.category', $c->product_categoryid) }}" class="text-white ml-3">
-                                <h6>{{ $c->categories }}</h6><i class="fas fa-chevron-right ml-3"></i>
+                                <h6>{{ $c->categories }}</h6>
                             </a>
                         </button>
+                        <br>
                     @endforeach
                 </div>
             </div>
@@ -57,7 +58,7 @@
             <!-- Category 1 -->
             <div class="col-lg-10">
                 <div class="featured d-flex align-items-left justify-content-left">
-                    <h3><strong><u>Products</u> of {{ $category->categories}}</strong></h3>
+                    <h3><strong>{{ $category->categories}}</strong></h3>
                 </div>
                 <div class="row">
                     @foreach ($products as $product)

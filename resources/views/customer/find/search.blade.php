@@ -40,53 +40,72 @@
         <div class="row">
             <div class="col-lg-2 pb-2 card">
                 <br>
-                <h4 class="text-center"><b>Filter</b></h4>
-                <br>
+                <h4 class="text-center"><b>Advanced Search</b></h4>
+                <hr>
+                
 
                 <form action="{{ route('products.searchfilter') }}" method="GET">
                     @csrf
-                    <button type="submit"> FILTER</button>
-                    <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
-
-
-
-
-                        <h4><b>Price Range
-                                (make it UI RANGE)</b></h4>
-
-                        <label for="">min</label>
-                        <input type="number" name="min" value="">
-                        <label for="">max</label>
-                        <input type="number" name="max" value="">
-
+                    <div class="text-center">
                         <br>
-                        <h4><b>Ratings</b></h4>
+                        <button type="submit" class="btn btn-success btn-sm ">Filter Results</button>
+                    </div>
+                    <br>
+                    <hr>
+                    {{-- <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
+                        <h4><b>Price Range</b></h4>
+                        <br>
+                        <input type="number" name="min" value="">
+                        <label for="">MIN VALUE</label>
+                        -
+                        <input type="number" name="max" value="">
+                        <label for="">MAX VALUE</label>
+                    </div> --}}
+                    
+                    <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
+                        <h4><b>Price Range</b></h4>
+                        <br>
+                        <input class="rounded" type="number" name="min" value="">
+                        <label for="">MIN VALUE</label>
+                        <input class="rounded" type="number" name="max" value="">
+                        <label for="">MAX VALUE</label>
+                    </div>
+
+                        <hr>
+
+                    <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
+                        <h4 class="text-center"><b>Ratings</b></h4>
+                        <br>
                         @for ($i = 1; $i < 6; $i++)
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
                                     value="{{ $i }}">
                                 <label class="form-check-label" for="exampleRadios1">
-                                    {{ $i }} star
+                                    &nbsp;{{ $i }} star
                                 </label>
                             </div>
                         @endfor
+                    </div>
 
+                    <hr>
+
+                    <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
                         <h4><b>Categories</b></h4>
+                        <br>
+                        <select class="form-control">
+                            @foreach ($categories as $c)
+                            <option value="{{ $c->product_categoryid }}">{{ $c->categories }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                        @foreach ($categories as $c)
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="category" id="exampleRadios1"
-                                    value="{{ $c->product_categoryid }}">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    {{ $c->categories }}
-                                </label>
-                            </div>
-                        @endforeach
-                        <h4><b>Keywords</b></h4>
+                    <hr>
+
+                    <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column">
+                        <h4 class="text-center"><b>Keywords</b></h4>
+                        <br>
                         @foreach ($keys as $k)
                             <div class="form-check">
-
-
                                 <input class="form-check-input" type="checkbox" name="keywords[]" value="{{ $k->keyword_id }}"
                                     id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
@@ -96,6 +115,7 @@
                             </div>
                         @endforeach
                     </div>
+                    <hr>
             </div>
             </form>
 
