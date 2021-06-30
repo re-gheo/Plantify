@@ -145,13 +145,14 @@
     style="border: 1px solid #cccccc; border-radius: 5px; width: 39px; height: auto; float: left; margin-right: 7px;"> --}}
 
         <div class="nav-search pl-2 pull-right">
+            {{-- route subject to change for references search route --}}
             <form action="{{ route('products.search') }}" class="" method="GET" role="search">
                 @csrf
-                <select name="type" id="">
+                {{-- <select name="type" id="">
                     <option value="0">All</option>
                     <option value="1">Plant Products</option>
                     <option value="2">Other Products</option>
-                </select>
+                </select> --}}
                 <input id="search" type="text" class="" name="query" placeholder="Search here" aria-label="search-bar"
                     aria-describedby="basic-addon2">
 
