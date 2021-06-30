@@ -92,6 +92,7 @@
                     <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
                         <h4><b>Categories</b></h4>
                         <br>
+                        <option value="null">---</option>
                         <select class="form-control">
                             @foreach ($categories as $c)
                             <option value="{{ $c->product_categoryid }}">{{ $c->categories }}</option>

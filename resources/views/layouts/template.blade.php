@@ -54,13 +54,17 @@
                     <a class="nav-link" href="{{ route('store.articles') }}">Articles <span
                             class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Plant References <span
+                        class="sr-only">(current)</span></a>
+                </li>
 
 
 
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>
                 </li> --}}
-
+                &nbsp;
 
                 <div class="div">
                     <li class="nav-item">
@@ -69,6 +73,7 @@
 
                                 @if (!Auth::user())
                                     <a id="cta" class="nav-item" href="{{ route('loginf') }}">Login</a>
+                                    &nbsp;
                                     <a id="cta" class="nav-item" href="{{ route('registerf') }}">Register Account</a>
                                 @endif
 
