@@ -38,10 +38,10 @@ class AdminDataService
             'orderByItemYear' => Order_bystoreitem::where('created_at', '>=', Carbon::today("Asia/Manila")->subDays(365))->get(),
 
             'noOforderByItemAll' => count(Order_bystoreitem::all()),
-            'noOforderByItemMonth' => count(Order_bystoreitem::where('created_at', '>=', Carbon::now("Asia/Manila")->subDays(30))->get()),
-            'noOforderByItem3Month' => count(Order_bystoreitem::where('created_at', '>=', Carbon::now("Asia/Manila")->subDays(90))->get()),
-            'noOforderByItemWeek' => count(Order_bystoreitem::where('created_at', '>=', Carbon::now("Asia/Manila")->subDays(7))->get()),
-            'noOforderByItemYear' => count(Order_bystoreitem::where('created_at', '>=', Carbon::today("Asia/Manila")->subDays(365))->get()),
+            'noOforderByItemMonth' => count(Order_bystoreitem::whereDate('created_at', '>=', Carbon::now("Asia/Manila")->subDays(30))->get()),
+            'noOforderByItem3Month' => count(Order_bystoreitem::whereDate('created_at', '>=', Carbon::now("Asia/Manila")->subDays(90))->get()),
+            'noOforderByItemWeek' => count(Order_bystoreitem::whereDate('created_at', '>=', Carbon::now("Asia/Manila")->subDays(7))->get()),
+            'noOforderByItemYear' => count(Order_bystoreitem::whereDate('created_at', '>=', Carbon::today("Asia/Manila")->subDays(365))->get()),
 
             "orderByItemMonthS" => [ //array
 
