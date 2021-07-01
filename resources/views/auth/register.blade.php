@@ -101,7 +101,6 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <span>
                                 <span> <input required type="checkbox" data-toggle="modal" data-target="#exampleModal">
                                     By checking, you agree to
                                     Plantify's terms and conditions

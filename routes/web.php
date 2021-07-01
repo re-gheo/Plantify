@@ -217,6 +217,10 @@ Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('cli
 Route::get('/subscription', function () {
   return view('subscription.index');
 });
+//TERMS AND CONDITIONS
+// Route::get('/terms', function () {
+//   return view('terms.index');
+// });
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗

@@ -45,27 +45,32 @@
                         </div>
                     </div>
 
-                    @include('auth.recaptcha')
+                   
+                        @include('auth.recaptcha') 
+               
+                   
 
                     <div class="d-flex">
-                        <div class="">
-                            <div class="">
-                                <input class="" type="checkbox" name="remember_token" id="remember_token"
-                                    {{ old('remember_token') ? 'checked' : '' }}>
+                              {{-- REMEMBER --}}
+                        <div class="justify-content-start">
+                            <input class="" type="checkbox" name="remember_token" id="remember_token"
+                                {{ old('remember_token') ? 'checked' : '' }}>
 
-                                <label class="" for="remember_token">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                            <div class="">
-                                @if (Route::has('password.request'))
-                                    <a class="" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                            <label class="" for="remember_token">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
+
+                        {{-- FORGOT PASSWORD --}}
+                        <div class="justify-content-end">
+                            @if (Route::has('password.request'))
+                                <a class="" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
                         </div>
                     </div>
+
 
 
                     <br>
