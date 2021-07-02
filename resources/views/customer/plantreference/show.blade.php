@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    {{ dump($plant_referencepage) }}
+    {{-- {{ dump($plant_referencepage) }} --}}
 
     <h1>
         SHOW
@@ -9,23 +9,24 @@
 
     <div>
         image HERE
-        <img src="{{ $plant_referencepage->plant_photo }}" alt="">
-        <img src="{{ $plant_referencepage->plant_phototwo }}" alt="">
-        <img src="{{ $plant_referencepage->plant_photothree }}" alt="">
+        <img src="{{asset('/storage/'. $plant_referencepage->plant_photo)  }}" width="300" height="300" alt="main">
+        <img src="{{ asset('/storage/'.$plant_referencepage->plant_phototwo) }}" width="300" height="300" alt="main">
+        <img src="{{ asset('/storage/'.$plant_referencepage->plant_photothree) }}" width="300" height="300" alt="main">
+        Image uphere
     </div>
     <div>
         <label>plant_scientificname</label>
-        <p>{{ $plant_referencepage->plant_scientificname }}</p>
+        <p><b>{{ $plant_referencepage->plant_scientificname }}</b></p>
     </div>
 
     <div>
-        <label>plant_description</label>
-        <p>{{ $plant_referencepage->plant_description }}</p>
+        <label>plant_description</label><br>
+        <textarea>{{ $plant_referencepage->plant_description }}</textarea>
     </div>
 
     <div>
-        <label>plant_maintenance</label>
-        <p>{{ $plant_referencepage->plant_maintenance }}</p>
+        <label>plant_maintenance</label><br>
+        <textarea>{{ $plant_referencepage->plant_maintenance }}</textarea>
     </div>
 
     <div>

@@ -37,6 +37,8 @@ Route::get('/exp2', function () {
 
   dd($data->getDataAdmin());
   return $data->getDataAdmin();
+
+  // reten view("something")
 });
 
 route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);;
