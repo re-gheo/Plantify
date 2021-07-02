@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Plant_referencepage;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class ProductInformationController extends Controller
     public function index()
     {
         $plant_referencepages = Plant_referencepage::all();
-        return view('customer.plantreference.index', compact('plant_referencepages'));
+        $categories = Categorie::all();
+        return view('customer.plantreference.index', compact('plant_referencepages', 'categories'));
     }
 
   

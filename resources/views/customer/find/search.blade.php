@@ -95,6 +95,7 @@
                        
                         <select class="form-control" name="category">
                            
+                        <option value="null">---</option>
                             @foreach ($categories as $c)
                             <option value="{{ $c->product_categoryid }}">{{ $c->categories }}</option>
                             @endforeach
