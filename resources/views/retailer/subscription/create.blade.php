@@ -90,8 +90,8 @@
                 </select>
                 <div class="form-input">
                     <p>Number</p>
-                    <input type="text" name="card_number" required id="card_number" value="{{ old('card_number') }}">
-                    @error('card_number')
+                    <input type="text" name="number" required id="card_number" value="{{ old('card_number') }}">
+                    @error('number')
                         <div>
                             invalid number does no align with lughn algortihm
                         </div>
@@ -100,9 +100,9 @@
     
                 <div class="form-input">
                     <p>Name on Card</p>
-                    <input type="text" name="card_holdername" required id="card_holdername"
-                        value="{{ old('card_holdername') }}">
-                    @error('card_holdername')
+                    <input type="text" name="holdername" required id="holdername"
+                        value="{{ old('holdername') }}">
+                    @error('holdername')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -111,8 +111,8 @@
     
                 <div class="form-input">
                     <p>cvv</p>
-                    <input type="text" name="card_cvv" required id="card_cvv" value="{{ old('card_cvv') }}">
-                    @error('card_cvv')
+                    <input type="text" name="cvv" required id="cvv" value="{{ old('cvv') }}">
+                    @error('cvv')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -136,8 +136,8 @@
                     <hr>
                     <h3>Billing Address</h3>
                     <p>Address line </p>
-                    <input type="text" name="card_line1" required id="card_line1" value="{{ old('card_line1') }}">
-                    @error('card_line1')
+                    <input type="text" name="line1" required id="line1" value="{{ old('line1') }}">
+                    @error('line1')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -148,8 +148,8 @@
     
                 <div class="form-input">
                     <p>City </p>
-                    <input type="text" name="card_city" required id="card_city" value="{{ old('card_city') }}">
-                    @error('card_city')
+                    <input type="text" name="city" required id="city" value="{{ old('city') }}">
+                    @error('city')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -158,8 +158,8 @@
     
                 <div class="form-input">
                     <p>State</p>
-                    <input type="text" name="card_state" required id="card_state" value="{{ old('card_state') }}">
-                    @error('card_state')
+                    <input type="text" name="state" required id="state" value="{{ old('state') }}">
+                    @error('state')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -168,9 +168,9 @@
     
                 <div class="form-input">
                     <p>Postal Code</p>
-                    <input type="text" name="card_postal_code" required id="card_postal_code"
+                    <input type="text" name="postal_code" required id="postal_code"
                         value="{{ old('card_number') }}">
-                    @error('card_postal_code')
+                    @error('postal_code')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
