@@ -14,7 +14,7 @@
             <tr>
                 <td>Ads Space</td>
                 <td>No Ads Space</td>
-                <td>1 ad space and management</td>
+                <td>1 ad space with customization</td>
             </tr>
             <tr>
                 <td>Retailer Request to admin to make personal keywords</td>
@@ -39,7 +39,7 @@
             <tr>
                 <td>Reports</td>
                 <td>Minumum Reports</td>
-                <td>Daily to Annully reports to download in excel format</td>
+                <td>Daily to Annually reports to download in excel format</td>
             </tr>
 
             
@@ -49,13 +49,13 @@
 
 
     <div class="d-flex justify-content-center container mt-5">
-        <h3>Available Plans</h3>
+        <h3><b>Available Plans</b></h3>
         <table class="table">
             <tr>
                 <th>PLAN</th>
                 <th>1 MONTH SUBSCRIPTION</th>
                 <th>3 MONTH SUBSCRIPTION </th>
-                <td>6 MONTH SUBSCRIPTION</td>
+                <th>6 MONTH SUBSCRIPTION</th>
             </tr>
             <tr>
                 <td>AMMOUNT</td>
@@ -83,7 +83,7 @@
                         PLAN
                     </label>
                 </div>
-                <select name="" id="">
+                <select class="form-select" name="Plant">
                     <option value="1">1 month</option>
                     <option value="3">3 month</option>
                     <option value="9">9 month</option>
@@ -181,7 +181,7 @@
     
     
                 <br>
-                <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit"> Save Card</button>
+                <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">Subscribe</button>
         </form>
     </div>
 
