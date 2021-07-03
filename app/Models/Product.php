@@ -43,7 +43,12 @@ class Product extends Model
         return $this->hasMany(ProductRating::class, 'product_id')->latest();
     }
 
+    public function filterForPlant_Reference()
+    {return $this;
+        if(true){
 
+        }
+    }
     public function assigned_keywords()
     {
         return $this->hasMany(Assigned_keywords::class, 'product_id');

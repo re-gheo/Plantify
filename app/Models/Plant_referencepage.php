@@ -11,4 +11,9 @@ class Plant_referencepage extends Model
 
     protected $primaryKey = 'plant_referenceid';
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'product_referenceid')->latest();
+    }
+
 }

@@ -70,4 +70,14 @@ class ProductLookController extends Controller
         // dd($product);
         return view('customer.find.category', compact('products', 'categories', 'category'));
     }
+
+
+    public function ReFilter($id)
+    {
+        $category = Categorie::find($id);
+        $categories = Categorie::select('product_categoryid', 'categories')->get();
+        $products =  Product::latest()->where('product_categoryid', $id)->get();
+        // dd($product);
+        return view('customer.find.category', compact('products', 'categories', 'category'));
+    }
 }
