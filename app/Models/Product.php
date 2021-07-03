@@ -9,13 +9,19 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-
     protected $primaryKey = 'product_id';
+    protected $appends = [
+        'is_verified'
+    ];
 
     public function inquiry()
     {
         return $this->hasMany(Inquiry::class, 'product_id');
+    }
+
+    public function getIsVerifiedAttribute()
+    {
+        return ($this->verified)? "Verified" : "Not Verified";
     }
 
     public function retailer()
@@ -79,5 +85,10 @@ class Product extends Model
 
             return $final;
         }
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('verified', 1);
     }
 }
