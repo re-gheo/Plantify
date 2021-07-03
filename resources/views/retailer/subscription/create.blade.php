@@ -85,8 +85,8 @@
                 </div>
                 <select class="form-select" name="Plant">
                     <option value="1">1 month</option>
-                    <option value="3">3 month</option>
-                    <option value="9">9 month</option>
+                    <option value="2">3 month</option>
+                    <option value="3">9 month</option>
                 </select>
                 <div class="form-input">
                     <p>Number</p>
