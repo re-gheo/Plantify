@@ -5,9 +5,10 @@ namespace App\Services;
 use Illuminate\Support\Facades\Auth;
 use Luigel\Paymongo\Facades\Paymongo;
 use Luigel\Paymongo\Models\BaseModel;
+use Illuminate\Support\Facades\Redirect;
 use Luigel\Paymongo\Models\PaymentMethod;
 use Luigel\Paymongo\Exceptions\BadRequestException;
-
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class PaymongoService
 {
@@ -21,12 +22,12 @@ class PaymongoService
         $this->retailer = $retailer;
     }
 
-    public function handleCard($validated)
+    public function handleCard($validated, $ammount)
     {
 
         // dd($validated->cvv);
         $paymentIntent = Paymongo::paymentIntent()->create([
-            'amount' =>  1500, // this is a test
+            'amount' =>  $ammount, // this is a test
             'payment_method_allowed' => [
                 'card'
             ],
@@ -66,10 +67,15 @@ class PaymongoService
 
             $attachedPaymentIntent = $paymentIntent->attach($paymentMethod->id);
         } catch (BadRequestException $e) {
-            dd(json_decode($e->getMessage(), true)['errors'][0]);
-            dd(json_decode($e->getMessage(), true)['errors'][0]["sub_code"]);
+          
+            return $denied =
+                [
+                    False,
+                    Redirect::back()->with('denied', json_decode($e->getMessage(), true)['errors'][0]["detail"]),
+                ];
         }
-        dump(Paymongo::payment()->all());
+
+        return [True];
     }
 
 
@@ -82,12 +88,12 @@ class PaymongoService
             'amount' => $sample_ammont,
             'currency' => 'PHP',
             'redirect' => [
-             
+
                 'success' => route('paymongo.success'),
                 'failed' => route('paymongo.failed'),
             ],
         ]);
-            dump($source);
+        dump($source);
 
         // return redirect($source->redirect['checkout_url']);
     }
