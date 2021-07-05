@@ -272,7 +272,7 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 // Articles
 
-Route::resource('/retailer/subscriptions', 'SubscriptionController');
+Route::resource('/retailer/subscriptions', 'SubscriptionController')->parameters(['subscription' => 'id']);
 
 Route::resource('/articles', 'ArticleController');
 Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
