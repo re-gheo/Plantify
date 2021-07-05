@@ -16,14 +16,14 @@ class StorefrontController extends Controller
     public function front()
     {
         $categories = Categorie::all();
-        $products = Product::latest()->get()->where('isDeleted', FALSE);
+        $products = Product::latest()->where('isDeleted', FALSE)->active()->get();
         return view('storefront', compact('categories', 'products'));
     }
 
     public function show($id)
     {
         $categories = Categorie::all();
-        $product = Product::join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
+        $product = Product::active()->join('plant_referencepages', 'products.product_referenceid', '=', 'plant_referencepages.plant_referenceid')->findOrFail($id);
         $askeys = Assigned_keywords::latest()->where('product_id', '=', $product->product_id)->get();
         $asphotos = Assigned_photos::latest()->where('product_id', '=', $product->product_id)->get();
 

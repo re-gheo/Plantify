@@ -143,6 +143,11 @@ Route::resource('/admin/categories', 'CategorieController');
 //ADMIN/ KEYWORD
 Route::resource('/admin/keyword', 'KeywordController');
 
+//ADMIN/ PRODUCTS
+Route::resource('/admin/product', 'AdminProductController');
+Route::post('/admin/product/{id}/validate', 'AdminProductController@validateProduct')->name('admin.product.validate');
+Route::post('/admin/product/{id}/invalidate', 'AdminProductController@invalidateProduct')->name('admin.product.invalidate');
+
 //ADMIN/ REFERENCE
 Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('reference.removepic');
 Route::resource('/admin/plantreference', 'PlantReferencepageController');
@@ -282,7 +287,7 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
 
-Route::get('/testroutes', function () 
+Route::get('/testroutes', function ()
 {
     dd( session()->all() );
 
