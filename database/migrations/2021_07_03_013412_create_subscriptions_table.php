@@ -16,7 +16,7 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('retailer_id');
-            $table->unsignedInteger('plan_id');
+
             // $table->foreignId('retailer_id')->constrained("retailers", "retailer_id");
             $table->date('date_start');
             $table->date('date_end');
