@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Retailer;
-use App\Models\Subscription;
 use Illuminate\Http\Request;
 
 use App\Services\PaymongoService;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
@@ -41,36 +38,7 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        // dump($request->all());
-        // dd($request->plan);
-        switch ($request->plan) {
-            case 1:
-                $ammount = 259.00;
-                $duration = 30;
-                
-                break;
-            case 2:
-                $ammount = 499.00;
-                $duration = 90;
-
-                break;
-            case 3:
-                $ammount = 699.00;
-                $duration = 180;
-
-                break;
-
-        }
-dd(Auth::user());
-        // dump('here');
-        $pay = new PaymongoService;
-        $result = $pay->handleCard($request, $ammount);
-        if ($result[0]) {
-            $this->handleSubscription(Auth::user()->id, $request,  $ammount, $duration);
-            return redirect()->route('subscriptions.show', Auth::user()->id);
-        } else {
-            return $result[1];
-        }
+        dd($request->all());
     }
 
     /**
@@ -81,9 +49,7 @@ dd(Auth::user());
      */
     public function show($id)
     {
-        dd(Retailer::with('subscription')->get());
-        dd($id);
-        return view('retailer.subscription.show', compact('retailer'));
+        //
     }
 
     /**
@@ -118,23 +84,5 @@ dd(Auth::user());
     public function destroy($id)
     {
         //
-    }
-
-    private function handleSubscription($id, $request,  $ammount, $duration)
-    {
-        $retiailer = Retailer::find($id);
-       
-        Subscription::create([
-            'retailer_id'=> $id,
-            'plan_id'=> $request->plan,
-            'date_start'=> Carbon::today(),
-            'date_end'=> Carbon::today()->addDays($duration),
-            'duration'=> $duration,
-            'email'=> Auth::user()->email,
-            'payment_state'=> 'PAID',
-            'payment_method'=>'CARD',
-            'total_amount'=> $ammount,
-        ]);
-        
     }
 }

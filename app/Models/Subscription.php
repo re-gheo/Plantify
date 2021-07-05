@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Subscription extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
 
     public function retailer(){
-        $this->belongsTo(Retailer::class, 'retailer_id');
+        $this->belongsTo(Prescription::class, 'retailer_id');
     }
 }
