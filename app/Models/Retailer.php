@@ -20,8 +20,4 @@ class Retailer extends Model
     public function product(){
         return $this->hasMany(Product::class, 'retailer_id');
     }
-    public function subscription(){
-        // dump($this->hasOne(Subscription::class, 'retailer_id'));
-        return $this->hasOne(Subscription::class, 'retailer_id');
-    }
 }

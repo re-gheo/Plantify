@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {{-- {{ $category->description }} --}}
+{{-- {{ $category->description }} --}}
     <!-- Carousel -->
     <div class="container mt-5">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -58,7 +58,7 @@
             <!-- Category 1 -->
             <div class="col-lg-10">
                 <div class="featured d-flex align-items-left justify-content-left">
-                    <h3><strong>{{ $category->categories }}</strong></h3>
+                    <h3><strong>{{ $category->categories}}</strong></h3>
                 </div>
                 <div class="row">
                     @foreach ($products as $product)

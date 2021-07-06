@@ -137,6 +137,4 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-   
-
 }

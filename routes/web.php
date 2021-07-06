@@ -37,8 +37,6 @@ Route::get('/exp2', function () {
 
   dd($data->getDataAdmin());
   return $data->getDataAdmin();
-
-  // reten view("something")
 });
 
 route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);;
@@ -143,12 +141,7 @@ Route::resource('/admin/categories', 'CategorieController');
 //ADMIN/ KEYWORD
 Route::resource('/admin/keyword', 'KeywordController');
 
-//ADMIN/ PRODUCTS
-Route::resource('/admin/product', 'AdminProductController');
-Route::post('/admin/product/{id}/validate', 'AdminProductController@validateProduct')->name('admin.product.validate');
-Route::post('/admin/product/{id}/invalidate', 'AdminProductController@invalidateProduct')->name('admin.product.invalidate');
-
-//ADMIN/ REFERENCE
+//ADMIN/ reference page
 Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('reference.removepic');
 Route::resource('/admin/plantreference', 'PlantReferencepageController');
 
@@ -255,14 +248,12 @@ Route::resource('/store/products', 'ProductController')->names([
   'update' => 'retailer.products.update',
 ]);
 
-//Customer/ Search OR Filter by (category or reference)
+
 Route::get('/store/search/', 'ProductLookController@search')->name('products.search');
-Route::get('/store/filter/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
-// Route::get('/store/filter/reference/{id}', 'ProductReferenceController@categoryFilter')->name('products.reference');
+Route::get('/store/search/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
 Route::get('/store/advance-search/', 'ProductLookController@searchFilter')->name('products.searchfilter');
 
-Route::get('/store/filter2/category/{id}', 'ProductCatergoryController@show');
-Route::get('/store/filter2/reference/{id}', 'ProductReferenceController@show');
+
 
 
 
@@ -271,9 +262,6 @@ Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front'
 Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
 
 // Articles
-
-Route::resource('/retailer/subscriptions', 'SubscriptionController')->parameters(['subscription' => 'id']);
-
 Route::resource('/articles', 'ArticleController');
 Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
 
@@ -287,9 +275,48 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
 
-Route::get('/testroutes', function ()
-{
-    dd( session()->all() );
 
 
-});
+
+
+
+// Route::get('/test', function () {
+//     $mytime = Carbon::now();
+//     echo $mytime->toDateString();
+//     $date = CarbonImmutable::now();
+//     //dd('time is '  .$date);
+//     //dd(User::where('email',Auth::user()->email)->first());
+
+//     $mutable = Carbon::now();
+//     $immutable = CarbonImmutable::now();
+//     $modifiedMutable = $mutable->add(1, 'day');
+//     $modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
+//     dd('time im ' .  $immutable);
+//     var_dump($modifiedMutable === $mutable);             // bool(true)
+//     var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
+//     var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
+//     // So it means $mutable and $modifiedMutable are the same object
+//     // both set to now + 1 day.
+//     var_dump($modifiedImmutable === $immutable);         // bool(false)
+//     var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
+//     var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
+//     // While $immutable is still set to now and cannot be changed and
+//     // $modifiedImmutable is a new instance created from $immutable
+//     // set to now + 1 day.
+
+//     $mutable = CarbonImmutable::now()->toMutable();
+//     var_dump($mutable->isMutable());                     // bool(true)
+//     var_dump($mutable->isImmutable());                   // bool(false)
+//     $immutable = Carbon::now()->toImmutable();
+//     var_dump($immutable->isMutable());                   // bool(false)
+//     var_dump($immutable->isImmutable());                 // bool(true)
+
+// });
+
+
+// Route::get('/testroutes', function () 
+// {
+//     dd(route('retailer.order.detail') , );
+
+
+// });
