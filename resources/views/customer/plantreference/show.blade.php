@@ -12,9 +12,9 @@
 
     <div class="text-center card">
         Image supposed to appear here..
-        <img src="{{ $plant_referencepage->plant_photo }}" alt="">
-        <img src="{{ $plant_referencepage->plant_phototwo }}" alt="">
-        <img src="{{ $plant_referencepage->plant_photothree }}" alt="">
+        <img src="{{asset('/storage/'. $plant_referencepage->plant_photo)  }}" width="300" height="300" alt="main">
+        <img src="{{ asset('/storage/'.$plant_referencepage->plant_phototwo) }}" width="300" height="300" alt="main">
+        <img src="{{ asset('/storage/'.$plant_referencepage->plant_photothree) }}" width="300" height="300" alt="main">
     </div>
 
     <br>
