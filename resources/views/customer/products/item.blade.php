@@ -16,33 +16,9 @@
             <a class="btn btn-dark" href=" {{ route('retailer.products.edit', ['id' => $product->product_id]) }}"> edit products</a>
         @endif
     @endif
-    
-    <br>
-    <div class="container mt-2 card">
-        <br>
-        <div class="card">
-        <br>
-        <div class="text-center">
-            <h1><strong>{{ $product->product_name }}</strong></h1>
-            <p>Product of: <a href="{{route('retailer.store.front', ['id' => $product->retailer->retailer_id])}}">{{$product->retailer->store->store_name }}</a></p>
-        </div>
 
-                {{-- Dunno why no keys appear here, will consult with reig --}}
-                <div class="text-center">
-                    <p>Keywords go here...</p>
-                    @foreach ($askeys as $ask)
-                        <p>: {{ $ask->keyword_name }} </p>
-                    @endforeach
-                </div>
-
-        <br>
-
-        </div>
-
-        <hr>
-        <div class="container">
-        <h5 class="text-center">Product Preview... Text to be removed once picture issue is resolved</h5>
-        <div id="pic" class="carousel row slide col-lg-6 pull-left" data-ride="carousel">
+    <div class="container mt-2">
+        <div id="pic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#pic" data-slide-to="0" class="active"></li>
 
@@ -66,6 +42,8 @@
 
             </div>
 
+            <hr>
+
             <a class="carousel-control-prev" href="#pic" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon dark-gray" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -74,60 +52,69 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-            
         </div>
+    </div>
 
-        <div class="col-lg-6 pull-right">
-            <br>
-            <br>
-            <h5><b>PRICE: </b>{{ $product->price }}PHP</h5><br>
+    <div class="container mt-2">
 
-            <h5><b>Current Stocks: </b>{{ $product->product_quantity }} Items </h5><br>
+        <h3><b>Product Name</b></h3><br>
+        <h4>{{ $product->product_name }}</h4><br> <br>
 
-            <h3 class="text-left"><b>Product Description</b></h3><br>
-            <p>{{ $product->product_description }}</p><br> <br>
+        <h3><b>Store</b></h3><br>
+        <h4>
+            <a href="{{route('retailer.store.front', ['id' => $product->retailer->retailer_id])}}">{{$product->retailer->store->store_name }}</a>
+        </h4><br> <br>
 
-            @if (isset($product->product_sizes))
+        <h3><b>Product Description</b></h3><br>
+        <p>{{ $product->product_description }}</p><br> <br>
+
+        @if (isset($product->product_sizes))
             <h3><b>Size of the plant</b></h3><br>
             <p>{{ $product->product_sizes }} inches</p><br> <br>
         @endif
+
+
+        <h3><b>Keywords / Tags</b></h3><br>
+        @foreach ($askeys as $ask)
+            <p>: {{ $ask->keyword_name }} </p>
+        @endforeach
 
         @if (isset($product->product_sizes))
             <h3><b>the Plants scientific Name</b></h3><br>
             <p>{{ $product->plant_scientificname }}</p><br> <br>
         @endif
 
-            {{-- Add to cart (Need reig's help with this) --}}
-        <div class="text-center">
-            <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
-                method="POST">
-                @csrf
-               
-                <div class="text-center mb-2">
-                    <button class="btn btn-success btn-sm" type="submit">
-                    <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
-                </div>    
-            </form>
-        </div>
 
-        <div class="text-center">
-            {{-- <h4 class="text-center"><b>Ratings:</b></h4> --}}
-        @include('includes.ratingProductCustomer', ['product' => $product])
-        </div>
+        <h3><b>PRICE</b></h3><br>
+        <p>{{ $product->price }} <b>PHP</b></p><br> <br>
 
-        </div>
-        </div>
-        <hr>
+        <h3><b>Current Stocks</b></h3><br>
+        <p>{{ $product->product_quantity }} <b> Items</b></p><br> <br>
+
+
+
+
 
         <br>
-        <div class="text-center">
-            <h2><b>Questions</b></h2>
-            @include('includes.questionProductCustomer', ['product' => $product])
-        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2><b>RATINGS</b></h2>
+        @include('includes.ratingProductCustomer', ['product' => $product])
+
+        <h2><b>QUESTIONS</b></h2>
+        @include('includes.questionProductCustomer', ['product' => $product])
+
         <br>
         <br>
         <br>
         <br>
     </div>
+
+
+
+
+
 
 @endsection

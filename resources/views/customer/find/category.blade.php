@@ -75,14 +75,11 @@
 
                                     @endif
 
-                                    <h5 class="text-center">$product->product_name</h5>
+                                    <h5 class="text-center">{{ $product->product_name }}</h5>
                         </a>
                         <h6 class="text-center mt-2"> By:
                             <a
                                 href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
-
-                            <a href="{{ route('retailer.store.front', ['id' => 1]) }}">
-                                $product->retailer->store->store_name</a>
                         </h6>
                         <br>
                         @include('includes.rating', ['product' => $product])
