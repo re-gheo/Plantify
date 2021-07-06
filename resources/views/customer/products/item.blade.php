@@ -80,22 +80,21 @@
         <div class="col-lg-6 pull-right">
             <br>
             <br>
+
+            @if (isset($product->product_sizes))
+            <h5><b>Scientific Name: </b> {{ $product->plant_scientificname }}</h5><br>
+            @endif
+
             <h5><b>PRICE: </b>{{ $product->price }}PHP</h5><br>
 
             <h5><b>Current Stocks: </b>{{ $product->product_quantity }} Items </h5><br>
 
-            <h3 class="text-left"><b>Product Description</b></h3><br>
-            <p>{{ $product->product_description }}</p><br> <br>
-
             @if (isset($product->product_sizes))
-            <h3><b>Size of the plant</b></h3><br>
-            <p>{{ $product->product_sizes }} inches</p><br> <br>
-        @endif
+            <h5><b>Size of the plant: </b>{{ $product->product_sizes }} inches</h5><br>
+            @endif
 
-        @if (isset($product->product_sizes))
-            <h3><b>the Plants scientific Name</b></h3><br>
-            <p>{{ $product->plant_scientificname }}</p><br> <br>
-        @endif
+            <h5 class="text-left"><b>Product Description</b></h5>
+            <p>{{ $product->product_description }}</p><br>
 
             {{-- Add to cart (Need reig's help with this) --}}
         <div class="text-center">
