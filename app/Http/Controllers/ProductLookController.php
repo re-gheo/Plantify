@@ -19,6 +19,7 @@ class ProductLookController extends Controller
 
     public function searchFilter(Request $request)
     {
+        dd(request()->all());
         $min = $request->input('min') ?? 0;
         $max = $request->input('max') ?? 9999999;
         $products = [];
@@ -62,6 +63,16 @@ class ProductLookController extends Controller
     }
 
     public function categoryFilter($id)
+    {
+        $category = Categorie::find($id);
+        $categories = Categorie::select('product_categoryid', 'categories')->get();
+        $products =  Product::latest()->where('product_categoryid', $id)->get();
+        // dd($product);
+        return view('customer.find.category', compact('products', 'categories', 'category'));
+    }
+
+
+    public function ReFilter($id)
     {
         $category = Categorie::find($id);
         $categories = Categorie::select('product_categoryid', 'categories')->get();
