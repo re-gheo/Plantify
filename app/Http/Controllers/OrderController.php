@@ -484,7 +484,10 @@ class OrderController extends Controller
 
     public function myroders(Request $request)
     {
-        $olist = Order::join('order_bystoreitems', 'orders.order_id', '=', 'order_bystoreitems.order_id')->join('products', 'order_bystoreitems.product_id', '=', 'products.product_id')->join('users',  'order_bystoreitems.order_customerid', '=', 'users.id')->where('order_bystoreitems.retailer_id', Auth::user()->id)->get();
+        $olist = Order::join('order_bystoreitems', 'orders.order_id', '=', 'order_bystoreitems.order_id')
+        ->join('products', 'order_bystoreitems.product_id', '=', 'products.product_id')
+        ->join('users',  'order_bystoreitems.order_customerid', '=', 'users.id')
+        ->where('order_bystoreitems.retailer_id', Auth::user()->id)->get();
 
 
         return view('retailer.store.myorder', ['olist' => $olist]);
@@ -514,4 +517,6 @@ class OrderController extends Controller
     public function ordercancel(Request $request)
     {
     }
+
+
 }

@@ -168,6 +168,10 @@ Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationControll
 // Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
 // Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
 
+
+Route::get('/admin/track',  'TrackingController@index');
+
+
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
 // ██║     ██║   ██║███████╗   ██║   ██║   ██║██╔████╔██║█████╗  ██████╔╝
