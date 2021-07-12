@@ -58,7 +58,7 @@ Route::get('/exp');
 
 
 
-Route::get('/', 'StorefrontController@front')->name("store");
+Route::get('/', 'StorefrontController@front')->name("store")->middleware('completeCredentailReq');
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
 //RETAILER Comment/Reply

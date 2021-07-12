@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Services\LogServices;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Rules\AuthenticateRecaptcha;
-use Illuminate\Http\Request;
+
 
 use App\Models\User;
-use Socialite;
-use Auth;
+use Illuminate\Http\Request;
+use App\Mail\AccountRegister;
+
+use App\Services\LogServices;
+use App\Http\Controllers\Controller;
+use App\Rules\AuthenticateRecaptcha;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -40,7 +44,7 @@ class LoginController extends Controller
         if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
        
             // Auth::logout();
-            return route('addc.setup')->with('success', 'Your  Email has been registered. Please fill your credential for us to verify your identity.');;
+            return route('addc.setup');
             
             // return redirect()->route("store")->with('success',"Please Complete your credentials");
         }
@@ -157,9 +161,11 @@ class LoginController extends Controller
             $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
             $user->user_role = "customer";
+            $user->user_stateid = 4;
             $user->save();
         }
         Auth::login($user);
+        Mail::to($data->email)->send( new AccountRegister() );
 
     }
     protected function _registerFacebookUser($data)
@@ -172,9 +178,11 @@ class LoginController extends Controller
             $user->provider_id = $data->id;
             $user->avatar = $data->avatar;
             $user->user_role = "customer";
+            $user->user_stateid = 4;
             $user->save();
         }
         Auth::login($user);
+        Mail::to($data->email)->send( new AccountRegister() );
 
     }
 

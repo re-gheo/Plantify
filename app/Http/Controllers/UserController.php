@@ -93,18 +93,18 @@ class UserController extends Controller
     }
 
     protected function setup(){
-
+      
         return view('auth.setup');
     }
     public function setups($email)
     {
-
+        
         request()->session()->put('emailtemp', $email);
         request()->validate([
             'govtid_type' => 'required',
-            'govtid_number' => 'required',
-            'address' => 'required',
-            'birthday' => 'required'
+            'govtid_number' => ['required', 'string', 'min:5' , 'max:12'],
+            'address' => ['required', 'string', 'max:70'],
+            'birthday' => ['required', 'before:-10 years', 'date']
         ]);
 
        // $data = DB::table('users')->where('email', '=',$email)->get();
@@ -122,8 +122,9 @@ class UserController extends Controller
 
         $data->save();
 
-
-        return redirect()->route('OTP.verify');
+        Auth::logout();
+        return redirect()->route("store")->with('success', 'Your Registration Has Been Succesful. Please wait while we verify your account. ABout 1 - 3 days');
+        
     }
 
     protected function verify(){

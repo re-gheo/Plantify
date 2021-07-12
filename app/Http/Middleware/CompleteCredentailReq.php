@@ -17,16 +17,26 @@ class CompleteCredentailReq
      */
     public function handle(Request $request, Closure $next)
     {
-    //    dd(1);
-        if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
-            Auth::logout();
+      
+
+        if (Auth::user()) {
+            if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
            
-            
-            return redirect()->route("store")->with('success',"Please Complete your credentials");
-        }else{
-         
+                Auth::logout();
+
+            return redirect()->route('store');
+              
+            } else {
+
+                return $next($request);
+            }
+          
+        }else {
+
             return $next($request);
+            // dd(route('store'));
+            // return redirect()->route('store');
+            // abort(403);
         }
-    
     }
 }
