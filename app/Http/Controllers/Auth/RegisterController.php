@@ -39,8 +39,8 @@ class RegisterController extends Controller
     // protected $redirectTo =  route('addc.setup');
     protected function redirectTo()
     {
-
-        //return route('addc.setup');
+        Session::flash('success', 'Your  Email has been registered. Please fill your credential for us to verify your identity.');
+        return route('addc.setup');
 
         Session::flash('success', 'Your Registration Has Been Succesful. Please wait while we verify your account.');
         return route('store');

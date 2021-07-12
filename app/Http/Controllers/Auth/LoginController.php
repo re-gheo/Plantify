@@ -36,6 +36,15 @@ class LoginController extends Controller
     protected $redirectTo;
     public function redirectTo()
     {
+        
+        if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
+       
+            // Auth::logout();
+            return route('addc.setup')->with('success', 'Your  Email has been registered. Please fill your credential for us to verify your identity.');;
+            
+            // return redirect()->route("store")->with('success',"Please Complete your credentials");
+        }
+
         if(Auth::user()->user_stateid == 4){
             $remarks = Auth::user()->remarks;
             Auth::logout();
@@ -49,18 +58,13 @@ class LoginController extends Controller
                 $this->redirectTo = ('admin/home');
                 return $this->redirectTo;
                 break;
-            // case 'customer':
-            //     $this->redirectTo = ('customer/home');
-            //     return $this->redirectTo;
-            //     break;
-
-            // case 'retailer':
-            //     $this->redirectTo = ('retailer/home');
-            //     return $this->redirectTo;
-            //     break;
+        
             default:
                 $this->redirectTo = route('store');
                 return $this->redirectTo;
+                break;
+
+
         }
 
         // return $next($request);

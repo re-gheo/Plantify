@@ -100,7 +100,7 @@
                         <button class="btn btn-block btn-success text-uppercase my-2 mx-a" type="submit">SUBMIT</button>
 
                         <div class="pt-2">
-                            <a href="{{ route('OTP.verify') }}">skip for now</a>
+                            {{-- <a href="{{ route('OTP.verify') }}">skip for now</a> --}}
                         </div>
                     </form>
                 </div>
