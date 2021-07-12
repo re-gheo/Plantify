@@ -9,10 +9,14 @@ use PHPUnit\Framework\Test;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Classes\Trackingmore;
+use App\Mail\AccountActivate;
+use App\Mail\AccountRegister;
+use App\Mail\OrderNotify;
 use App\Services\AdminDataService;
 use Illuminate\Support\Facades\URL;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
@@ -254,7 +258,7 @@ Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('ret
 Route::resource('/store/products', 'ProductController')->names([
   'index' => 'retailer.products.index',
   'store' => 'retailer.products.store',
-  'show' => 'retailer.products.show',
+  'show' => 'retailer.products.show2',
   'edit' => 'retailer.products.edit',
   'update' => 'retailer.products.update',
 ]);
@@ -294,6 +298,32 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 Route::get('/testroutes', function ()
 {
     dd( session()->all() );
+
+
+});
+
+Route::get('/emailtest', function ()
+{
+  
+  Mail::to('email@email.com')->send( new AccountRegister() );
+   return new AccountRegister();
+
+
+
+});
+
+Route::get('/emailtest2', function ()
+{
+   return new AccountActivate();
+
+
+
+});
+
+Route::get('/emailtest3', function ()
+{
+   return new OrderNotify();
+
 
 
 });

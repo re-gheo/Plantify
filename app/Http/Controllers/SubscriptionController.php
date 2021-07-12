@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use App\Models\Retailer;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class SubscriptionController extends Controller
             case 1:
                 $ammount = 259.00;
                 $duration = 30;
-                
+
                 break;
             case 2:
                 $ammount = 499.00;
@@ -59,12 +60,12 @@ class SubscriptionController extends Controller
                 $duration = 180;
 
                 break;
-
         }
-dd(Auth::user());
+
         // dump('here');
         $pay = new PaymongoService;
         $result = $pay->handleCard($request, $ammount);
+
         if ($result[0]) {
             $this->handleSubscription(Auth::user()->id, $request,  $ammount, $duration);
             return redirect()->route('subscriptions.show', Auth::user()->id);
@@ -81,8 +82,8 @@ dd(Auth::user());
      */
     public function show($id)
     {
-        dd(Retailer::with('subscription')->get());
-        dd($id);
+        $retailer = Retailer::with('subscription', 'invoice', 'store')->find(Auth::user()->id);
+        
         return view('retailer.subscription.show', compact('retailer'));
     }
 
@@ -123,18 +124,24 @@ dd(Auth::user());
     private function handleSubscription($id, $request,  $ammount, $duration)
     {
         $retiailer = Retailer::find($id);
-       
-        Subscription::create([
-            'retailer_id'=> $id,
-            'plan_id'=> $request->plan,
-            'date_start'=> Carbon::today(),
-            'date_end'=> Carbon::today()->addDays($duration),
-            'duration'=> $duration,
-            'email'=> Auth::user()->email,
-            'payment_state'=> 'PAID',
-            'payment_method'=>'CARD',
-            'total_amount'=> $ammount,
+
+        $invoice = Invoice::create([
+            'retailer_id' => $id,
+            'duration' => $duration,
+            'first_name'=> Auth::user()->first_name,
+            'last_name'=> Auth::user()->last_name,
+            'email' => Auth::user()->email,
+            'total_amount' => $ammount,
+            'payment_state' => 'PAID',
+            'payment_method' => 'CARD',
         ]);
-        
+        Subscription::create([
+            'retailer_id' => $id,
+            'invoice_id' => $invoice->id,
+            'plan_id' => $request->plan,
+            'date_start' => Carbon::today(),
+            'date_end' => Carbon::today()->addDays($duration),
+            'duration' => $duration,
+        ]);
     }
 }

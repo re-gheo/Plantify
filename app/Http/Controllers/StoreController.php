@@ -88,8 +88,9 @@ class StoreController extends Controller
         return view('retailer.store.showProducts', ['store' => Store::findOrFail($id)]);
     }
 
-    public function setGcash()
+    public function setGcashOut()
     {
+        
     }
 
     public function setPayoutCard()

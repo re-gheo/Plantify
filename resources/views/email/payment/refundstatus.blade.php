@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-The body of your message.
+# This Email is to notify you that you have successfully refunded your pruchase
 
 @component('mail::button', ['url' => ''])
 Button Text

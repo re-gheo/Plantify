@@ -53,7 +53,6 @@ class TrackingController extends Controller
         dd(json_decode($response));
         dump(json_decode($api->create(
             [
-
                 "tracking_number" => "2B2W09300714LV",
                 "courier_code" => "cainiao",
                 "order_number" => "#1234",

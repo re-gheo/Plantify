@@ -34,9 +34,9 @@ class ProductFactory extends Factory
             "product_categoryid" => null,
             "product_price" => 150.50,
             "product_quantity" => 12,
-            // "retailer_id" => 2,
             "isDeleted" => 0,
             "isPlant" => 0,
+            "verified" => 1,
         ];
 
         $plant = [
@@ -51,9 +51,10 @@ class ProductFactory extends Factory
             "product_categoryid" => $num,
             "product_price" => 200.50,
             "product_quantity" => 123,
-            // "retailer_id" => 2,
             "isDeleted" => 0,
             "isPlant" => 1,
+            "verified" => 1,
+
         ];
 
 

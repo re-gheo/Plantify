@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderConfirmation extends Mailable
+class OrderNotify extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class OrderConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.order.orderconfirmation');
+        return $this->markdown('email.order.notify');
     }
 }

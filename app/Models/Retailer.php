@@ -24,4 +24,8 @@ class Retailer extends Model
         // dump($this->hasOne(Subscription::class, 'retailer_id'));
         return $this->hasOne(Subscription::class, 'retailer_id');
     }
+    public function invoice(){
+       
+        return $this->hasOne(Invoice::class, 'retailer_id');
+    }
 }
