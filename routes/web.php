@@ -130,6 +130,8 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index')->name('admin.user.index');/*->middleware('admin')*/;
+Route::get('admin/verify-account', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
