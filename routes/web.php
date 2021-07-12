@@ -9,10 +9,14 @@ use PHPUnit\Framework\Test;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Classes\Trackingmore;
+use App\Mail\AccountActivate;
+use App\Mail\AccountRegister;
+use App\Mail\OrderNotify;
 use App\Services\AdminDataService;
 use Illuminate\Support\Facades\URL;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
@@ -54,7 +58,7 @@ Route::get('/exp');
 
 
 
-Route::get('/', 'StorefrontController@front')->name("store");
+Route::get('/', 'StorefrontController@front')->name("store")->middleware('completeCredentailReq');
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
 //RETAILER Comment/Reply
@@ -126,6 +130,8 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index')->name('admin.user.index');/*->middleware('admin')*/;
+Route::get('admin/verify-account', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
@@ -167,6 +173,10 @@ Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationControll
 // Route::post('/admin/commissions/store', 'CommissionController@store');
 // Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
 // Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
+
+
+Route::get('/admin/track',  'TrackingController@index');
+
 
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
@@ -250,7 +260,7 @@ Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('ret
 Route::resource('/store/products', 'ProductController')->names([
   'index' => 'retailer.products.index',
   'store' => 'retailer.products.store',
-  'show' => 'retailer.products.show',
+  'show' => 'retailer.products.show2',
   'edit' => 'retailer.products.edit',
   'update' => 'retailer.products.update',
 ]);
@@ -298,6 +308,32 @@ Route::get('/inspect', function () {
 Route::get('/testroutes', function ()
 {
     dd( session()->all() );
+
+
+});
+
+Route::get('/emailtest', function ()
+{
+  
+  Mail::to('email@email.com')->send( new AccountRegister() );
+   return new AccountRegister();
+
+
+
+});
+
+Route::get('/emailtest2', function ()
+{
+   return new AccountActivate();
+
+
+
+});
+
+Route::get('/emailtest3', function ()
+{
+   return new OrderNotify();
+
 
 
 });

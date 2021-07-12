@@ -28,6 +28,6 @@ class AccountActivate extends Mailable
      */
     public function build()
     {
-        return $this->view('email.account.activate');
+        return $this->markdown('email.account.activate');
     }
 }

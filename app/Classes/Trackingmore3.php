@@ -4,7 +4,7 @@ namespace App\Classes;
 
 use Carbon\Carbon;
 
-class Trackingmore
+class Trackingmore3
 {
     public function hello($s = array())
     {
@@ -17,7 +17,7 @@ class Trackingmore
     }
 
 
-    const API_BASE_URL             = 'http://api.trackingmore.com/v2/';
+    const API_BASE_URL             = 'http://api.trackingmore.com/v3/';
     const ROUTE_CARRIERS           = 'carriers/';
     const ROUTE_CARRIERS_DETECT    = 'carriers/detect';
     const ROUTE_TRACKINGS          = 'trackings';

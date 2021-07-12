@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subscription extends Model
+class Invoice extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function retailer(){
-        $this->belongsTo(Retailer::class, 'retailer_id');
-    }
 
-
-    
     public function plan_type(){
         switch ($this->plan_id) {
             case 1:
