@@ -41,7 +41,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         
-        if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
+        if (Auth::user()->govtid_number == null && Auth::user()->birthday == null && Auth::user()->user_role != 'admin') {
        
             // Auth::logout();
             return route('addc.setup');
