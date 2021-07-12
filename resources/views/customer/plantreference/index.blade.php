@@ -1,4 +1,4 @@
-@extends('layouts.reference-template')
+@extends('layouts.template')
 
 @section('content')
 

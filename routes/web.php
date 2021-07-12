@@ -226,9 +226,9 @@ Route::put('/store/orders/{id}/cancel',  'OrderController@cancel')->name('client
 Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('client.order.recieve');
 
 //CUSTOMER/ SETTINGS / PROFILE
-Route::get('/subscription', function () {
-  return view('subscription.index');
-});
+// Route::get('/subscription', function () {
+//   return view('subscription.index');
+// });
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
@@ -274,6 +274,7 @@ Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.product
 
 Route::resource('/retailer/subscriptions', 'SubscriptionController')->parameters(['subscription' => 'id']);
 
+
 Route::resource('/articles', 'ArticleController');
 Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
 
@@ -286,6 +287,13 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 // Notifications
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
+// Inspect
+//CUSTOMER/ SETTINGS / PROFILE
+Route::get('/inspect', function () {
+  // syntax folder.name of the blade
+  $name='ken';
+   return view('inspect.inspect',compact('name'));
+ })->name('inspect.index');
 
 Route::get('/testroutes', function ()
 {

@@ -2,7 +2,7 @@
 
 @section('content')
 <img class=" card-image" src="" alt="cover photo "
-onerror=" this.onerror=null;this.src='{{ asset('/css/default-cover.jpg') }}' ;">
+onerror=" this.onerror=null;this.src='{{ asset('/img/default-cover.png') }}' ;">
 
 @if ($store->store_backgroundimage != null)
 

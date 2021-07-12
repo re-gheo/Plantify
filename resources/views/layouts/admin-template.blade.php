@@ -202,7 +202,7 @@
 
 
     <!-- Site footer -->
-    <footer class="site-footer mt-4 overflow-hidden">
+    {{-- <footer class="site-footer mt-4 overflow-hidden">
         <div class="container ml-auto">
             <div class="row">
                 <div class="col-sm-12 col-md-6 ">
@@ -243,7 +243,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 
     <!--Bootstrap JS,Cloudflare,Jquery-->

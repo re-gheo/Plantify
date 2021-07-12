@@ -16,10 +16,10 @@
                     <img src="{{ asset('/img/ad1.png') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('/css/default-cover.jpg') }}" alt="">
+                    <img src="{{ asset('/img/default-cover.png') }}" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('/css/default-cover.jpg') }}" alt="">
+                    <img src="{{ asset('/img/default-cover.png') }}" alt="">
                 </div>
             </div>
 
@@ -67,22 +67,25 @@
                                 <div class="card text-center">
                                     @if ($product->product_mainphoto)
                                         <div class="items"></div>
-                                        <img class="rounded mx-auto d-block" width="100" height="100" src=""
-                                            alt="no_image_available">
+                                        {{-- <img class="rounded mx-auto d-block" width="100" height="100" src=""
+                                            alt="no_image_available"> --}}
+                                            <img src="{{ asset('/img/' . 'default-photo.png') }}" class="rounded mx-auto d-block" width="100" height="100" src=""
+                                            alt="default_photo">
                                     @else
-                                        <img class="rounded mx-auto d-block" width="100" height="100" src=""
+                                        <img src="{{ asset('/img/' . 'default-photo.png') }}" class="rounded mx-auto d-block" width="100" height="100" src=""
                                             alt="default_photo">
 
                                     @endif
 
-                                    <h5 class="text-center">$product->product_name</h5>
+                                    {{-- Name of product --}}
+                                    <h5 class="text-center">{{$product->product_name}}</h5>
                         </a>
                         <h6 class="text-center mt-2"> By:
-                            <a
-                                href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
+                            {{-- Store Name --}}
+                            <a href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
 
-                            <a href="{{ route('retailer.store.front', ['id' => 1]) }}">
-                                $product->retailer->store->store_name</a>
+                            {{-- <a href="{{ route('retailer.store.front', ['id' => 1]) }}">
+                                {{$product->retailer->store->store_name}}</a> --}}
                         </h6>
                         <br>
                         @include('includes.rating', ['product' => $product])
