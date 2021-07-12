@@ -20,7 +20,7 @@ class CompleteCredentailReq
       
 
         if (Auth::user()) {
-            if (Auth::user()->govtid_number == null && Auth::user()->birthday == null) {
+            if (Auth::user()->govtid_number == null && Auth::user()->birthday == null && Auth::user()->user_role != 'admin') {
            
                 Auth::logout();
 
