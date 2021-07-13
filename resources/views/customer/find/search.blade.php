@@ -76,12 +76,12 @@
                     <div class="links d-sm-flex flex-sm-row d-lg-flex flex-lg-column text-center">
                         <h4 class="text-center"><b>Ratings</b></h4>
                         <br>
-                        @for ($i = 1; $i < 6; $i++)
+                        @for ($i = 10; $i > 0; $i--)
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                <input class="form-check-input" type="radio" name="rating" id="rating1"
                                     value="{{ $i }}">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    &nbsp;{{ $i }} star
+                                <label class="form-check-label" for="rating">
+                                    &nbsp;Average of {{ $i }} 
                                 </label>
                             </div>
                         @endfor

@@ -19,11 +19,14 @@ class ProductLookController extends Controller
 
     public function searchFilter(Request $request)
     {
+
+
         // dd(request()->all());
         $min = $request->input('min') ?? 0;
         $max = $request->input('max') ?? 9999999;
-        $products = [];
 
+
+        $products = [];
 
 
 
@@ -32,12 +35,25 @@ class ProductLookController extends Controller
             ->with('assigned_keywords', 'assigned_keywords.keyword')
             ->search('product_name', $request->input('query'))
             ->where('isDeleted', FALSE);
-
+            $productwith =  $productwith->find([]);
 
         if ($request->input('category')) {
             $productwith =  $productwith->where('product_categoryid', $request->input('category'));
         }
-
+        if ($request->input('rating')) {
+            $rpList = [];
+            $rateProd = Product::latest()->get();
+            foreach ($rateProd as $rp) {
+                if ( $rp->getratingAverageAttribute() ==  $request->input('rating')) {
+                    $rpList[] = $rp->product_id;
+                }
+                
+            }
+            // dd($rateProd, $rpList);
+            if( $rpList){
+                $productwith =  $productwith;
+            }
+        }
         $productwith = $productwith->get();
 
         if ($request->input('keywords')) {
