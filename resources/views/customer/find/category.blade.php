@@ -62,7 +62,7 @@
                 </div>
                 <div class="row">
                     @foreach ($products as $product)
-                        <a href="{{ route('customer.product.show', ['id' => 1]) }}">
+                        <a href="{{ route('customer.product.show', $product->product_id) }}">
                             <div class="col-lg-3 mb-1">
                                 <div class="card text-center">
                                     @if ($product->product_mainphoto)
