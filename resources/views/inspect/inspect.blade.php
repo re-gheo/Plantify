@@ -14,12 +14,12 @@
                             </div>
                             <div class="text-center">
                                 {{-- NAME OF USER --}}
-                                <h2 class="font-weight-bold mt-4 "> Name of the User </h2>
+                                <h2 class="font-weight-bold mt-4 ">{{$user->first_name. ' '. $user->last_name}} </h2>
                             </div>
 
                             <div class="text-center">
                                 {{-- NAME OF USER --}}
-                                <span class="text-gray"> Date registered: 01/21/21 </span>
+                                <span class="text-gray"> <u>Date registered:{{ $user->fdate() }}</u> </span>
                             </div>
 
 
@@ -104,13 +104,13 @@
                             <div class="col-sm-6">
                                 {{-- EMAIL --}}
                                 <p class="font-weight-bold">Email:</p>
-                                <h6 class=" text-muted">Email goes here</h6>
+                                <h6 class=" text-muted">{{ $user->email }}</h6>
                             </div>
                             <div class="col-sm-6">
                                 {{-- PHONE NUMBER HERE --}}
                                 <p class="font-weight-bold">Phone:</p>
                                 <h6 class="text-muted">
-                                    PHONE GOES HERE
+                                   {{ $user->checkno() }}
                                     {{-- @if (!$profile->cp_number)
                                         <p>Please register and verify for cellphone number </p>
                                     @else
@@ -131,7 +131,8 @@
                                     @else
                                         <p>{{ $profile->birthday }}</p>
                                     @endif --}}
-                                    BIRTHDAY
+                                   
+                                     <p>{{ $user->birthday }}</p>
                                 </h6>
                             </div>
 
@@ -144,7 +145,7 @@
                                     @else
                                         <p>{{ $profile->govID->type . '-' . $profile->govID->no }}</p>
                                     @endif --}}
-                                    GOVT ID GOES HERE
+                                   {{$user->govtid_number}}
                                 </h6>
                             </div>
                         </div>
@@ -154,7 +155,7 @@
                         <div class="row">
                             <div class="col-sm-10 w-100">
                                 <h5 class="text-muted">
-                                    ADDRESS GOES HERE
+                                    {{ $user->address }}
                                     {{-- @if (!$profile->address)
                                         <h6 class="">Please register a location for us to deliver the package</h6>
                                     @else
@@ -165,11 +166,11 @@
                         </div>
 
                         {{-- REMARKS GOES HERE --}}
-                        <p class="font-weight-bold">Remarks</p>
+                        <p class="font-weight-bold">Current Remarks for User</p>
                         <div class="row">
                             <div class="col-sm-10 w-100">
                                 <h5 class="text-muted">
-                                    REMARKS GO HERE
+                                    {{ $user->remarks }}
                                     {{-- @if (!$profile->address)
                                         <h6 class="">Please register a location for us to deliver the package</h6>
                                     @else

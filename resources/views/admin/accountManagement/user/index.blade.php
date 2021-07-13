@@ -37,7 +37,7 @@
                                 <td>
                                     <div class="container">
                                         <div class="row ">
-                                            @if (Auth::id() != $user->id)
+                                            @if ($user->user_role != "admin")
                                                 @if ($user->user_stateid != 2 || $user->user_stateid == null)
                                                     <form id="banForm"
                                                         action="{{ route('admin.user.ban', ['id' => $user->id]) }}"
@@ -50,7 +50,7 @@
 
                                                         <button type="button" class="btn btn-primary text-white ml-2">
                                                             <i class="fas fa-search"></i> <a class="text-white"
-                                                                href=" {{ route('inspect.index') }}">Inspect</a>
+                                                                href=" {{ route('admin.user.inspect', $user->id ) }}">Inspect</a>
                                                         </button>
 
                                                         <!-- Modal -->

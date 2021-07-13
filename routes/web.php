@@ -130,7 +130,7 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index')->name('admin.user.index');/*->middleware('admin')*/;
-Route::get('admin/verify-account', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+
 
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
@@ -142,7 +142,9 @@ Route::post('admin/user/admin/{id}/update', 'AdminController@update')->name('adm
 Route::post('admin/user/admin/store', 'AdminController@store')->name('admin.user.admin.store')/*->middleware('admin')*/;
 Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('admin.user.admin.delete')/*->middleware('admin')*/;
 
-
+//ADMIN/INSPECT USER TO VERIFY
+Route::get('/inspect/{id}',  'UserController@show')->name('admin.user.inspect');
+Route::put('admin/verify-account/{id}', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
 //ADMIN/ CATEGORY
 Route::resource('/admin/categories', 'CategorieController');
 
@@ -299,10 +301,14 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 
 // Inspect
 //CUSTOMER/ SETTINGS / PROFILE
-Route::get('/inspect', function () {
-  // syntax folder.name of the blade
-   return view('inspect.inspect',compact('name'));
- })->name('inspect.index');
+
+
+//  Route::get('/inspect', function () {
+//   // syntax folder.name of the blade
+//   $name='ken';
+//    return view('inspect.inspect',compact('name'));
+//  })->name('inspect.index');
+
 
  Route::get('/terms', function () {
   // syntax folder.name of the blade

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Store;
 use App\Models\Retailer_application;
 use Illuminate\Notifications\Notifiable;
@@ -69,5 +70,12 @@ class User extends Authenticatable
 
     public function orderDetails(){
         return $this->hasMany(Order_detail::class);
+    }
+
+    public function fdate(){
+        return Carbon::parse($this->created_at)->format("Y-m-d");
+    }
+    public function checkno(){
+        return $this->cp_number ? $this->cp_number : "Account needs to be Activated for user to register phone";
     }
 }

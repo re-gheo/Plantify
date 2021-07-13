@@ -55,14 +55,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = User::findOrFail($id);
+        return view('inspect.inspect', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -334,7 +331,6 @@ class UserController extends Controller
         $user->user_stateid = 1;
         $user->save();
         Mail::to($user->email)->send(new AccountActivate());
-        return redirect()->route('admin.user.index')->with('success', 'Successfullly Activated User Account of ' . $user->email ) ;
-        
+        return redirect()->route('admin.user.index')->with('success', 'Successfullly Activated User Account of ' . $user->email);
     }
 }
