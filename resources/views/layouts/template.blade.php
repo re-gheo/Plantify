@@ -365,8 +365,15 @@
                                           </button>
                                       </div>
                                   </form>
-  
-                                  <div class="text-center text-muted delimiter">or use a social network</div>
+                                  <div class="text-center mt-2">
+                                    <span class="mb-"> 
+                                        <input required type="checkbox" data-toggle="modal" data-target="#exampleModal"
+                                            class="">
+                                        By checking, you agree to
+                                       <a href="{{ route('terms.index') }}">Plantify's terms and conditions</a> 
+                                    </span>
+                                </div>
+                                  <div class="text-center text-muted delimiter mt-2">or use a social network</div>
                                   <div class="d-flex justify-content-center social-buttons">
                                       <button type="button" class="btn btn-danger btn-round mr-2" data-toggle="tooltip"
                                           data-placement="top" title="google">
@@ -383,14 +390,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="text-center mt-2">
-                              <span class="mb-2"> 
-                                  <input required type="checkbox" data-toggle="modal" data-target="#exampleModal"
-                                      class="mb-3">
-                                  By checking, you agree to
-                                  Plantify's terms and conditions
-                              </span>
-                          </div>
+                  
                   
                       </div>
                   </div>

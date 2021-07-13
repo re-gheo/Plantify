@@ -301,9 +301,19 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 //CUSTOMER/ SETTINGS / PROFILE
 Route::get('/inspect', function () {
   // syntax folder.name of the blade
-  $name='ken';
    return view('inspect.inspect',compact('name'));
  })->name('inspect.index');
+
+ Route::get('/terms', function () {
+  // syntax folder.name of the blade
+   return view('terms.terms');
+ })->name('terms.index');
+
+ Route::get('/inspect-product', function () {
+  // syntax folder.name of the blade
+   return view('inspect-product.product');
+ })->name('inspect2.index');
+
 
 Route::get('/testroutes', function ()
 {

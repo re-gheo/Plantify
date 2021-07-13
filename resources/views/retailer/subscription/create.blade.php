@@ -58,8 +58,8 @@
             <tr>
                 <th>PLAN</th>
                 <th>1 MONTH SUBSCRIPTION</th>
-                <th>3 MONTH SUBSCRIPTION </th>
-                <th>6 MONTH SUBSCRIPTION</th>
+                <th>3 MONTH/S SUBSCRIPTION </th>
+                <th>6 MONTH/S SUBSCRIPTION</th>
             </tr>
             <tr>
                 <td>AMMOUNT</td>
@@ -97,7 +97,7 @@
                     <input type="text" name="number" required id="card_number" value="{{ old('card_number') }}">
                     @error('number')
                         <div>
-                            invalid number does no align with lughn algortihm
+                            invalid number does not align with lughn algortihm
                         </div>
                     @enderror
                 </div>

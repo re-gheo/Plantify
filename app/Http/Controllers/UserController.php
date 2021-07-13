@@ -125,7 +125,7 @@ class UserController extends Controller
         $data->save();
 
         Auth::logout();
-        return redirect()->route("store")->with('success', 'Your Registration Has Been Succesful. Please wait while we verify your account. ABout 1 - 3 days');
+        return redirect()->route("store")->with('success', 'Your registration has been successful! Please wait while we verify your account In about 1 - 3 days');
     }
 
     protected function verify()
@@ -152,7 +152,7 @@ class UserController extends Controller
             request()->session()->put('nexmoID', $id);
             request()->session()->put('cptemp', request('cp_number'));
         } catch (Exception $e) {
-            return redirect()->route('OTP.verifycheck')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+            return redirect()->route('OTP.verifycheck')->withErrors(['mes' => 'It seems that you have already wrote this number and awaiting a code']);
         }
 
         return redirect()->route('OTP.verifycheck');
@@ -200,7 +200,7 @@ class UserController extends Controller
         try {
             $result = $nexmo->verify()->cancel($request_id);
         } catch (Exception $e) {
-            return redirect()->route('OTP.verify')->withErrors(['mes' => ' your code has expired or cancelled']);
+            return redirect()->route('OTP.verify')->withErrors(['mes' => ' your code has expired or Is cancelled']);
         }
 
         return redirect()->route('OTP.verify');
@@ -273,7 +273,7 @@ class UserController extends Controller
             request()->session()->put('nexmoID', $id);
             request()->session()->put('cptemp', request('cp_number'));
         } catch (Exception $e) {
-            return redirect()->route('customer.profile.pentercode')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
+            return redirect()->route('customer.profile.pentercode')->withErrors(['mes' => 'It seems that you have already wrote this number and awaiting a code']);
         }
         return redirect()->route('customer.profile.pentercode');
     }

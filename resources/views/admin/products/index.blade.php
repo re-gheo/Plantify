@@ -38,20 +38,28 @@
                                 <td>{{ $product->is_verified }}</td>
                                 <td>{{ $product->created_at->toDateString()}}</td>
                                 <td>
-                                    <div class="row justify-items-center">
+                                    <div class="row justify-items-center ">
                                         @if ($product->verified)
                                         <form action="{{ route('admin.product.invalidate', ['id' => $product->product_id]) }}"
                                             method="POST">
                                             @csrf
-                                            <button class="btn btn-success " type="submit">Unverify</button>
+                                            <div class="mr-2">
+                                                <button class="btn btn-danger text-white " type="submit"><i class="fas fa-times mr-2"></i>Unverify</button>
+                                            </div>
+                                           
                                         </form>
                                         @else
                                             <form action="{{ route('admin.product.validate', ['id' => $product->product_id]) }}"
                                                 method="POST">
                                                 @csrf
-                                                <button class="btn btn-success " type="submit">Verify</button>
+                                                <div class="text-white mr-2">
+                                                    <button class="btn btn-primary" type="submit"><i class="fas fa-check mr-2"></i>Verify</button>
+                                                </div>
+                                            
                                             </form>
                                         @endif
+
+                                        <button class="btn btn-success mr-2 "><a class="text-white" href="{{ route('inspect2.index') }}"><i class="fas fa-search mr-2 text-white"></i>Inspect</a></button>
                                     </div>
 
                                 </td>
