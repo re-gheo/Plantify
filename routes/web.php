@@ -45,6 +45,7 @@ Route::get('/exp2', function () {
   // reten view("something")
 });
 
+
 route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);;
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');

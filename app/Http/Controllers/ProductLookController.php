@@ -19,7 +19,7 @@ class ProductLookController extends Controller
 
     public function searchFilter(Request $request)
     {
-        dd(request()->all());
+        // dd(request()->all());
         $min = $request->input('min') ?? 0;
         $max = $request->input('max') ?? 9999999;
         $products = [];

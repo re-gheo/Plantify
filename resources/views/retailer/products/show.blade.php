@@ -66,7 +66,7 @@
                                     <i class="fas fa-list"></i> Back to my product list</a>
 
                                 <a class="btn btn-success mb-2 mt-2 m-1"
-                                    href="{{ route('retailer.products.edit', ['id' => $product->product_id]) }}">
+                                    href="{{ route('retailer.products.edit', $product->product_id) }}">
                                     <i class="fas fa-edit"></i> Edit product</a>
                             </div>
                         </div>

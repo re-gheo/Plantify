@@ -74,7 +74,7 @@
                                                         value="{{ $i->cart_itemid }}" onclick="GetSelected()">
 
                                                     <form class="m-1"
-                                                        action="{{ route('customer.cart.remove', ['id' => $i->cart_itemid]) }}"
+                                                        action="{{ route('customer.cart.remove', ['id' => $i->product_id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

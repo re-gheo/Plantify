@@ -303,10 +303,12 @@ class ProductController extends Controller
     public function addtocart1($id)
     {
 
-
+       
 
         $product = Product::findOrFail($id);
-
+        if( $product->retailer_id == Auth::user()->id){
+            return redirect()->back()->with('success', 'Sorry you cant add you own product to your Shopping Cart');
+        }
         $existItem = Cart_item::where('product_id', $product->product_id)
             ->where('user_id', Auth::user()->id)
             ->where('checked', null)
@@ -383,10 +385,11 @@ class ProductController extends Controller
 
     public function removecartitem($id)
     {
-
-
+       
+       
         $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
-        if ($item->user_id ==  Auth::user()->id) {
+        
+        if ($item->retailer_id ==  Auth::user()->id) {
             Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
             return redirect()->route('customer.cart.show')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
         } else {
