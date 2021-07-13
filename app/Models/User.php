@@ -78,4 +78,15 @@ class User extends Authenticatable
     public function checkno(){
         return $this->cp_number ? $this->cp_number : "Account needs to be Activated for user to register phone";
     }
+
+    public function govt(){
+       dd($this->govtid_number);
+    }
+
+    public function govtid(){
+        return (json_decode($this->govtid_number));
+    }
+    
+
+    
 }

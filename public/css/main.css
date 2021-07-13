@@ -475,8 +475,12 @@ Profile Page
 -----------------
 */
 
-.left-div {
+.left-div2 {
     background-color: #343A40;
+}
+
+.left-div {
+    background-color: #39976b;
 }
 
 .card-row {

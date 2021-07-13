@@ -224,7 +224,7 @@ Route::get('/settings/profile/verify', 'UserController@pverify')->name('customer
 Route::put('/settings/profile/verify', 'UserController@pgetcode')->name('customer.profile.pgetcode');
 Route::get('/settings/profile/verify/check', 'UserController@pentercode')->name('customer.profile.pentercode');
 Route::put('/settings/profile/verify/check', 'UserController@pcheckcode')->name('customer.profile.pcheckcode');
-Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode')->name('customer.profile.pcancelcode');
+Route::post('/settings/profile/verify/cancel', 'UserController@pcancelcode')->name('customer.profile.pcancelcode');
 //CUSTOMER/ SETTINGS / PROFILE / add payment method
 Route::get('/store/profile/addpayment',  'CardController@register')->name('customer.payment.register');
 Route::post('/store/profile/addpayment/register',  'CardController@addcard')->name('customer.payment.addcard');

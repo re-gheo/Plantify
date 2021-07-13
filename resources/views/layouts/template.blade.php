@@ -231,7 +231,7 @@
                                 </button>
                             </form>
 
-                            <div class="text-center text-muted delimiter">or use a social network</div>
+                            <div class="text-center text-muted delimiter mt-2">or use a social network</div>
                             <div class="d-flex justify-content-center social-buttons">
                                 <button type="button" class="btn btn-danger btn-round mr-2" data-toggle="tooltip"
                                     data-placement="top" title="google">

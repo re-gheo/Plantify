@@ -18,7 +18,7 @@
 
             <article>
                 <div class="">
-                    <a href="{{ route('store') }}"><i class="fas fa-undo-alt"></i>return to Plantify
+                    <a href="{{ route('store') }}"><i class="fas fa-undo-alt mr-2"></i>return to Plantify
                     </a>
                 </div>
                 <div class="mt-4">
@@ -1114,7 +1114,7 @@
                 <br>
             </article>
             <div class="mt-2">
-                <a href="{{ route('store') }}"><i class="fas fa-undo-alt"></i>return to Plantify
+                <a href="{{ route('store') }}"><i class="fas fa-undo-alt mr-2"></i>return to Plantify
                 </a>
             </div>
 
