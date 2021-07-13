@@ -64,7 +64,7 @@
                 <div class="featured d-flex align-items-left justify-content-left">
                     <h1><strong>Featured Items!</strong></h1>
                 </div>
-                <di v class="row">
+                <div class="row">
                     @foreach ($products as $product)
                         <a href="{{ route('customer.product.show', ['id' => $product->product_id]) }}">
                             <div class="col-lg-3 mb-1">
@@ -91,7 +91,7 @@
                             @csrf
                         </form>
                         <div class="text-center">
-                            <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
+                            {{-- <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
                                 method="POST">
                                 @csrf
                                
@@ -99,7 +99,7 @@
                                     <button class="btn btn-success btn-sm" type="submit">
                                     <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
                                 </div>    
-                            </form>
+                            </form> --}}
                         </div>
                 </div>
                 <br>

@@ -137,12 +137,12 @@
                                             </div>
                                         </form>
 
-                                        <div class="btn-group">
+                                        {{-- <div class="btn-group">
                                             <button class="btn btn-success text-uppercase my-2 mx-a" onclick="selectAllItems()">
                                                 <i class="fas fa-plus"></i>
                                                 Select All
                                             </button>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>

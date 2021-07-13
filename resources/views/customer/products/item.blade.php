@@ -41,7 +41,7 @@
 
         <hr>
         <div class="container">
-        <h5 class="text-center">Product Preview... Text to be removed once picture issue is resolved</h5>
+        {{-- <h5 class="text-center">Product Preview... Text to be removed once picture issue is resolved</h5> --}}
         <div id="pic" class="carousel row slide col-lg-6 pull-left" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#pic" data-slide-to="0" class="active"></li>
