@@ -18,7 +18,7 @@ class AccountActivate extends Mailable
      */
     public function  __construct($userdata)
     {
-        //
+        $this->userdata = $userdata;
     }
 
     /**
@@ -28,6 +28,7 @@ class AccountActivate extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.account.activate');
+        $user = $this->userdata;
+        return $this->markdown('email.account.activate', compact(  'user' ));
     }
 }

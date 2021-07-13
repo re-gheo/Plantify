@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello {name}
+# Hello {{ $user->first_name }}}
 
 Good Day, Your Account has been activated.
 
