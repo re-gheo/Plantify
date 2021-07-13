@@ -2,6 +2,7 @@
 
 @section('content')
 
+{{-- {{dd ($name)}} --}}
 
     <div class="container">
         <div class="row d-flex justify-content-center">
@@ -79,11 +80,6 @@
                                     @else
                                         <p>{{ $profile->cp_number }}</p>
                                     @endif
-
-
-
-
-
                                 </h6>
                             </div>
                         </div>
@@ -175,12 +171,5 @@
 
 
 
-    <br>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
 @endsection

@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Http\JsonResponse;
-use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Session;
+use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Mail\AccountRegister;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -39,10 +42,10 @@ class RegisterController extends Controller
     // protected $redirectTo =  route('addc.setup');
     protected function redirectTo()
     {
+        Session::flash('success', 'Your  Email has been registered. Please fill your credential for us to verify your identity.');
+        return route('addc.setup');
 
-        //return route('addc.setup');
-
-        Session::flash('success', 'Your Registration Has Been Succesful. Please wait while we verify your account.');
+        Session::flash('success', 'Your Registration Has Been Succesful. Please wait while we verify your account. ABout 1 - 3 days');
         return route('store');
     }
 
@@ -70,9 +73,6 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'govtid_number' => 'required',
-            // 'address' => 'required',
-            // 'birthday' => 'required'
         ]);
     }
 
@@ -85,7 +85,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // request()->session()->put('emailtemp',$data['email']);
-        return User::create([
+      
+         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             //'name' => $data['name'],
@@ -99,6 +100,9 @@ class RegisterController extends Controller
             'remarks' => "Your account is being verified. ",
 
         ]);
+        Auth::login($user);
+        return $user;
+        
     }
 
     /**
@@ -112,7 +116,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
+        Mail::to($request->email)->send( new AccountRegister() );
         if ($response = $this->registered($request, $user)) {
             return $response;
         }

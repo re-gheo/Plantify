@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->integer('retailer_id')->nullable()->index('retailer_id');
             $table->tinyInteger('isDeleted')->nullable();
             $table->tinyInteger('isPlant')->nullable();
+            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
     }

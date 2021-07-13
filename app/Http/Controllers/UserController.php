@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 // use DB;
 
-use App\Http\Requests\UserRequest;
 use Exception;
 use App\Models\User;
 use Vonage\Verify\Client;
 use Faker\Calculator\Luhn;
 use Illuminate\Http\Request;
+use App\Mail\AccountActivate;
+use App\Services\LogServices;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
+use App\Http\Requests\UserRequest;
+use App\Mail\DismissAccount;
 use App\Models\Retailer_application;
-use App\Services\LogServices;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->get();
-        return view('admin.accountManagement.user.index',['users' => $user]);
+        return view('admin.accountManagement.user.index', ['users' => $user]);
     }
 
     /**
@@ -55,15 +57,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        $user = User::findOrFail($id);
+        return view('inspect.inspect', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -92,23 +90,26 @@ class UserController extends Controller
         //
     }
 
-    protected function setup(){
+    protected function setup()
+    {
 
         return view('auth.setup');
     }
+
+
     public function setups($email)
     {
 
         request()->session()->put('emailtemp', $email);
         request()->validate([
             'govtid_type' => 'required',
-            'govtid_number' => 'required',
-            'address' => 'required',
-            'birthday' => 'required'
+            'govtid_number' => ['required', 'string', 'min:5', 'max:12'],
+            'address' => ['required', 'string', 'max:70'],
+            'birthday' => ['required', 'before:-10 years', 'date']
         ]);
 
-       // $data = DB::table('users')->where('email', '=',$email)->get();
-        $data = User::where('email',$email )->first();
+        // $data = DB::table('users')->where('email', '=',$email)->get();
+        $data = User::where('email', $email)->first();
 
         $data->govtid_number = json_encode(array(
             'type' => request('govtid_type'),
@@ -122,40 +123,38 @@ class UserController extends Controller
 
         $data->save();
 
-
-        return redirect()->route('OTP.verify');
+        Auth::logout();
+        return redirect()->route("store")->with('success', 'Your registration has been successful! Please wait while we verify your account In about 1 - 3 days');
     }
 
-    protected function verify(){
+    protected function verify()
+    {
 
         return view('auth.cpverify');
     }
 
     public function getcode()
     {
-      // dd(request('cp_number'));
+        // dd(request('cp_number'));
         request()->validate([
             'cp_number' => 'required',
         ]);
 
-    $nexmo = app('Nexmo\Client');
-    try{
-        $verification = $nexmo->verify()->start([
-            'number' => request('cp_number'),
-            'brand'  => 'Plantify',
-             'code_length'  => '6'
-             ]);
-             $id = $verification->getRequestId();
+        $nexmo = app('Nexmo\Client');
+        try {
+            $verification = $nexmo->verify()->start([
+                'number' => request('cp_number'),
+                'brand'  => 'Plantify',
+                'code_length'  => '6'
+            ]);
+            $id = $verification->getRequestId();
             request()->session()->put('nexmoID', $id);
             request()->session()->put('cptemp', request('cp_number'));
-    } catch (Exception $e)
-
-    {
-        return redirect()->route('OTP.verifycheck')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
-    }
+        } catch (Exception $e) {
+            return redirect()->route('OTP.verifycheck')->withErrors(['mes' => 'It seems that you have already wrote this number and awaiting a code']);
+        }
 
         return redirect()->route('OTP.verifycheck');
-
     }
 
     protected function entercode()
@@ -173,17 +172,16 @@ class UserController extends Controller
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
         $verification = new Verification($request_id);
-        try{
+        try {
             $result = $nexmo->verify()->check($verification, request('code'));
-            }
-         catch (Exception $e)//sadasdasdadsasa
+        } catch (Exception $e) //sadasdasdadsasa
 
-            {
+        {
             return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
-            }
+        }
 
         $email = Auth::user()->email;
-        $data = User::where('email',$email )->first();
+        $data = User::where('email', $email)->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
         $data->save();
@@ -200,9 +198,8 @@ class UserController extends Controller
 
         try {
             $result = $nexmo->verify()->cancel($request_id);
-        }
-        catch(Exception $e) {
-            return redirect()->route('OTP.verify')->withErrors(['mes' => ' your code has expired or cancelled']);
+        } catch (Exception $e) {
+            return redirect()->route('OTP.verify')->withErrors(['mes' => ' your code has expired or Is cancelled']);
         }
 
         return redirect()->route('OTP.verify');
@@ -211,31 +208,31 @@ class UserController extends Controller
     public function profile()
     {
 
-            $profile = User::where('email',Auth::user()->email)->first();
-           $app = Retailer_application::latest()->where('user_id', Auth::user()->id)->first();
+        $profile = User::where('email', Auth::user()->email)->first();
+        $app = Retailer_application::latest()->where('user_id', Auth::user()->id)->first();
 
-            return view('customer.settings.profile.profile',['profile' => $profile,'app' => $app]);
+        return view('customer.settings.profile.profile', ['profile' => $profile, 'app' => $app]);
     }
 
     public function editprofile()
     {
-            $profile = User::where('email',Auth::user()->email)->first();
+        $profile = User::where('email', Auth::user()->email)->first();
 
-            return view('customer.settings.profile.edit',['profile' => $profile]);
+        return view('customer.settings.profile.edit', ['profile' => $profile]);
     }
 
     public function updateprofile(UserRequest $request)
     {
 
-        $data = User::where('email',Auth::user()->email)->first();
+        $data = User::where('email', Auth::user()->email)->first();
 
         $data->first_name = $request->first_name;
         $data->last_name = $request->last_name;
-        $data->name = request('first_name'). ' ' .request('last_name');
-        $data->govtid_number =json_encode(array(
+        $data->name = request('first_name') . ' ' . request('last_name');
+        $data->govtid_number = json_encode(array(
             'type' => request('govtid_type'),
             'no' => request('govtid_number')
-         ));
+        ));
         $data->region = "National Capital Region (NCR)";
         $data->address = request('address');
         $data->birthday = $request->birthday;
@@ -247,37 +244,37 @@ class UserController extends Controller
         return redirect()->route('customer.profile.show')->with('success', 'successfully updated profile');
     }
 
-// OTP VERSION FOR PROFILE -------------------------------------------------------------------
+    // OTP VERSION FOR PROFILE -------------------------------------------------------------------
 
 
-    protected function pverify(){
+    protected function pverify()
+    {
 
         return view('customer.settings.profile.cpverify');
     }
 
-    public function pgetcode(){
+    public function pgetcode()
+    {
 
 
         request()->validate([
             'cp_number' => 'required'
         ]);
 
-    $nexmo = app('Nexmo\Client');
-    try{
-        $verification = $nexmo->verify()->start([
-            'number' => request('cp_number'),
-            'brand'  => 'Plantify',
-             'code_length'  => '6'
-             ]);
-             $id = $verification->getRequestId();
+        $nexmo = app('Nexmo\Client');
+        try {
+            $verification = $nexmo->verify()->start([
+                'number' => request('cp_number'),
+                'brand'  => 'Plantify',
+                'code_length'  => '6'
+            ]);
+            $id = $verification->getRequestId();
             request()->session()->put('nexmoID', $id);
             request()->session()->put('cptemp', request('cp_number'));
-    } catch (Exception $e)
-
-    {
-        return redirect()->route('customer.profile.pentercode')->withErrors(['mes' => 'it seem you already inputted this number and awaiting a code']);
-    }
-        return redirect ()->route('customer.profile.pentercode');
+        } catch (Exception $e) {
+            return redirect()->route('customer.profile.pentercode')->withErrors(['mes' => 'It seems that you have already wrote this number and awaiting a code']);
+        }
+        return redirect()->route('customer.profile.pentercode');
     }
 
     protected function pentercode()
@@ -295,22 +292,21 @@ class UserController extends Controller
         $nexmo = app('Nexmo\Client');
         $request_id = request()->session()->get('nexmoID');
         $verification = new Verification($request_id);
-        try{
+        try {
             $result = $nexmo->verify()->check($verification, request('code'));
-            }
-         catch (Exception $e)//sadasdasdadsasa
+        } catch (Exception $e) //sadasdasdadsasa
 
-            {
+        {
             return redirect()->back()->withErrors(['mes' => 'Incorrect Code submitted']);
-            }
+        }
 
         $email = Auth::user()->email;
-        $data = User::where('email',$email )->first();
+        $data = User::where('email', $email)->first();
         $data->cp_number = request()->session()->get('cptemp');
         $data->otp_verified = 1;
         $data->save();
 
-        return redirect ()->route('customer.profile.show')->with('success', 'successfully verified the cell phone number');
+        return redirect()->route('customer.profile.show')->with('success', 'successfully verified the cell phone number');
     }
 
     public function pcancelcode()
@@ -322,15 +318,38 @@ class UserController extends Controller
 
         try {
             $result = $nexmo->verify()->cancel($request_id);
-        }
-        catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('customer.profile.pverify')->withErrors(['mes' => ' your code has expired or cancelled']);
         }
 
-        return redirect ()->route('customer.profile.pverify');
+        return redirect()->route('customer.profile.pverify');
     }
 
 
+    protected function verifyProfile($id)
+    {
+
+        $user = User::find($id);
+        $user->user_stateid = 1;
+        $user->remarks = "";
+        $user->save();
+        Mail::to($user->email)->send(new AccountActivate($user));
+        return redirect()->back()->with('success', 'Successfullly Activated User Account of ' . $user->email);
+    }
+    protected function dismissProfile(Request $request,$id)
+    {
+
+        $user = User::find($id);
+        $userdata =  $user;
+        
+        Mail::to($userdata->email)->send(new DismissAccount($userdata, $request->remark  ));
+      
+        $user->delete();
+        
+       
+        return redirect()->route('admin.user.index')->with('success', 'Deleted User Account of ' . $userdata->email);
+    }
 
 
+   
 }

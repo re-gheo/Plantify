@@ -1,6 +1,7 @@
 @extends ('layouts/admin-template')
 
 @section('content')
+{{-- {{dd ($users)}} --}}
     <div class="page-content">
         <div class="row">
             <div class="col-lg-10 mr-auto ml-auto">
@@ -18,13 +19,12 @@
                     @endif
 
                     <!--TABLE-->
-                    <table
-                        class="table table-bordered table-striped table-hover table-responsive-sm table-responsive-lg">
+                    <table class="table table-bordered table-striped table-hover table-responsive-sm table-responsive-lg">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>options</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
 
@@ -35,61 +35,76 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <div class="row justify-items-center">
-                                        @if (Auth::id() != $user->id)
-                                            @if ($user->user_stateid != 2 || $user->user_stateid == null)
-                                                <form id="banForm" action="{{ route('admin.user.ban', ['id' => $user->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                       Block
-                                                    </button>
+                                    <div class="container">
+                                        <div class="row ">
+                                            @if ($user->user_role != "admin")
+                                                @if ($user->user_stateid != 2 || $user->user_stateid == null)
+                                                    <form id="banForm"
+                                                        action="{{ route('admin.user.ban', ['id' => $user->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#exampleModal">
+                                                            <i class="fas fa-stop"></i> Block
+                                                        </button>
 
-                                                      <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                          <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <h5 class="modal-title" id="exampleModalLabel">Block {{$user->name}}</h5>
-                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="btn btn-primary text-white ml-2">
+                                                            <i class="fas fa-search"></i> <a class="text-white"
+                                                                href=" {{ route('admin.user.inspect', $user->id ) }}">Inspect</a>
+                                                        </button>
 
-                                                              </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                            role="dialog" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Block
+                                                                            {{ $user->name }}</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="exampleFormControlTextarea1">Remarks</label>
+                                                                            <textarea class="form-control" name="remarks"
+                                                                                id="exampleFormControlTextarea1"
+                                                                                rows="3"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <button form="banForm" class="btn btn-primary"
+                                                                            type="submit">Confirm Block</button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlTextarea1">Remarks</label>
-                                                                    <textarea class="form-control" name="remarks" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                                  </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                              <button form="banForm" class="btn btn-primary" type="submit">Confirm Block</button>
-                                                            </div>
-                                                          </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-                                            @else
-                                                <form action="{{ route('admin.user.unban', ['id' => $user->id]) }}"
-                                                    method="POST">
-                                                    @csrf
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('admin.user.unban', ['id' => $user->id]) }}"
+                                                        method="POST">
+                                                        @csrf
 
 
-                                                    <button class="btn btn-success " type="submit">Unblock</button>
-                                                </form>
-                                            @endif
-                                            {{-- <form action="#" method="POST">
+                                                        <button class="btn btn-success " type="submit">Unblock</button>
+                                                    </form>
+                                                @endif
+                                                {{-- <form action="#" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <button class="btn btn-danger " type="submit">Lock </button>
                                         </form> --}}
-                                        @endif
+                                            @endif
+                                        </div>                  
                                     </div>
-
                                 </td>
                             </tr>
-
-
                         @endforeach
                     </table>
                 </div>

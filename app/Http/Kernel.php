@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'retailer' => \App\Http\Middleware\Retailer::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'role' => \App\Http\Middleware\Role::class,
+        'completeCredentailReq' => \App\Http\Middleware\CompleteCredentailReq::class
 
     ];
 }

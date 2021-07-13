@@ -9,10 +9,14 @@ use PHPUnit\Framework\Test;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Classes\Trackingmore;
+use App\Mail\AccountActivate;
+use App\Mail\AccountRegister;
+use App\Mail\OrderNotify;
 use App\Services\AdminDataService;
 use Illuminate\Support\Facades\URL;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
@@ -37,7 +41,10 @@ Route::get('/exp2', function () {
 
   dd($data->getDataAdmin());
   return $data->getDataAdmin();
+
+  // reten view("something")
 });
+
 
 route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);;
 Auth::routes();
@@ -52,7 +59,7 @@ Route::get('/exp');
 
 
 
-Route::get('/', 'StorefrontController@front')->name("store");
+Route::get('/', 'StorefrontController@front')->name("store")->middleware('completeCredentailReq');
 Route::get('/store/articles', 'ArticleController@store_show')->name('store.articles');
 
 //RETAILER Comment/Reply
@@ -124,6 +131,8 @@ Route::get('/restricted', 'HomeController@restricted')->name('restricted')->midd
 
 //ADMIN/user managment
 Route::get('admin/account-management', 'UserController@index')->name('admin.user.index');/*->middleware('admin')*/;
+
+
 Route::post('/admin/user/{id}/ban', 'AdminController@ban')->name('admin.user.ban');
 Route::post('/admin/user/{id}/unban', 'AdminController@unban')->name('admin.user.unban');
 
@@ -134,6 +143,10 @@ Route::post('admin/user/admin/{id}/update', 'AdminController@update')->name('adm
 Route::post('admin/user/admin/store', 'AdminController@store')->name('admin.user.admin.store')/*->middleware('admin')*/;
 Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('admin.user.admin.delete')/*->middleware('admin')*/;
 
+//ADMIN/INSPECT USER TO VERIFY
+Route::get('/admin/inspect/{id}',  'UserController@show')->name('admin.user.inspect');
+Route::get('admin/verify-account/{id}', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+Route::delete('admin/dissmis-account/{id}', 'UserController@dismissProfile')->name('admin.user.dismissprofile');
 
 //ADMIN/ CATEGORY
 Route::resource('/admin/categories', 'CategorieController');
@@ -141,7 +154,12 @@ Route::resource('/admin/categories', 'CategorieController');
 //ADMIN/ KEYWORD
 Route::resource('/admin/keyword', 'KeywordController');
 
-//ADMIN/ reference page
+//ADMIN/ PRODUCTS
+Route::resource('/admin/product', 'AdminProductController');
+Route::post('/admin/product/{id}/validate', 'AdminProductController@validateProduct')->name('admin.product.validate');
+Route::post('/admin/product/{id}/invalidate', 'AdminProductController@invalidateProduct')->name('admin.product.invalidate');
+
+//ADMIN/ REFERENCE
 Route::get('/admin/plantreference/{id}/removepic/{num}', 'PlantReferencepageController@removepic')->name('reference.removepic');
 Route::resource('/admin/plantreference', 'PlantReferencepageController');
 
@@ -160,6 +178,10 @@ Route::put('/admin/customer_application/deny/{id}', 'RetailerApplicationControll
 // Route::post('/admin/commissions/store', 'CommissionController@store');
 // Route::put('/admin/commissions/{id}/edit', 'CommissionController@update');
 // Route::put('/admin/commissions/{id}/put', 'CommissionController@destroy');
+
+
+Route::get('/admin/track',  'TrackingController@index');
+
 
 // ██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗███████╗██████╗
 // ██╔═══╝ ██║   ██║██╔════╝╚══██╔══╝██╔═══██╗████╗ ████║██╔════╝██╔══██╗
@@ -203,7 +225,7 @@ Route::get('/settings/profile/verify', 'UserController@pverify')->name('customer
 Route::put('/settings/profile/verify', 'UserController@pgetcode')->name('customer.profile.pgetcode');
 Route::get('/settings/profile/verify/check', 'UserController@pentercode')->name('customer.profile.pentercode');
 Route::put('/settings/profile/verify/check', 'UserController@pcheckcode')->name('customer.profile.pcheckcode');
-Route::put('/settings/profile/verify/cancel', 'UserController@pcancelcode')->name('customer.profile.pcancelcode');
+Route::post('/settings/profile/verify/cancel', 'UserController@pcancelcode')->name('customer.profile.pcancelcode');
 //CUSTOMER/ SETTINGS / PROFILE / add payment method
 Route::get('/store/profile/addpayment',  'CardController@register')->name('customer.payment.register');
 Route::post('/store/profile/addpayment/register',  'CardController@addcard')->name('customer.payment.addcard');
@@ -219,9 +241,9 @@ Route::put('/store/orders/{id}/cancel',  'OrderController@cancel')->name('client
 Route::put('/store/orders/{id}/recieved',  'OrderController@recieve')->name('client.order.recieve');
 
 //CUSTOMER/ SETTINGS / PROFILE
-Route::get('/subscription', function () {
-  return view('subscription.index');
-});
+// Route::get('/subscription', function () {
+//   return view('subscription.index');
+// });
 
 // ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗██████╗
 // ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝██╔══██╗
@@ -243,17 +265,19 @@ Route::get('/store/products/{id}/remove', 'ProductController@remove')->name('ret
 Route::resource('/store/products', 'ProductController')->names([
   'index' => 'retailer.products.index',
   'store' => 'retailer.products.store',
-  'show' => 'retailer.products.show',
+  'show' => 'retailer.products.show2',
   'edit' => 'retailer.products.edit',
   'update' => 'retailer.products.update',
 ]);
 
-
+//Customer/ Search OR Filter by (category or reference)
 Route::get('/store/search/', 'ProductLookController@search')->name('products.search');
-Route::get('/store/search/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
+Route::get('/store/filter/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
+// Route::get('/store/filter/reference/{id}', 'ProductReferenceController@categoryFilter')->name('products.reference');
 Route::get('/store/advance-search/', 'ProductLookController@searchFilter')->name('products.searchfilter');
 
-
+Route::get('/store/filter2/category/{id}', 'ProductCatergoryController@show');
+Route::get('/store/filter2/reference/{id}', 'ProductReferenceController@show');
 
 
 
@@ -262,6 +286,10 @@ Route::get('/store/{id?}', 'StoreController@front')->name('retailer.store.front'
 Route::get('/store/view/{id}', 'StoreController@show')->name('store.show.products');
 
 // Articles
+
+Route::resource('/retailer/subscriptions', 'SubscriptionController')->parameters(['subscription' => 'id']);
+
+
 Route::resource('/articles', 'ArticleController');
 Route::delete('/service-cate-delete/{article_id}', 'ArticleController@delete');
 
@@ -274,49 +302,57 @@ Route::put('/store/retailer/orders/{id}/update',  'OrderController@ordercancel')
 // Notifications
 // Route::get('/send-notification', [NotificationController::class, 'sendNotification']);
 
+// Inspect
+//CUSTOMER/ SETTINGS / PROFILE
+
+
+//  Route::get('/inspect', function () {
+//   // syntax folder.name of the blade
+//   $name='ken';
+//    return view('inspect.inspect',compact('name'));
+//  })->name('inspect.index');
+
+
+ Route::get('/terms', function () {
+  // syntax folder.name of the blade
+   return view('terms.terms');
+ })->name('terms.index');
+
+ Route::get('/inspect-product', function () {
+  // syntax folder.name of the blade
+   return view('inspect-product.product');
+ })->name('inspect2.index');
+
+
+Route::get('/testroutes', function ()
+{
+    dd( session()->all() );
+
+
+});
+
+Route::get('/emailtest', function ()
+{
+  
+  Mail::to('email@email.com')->send( new AccountRegister() );
+   return new AccountRegister();
 
 
 
+});
+
+Route::get('/emailtest2', function ()
+{
+   return new AccountActivate();
 
 
 
-// Route::get('/test', function () {
-//     $mytime = Carbon::now();
-//     echo $mytime->toDateString();
-//     $date = CarbonImmutable::now();
-//     //dd('time is '  .$date);
-//     //dd(User::where('email',Auth::user()->email)->first());
+});
 
-//     $mutable = Carbon::now();
-//     $immutable = CarbonImmutable::now();
-//     $modifiedMutable = $mutable->add(1, 'day');
-//     $modifiedImmutable = CarbonImmutable::now()->add(1, 'day');
-//     dd('time im ' .  $immutable);
-//     var_dump($modifiedMutable === $mutable);             // bool(true)
-//     var_dump($mutable->isoFormat('dddd D'));             // string(12) "Wednesday 10"
-//     var_dump($modifiedMutable->isoFormat('dddd D'));     // string(12) "Wednesday 10"
-//     // So it means $mutable and $modifiedMutable are the same object
-//     // both set to now + 1 day.
-//     var_dump($modifiedImmutable === $immutable);         // bool(false)
-//     var_dump($immutable->isoFormat('dddd D'));           // string(9) "Tuesday 9"
-//     var_dump($modifiedImmutable->isoFormat('dddd D'));   // string(12) "Wednesday 10"
-//     // While $immutable is still set to now and cannot be changed and
-//     // $modifiedImmutable is a new instance created from $immutable
-//     // set to now + 1 day.
-
-//     $mutable = CarbonImmutable::now()->toMutable();
-//     var_dump($mutable->isMutable());                     // bool(true)
-//     var_dump($mutable->isImmutable());                   // bool(false)
-//     $immutable = Carbon::now()->toImmutable();
-//     var_dump($immutable->isMutable());                   // bool(false)
-//     var_dump($immutable->isImmutable());                 // bool(true)
-
-// });
+Route::get('/emailtest3', function ()
+{
+   return new OrderNotify();
 
 
-// Route::get('/testroutes', function () 
-// {
-//     dd(route('retailer.order.detail') , );
 
-
-// });
+});

@@ -311,7 +311,14 @@ NAVBAR
 }
 
 
-
+.plantify-select{
+    padding: 4px;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #00000020;
+    border-radius: 10px;
+    outline: none;
+}
 
 .nav-link {
     text-decoration: none;
@@ -467,6 +474,10 @@ error handling
 Profile Page
 -----------------
 */
+
+.left-div2 {
+    background-color: #343A40;
+}
 
 .left-div {
     background-color: #39976b;

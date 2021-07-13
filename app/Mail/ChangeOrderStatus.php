@@ -28,6 +28,6 @@ class ChangeOrderStatus extends Mailable
      */
     public function build()
     {
-        return $this->view('email.order.changeorder');
+        return $this->markdown('email.order.changeorder');
     }
 }

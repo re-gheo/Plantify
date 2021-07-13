@@ -60,7 +60,12 @@
                     manage accounts
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a href="{{ route('product.index') }}" class="nav-link text-dark bg-light">
+                    <i class="fas fa-leaf mr-3 text-primary fa-fw"></i>
+                    products
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{ route('admin.list') }}" class="nav-link text-dark">
                     <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
@@ -197,7 +202,7 @@
 
 
     <!-- Site footer -->
-    <footer class="site-footer mt-4 overflow-hidden">
+    {{-- <footer class="site-footer mt-4 overflow-hidden">
         <div class="container ml-auto">
             <div class="row">
                 <div class="col-sm-12 col-md-6 ">
@@ -238,7 +243,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
 
     <!--Bootstrap JS,Cloudflare,Jquery-->

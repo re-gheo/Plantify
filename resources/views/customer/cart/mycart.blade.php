@@ -49,7 +49,7 @@
                                         </td>
                                         <td style="width:20%">
 
-                                            <div class="btn-group">
+                                            <div class="btn-group p-2">
                                                 <form class="cart-form"
                                                     action="{{ route('customer.cart.quantity', ['id' => $i->cart_itemid]) }}"
                                                     method="POST">
@@ -57,7 +57,7 @@
                                                     @method('PUT')
                                                     <input class="cart-input mb-2" type="number" name="quantity" id="quantity"
                                                         value="{{ $i->cart_quantity }}" required min="1">
-                                                    <button class="btn btn-primary btn-sm" type="submit"> Edit Quantity</button>
+                                                    <button class="btn btn-primary p-1" type="submit"> Edit Quantity</button>
                                                 </form>
                                             </div>
 
@@ -74,7 +74,7 @@
                                                         value="{{ $i->cart_itemid }}" onclick="GetSelected()">
 
                                                     <form class="m-1"
-                                                        action="{{ route('customer.cart.remove', ['id' => $i->cart_itemid]) }}"
+                                                        action="{{ route('customer.cart.remove', ['id' => $i->product_id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -135,18 +135,15 @@
                                                     CHECKOUT SELECTED PRODUCTS
                                                 </button>
                                             </div>
-
-
-
-
                                         </form>
 
-                                        <div class="btn-group text-center">
+                                        <div class="btn-group">
                                             <button class="btn btn-success text-uppercase my-2 mx-a" onclick="selectAllItems()">
-                                                <i class="fas fa-shopping-cart"></i>
+                                                <i class="fas fa-plus"></i>
                                                 Select All
                                             </button>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

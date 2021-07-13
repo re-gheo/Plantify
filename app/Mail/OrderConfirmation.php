@@ -28,6 +28,6 @@ class OrderConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('email.order.orderconfirmation');
+        return $this->markdown('email.order.orderconfirmation');
     }
 }
