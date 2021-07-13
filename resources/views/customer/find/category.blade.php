@@ -75,18 +75,18 @@
 
                                     @endif
 
-                                    <h5 class="text-center">$product->product_name</h5>
+                                    <h5 class="text-center">{{$product->product_name}}</h5>
                         </a>
                         <h6 class="text-center mt-2"> By:
                             <a
                                 href="{{ route('retailer.store.front', ['id' => $product->retailer->retailer_id]) }}">{{ $product->retailer->store->store_name }}</a>
 
                             <a href="{{ route('retailer.store.front', ['id' => 1]) }}">
-                                $product->retailer->store->store_name</a>
+                                {{$product->retailer->store->store_name}}</a>
                         </h6>
                         <br>
                         @include('includes.rating', ['product' => $product])
-                        <form action="{{ route('customer.cart.add', ['id' => 1]) }}" method="POST">
+                        {{-- <form action="{{ route('customer.cart.add', ['id' => 1]) }}" method="POST">
                             @csrf
 
                             <div class="text-center mb-2">
@@ -94,7 +94,7 @@
                                     <i class="fas fa-shopping-cart mr-1"></i>Add to cart</button>
                             </div>
 
-                        </form>
+                        </form> --}}
                 </div>
                 <br>
 

@@ -96,7 +96,6 @@
             <h5 class="text-left"><b>Product Description</b></h5>
             <p>{{ $product->product_description }}</p><br>
 
-            {{-- Add to cart (Need reig's help with this) --}}
         <div class="text-center">
             <form action="{{ route('customer.cart.add', ['id' => $product->product_id]) }}"
                 method="POST">
