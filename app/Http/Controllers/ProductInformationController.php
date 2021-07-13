@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Retailer;
 use App\Models\Categorie;
-use App\Models\Plant_referencepage;
 use Illuminate\Http\Request;
+use App\Models\Plant_referencepage;
 
 class ProductInformationController extends Controller
 {
     
     public function index()
     {
+
+
+        
+        
+      
+
         $plant_referencepages = Plant_referencepage::all();
         $categories = Categorie::all();
         return view('customer.plantreference.index', compact('plant_referencepages', 'categories'));
@@ -31,8 +38,16 @@ class ProductInformationController extends Controller
     
     public function show(Plant_referencepage $plant_referencepage)
     {
-        
-        return view('customer.plantreference.show', compact('plant_referencepage'));
+        $plant_referencepage = Plant_referencepage::with('products', 'products.retailer')->find($plant_referencepage->plant_referenceid);
+        // dd( $plant_reference );
+        $storeIdList = [];
+        foreach ($plant_referencepage->products as $product) {
+            $storeIdList[] = $product->retailer->retailer_id;
+        }
+       
+        $retailer = Retailer::find($storeIdList);
+
+        return view('customer.plantreference.show', compact('plant_referencepage', 'retailer'));
     }
 
     

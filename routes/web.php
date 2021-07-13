@@ -46,7 +46,7 @@ Route::get('/exp2', function () {
 });
 
 
-route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);;
+route::resource("/plant-information", "ProductInformationController")->parameters(['plant-information' => 'plant_referencepage']);
 Auth::routes();
 //  URL::forceRootUrl('https://isproj2b.benilde.edu.ph/Plantify');
 //  URL::forceScheme('https');
@@ -273,7 +273,7 @@ Route::resource('/store/products', 'ProductController')->names([
 //Customer/ Search OR Filter by (category or reference)
 Route::get('/store/search/', 'ProductLookController@search')->name('products.search');
 Route::get('/store/filter/category/{id}', 'ProductLookController@categoryFilter')->name('products.category');
-// Route::get('/store/filter/reference/{id}', 'ProductReferenceController@categoryFilter')->name('products.reference');
+Route::get('/store/filter/reference/{id}', 'ProductReferenceController@categoryFilter')->name('products.reference');
 Route::get('/store/advance-search/', 'ProductLookController@searchFilter')->name('products.searchfilter');
 
 Route::get('/store/filter2/category/{id}', 'ProductCatergoryController@show');

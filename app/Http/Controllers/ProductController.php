@@ -306,9 +306,11 @@ class ProductController extends Controller
        
 
         $product = Product::findOrFail($id);
+     if( Auth::user()){
         if( $product->retailer_id == Auth::user()->id){
             return redirect()->back()->with('success', 'Sorry you cant add you own product to your Shopping Cart');
         }
+     }
         $existItem = Cart_item::where('product_id', $product->product_id)
             ->where('user_id', Auth::user()->id)
             ->where('checked', null)
