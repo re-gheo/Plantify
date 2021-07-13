@@ -16,9 +16,12 @@ class StorefrontController extends Controller
     public function front()
     {
         $categories = Categorie::all();
-        $products = Product::latest()->where('isDeleted', FALSE)->where("retailer_id","!=", )->active()->get();
+        $products = Product::latest()->where('isDeleted', FALSE)->active()->get();
+        
 
-        if(Auth::user()->id)
+        if(Auth::user()){
+            $products = Product::latest()->where('isDeleted', FALSE)->where("retailer_id","!=", Auth::user()->id )->active()->get();
+        }
         return view('storefront', compact('categories', 'products'));
     }
 
