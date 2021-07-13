@@ -390,13 +390,13 @@ class ProductController extends Controller
        
        
         $item = Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->first();
-        
-        if ($item->retailer_id ==  Auth::user()->id) {
+        // dd(  $item );
+        // if ($item->retailer_id ==  Auth::user()->id) {
             Cart_item::where('product_id', $id)->where('user_id',  Auth::user()->id)->delete();
             return redirect()->route('customer.cart.show')->with('success', 'Removed ' . $item->cart_itemname . ' from cart.');
-        } else {
-            return redirect()->route('store');
-        }
+        // } else {
+        //     return redirect()->route('store');
+        // }
     }
 
 
