@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 // use DB;
 
-use App\Http\Requests\UserRequest;
-use App\Mail\AccountActivate;
 use Exception;
 use App\Models\User;
 use Vonage\Verify\Client;
 use Faker\Calculator\Luhn;
 use Illuminate\Http\Request;
+use App\Mail\AccountActivate;
+use App\Services\LogServices;
 use Nexmo\Laravel\Facade\Nexmo;
 use Vonage\Verify\Verification;
+use App\Http\Requests\UserRequest;
+use App\Mail\DismissAccount;
 use App\Models\Retailer_application;
-use App\Services\LogServices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -329,8 +331,25 @@ class UserController extends Controller
 
         $user = User::find($id);
         $user->user_stateid = 1;
+        $user->remarks = "";
         $user->save();
-        Mail::to($user->email)->send(new AccountActivate());
-        return redirect()->route('admin.user.index')->with('success', 'Successfullly Activated User Account of ' . $user->email);
+        Mail::to($user->email)->send(new AccountActivate($user));
+        return redirect()->back()->with('success', 'Successfullly Activated User Account of ' . $user->email);
     }
+    protected function dismissProfile(Request $request,$id)
+    {
+
+        $user = User::find($id);
+        $userdata =  $user;
+        
+        Mail::to($userdata->email)->send(new DismissAccount($userdata, $request->remark  ));
+      
+        $user->delete();
+        
+       
+        return redirect()->route('admin.user.index')->with('success', 'Deleted User Account of ' . $userdata->email);
+    }
+
+
+   
 }

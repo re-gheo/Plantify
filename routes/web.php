@@ -143,8 +143,10 @@ Route::post('admin/user/admin/store', 'AdminController@store')->name('admin.user
 Route::delete('admin/user/admin/{id}/delete', 'AdminController@delete')->name('admin.user.admin.delete')/*->middleware('admin')*/;
 
 //ADMIN/INSPECT USER TO VERIFY
-Route::get('/inspect/{id}',  'UserController@show')->name('admin.user.inspect');
-Route::put('admin/verify-account/{id}', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+Route::get('/admin/inspect/{id}',  'UserController@show')->name('admin.user.inspect');
+Route::get('admin/verify-account/{id}', 'UserController@verifyProfile')->name('admin.user.verifyprofile');
+Route::delete('admin/dissmis-account/{id}', 'UserController@dismissProfile')->name('admin.user.dismissprofile');
+
 //ADMIN/ CATEGORY
 Route::resource('/admin/categories', 'CategorieController');
 

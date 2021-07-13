@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountActivate extends Mailable
+class DismissAccount extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,10 @@ class AccountActivate extends Mailable
      *
      * @return void
      */
-    public function  __construct($userdata)
+    public function __construct($userdata, $remark)
     {
-        //
+        $this->uses = $userdata;
+        $this->remark = $remark;
     }
 
     /**
@@ -28,6 +29,9 @@ class AccountActivate extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.account.activate');
+
+        $user = $this->uses;
+        $remark = $this->remark;
+        return $this->markdown('email.account.dismiss', compact('user', 'remark'));
     }
 }
