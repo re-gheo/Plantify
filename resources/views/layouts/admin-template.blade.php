@@ -62,13 +62,13 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('product.index') }}" class="nav-link text-dark bg-light">
-                    <i class="fas fa-leaf mr-3 text-primary fa-fw"></i>
+                    <i class="fas fa-shopping-bag mr-3 text-primary fa-fw"></i>
                     products
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.list') }}" class="nav-link text-dark">
-                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    <i class="fas fa-cog mr-3 text-primary fa-fw"></i>
                     admin accounts
                 </a>
             </li>
@@ -76,7 +76,7 @@
 
             <li class="nav-item">
                 <a href="{{ route('categories.index') }}" class="nav-link text-dark">
-                    <i class="far fa-list-alt mr-3 text-primary fa-fw"></i>
+                    <i class="fas fa-folder-open mr-3 text-primary fa-fw"></i>
                     categories
                 </a>
             </li>
@@ -100,7 +100,7 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('keyword.index') }}" class="nav-link text-dark">
-                    <i class="fas fa-building mr-3 text-primary fa-fw"></i>
+                    <i class="fas fa-tag mr-3 text-primary fa-fw"></i>
                     Keywords
                 </a>
             </li>

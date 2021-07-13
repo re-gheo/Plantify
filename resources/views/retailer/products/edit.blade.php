@@ -9,7 +9,7 @@
                 <div class="card-body mx-auto">
                     <h1> Edit this product</h1>
 
-                    <form action="{{ route('retailer.products.update', ['id' => $product->product_id]) }}" method="POST"
+                    <form action="{{ route('retailer.products.update', $product->product_id) }}" method="POST"
                         enctype="multipart/form-data">
 
                         @csrf
@@ -19,8 +19,8 @@
                             <br>
                             <input id="product_name" type="text"
                                 class=" @error('product_name') 
-                                                                                                                is-invalid @enderror" name="product_name"
-                                autocomplete="product_name" value="{{ $product->product_name }}">
+                                                                                                                    is-invalid @enderror"
+                                name="product_name" autocomplete="product_name" value="{{ $product->product_name }}">
 
                             @error('product_name')
                                 <span class="" role="alert">
@@ -35,8 +35,8 @@
                             <br>
                             <textarea class="txtarea" id="product_description"
                                 class=" @error('product_description') 
-                                                                                                                        is-invalid @enderror" name="product_description"
-                                autocomplete="product_description" cols="30"
+                                                                                                                            is-invalid @enderror"
+                                name="product_description" autocomplete="product_description" cols="30"
                                 rows="10">{{ $product->product_description }}</textarea>
 
                             @error('product_description')
@@ -52,7 +52,7 @@
                                 <br>
                                 <input class="cart-input" id="product_sizes" type="number"
                                     class=" @error('product_sizes') 
-                                                                                                            is-invalid @enderror" name="product_sizes"
+                                                                                                                is-invalid @enderror" name="product_sizes"
                                     value="{{ $product->product_sizes }}" autocomplete="product_sizes">
 
                                 @error('product_sizes')
@@ -102,7 +102,7 @@
                             <br>
                             <input id="product_price" type="number"
                                 class=" @error('product_price') 
-                                                                                                                is-invalid @enderror" name="product_price"
+                                                                                                                    is-invalid @enderror" name="product_price"
                                 autocomplete="product_price" value="{{ $product->product_price }}">
 
                             @error('product_price')
@@ -119,7 +119,7 @@
                             <br>
                             <input id="product_quantity" type="number"
                                 class=" @error('product_quantity') 
-                                                                                                                is-invalid @enderror" name="product_quantity"
+                                                                                                                    is-invalid @enderror" name="product_quantity"
                                 autocomplete="product_quantity" value="{{ $product->product_quantity }}">
 
                             @error('product_quantity')
@@ -136,9 +136,10 @@
                                     accept="image/x-png ,image/jpeg" multiple>
 
                             </div>
-
+                            
                             <img style="width: 25rem; height:25rem"
                                 src="{{ asset('/storage/' . $product->product_mainphoto) }}" alt="">
+                                
                         </div>
 
                         @error('product_mainphoto')

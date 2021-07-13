@@ -2,11 +2,20 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-4">
         <div class="container mb-4" id="selecitem">
             <div class="row">
-                <div class="col-12">
-                    <div class="table-responsive">
+                <div class="featured d-flex align-items-left justify-content-left">
+                    <h1><strong>Manage Products</strong></h1>
+                </div>
+                <div class="col-12 mt-2">
+                   
+                    <button class="btn btn-primary"><a class="text-white"
+                            href="{{ route('retailer.products.create', 'plant') }}">Add Plant</a></button>
+                    <button class="btn btn-success"><a class="text-white"
+                            href="{{ route('retailer.products.create', 'product') }}">Add Product</a></button>
+                    </td>
+                    <div class="table-responsive mt-2">
                         @forelse ($products as $product)
 
                             <table class="table table-striped">
@@ -27,8 +36,8 @@
                                     {{-- PRODUCT PHOTO --}}
 
                                     <td>
-                                        <img class="thumb-photo " src="{{ asset('/storage/' . $product->product_mainphoto) }}"
-                                            alt="background">
+                                        <img class="thumb-photo "
+                                            src="{{ asset('/storage/' . $product->product_mainphoto) }}" alt="background">
                                     </td>
 
                                     {{-- PRODUCT NAME --}}
@@ -41,7 +50,7 @@
                                     </td>
                                     {{-- PRODUCT QUANTITY --}}
                                     <td>
-                                        <b>Stocks ({{ $product->product_quantity }} X) </b>
+                                        <b>Stocks (X {{ $product->product_quantity }} ) </b>
                                     </td>
                                     {{-- ACTIONS --}}
                                     <td>
@@ -49,7 +58,8 @@
                                             class="btn btn-danger btn-small">
                                             <i class="fas fa-trash"></i>
                                             remove Product</a>
-                                    </td>
+
+
                                 </tr>
                             </table>
 

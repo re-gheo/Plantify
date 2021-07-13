@@ -42,8 +42,6 @@
                                     </div>
                                 @endif
 
-<<<<<<< Updated upstream
-=======
                                 <div class="text-center">
                                     {{-- NAME OF USER --}}
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -52,14 +50,11 @@
                                     </button>
                                 </div>
 
-
->>>>>>> Stashed changes
-
-
                                 @if ($user->user_stateid == 4)
                                     <div class="card-block text-center mt-4">
                                         <button type="button" class="btn btn-success text-white ml-2">
-                                            <i class="fas fa-search"></i> <a class="text-white" href="{{ route('admin.user.verifyprofile', $user->id) }}">Verify User</a>
+                                            <i class="fas fa-search"></i> <a class="text-white"
+                                                href="{{ route('admin.user.verifyprofile', $user->id) }}">Verify User</a>
                                         </button>
 
                                     </div>
@@ -69,10 +64,11 @@
                                         @method('delete')
                                         <div class="card-block text-center mt-4">
                                             <button type="submit" class="btn btn-warning text-dark ml-2">
-                                                <i class="fas fa-search"></i> <p class="text-dark">Deny User</p>
+                                                <i class="fas fa-hand-paper"></i>
+                                                <p class="text-dark">Deny User</p>
                                             </button>
                                             <p class="text-white">with remarks</p>
-                                            <textarea name="remark" ></textarea >
+                                            <textarea name="remark"></textarea>
                                         </div>
                                     </form>
                                 @endif
@@ -162,15 +158,6 @@
                                 <p class="font-weight-bold">Phone:</p>
                                 <h6 class="text-muted">
                                     {{ $user->checkno() }}
-<<<<<<< Updated upstream
-
-=======
-                                    {{-- @if (!$profile->cp_number)
-                                        <p>Please register and verify for cellphone number </p>
-                                    @else
-                                        <p>{{ $profile->cp_number }}</p>
-                                    @endif --}}
->>>>>>> Stashed changes
                                 </h6>
                             </div>
                         </div>
@@ -180,15 +167,6 @@
                             <div class="col-sm-6">
                                 <p class="font-weight-bold">Birthday</p>
                                 <h6 class="text-muted">
-<<<<<<< Updated upstream
-
-=======
-                                    {{-- @if (!$profile->birthday)
-                                        <p>Please register birthday at settings</p>
-                                    @else
-                                        <p>{{ $profile->birthday }}</p>
-                                    @endif --}}
->>>>>>> Stashed changes
 
                                     <p>{{ $user->birthday }}</p>
                                 </h6>
@@ -198,18 +176,9 @@
                                 {{-- GOVT ID --}}
                                 <p class="font-weight-bold">Govt ID</p>
                                 <h6 class="text-muted">
-<<<<<<< Updated upstream
 
-                                    {{ $user->govtid_number }}
-=======
-                                    {{-- @if (!$profile->govtid_number)
-                                        <p>Please register Government id here</p>
-                                    @else
-                                        <p>{{ $profile->govID->type . '-' . $profile->govID->no }}</p>
-                                    @endif --}}
                                     {{ $user->govtid()->type }}
                                     {{ $user->govtid()->no }}
->>>>>>> Stashed changes
                                 </h6>
                             </div>
                         </div>

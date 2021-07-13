@@ -2,8 +2,11 @@
 
 @section('content')
 
+{{-- {{dd ($product,$asphotos)}} --}}
+    @foreach ($asphotos as $asphoto)
+        <img src="{{ asset('/storage/' . $asphoto->product_photo) }}" alt="">
+    @endforeach
 
-    {{-- {{ dd($product) }} --}}
     <div class="container">
 
         <br>
