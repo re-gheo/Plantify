@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin-template')
 
 @section('content')
     {{-- {{ dd($name) }} --}}
@@ -7,7 +7,7 @@
             <div class=" card-row col-md-10 border">
                 {{-- <h1><b>my Profile information</b> </h1> --}}
                 <div class=" row z-depth-3">
-                    <div class="left-div col-sm-4  rounded-left rounded-right ">
+                    <div class="left-div2 col-sm-4  rounded-left rounded-right ">
                         <div class="card-block text-center text-white ">
                             <div class="">
 
@@ -42,6 +42,18 @@
                                     </div>
                                 @endif
 
+<<<<<<< Updated upstream
+=======
+                                <div class="text-center">
+                                    {{-- NAME OF USER --}}
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        <i class="fas fa-stop"></i> Block
+                                    </button>
+                                </div>
+
+
+>>>>>>> Stashed changes
 
 
                                 @if ($user->user_stateid == 4)
@@ -150,7 +162,15 @@
                                 <p class="font-weight-bold">Phone:</p>
                                 <h6 class="text-muted">
                                     {{ $user->checkno() }}
+<<<<<<< Updated upstream
 
+=======
+                                    {{-- @if (!$profile->cp_number)
+                                        <p>Please register and verify for cellphone number </p>
+                                    @else
+                                        <p>{{ $profile->cp_number }}</p>
+                                    @endif --}}
+>>>>>>> Stashed changes
                                 </h6>
                             </div>
                         </div>
@@ -160,7 +180,15 @@
                             <div class="col-sm-6">
                                 <p class="font-weight-bold">Birthday</p>
                                 <h6 class="text-muted">
+<<<<<<< Updated upstream
 
+=======
+                                    {{-- @if (!$profile->birthday)
+                                        <p>Please register birthday at settings</p>
+                                    @else
+                                        <p>{{ $profile->birthday }}</p>
+                                    @endif --}}
+>>>>>>> Stashed changes
 
                                     <p>{{ $user->birthday }}</p>
                                 </h6>
@@ -170,8 +198,18 @@
                                 {{-- GOVT ID --}}
                                 <p class="font-weight-bold">Govt ID</p>
                                 <h6 class="text-muted">
+<<<<<<< Updated upstream
 
                                     {{ $user->govtid_number }}
+=======
+                                    {{-- @if (!$profile->govtid_number)
+                                        <p>Please register Government id here</p>
+                                    @else
+                                        <p>{{ $profile->govID->type . '-' . $profile->govID->no }}</p>
+                                    @endif --}}
+                                    {{ $user->govtid()->type }}
+                                    {{ $user->govtid()->no }}
+>>>>>>> Stashed changes
                                 </h6>
                             </div>
                         </div>
